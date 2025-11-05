@@ -1,0 +1,74 @@
+.titleOfDiscription {
+  padding-bottom: 2rem;
+  font-size: 4rem;
+}
+
+.game-description {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-family: "Arial", sans-serif;
+  font-size: 1.5rem;
+}
+
+.buy-button {
+  background-color: #b91a27e3;
+  color: white;
+  border: none;
+  padding: 1.2rem 2.4rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+  margin-top: 4rem;
+   margin-bottom: 1rem;
+}
+
+.buy-button:hover {
+  background-color: #63080e;
+  transform: scale(1.05);
+  box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.3);
+}
+
+.buy-button:active {
+  transform: scale(0.97);
+  background-color: #c82333;
+}
+
+
+.buy-box {
+  color: aliceblue;
+  padding:15rem; /* probably you meant 40px → 4rem */
+  background-color: #63080e;
+  z-index: 100;
+  position: fixed;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  font-size: 3rem;
+  box-shadow: 0 0 .5rem rgb(229, 61, 61); 
+}
+
+.x-btn{
+  background-color: #63080e;
+  padding: 1.5rem;
+  position: fixed;
+  top: 0%;
+  right:0%;
+  color: white;
+  margin:.5rem;
+
+}
+
+.x-btn:hover{
+  background-color: white;
+  color:#63080e;
+  transition: all .2s ease-in-out;
+} 
+

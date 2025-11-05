@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Comfortaa", sans-serif;
+}
+
+/*By default 1 rem is equal to 16 pixels because the font size of the root element (the hetmlelement) is equal to 16 pixels. I want ot convert one rem to 10 pixels and for that we need to decrease the font size of the html element so 1 rem is now = 10 px*/
+html {
+  font-size: 62.5%;
+}
+
+@media (max-width: 1000px) {
+  html {
+    font-size: 50%;
+  }
+  .characterCards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #paprika, #misero, #notferatu, #executioner, #hamlet{
+    display: flex;
+    flex-direction: column;
+  }
+
+ .character-photo, .second-half{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+   .character-photo{
+    margin-bottom: 4rem;
+   }
+
+   .second-half p{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 3rem;
+   }
+}
