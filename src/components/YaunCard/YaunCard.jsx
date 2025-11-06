@@ -1,6 +1,6 @@
 import "./YaunCard.css";
 
-function YaunCard({img, name, description}) {
+function YaunCard({img, name="YAUN Character", description="Not the lukiest individual"}) {
   return (
     <div className="yaun-card">
       <img src={img} className="imgCard" />

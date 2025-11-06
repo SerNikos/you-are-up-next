@@ -8,7 +8,7 @@ import notferatu from "./assets/notferatu.png";
 import hamlet from "./assets/hamlet.png";
 import paprika from "./assets/paprika.png";
 
-import Footer from "./components/Footer/Footer.jsx"
+import Footer from "./components/Footer/Footer.jsx";
 
 import GameDescription from "./components/GameDescription/GameDescription.jsx";
 import { Link } from "react-router-dom";
@@ -68,7 +68,6 @@ function App() {
         </Link>
       </section>
       <Footer></Footer>
-
     </>
   );
 }

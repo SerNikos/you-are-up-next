@@ -19,18 +19,21 @@ const characters = [
     image: executioner,
     description: (
       <>
-        Beauty is both a blessing and a curse. That’s the problem of our
-        beloved executioner. Male, female, and everything in between if you
-        wanted a romantic partner, you wanted him. Legend says his first
-        conquest was the midwife who delivered him. Having spent his entire life
-        as the embodiment of the halo effect, he grew tired. What’s the point
-        when everything and everyone comes so easily? So he did the only thing
-        that made sense: he decided he’s a fighter, not a lover. He took over
-        the family business and became the new executioner. Associated with
-        death itself, surely people would stop seeing him only for his looks.
-        And with endless grace and sex appeal -even in this line of work- he
-        finally succeeded. Now, he’s not just a handsome guy.
-        <span style={{ fontWeight: "bold", color: "#b91a27e9"}}> He’s the sexy executioner.</span>
+        Beauty is both a blessing and a curse. That’s the problem of our beloved
+        executioner. Male, female, and everything in between if you wanted a
+        romantic partner, you wanted him. Legend says his first conquest was the
+        midwife who delivered him. Having spent his entire life as the
+        embodiment of the halo effect, he grew tired. What’s the point when
+        everything and everyone comes so easily? So he did the only thing that
+        made sense: he decided he’s a fighter, not a lover. He took over the
+        family business and became the new executioner. Associated with death
+        itself, surely people would stop seeing him only for his looks. And with
+        endless grace and sex appeal -even in this line of work- he finally
+        succeeded. Now, he’s not just a handsome guy.
+        <span style={{ fontWeight: "bold", color: "#b91a27e9" }}>
+          {" "}
+          He’s the sexy executioner.
+        </span>
       </>
     ),
   },
@@ -100,12 +103,15 @@ const characters = [
 
 export default function AllCharactersLore() {
   const { hash } = useLocation();
+  console.log(hash,useLocation());
 
   useEffect(() => {
     if (!hash) return;
 
     const element = document.querySelector(hash);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   }, [hash]);
 
   return (
