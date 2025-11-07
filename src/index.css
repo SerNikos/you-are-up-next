@@ -23,24 +23,52 @@ html {
     align-items: center;
     flex-direction: column;
   }
-  #paprika, #misero, #notferatu, #executioner, #hamlet{
+  #paprika,
+  #misero,
+  #notferatu,
+  #executioner,
+  #hamlet {
     display: flex;
     flex-direction: column;
   }
 
- .character-photo, .second-half{
+  .character-photo,
+  .second-half {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-   .character-photo{
+  .character-photo {
     margin-bottom: 4rem;
-   }
+  }
 
-   .second-half p{
+  .second-half p {
     padding-left: 3rem;
     padding-right: 3rem;
     font-size: 3rem;
-   }
+  }
+}
+
+@media (max-width: 500px) {
+  .accordion-item,
+  .accordion-tile,
+  .accordion-description {
+    max-width: 85%;
+    padding: 2rem;
+  }
+  .accordion-title {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+  }
+  .accordion-description {
+    padding-left: 1rem;
+    font-size: 1.5rem;
+  }
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

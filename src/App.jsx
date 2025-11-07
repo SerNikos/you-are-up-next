@@ -13,6 +13,8 @@ import Footer from "./components/Footer/Footer.jsx";
 import GameDescription from "./components/GameDescription/GameDescription.jsx";
 import { Link } from "react-router-dom";
 
+import { Accordion } from "./components/Accordion/Accordion.jsx";
+
 function App() {
   return (
     <>
@@ -67,6 +69,7 @@ function App() {
           />
         </Link>
       </section>
+      <Accordion></Accordion>
       <Footer></Footer>
     </>
   );
