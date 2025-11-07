@@ -23,7 +23,7 @@
   transition: all 0.3s ease;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
   margin-top: 4rem;
-   margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .buy-button:hover {
@@ -37,10 +37,9 @@
   background-color: #c82333;
 }
 
-
 .buy-box {
   color: aliceblue;
-  padding:15rem; /* probably you meant 40px → 4rem */
+  padding: 15rem; /* probably you meant 40px → 4rem */
   background-color: #63080e;
   z-index: 100;
   position: fixed;
@@ -52,23 +51,22 @@
   align-items: center;
   border-radius: 1rem;
   font-size: 3rem;
-  box-shadow: 0 0 .5rem rgb(229, 61, 61); 
+  box-shadow: 0 0 0.5rem rgb(229, 61, 61);
 }
 
-.x-btn{
+.x-btn {
   background-color: #63080e;
   padding: 1.5rem;
   position: fixed;
   top: 0%;
-  right:0%;
+  right: 0%;
   color: white;
-  margin:.5rem;
-
+  margin: 0.5rem;
+  transition: all 0.2s ease-in-out;
 }
 
-.x-btn:hover{
+.x-btn:hover {
   background-color: white;
-  color:#63080e;
-  transition: all .2s ease-in-out;
-} 
-
+  color: #63080e;
+  cursor: pointer;
+}
