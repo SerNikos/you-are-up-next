@@ -1,0 +1,14 @@
+.not-found-test {
+  text-align: center;
+  font-size: 5rem;
+  padding-top: 30rem;
+  padding-bottom: 3rem;
+}
+
+img{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
