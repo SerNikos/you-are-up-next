@@ -3,5 +3,6 @@ A React-based website for the board game “You Are Up Next”. Implemented dyna
 
 <img width="1904" height="952" alt="image" src="https://github.com/user-attachments/assets/3ce8e048-cf83-416e-9785-5d3b955f723a" />
 <img width="1899" height="954" alt="image" src="https://github.com/user-attachments/assets/896f2c02-3a24-4ff1-9066-ff73bcc57ddc" />
-<img width="898" height="528" alt="image" src="https://github.com/user-attachments/assets/f350499d-7f55-4bf4-81a8-87e57fb73511" />
+<img width="1902" height="567" alt="image" src="https://github.com/user-attachments/assets/81d06af4-827f-4e97-8fd3-d62df1195f9b" />
+
 
