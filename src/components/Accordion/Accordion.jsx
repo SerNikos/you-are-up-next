@@ -1,38 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./Accordion.css";
-import { useState } from "react";
 
 const data = [
   {
     question: "What is YAUN?",
     answer:
-      "YAUN its a physical self-published board game funded by kickstarter",
+      "YAUN is a self-published physical board game funded on Kickstarter.",
   },
   {
-    question: "In What Period of Time",
-    answer: "Of Course the midevel times",
+    question: "In what period of time does it take place?",
+    answer: "YAUN takes place in the medieval times.",
   },
   {
-    question: "How can i Buy it",
-    answer: "Click the Buy Button we work with BoxNow and ACS",
+    question: "How can I buy it?",
+    answer: "Click the Buy button — we work with BoxNow and ACS.",
   },
   {
-    question: "Is it difficult to learn how to play?",
+    question: "Do you have other social media?",
     answer: (
       <>
-        Not at all,
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
-          <span className="accordion-span"> click here </span>
+        Yes, of course! Follow us on Instagram{" "}
+        <a
+          href="https://www.instagram.com/yaun_game"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="accordion-span"
+        >
+          click here
         </a>
-        to watch a tutorial video.
+        .
       </>
     ),
   },
 ];
 
 export const Accordion = () => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(null);
+
+  const toggle = (index) => {
+    setSelected(selected === index ? null : index);
+  };
 
   return (
     <div className="accordion-container">
@@ -46,13 +53,14 @@ export const Accordion = () => {
             <li key={index} className="accordion-item">
               <div
                 className="accordion-question"
-                onClick={() => setSelected(selected === index ? null : index)}
+                onClick={() => toggle(index)}
               >
                 {faq.question}
                 <span className="expand-symbol">
                   {selected === index ? "-" : "+"}
                 </span>
               </div>
+
               <div
                 className={`accordion-answer ${
                   selected === index ? "open" : ""

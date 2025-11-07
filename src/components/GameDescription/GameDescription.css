@@ -83,3 +83,7 @@
   color: #63080e;
   cursor: pointer;
 }
+
+.game-description p{
+  font-size: 2rem;
+}

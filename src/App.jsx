@@ -48,7 +48,7 @@ function App() {
             className="yaun-card"
             img={misero}
             name="Misero"
-            description="They are not here to entertain You"
+            description="He is not here to entertain you"
           />
         </Link>
         <Link to="/AllCharactersLore#paprika">

@@ -35,3 +35,13 @@ body {
   font-size: 8rem;
   padding-bottom: 3rem;
 }
+
+.character-discription {
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 40%;
+  }
+}
