@@ -109,4 +109,18 @@ html {
     max-width: 90%;
     margin-bottom: 2rem;
   }
+
+  nav{
+    transform: scale(1.2);
+
+  }
+  .nav-item{
+        padding: 1.5rem;
+  }
+  .nav-logo{
+    padding-top: 3rem;
+  }
+  .accordion-container{
+    transform: scale(1.15);
+  }
 }
