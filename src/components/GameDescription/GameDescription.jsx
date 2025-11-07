@@ -28,11 +28,13 @@ export default function GameDescription() {
         Buy Now
       </button>
       {buy && (
-        <div className="buy-box">
-          Congrats, you bought YAUN!
-          <button className="x-btn" onClick={handleClose}>
-            X
-          </button>
+        <div className="buy-box-container">
+          <div className="buy-box">
+            Congrats, you bought YAUN!
+            <button className="x-btn" onClick={handleClose}>
+              X
+            </button>
+          </div>
         </div>
       )}
     </div>

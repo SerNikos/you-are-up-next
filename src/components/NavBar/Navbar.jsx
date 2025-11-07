@@ -26,9 +26,6 @@ function Navbar() {
         <Link to="/AllCharactersLore">
           <li className="nav-item">Characters</li>
         </Link>
-        <li className="nav-item" onClick={handleBuy}>
-          Buy Now
-        </li>
       </ul>
       {buy && (
         <div className="buy-box">

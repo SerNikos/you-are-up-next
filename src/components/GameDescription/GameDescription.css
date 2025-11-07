@@ -52,20 +52,24 @@
 
 .buy-box {
   color: aliceblue;
-  padding: 15rem; /* probably you meant 40px → 4rem */
+  padding: 20rem 20rem;
   background-color: #63080e;
-  z-index: 100;
+  z-index: 10000;
   position: fixed;
-  display: flex;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
   box-shadow: 0 0 0.5rem rgb(229, 61, 61);
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: hidden;
 }
+
 
 .x-btn {
   background-color: #63080e;
@@ -86,4 +90,11 @@
 
 .game-description p{
   font-size: 2rem;
+}
+
+.buy-box-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }

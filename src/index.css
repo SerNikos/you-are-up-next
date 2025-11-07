@@ -32,13 +32,11 @@ html {
     flex-direction: column;
   }
 
-  .game-description{
+  .game-description {
     margin-bottom: 15rem;
   }
-  .characterCards{
+  .characterCards {
     transform: scale(1.15);
-
-    
   }
 
   .character-photo,
@@ -50,7 +48,7 @@ html {
 
   .character-photo {
     margin-bottom: 20rem;
-    transform: scale(1.5);
+    transform: scale(1.4);
   }
   .photo-container {
     margin: auto;
@@ -81,7 +79,7 @@ html {
     padding: 1.5rem;
     font-size: 1.6rem;
   }
-  .accordion-container{
+  .accordion-container {
     margin-top: 25rem;
   }
 
@@ -110,17 +108,17 @@ html {
     margin-bottom: 2rem;
   }
 
-  nav{
+  nav {
     transform: scale(1.2);
-
   }
-  .nav-item{
-        padding: 1.5rem;
+  .nav-item {
+    padding: 1.5rem;
   }
-  .nav-logo{
+  .nav-logo {
     padding-top: 3rem;
   }
-  .accordion-container{
+  .accordion-container {
     transform: scale(1.15);
   }
+
 }
