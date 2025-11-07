@@ -30,7 +30,6 @@ html {
   #hamlet {
     display: flex;
     flex-direction: column;
-
   }
 
   .character-photo,
@@ -38,15 +37,13 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-
-
   }
 
   .character-photo {
     margin-bottom: 20rem;
-    transform: scale(1.7);
+    transform: scale(1.5);
   }
-  .photo-container{
+  .photo-container {
     margin: auto;
   }
 
