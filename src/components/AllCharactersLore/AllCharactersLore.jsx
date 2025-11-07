@@ -20,8 +20,7 @@ const characters = [
     description: (
       <>
         Beauty is both a blessing and a curse. That's the problem of our beloved
-        executioner. Male, female, and everything in between if you wanted a
-        romantic partner, you wanted him. Legend says his first conquest was the
+        executioner. Legend says his first conquest was the
         midwife who delivered him. Having spent his entire life as the
         embodiment of the halo effect, he grew tired. What's the point when
         everything and everyone comes so easily? So he did the only thing that
@@ -63,7 +62,7 @@ const characters = [
       Now, all he wants is to retire. But the king won't let him because, besides being useless entertainment, he also happens to be the king’s only real advisor (when you’re the clown no one pays attention to, you overhear a lot).
       Finally, he decided to go out the way he lived: with a joke.
       He made a particularly vulgar joke about the queen's behind and ended up in line for execution.
-      He’s oddly happy about it, until a child gives him a clown scepter and says he's his biggest fan.
+      He's oddly happy about it, until a child gives him a clown scepter and says he's his biggest fan.
       Realizing he can still make someone laugh, Mizerio decides… it's not his time yet.  
     `,
   },
