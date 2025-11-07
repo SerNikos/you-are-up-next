@@ -125,11 +125,13 @@ export default function AllCharactersLore() {
             id={char.id}
             aria-labelledby={`${char.id}-title`}
           >
+            <div className="photo-container">
             <img
               src={char.image}
               alt={`${char.name} image`}
               className="character-photo"
             />
+            </div>
             <div className="second-half">
               <h2 id={`${char.id}-title`}>{char.name}</h2>
               <p className="character-discription">{char.description}</p>

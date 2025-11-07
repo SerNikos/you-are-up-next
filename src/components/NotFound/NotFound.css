@@ -1,7 +1,7 @@
 .not-found-test {
   text-align: center;
   font-size: 5rem;
-  padding-top: 30rem;
+  padding-top: 10rem;
   padding-bottom: 3rem;
 }
 
@@ -11,4 +11,8 @@ img{
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+}
+.navbar a {
+  text-decoration: none;
+  color: inherit;
 }
