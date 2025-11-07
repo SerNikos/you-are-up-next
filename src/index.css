@@ -32,6 +32,15 @@ html {
     flex-direction: column;
   }
 
+  .game-description{
+    margin-bottom: 15rem;
+  }
+  .characterCards{
+    transform: scale(1.15);
+
+    
+  }
+
   .character-photo,
   .second-half {
     display: flex;
@@ -71,6 +80,9 @@ html {
   .accordion-question {
     padding: 1.5rem;
     font-size: 1.6rem;
+  }
+  .accordion-container{
+    margin-top: 25rem;
   }
 
   .accordion-answer {

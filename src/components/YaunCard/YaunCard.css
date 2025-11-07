@@ -1,20 +1,21 @@
 .yaun-card {
   display: inline-block;
-  margin: 1rem;
+  margin: 3rem;
   padding: 1rem;
   border: 0.2rem solid black;
   border-radius: 1rem;
-  width: 22rem;
+  max-width: 22rem;
   text-align: center;
   box-shadow: 0.5rem 0.5rem 1rem rgb(55, 55, 55);
   background-color: rgb(66, 63, 63);
   color: white;
+  transform: scale(1.1);
   transition: all 0.3s ease-in-out;
 }
 
 .yaun-card:hover {
   box-shadow: 1rem 1rem 2rem grey;
-  transform: scale(1.05);
+  transform: scale(1.15);
   cursor: pointer;
 }
 
