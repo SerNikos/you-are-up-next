@@ -26,6 +26,9 @@ function Navbar() {
         <Link to="/AllCharactersLore">
           <li className="nav-item">Protagonists</li>
         </Link>
+       {/* <Link to="/Rules">
+          <li className="nav-item">Rules</li>
+        </Link>*/}
       </ul>
       {buy && (
         <div className="buy-box">

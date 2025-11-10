@@ -9,26 +9,25 @@ import hamlet from "./assets/hamlet.png";
 import paprika from "./assets/paprika.png";
 
 import Footer from "./components/Footer/Footer.jsx";
-
 import GameDescription from "./components/GameDescription/GameDescription.jsx";
 import { Link } from "react-router-dom";
-
 import { Accordion } from "./components/Accordion/Accordion.jsx";
+import { Analytics } from "@vercel/analytics/react"; // ✅ correct import
 
 function App() {
   return (
     <>
       <section className="header">
-        <Navbar></Navbar>
+        <Navbar />
       </section>
+
       <section className="GameDescription">
-        <GameDescription></GameDescription>
+        <GameDescription />
       </section>
 
       <section className="characterCards">
         <Link to="/AllCharactersLore#executioner">
           <YaunCard
-            className="yaun-card"
             img={executioner}
             name="The Executioner"
             description="He is the one who decides who is next"
@@ -37,23 +36,22 @@ function App() {
 
         <Link to="/AllCharactersLore#notferatu">
           <YaunCard
-            className="yaun-card"
             img={notferatu}
             name="Notferatu"
-            description="The most fealess vampire hunter ever"
+            description="The most fearless vampire hunter ever"
           />
         </Link>
+
         <Link to="/AllCharactersLore#misero">
           <YaunCard
-            className="yaun-card"
             img={misero}
             name="Misero"
             description="He is not here to entertain you"
           />
         </Link>
+
         <Link to="/AllCharactersLore#paprika">
           <YaunCard
-            className="yaun-card"
             img={paprika}
             name="Paprika"
             description="She thinks she can fix him"
@@ -62,15 +60,17 @@ function App() {
 
         <Link to="/AllCharactersLore#hamlet">
           <YaunCard
-            className="yaun-card"
             img={hamlet}
             name="Hamlet"
             description="An Innocent animal or an evil genius?"
           />
         </Link>
       </section>
-      <Accordion></Accordion>
-      <Footer></Footer>
+
+      <Accordion />
+      <Footer />
+
+      <Analytics />
     </>
   );
 }
