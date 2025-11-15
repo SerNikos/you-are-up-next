@@ -93,6 +93,10 @@ button:hover {
   background: #1a5ed9;
 }
 
+.footer{
+  z-index: 2;
+}
+
 @media (max-width: 500px) {
   .contact-us {
     padding: 2.5rem;
