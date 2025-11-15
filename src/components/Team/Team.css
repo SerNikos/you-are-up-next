@@ -1,0 +1,94 @@
+.body {
+  color: white;
+}
+.horizontral-line {
+  height: 2px;
+  background-color: white;
+  width: 90%;
+}
+
+.team-top-title {
+  font-size: 7rem;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+}
+
+.team-title {
+  font-size: 4rem;
+  margin-top: 15rem;
+  margin-bottom: 2rem;
+}
+.team-photo {
+  margin-bottom: 40rem;
+  max-width: 50rem;
+  max-height: 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6rem 6rem;
+
+  opacity: 0;
+  transform: translateX(-20rem);
+  transition: 1000ms ease;
+}
+
+.team-photo.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.team-name {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.team-name:hover {
+  text-decoration: underline;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-left-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: flex-start;
+  padding-right: 3rem;
+  padding-bottom: 10rem;
+}
+
+@media (max-width: 500px) {
+  .team-top-title {
+    margin-top: 20rem;
+  }
+
+  .team-photo.show {
+    display: block;
+    margin-bottom: 30rem;
+  }
+
+  .team-left-info {
+    display: felx;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3rem;
+  }
+
+  .team-name {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .team-title {
+    font-size: 4rem;
+    margin-top: 15rem;
+  }
+}

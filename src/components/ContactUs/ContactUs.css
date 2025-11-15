@@ -1,0 +1,151 @@
+.contact-us-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.contact-us {
+  position: relative;
+  background: url("../../assets/hamlet.png") center/cover no-repeat;
+  border-radius: 1.6rem;
+  padding: 6rem;
+  max-width: 41rem;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(73, 72, 72, 0.25);
+  color: #fff;
+  overflow: hidden;
+}
+
+.contact-us::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.contact-us h2,
+.contact-us form {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-us h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #f1f1f1;
+}
+
+input,
+textarea {
+  margin-bottom: 1.6rem;
+  padding: 1rem 1.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 2rem;
+  font-family: inherit;
+  outline: none;
+}
+
+input,
+textarea {
+  background: rgba(255, 255, 255, 0.85);
+  color: #222;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  background: #2575fc;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button {
+  font-size: 2rem;
+}
+
+button:hover {
+  background: #1a5ed9;
+}
+
+@media (max-width: 500px) {
+  .contact-us {
+    padding: 2.5rem;
+  }
+
+  .contact-us h2 {
+    font-size: 4rem;
+  }
+
+}
+
+
+
+
+
+
+
+
+.warning-contact-us {
+  color: white;
+  text-align: center;
+  background-color: rgb(152, 0, 0);
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  letter-spacing: 0.3rem;
+
+  /* Initial fade + slide */
+  animation: fadeSlide 0.8s ease-out forwards, pulse 2s 0.8s infinite ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Fade in + slide */
+@keyframes fadeSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Continuous pulse after fade in */
+@keyframes pulse {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0.2);
+  }
+}
