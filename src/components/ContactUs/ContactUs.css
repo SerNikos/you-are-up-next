@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -93,27 +94,21 @@ button:hover {
   background: #1a5ed9;
 }
 
-.footer{
+.footer {
   z-index: 2;
 }
 
 @media (max-width: 500px) {
-  .contact-us {
-    padding: 2.5rem;
-  }
 
   .contact-us h2 {
     font-size: 4rem;
   }
 
+  .contact-us {
+    min-height: 80vh;
+    min-width: 80vw;
+  }
 }
-
-
-
-
-
-
-
 
 .warning-contact-us {
   color: white;
@@ -125,7 +120,8 @@ button:hover {
   letter-spacing: 0.3rem;
 
   /* Initial fade + slide */
-  animation: fadeSlide 0.8s ease-out forwards, pulse 2s 0.8s infinite ease-in-out;
+  animation: fadeSlide 0.8s ease-out forwards,
+    pulse 2s 0.8s infinite ease-in-out;
   opacity: 0;
   transform: translateY(-10px);
 }
