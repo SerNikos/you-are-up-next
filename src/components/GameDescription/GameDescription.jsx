@@ -30,7 +30,7 @@ export default function GameDescription() {
       {buy && (
         <div className="buy-box-container">
           <div className="buy-box">
-            Congrats, you bought YAUN!
+            Soon on KICKSTARTER...
             <button className="x-btn" onClick={handleClose}>
               X
             </button>
