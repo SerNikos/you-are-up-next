@@ -70,7 +70,6 @@
   overflow: hidden;
 }
 
-
 .x-btn {
   background-color: #63080e;
   padding: 1.5rem;
@@ -88,13 +87,27 @@
   cursor: pointer;
 }
 
-.game-description p{
+.game-description p {
   font-size: 2rem;
 }
 
-.buy-box-container{
+.buy-box-container {
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* DARK BACKGROUND */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9000; /* Below modal but above everything else */
+  backdrop-filter: blur(3px); /* Optional, looks cool */
 }
