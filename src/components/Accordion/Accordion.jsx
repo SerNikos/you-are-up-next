@@ -13,7 +13,8 @@ const data = [
   },
   {
     question: "How can I buy it?",
-    answer: "Click the Buy button — we work with BoxNow and ACS.",
+    answer:
+      "For now, send us a message from our Contact Us page and we'll let you know if we can send it to you",
   },
   {
     question: "Do you have other social media?",
@@ -51,10 +52,7 @@ export const Accordion = () => {
         <ul>
           {data.map((faq, index) => (
             <li key={index} className="accordion-item">
-              <div
-                className="accordion-question"
-                onClick={() => toggle(index)}
-              >
+              <div className="accordion-question" onClick={() => toggle(index)}>
                 {faq.question}
                 <span className="expand-symbol">
                   {selected === index ? "-" : "+"}
