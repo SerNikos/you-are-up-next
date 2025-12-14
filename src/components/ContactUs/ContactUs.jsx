@@ -2,6 +2,8 @@ import "./ContactUs.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer.jsx";
 import { useState } from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactUs() {
   const [formValues, setFormValues] = useState({
@@ -19,8 +21,7 @@ export default function ContactUs() {
   });
 
   // ---------- VALIDATION ----------
-  const nameInvalid =
-    didEdit.name && formValues.name.trim().length < 2;
+  const nameInvalid = didEdit.name && formValues.name.trim().length < 2;
 
   const surnameInvalid =
     didEdit.surname && formValues.surname.trim().length < 2;
@@ -55,15 +56,50 @@ export default function ContactUs() {
   }
 
   // ---------- SUBMIT ----------
-  function handleSubmit(e) {
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   if (nameInvalid || surnameInvalid || emailInvalid || messageInvalid) {
+  //     return;
+  //   }
+
+  //   alert("THE KING SAID WE DON'T ACCEPT MESSAGES RIGHT NOW!");
+  // }
+
+  // --------EMAILJS SERVICE--------
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    if (nameInvalid || surnameInvalid || emailInvalid || messageInvalid) {
-      return;
-    }
+    emailjs
+      .sendForm("service_3m724yx", "template_ey7p0c9", form.current, {
+        publicKey: "zMXdAVQUMDWNFxPBj",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          alert("The King Thanks you for your message we ll be in touch asap!");
+          // Reset state
+          setFormValues({
+            name: "",
+            surname: "",
+            email: "",
+            message: "",
+          });
 
-    alert("THE KING SAID WE DON'T ACCEPT MESSAGES RIGHT NOW!");
-  }
+          setDidEdit({
+            name: false,
+            surname: false,
+            email: false,
+            message: false,
+          });
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
 
   return (
     <div>
@@ -73,16 +109,13 @@ export default function ContactUs() {
         <div className="contact-us">
           <h2>Contact Us</h2>
 
-          <form onSubmit={handleSubmit}>
-            <div className="warning-contact-us">
-              THE KING SAID WE DON'T ACCEPT MESSAGES RIGHT NOW!
-            </div>
-
+          <form ref={form} onSubmit={sendEmail}>
             {/* NAME */}
             <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
+              name="name"
               value={formValues.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               onBlur={() => handleBlur("name")}
@@ -96,6 +129,7 @@ export default function ContactUs() {
             <input
               type="text"
               id="surname"
+              name="surname"
               value={formValues.surname}
               onChange={(e) => handleInputChange("surname", e.target.value)}
               onBlur={() => handleBlur("surname")}
@@ -111,6 +145,7 @@ export default function ContactUs() {
             <input
               type="email"
               id="email"
+              name="email"
               value={formValues.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               onBlur={() => handleBlur("email")}
@@ -123,6 +158,7 @@ export default function ContactUs() {
             <label htmlFor="message">Write us your message</label>
             <textarea
               id="message"
+              name="message"
               rows="5"
               value={formValues.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
@@ -137,10 +173,7 @@ export default function ContactUs() {
             <button
               type="submit"
               disabled={
-                nameInvalid ||
-                surnameInvalid ||
-                emailInvalid ||
-                messageInvalid
+                nameInvalid || surnameInvalid || emailInvalid || messageInvalid
               }
             >
               Send Message
