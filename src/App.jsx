@@ -12,8 +12,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import GameDescription from "./components/GameDescription/GameDescription.jsx";
 import { Link } from "react-router-dom";
 import { Accordion } from "./components/Accordion/Accordion.jsx";
-import { Analytics } from "@vercel/analytics/react"; // ✅ correct import
-
+import { Analytics } from "@vercel/analytics/react";
 function App() {
   return (
     <>
