@@ -1,5 +1,118 @@
-.rules-title{
-    font-size: 3rem;
-    text-align: center;
-    padding:4rem;   
+/* Rules.css */
+
+.rules-container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 18px 64px;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+.rules-header {
+  margin-bottom: 22px;
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rules-main-title {
+  margin: 0 0 6px;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.rules-subtitle {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.rules-section {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rules-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+}
+
+.rules-subtitle2 {
+  margin: 16px 0 6px;
+  font-size: 16px;
+  opacity: 0.92;
+}
+
+.rules-text {
+  margin: 8px 0;
+}
+
+.rules-list,
+.rules-bullets {
+  margin: 10px 0 12px 22px;
+  padding: 0;
+}
+
+.rules-list li,
+.rules-bullets li {
+  margin: 6px 0;
+}
+
+.rules-callout {
+  margin-top: 14px;
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rules-callout-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  letter-spacing: 0.15px;
+}
+
+.rules-example {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0.95;
+}
+
+.subtle {
+  opacity: 0.78;
+}
+
+@media (max-width: 520px) {
+  .rules-container {
+    padding: 18px 12px 48px;
+    font-size: 15px;
+  }
+
+  .rules-main-title {
+    font-size: 24px;
+  }
+
+  .rules-section,
+  .rules-header {
+    padding: 14px;
+  }
 }

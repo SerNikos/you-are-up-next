@@ -29,9 +29,9 @@ function Navbar() {
         <Link to="/Team">
           <li className="nav-item">Team</li>
         </Link>
-        {/* <Link to="/Rules">
+        <Link to="/Rules">
           <li className="nav-item">Rules</li>
-        </Link>*/}
+        </Link>
         <Link to="/ContactUs">
           <li className="nav-item">Contact Us</li>
         </Link>
