@@ -1,6 +1,7 @@
 import React from "react";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
+import Footer from "../Footer/Footer";
 
 export default function Rules() {
   return (
@@ -199,6 +200,7 @@ export default function Rules() {
           </p>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
