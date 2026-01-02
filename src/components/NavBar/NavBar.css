@@ -3,8 +3,9 @@
   padding: 1.5rem 3rem;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size:1.5rem;
+  font-size: 1.5rem;
   z-index: 10;
+  margin-bottom: 2rem;
 }
 
 .nav-list {
@@ -35,8 +36,7 @@
   transform: scale(1.1);
 }
 
-
-@media (max-width: 500px) { 
+@media (max-width: 500px) {
   .nav-list {
     flex-direction: column;
     gap: 1.5rem;
