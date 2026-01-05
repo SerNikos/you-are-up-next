@@ -1,5 +1,20 @@
 /* Rules.css */
 
+.setup {
+  display: flex;
+  justify-content: left;
+  align-items: start;
+  margin: 2rem 0;
+}
+
+.setup img {
+  max-width: 100%;
+  width: 1167px; 
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
 .rules-container {
   max-width: 920px;
   margin: 0 auto;
@@ -32,7 +47,7 @@
   margin-top: 18px;
   padding: 18px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.02);
 }
 

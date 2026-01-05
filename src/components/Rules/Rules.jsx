@@ -2,12 +2,20 @@ import React from "react";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
+import setupImage from "../../assets/set-up/game-setup.png";
 
 export default function Rules() {
   return (
     <div className="the-container">
       <Navbar />
       <div className="rules-container">
+        <div className="rules-title rules-section">
+          Set up the game like this:
+        </div>
+        <div className="setup">
+          <img src={setupImage} alt="game image set up" />
+        </div>
+
         <header className="rules-header">
           <h1 className="rules-main-title">Rules of the Game</h1>
           <p className="rules-subtitle">
