@@ -4,12 +4,19 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 
-// images imports
+// Alive images imports
 import executioner from "../../assets/executioner.jpg";
 import notferatu from "../../assets/notferatu.jpg";
 import misero from "../../assets/misero.jpg";
 import paprika from "../../assets/paprika.jpg";
 import hamlet from "../../assets/hamlet.jpg";
+
+// Dead images imports (from assets/heros-dead)
+
+import hamletDead from "../../assets/heros-dead/hamlet-dead.jpg";
+import miseroDead from "../../assets/heros-dead/misero-dead card.png";
+import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
+import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
 // Character data array
 const characters = [
@@ -17,6 +24,7 @@ const characters = [
     id: "executioner",
     name: "The Executioner",
     image: executioner,
+    deadImage: executioner, // Executioner doesn't have a dead card
     description: (
       <>
         Beauty is both a blessing and a curse. That's the problem of our beloved
@@ -40,8 +48,9 @@ const characters = [
     id: "notferatu",
     name: "Notferatu",
     image: notferatu,
+    deadImage: notferatuDead,
     description: `He is a ruthless and relentless vampire hunter. After his mother died when a vampire 
-      cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming 
+      Kurt cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming 
       the greatest vampire hunter in the world, so that no one else would ever go through what 
       he did. After years of training and finding the perfect equipment, he's finally ready to
       face a vampire… once he finds one. His latest trick? To dress up as a vampire so that a 
@@ -55,6 +64,7 @@ const characters = [
     id: "misero",
     name: "Misero",
     image: misero,
+    deadImage: miseroDead,
     description: `
       Humor ages with man. We don't know if that's true, but that's the state of the king's once-beloved clown.
       After more than forty years of jokes, cream pies, and sarcasm, this jester stopped spreading smiles and joy.
@@ -70,6 +80,7 @@ const characters = [
     id: "paprika",
     name: "Paprika",
     image: paprika,
+    deadImage: paprikaDead,
     description: `
       A young maid with a talent for cooking, who, despite barely being able to read, finds a spice book
       with pictures and uses it for her next pie. She leaves everyone speechless—they've just tasted the
@@ -85,6 +96,7 @@ const characters = [
     id: "hamlet",
     name: "Hamlet",
     image: hamlet,
+    deadImage: hamletDead,
     description: `
       It's the Middle Ages. A pig appears out of nowhere, knocks a flowerpot off a lady's balcony, and it
       falls on the head of the local lord—killing him instantly.
@@ -102,7 +114,6 @@ const characters = [
 
 export default function AllCharactersLore() {
   const { hash } = useLocation();
-  console.log(hash, useLocation());
 
   useEffect(() => {
     if (!hash) return;
@@ -124,13 +135,22 @@ export default function AllCharactersLore() {
             id={char.id}
             aria-labelledby={`${char.id}-title`}
           >
+            {/* Added container structure here for the overlay magic */}
             <div className="photo-container">
               <img
                 src={char.image}
-                alt={`${char.name} image`}
-                className="character-photo"
+                alt={`${char.name} alive card`}
+                className="character-photo alive"
               />
+              {char.deadImage && (
+                <img
+                  src={char.deadImage}
+                  alt={`${char.name} dead card`}
+                  className="character-photo dead"
+                />
+              )}
             </div>
+
             <div className="second-half">
               <h2 id={`${char.id}-title`}>{char.name}</h2>
               <p className="character-discription">{char.description}</p>

@@ -1,48 +1,163 @@
 body {
   color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* Ensure global box sizing behaves nicely */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* 1. LAYOUT SECTIONS 
+   Swapped fixed sizes for flex-wrap so the text automatically 
+   drops beautifully under the photo on tablet/mobile views.
+*/
 #executioner,
 #misero,
 #paprika,
 #hamlet,
 #notferatu {
-  font-size: 2rem;
-  margin-bottom: 20rem;
-  padding-top: 10rem;
+  font-size: 1rem; /* Reset section container base font size */
+  margin-bottom: 12vw; /* Uses viewport width so spacing scales down gracefully */
+  padding-top: 6rem;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows image and text to stack vertically when squeezed */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 4rem; /* Modern alternative to handling blind margins */
+  width: 100%;
+  max-width: 1400px; /* Keeps layout from stretching excessively on giant screens */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
-
 
 .fullDescriptions {
   padding-top: 3rem;
+  width: 100%;
+}
+
+/* 2. PHOTO CONTAINER & SYSTEM
+   Cleaned up hardcoded left margins that break mobile layout centering.
+*/
+.photo-container {
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  perspective: 1000px;
+  flex-shrink: 0; /* Prevents the image aspect ratio from collapsing */
+  max-width: 100%;
 }
 
 .character-photo {
-  margin-left: 5rem;
-  border: 1rem solid rgb(42, 42, 42);
-  border-radius: 0.5rem;
+  border: 1rem solid rgb(24, 24, 24);
+  border-radius: 0.75rem;
+  display: block;
+  max-width: 100%; /* Ensures the card shrinks if the screen is narrower than the card */
+  height: auto;
+  transition:
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.5s ease-in-out,
+    filter 0.5s ease,
+    box-shadow 0.6s ease;
 }
 
+/* --- ALIVE CARD --- */
+.character-photo.alive {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.photo-container:hover .character-photo.alive {
+  opacity: 0.15;
+  filter: grayscale(100%) blur(4px);
+  transform: scale(0.9) rotateY(-15deg) translateZ(-50px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* --- DEAD CARD --- */
+.character-photo.dead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  filter: blur(20px) brightness(3) contrast(1.5);
+  transform: scale(1.3) rotateY(25deg) rotateZ(-5deg) translateY(-20px);
+  pointer-events: none;
+  box-shadow: 0 0 0px rgba(185, 26, 39, 0);
+}
+
+.photo-container:hover .character-photo.dead {
+  opacity: 1;
+  filter: blur(0px) brightness(1) contrast(1);
+  transform: scale(1.08) rotateY(0deg) rotateZ(2deg) translateZ(30px);
+  box-shadow:
+    0 15px 50px rgba(185, 26, 39, 0.6),
+    0 0 30px rgba(185, 26, 39, 0.3);
+}
+
+/* 3. TEXT CONTENT CONTENT 
+   Switched to a flexible basis so text natively occupies remaining row space.
+*/
 .second-half {
   display: flex;
   flex-direction: column;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  flex: 1 1 500px; /* Growth factor, shrink factor, and ideal breakdown threshold */
+  min-width: 280px; /* Prevents text from turning into an ultra-thin vertical line */
 }
 
+/* Clamp prevents text from overflowing or exploding outside container boundaries */
 .second-half h2 {
-  font-size: 8rem;
-  padding-bottom: 3rem;
+  font-size: clamp(
+    3.5rem,
+    6vw,
+    7.5rem
+  ); /* Min size, Fluid Scaling target, Max size */
+  padding-bottom: 1.5rem;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .character-discription {
-  font-size: 2rem;
+  font-size: clamp(
+    1.6rem,
+    1.8vw,
+    2.2rem
+  ); /* Dynamically shrinks text smoothly */
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 4. CLEAN RESPONSIVE MEDIA QUERIES 
+*/
+@media (max-width: 900px) {
+  #executioner,
+  #misero,
+  #paprika,
+  #hamlet,
+  #notferatu {
+    flex-direction: column; /* Force stack layout elements cleanly */
+    align-items: center; /* Perfect center balance */
+    text-align: center; /* Optional: centers character text descriptions on small viewports */
+    margin-bottom: 15rem;
+  }
 }
 
 @media (max-width: 600px) {
   html {
-    font-size: 40%;
+    font-size: 45%; /* Slightly upscaled from 40% to keep things crisp */
+  }
+  .character-photo {
+    border-width: 0.6rem; /* Shrinks thick borders on mobile screens */
   }
 }
