@@ -13,7 +13,8 @@ import hamlet from "../../assets/hamlet.jpg";
 
 // Dead images imports (from assets/heros-dead)
 
-import hamletDead from "../../assets/heros-dead/hamlet-dead.jpg";
+import executionerDead from "../../assets/heros-dead/executioner-dead.png";
+import hamletDead from "../../assets/heros-dead/hamlet-dead.png";
 import miseroDead from "../../assets/heros-dead/misero-dead card.png";
 import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
 import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
@@ -24,7 +25,7 @@ const characters = [
     id: "executioner",
     name: "The Executioner",
     image: executioner,
-    deadImage: executioner, // Executioner doesn't have a dead card
+    deadImage: executionerDead, // Executioner doesn't have a dead card
     description: (
       <>
         Beauty is both a blessing and a curse. That's the problem of our beloved
