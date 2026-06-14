@@ -1,35 +1,42 @@
-.body {
+body {
   color: white;
 }
+
 .horizontral-line {
   height: 2px;
   background-color: white;
   width: 90%;
 }
 
+.team-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Page title */
 .team-top-title {
   font-size: 7rem;
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
 
-.team-title {
-  font-size: 4rem;
-  margin-top: 15rem;
-  margin-bottom: 2rem;
-}
+/* Team member row */
 .team-photo {
-  margin-bottom: 40rem;
-  max-width: 50rem;
-  max-height: 50rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 6rem 6rem;
+  justify-content: center;
+  gap: 5rem;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 6rem 0;
 
   opacity: 0;
   transform: translateX(-20rem);
-  transition: 1000ms ease;
+  transition: all 1s ease;
 }
 
 .team-photo.show {
@@ -37,6 +44,24 @@
   transform: translateX(0);
 }
 
+/* Left text section */
+.team-left-info {
+  width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Role title */
+.team-title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+/* Name links */
 .team-name {
   font-size: 2rem;
   color: white;
@@ -47,48 +72,60 @@
   text-decoration: underline;
 }
 
-.team-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Images */
+.team-photo img {
+  width: 360px;
+  height: 460px;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 12px;
+
+  display: block;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.team-left-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  align-items: flex-start;
-  padding-right: 3rem;
-  padding-bottom: 10rem;
-}
-
+/* Mobile */
 @media (max-width: 500px) {
   .team-top-title {
+    font-size: 4rem;
     margin-top: 4rem;
+    text-align: center;
   }
 
-  .team-photo.show {
-    display: block;
-    margin-bottom: 30rem;
+  .team-photo {
+    flex-direction: column;
+
+    gap: 2rem;
+
+    margin: 5rem 0;
+
+    text-align: center;
   }
 
   .team-left-info {
-    display: felx;
+    width: 100%;
+
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 3rem;
-  }
 
-  .team-name {
-    font-size: 3rem;
-    color: white;
-    text-decoration: none;
+    padding: 0;
   }
 
   .team-title {
-    font-size: 4rem;
-    margin-top: 15rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .team-name {
+    font-size: 1.8rem;
+  }
+
+  .team-photo img {
+    width: 280px;
+    height: 360px;
   }
 }

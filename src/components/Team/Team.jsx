@@ -50,7 +50,7 @@ export default function Team() {
           {/* Sergis */}
           <div className="team-photo">
             <div className="team-left-info">
-              <div className="team-title">The game designer</div>
+              <div className="team-title">The game designer / programmer</div>
               <a
                 className="team-name"
                 href="https://gr.linkedin.com/in/nikolaos-sergis"
