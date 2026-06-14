@@ -2,11 +2,11 @@ import "./App.css";
 import Navbar from "./components/NavBar/Navbar.jsx";
 import YaunCard from "./components/YaunCard/YaunCard.jsx";
 
-import misero from "./assets/misero.png";
-import executioner from "./assets/executioner.png";
-import notferatu from "./assets/notferatu.png";
-import hamlet from "./assets/hamlet.png";
-import paprika from "./assets/paprika.png";
+import misero from "./assets/misero.jpg";
+import executioner from "./assets/executioner.jpg";
+import notferatu from "./assets/notferatu.jpg";
+import hamlet from "./assets/hamlet.jpg";
+import paprika from "./assets/paprika.jpg";
 
 import Footer from "./components/Footer/Footer.jsx";
 import GameDescription from "./components/GameDescription/GameDescription.jsx";

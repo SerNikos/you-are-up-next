@@ -9,7 +9,10 @@ export default function GameDescription() {
   return (
     <div className="game-description">
       <h1 className="titleOfDiscription">YOU ARE UP NEXT</h1>
-      <p>You have little but precious time to steal, trade, accuse...</p>
+      <p>
+        You have little but <strong>precious</strong> time to steal, trade,
+        accuse...
+      </p>
 
       <button className="buy-button" onClick={() => setBuy(true)}>
         Buy Now
@@ -25,7 +28,7 @@ export default function GameDescription() {
               </button>
             </div>
           </div>,
-          modalRoot
+          modalRoot,
         )}
     </div>
   );

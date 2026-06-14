@@ -5,11 +5,11 @@ import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 
 // images imports
-import executioner from "../../assets/executioner.png";
-import notferatu from "../../assets/notferatu.png";
-import misero from "../../assets/misero.png";
-import paprika from "../../assets/paprika.png";
-import hamlet from "../../assets/hamlet.png";
+import executioner from "../../assets/executioner.jpg";
+import notferatu from "../../assets/notferatu.jpg";
+import misero from "../../assets/misero.jpg";
+import paprika from "../../assets/paprika.jpg";
+import hamlet from "../../assets/hamlet.jpg";
 
 // Character data array
 const characters = [
@@ -20,15 +20,15 @@ const characters = [
     description: (
       <>
         Beauty is both a blessing and a curse. That's the problem of our beloved
-        executioner. Legend says his first conquest was the
-        midwife who delivered him. Having spent his entire life as the
-        embodiment of the halo effect, he grew tired. What's the point when
-        everything and everyone comes so easily? So he did the only thing that
-        made sense: he decided he's a fighter, not a lover. He took over the
-        family business and became the new executioner. Associated with death
-        itself, surely people would stop seeing him only for his looks. And with
-        endless grace and sex appeal -even in this line of work- he finally
-        succeeded. Now, he's not just a handsome guy.
+        executioner. Legend says his first conquest was the midwife who
+        delivered him. Having spent his entire life as the embodiment of the
+        halo effect, he grew tired. What's the point when everything and
+        everyone comes so easily? So he did the only thing that made sense: he
+        decided he's a fighter, not a lover. He took over the family business
+        and became the new executioner. Associated with death itself, surely
+        people would stop seeing him only for his looks. And with endless grace
+        and sex appeal -even in this line of work- he finally succeeded. Now,
+        he's not just a handsome guy.
         <span style={{ fontWeight: "bold", color: "#b91a27e9" }}>
           {" "}
           He's the sexy executioner.
@@ -102,7 +102,7 @@ const characters = [
 
 export default function AllCharactersLore() {
   const { hash } = useLocation();
-  console.log(hash,useLocation());
+  console.log(hash, useLocation());
 
   useEffect(() => {
     if (!hash) return;
@@ -125,11 +125,11 @@ export default function AllCharactersLore() {
             aria-labelledby={`${char.id}-title`}
           >
             <div className="photo-container">
-            <img
-              src={char.image}
-              alt={`${char.name} image`}
-              className="character-photo"
-            />
+              <img
+                src={char.image}
+                alt={`${char.name} image`}
+                className="character-photo"
+              />
             </div>
             <div className="second-half">
               <h2 id={`${char.id}-title`}>{char.name}</h2>
