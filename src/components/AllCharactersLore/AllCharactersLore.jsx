@@ -1,31 +1,30 @@
 import "./AllCharactersLore.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 
-// Alive images imports
+// Alive card image asset paths
 import executioner from "../../assets/executioner.jpg";
 import notferatu from "../../assets/notferatu.jpg";
 import misero from "../../assets/misero.jpg";
 import paprika from "../../assets/paprika.jpg";
 import hamlet from "../../assets/hamlet.jpg";
 
-// Dead images imports (from assets/heros-dead)
-
+// Cursed/Dead card image asset paths (mapped exactly from your folder structure)
 import executionerDead from "../../assets/heros-dead/executioner-dead.png";
 import hamletDead from "../../assets/heros-dead/hamlet-dead.png";
 import miseroDead from "../../assets/heros-dead/misero-dead card.png";
 import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
 import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
-// Character data array
+// Comprehensive Character structural data array
 const characters = [
   {
     id: "executioner",
     name: "The Executioner",
     image: executioner,
-    deadImage: executionerDead, // Executioner doesn't have a dead card
+    deadImage: executionerDead,
     description: (
       <>
         Beauty is both a blessing and a curse. That's the problem of our beloved
@@ -51,7 +50,7 @@ const characters = [
     image: notferatu,
     deadImage: notferatuDead,
     description: `He is a ruthless and relentless vampire hunter. After his mother died when a vampire 
-      Kurt cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming 
+      cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming 
       the greatest vampire hunter in the world, so that no one else would ever go through what 
       he did. After years of training and finding the perfect equipment, he's finally ready to
       face a vampire… once he finds one. His latest trick? To dress up as a vampire so that a 
@@ -116,6 +115,9 @@ const characters = [
 export default function AllCharactersLore() {
   const { hash } = useLocation();
 
+  // Tracks active dynamic elements across small screen display touch triggers
+  const [activeCard, setActiveCard] = useState(null);
+
   useEffect(() => {
     if (!hash) return;
 
@@ -124,6 +126,11 @@ export default function AllCharactersLore() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   }, [hash]);
+
+  // Safely registers context states when handling click-to-reveal mechanisms
+  const handleCardClick = (id) => {
+    setActiveCard((prevId) => (prevId === id ? null : id));
+  };
 
   return (
     <div>
@@ -136,8 +143,13 @@ export default function AllCharactersLore() {
             id={char.id}
             aria-labelledby={`${char.id}-title`}
           >
-            {/* Added container structure here for the overlay magic */}
-            <div className="photo-container">
+            {/* Photo-container handles dynamic class bindings to allow the unified 
+              CSS styles to listen seamlessly to clicks and hovers simultaneously.
+            */}
+            <div
+              className={`photo-container ${activeCard === char.id ? "revealed" : ""}`}
+              onClick={() => handleCardClick(char.id)}
+            >
               <img
                 src={char.image}
                 alt={`${char.name} alive card`}

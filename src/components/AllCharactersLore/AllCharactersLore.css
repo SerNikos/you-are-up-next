@@ -1,3 +1,7 @@
+/* ==========================================================================
+   GLOBAL & LAYOUT BASE STYLES
+   ========================================================================== */
+
 body {
   color: white;
   margin: 0;
@@ -5,37 +9,11 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure global box sizing behaves nicely */
+/* Structural cleanup ensuring borders/padding don't cause layout overflow */
 *,
 *::before,
 *::after {
   box-sizing: inherit;
-}
-
-/* 1. LAYOUT SECTIONS 
-   Swapped fixed sizes for flex-wrap so the text automatically 
-   drops beautifully under the photo on tablet/mobile views.
-*/
-#executioner,
-#misero,
-#paprika,
-#hamlet,
-#notferatu {
-  font-size: 1rem; /* Reset section container base font size */
-  margin-bottom: 12vw; /* Uses viewport width so spacing scales down gracefully */
-  padding-top: 6rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; /* Allows image and text to stack vertically when squeezed */
-  justify-content: center;
-  align-items: flex-start;
-  gap: 4rem; /* Modern alternative to handling blind margins */
-  width: 100%;
-  max-width: 1400px; /* Keeps layout from stretching excessively on giant screens */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 .fullDescriptions {
@@ -43,15 +21,39 @@ body {
   width: 100%;
 }
 
-/* 2. PHOTO CONTAINER & SYSTEM
-   Cleaned up hardcoded left margins that break mobile layout centering.
-*/
+/* Individual character section wrapper */
+#executioner,
+#misero,
+#paprika,
+#hamlet,
+#notferatu {
+  font-size: 1rem;
+  margin-bottom: 12vw; /* Fluid spacing between sections that scales with window size */
+  padding-top: 6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows text to break elegantly below the image on small screens */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem; /* Modern spacing solution replacing rigid asymmetric margins */
+  width: 100%;
+  max-width: 1400px; /* Keeps the cards layout from stretching excessively on giant monitors */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* ==========================================================================
+   ULTRA-DRAMATIC SUPERNATURAL REVEAL SYSTEM (HOVER + CLICK)
+   ========================================================================== */
+
 .photo-container {
   position: relative;
-  overflow: visible;
+  overflow: visible; /* Crucial to let the cards pop outward during 3D effects */
   cursor: pointer;
-  perspective: 1000px;
-  flex-shrink: 0; /* Prevents the image aspect ratio from collapsing */
+  perspective: 1000px; /* Establishes a 3D environment stage for the cards */
+  flex-shrink: 0; /* Prevents the image aspect ratio from squishing */
   max-width: 100%;
 }
 
@@ -59,8 +61,9 @@ body {
   border: 1rem solid rgb(24, 24, 24);
   border-radius: 0.75rem;
   display: block;
-  max-width: 100%; /* Ensures the card shrinks if the screen is narrower than the card */
+  max-width: 100%; /* Ensures the card downsizes fluidly if the display is tiny */
   height: auto;
+  /* Snappy cubic-bezier gives it a sharp, cinematic, heavy "snap" back-and-forth movement */
   transition:
     transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.5s ease-in-out,
@@ -68,21 +71,23 @@ body {
     box-shadow 0.6s ease;
 }
 
-/* --- ALIVE CARD --- */
+/* --- THE ALIVE CARD --- */
 .character-photo.alive {
   position: relative;
   z-index: 1;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-.photo-container:hover .character-photo.alive {
+/* Triggers on Desktop Hover OR Mobile/Tablet Class Toggle (.revealed) */
+.photo-container:hover .character-photo.alive,
+.photo-container.revealed .character-photo.alive {
   opacity: 0.15;
   filter: grayscale(100%) blur(4px);
   transform: scale(0.9) rotateY(-15deg) translateZ(-50px);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
-/* --- DEAD CARD --- */
+/* --- THE DEAD CARD --- */
 .character-photo.dead {
   position: absolute;
   top: 0;
@@ -90,74 +95,93 @@ body {
   width: 100%;
   height: 100%;
   z-index: 2;
+
+  /* Initial State: totally hidden, twisted in 3D space, ultra-blurred and bright */
   opacity: 0;
   filter: blur(20px) brightness(3) contrast(1.5);
   transform: scale(1.3) rotateY(25deg) rotateZ(-5deg) translateY(-20px);
-  pointer-events: none;
+  pointer-events: none; /* Prevents layout event stuttering over the absolute block */
   box-shadow: 0 0 0px rgba(185, 26, 39, 0);
 }
 
-.photo-container:hover .character-photo.dead {
+/* Triggers on Desktop Hover OR Mobile/Tablet Class Toggle (.revealed) */
+.photo-container:hover .character-photo.dead,
+.photo-container.revealed .character-photo.dead {
   opacity: 1;
   filter: blur(0px) brightness(1) contrast(1);
+  /* Snaps perfectly forward into visual priority with an eerie slant */
   transform: scale(1.08) rotateY(0deg) rotateZ(2deg) translateZ(30px);
+  /* Deep blood-red aura framing the card */
   box-shadow:
     0 15px 50px rgba(185, 26, 39, 0.6),
     0 0 30px rgba(185, 26, 39, 0.3);
 }
 
-/* 3. TEXT CONTENT CONTENT 
-   Switched to a flexible basis so text natively occupies remaining row space.
-*/
+/* ==========================================================================
+   TEXT / CONTENT LAYOUT
+   ========================================================================== */
+
 .second-half {
   display: flex;
   flex-direction: column;
-  flex: 1 1 500px; /* Growth factor, shrink factor, and ideal breakdown threshold */
-  min-width: 280px; /* Prevents text from turning into an ultra-thin vertical line */
+  flex: 1 1 500px; /* Allows text block to dynamically grow or occupy secondary column rows */
+  min-width: 280px; /* Safeguards text layout from turning into an unreadable slim strip */
 }
 
-/* Clamp prevents text from overflowing or exploding outside container boundaries */
+/* clamp() acts as a fluid bridge preventing headline/description spill overs */
 .second-half h2 {
   font-size: clamp(
     3.5rem,
     6vw,
     7.5rem
-  ); /* Min size, Fluid Scaling target, Max size */
+  ); /* Minimum size, scale speed parameter, maximum size */
   padding-bottom: 1.5rem;
   margin: 0;
   line-height: 1.1;
 }
 
 .character-discription {
-  font-size: clamp(
-    1.6rem,
-    1.8vw,
-    2.2rem
-  ); /* Dynamically shrinks text smoothly */
+  font-size: clamp(1.6rem, 1.8vw, 2.2rem);
   line-height: 1.6;
   margin: 0;
 }
 
-/* 4. CLEAN RESPONSIVE MEDIA QUERIES 
-*/
+/* ==========================================================================
+   CLEAN RESPONSIVE RESPONSIVENESS MEDIA BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet & Smaller Screen Adapters */
 @media (max-width: 900px) {
   #executioner,
   #misero,
   #paprika,
   #hamlet,
   #notferatu {
-    flex-direction: column; /* Force stack layout elements cleanly */
-    align-items: center; /* Perfect center balance */
-    text-align: center; /* Optional: centers character text descriptions on small viewports */
+    flex-direction: column; /* Switches rows to neat stacked columns */
+    align-items: center; /* Balances elements center stage */
+    text-align: center; /* Aligns text center cleanly for smaller layouts */
     margin-bottom: 15rem;
   }
 }
 
+/* Mobile Devices Base Configuration Override */
 @media (max-width: 600px) {
   html {
-    font-size: 45%; /* Slightly upscaled from 40% to keep things crisp */
+    font-size: 45%; /* Slightly larger font baseline to preserve readable proportions */
   }
   .character-photo {
-    border-width: 0.6rem; /* Shrinks thick borders on mobile screens */
+    border-width: 0.6rem; /* Shrinks dense border sizes to balance small mobile viewports */
+  }
+}
+
+/* Touchscreens Safety Zone (Disables sticky standard hovering quirks on iOS/Android) */
+@media (hover: none) {
+  .photo-container:hover .character-photo.alive {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .photo-container:hover .character-photo.dead {
+    opacity: 0;
   }
 }
