@@ -1,3 +1,7 @@
+/* ==========================================================================
+   GAME DESCRIPTION BASE STYLES
+   ========================================================================== */
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(250, 229, 113, 0.7);
@@ -10,18 +14,35 @@
   }
 }
 
-.titleOfDiscription {
-  padding-bottom: 2rem;
-  font-size: 4rem;
-}
-
 .game-description {
   color: white;
   text-align: center;
   padding: 2rem;
   font-family: "Arial", sans-serif;
   font-size: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.titleOfDiscription {
+  padding-bottom: 2rem;
+  font-size: clamp(
+    2.5rem,
+    5vw,
+    4rem
+  ); /* Fluid μέγεθος για προσαρμογή σε μικρές οθόνες */
+}
+
+.game-description p {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 800px; /* Κρατάει το κείμενο μαζεμένο και ευανάγνωστο */
+}
+
+/* ==========================================================================
+   BUY BUTTON
+   ========================================================================== */
 
 .buy-button {
   background-color: #b91a27e3;
@@ -37,6 +58,7 @@
   margin-top: 4rem;
   margin-bottom: 1rem;
   animation: pulse 2s infinite;
+  -webkit-tap-highlight-color: transparent; /* Αφαιρεί το μπλε φλας στα κινητά */
 }
 
 .buy-button:hover {
@@ -50,64 +72,70 @@
   background-color: #c82333;
 }
 
-.buy-box {
-  color: aliceblue;
-  padding: 20rem 20rem;
-  background-color: #63080e;
-  z-index: 10000;
+/* ==========================================================================
+   MODAL & OVERLAY SYSTEM (FIXED FOR ZOOM & RESPONSIVENESS)
+   ========================================================================== */
+
+.modal-overlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Χρήση % αντί για vw για να κλειδώνει σωστά στο zoom */
+  height: 100%; /* Χρήση % αντί για vh */
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1rem;
-  font-size: 3.5rem;
-  box-shadow: 0 0 0.5rem rgb(229, 61, 61);
-  max-width: 90vw;
-  max-height: 80vh;
-  overflow: hidden;
-}
-
-.x-btn {
-  background-color: #63080e;
-  padding: 1.5rem;
-  position: fixed;
-  top: 0%;
-  right: 0%;
-  color: white;
-  margin: 0.5rem;
-  transition: all 0.2s ease-in-out;
-}
-
-.x-btn:hover {
-  background-color: white;
-  color: #63080e;
-  cursor: pointer;
-}
-
-.game-description p {
-  font-size: 2rem;
+  z-index: 9999; /* Πάνω από οτιδήποτε άλλο στην οθόνη */
+  backdrop-filter: blur(3px);
 }
 
 .buy-box-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7); /* DARK BACKGROUND */
+.buy-box {
+  color: aliceblue;
+  background-color: #63080e;
+  position: relative; /* relative για να λειτουργεί σωστά το absolute κουμπί X */
+
+  /* Fluid padding αντί για το στατικό 20rem */
+  padding: clamp(5rem, 12vw, 8rem) clamp(2rem, 6vw, 6rem);
+  width: 90%;
+  max-width: 550px; /* Όμορφο μέγιστο πλάτος για desktop/tablets */
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9000; /* Below modal but above everything else */
-  backdrop-filter: blur(3px); /* Optional, looks cool */
+  text-align: center;
+  border-radius: 1rem;
+  font-size: clamp(2rem, 4vw, 3.5rem); /* Δυναμικό μέγεθος γραμματοσειράς */
+  box-shadow: 0 0 1.5rem rgb(229, 61, 61);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.x-btn {
+  background-color: #63080e;
+  border: none;
+  padding: 1.2rem 1.6rem;
+  position: absolute; /* Κλειδώνει πάνω δεξιά ΜΕΣΑ στο buy-box */
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+  border-bottom-left-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.x-btn:hover {
+  background-color: white;
+  color: #63080e;
 }
