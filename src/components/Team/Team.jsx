@@ -44,7 +44,13 @@ export default function Team() {
                 Konstantinos Doldoukis
               </a>
             </div>
-            <img src={dold} alt="dold" />
+            <a
+              href="https://www.linkedin.com/in/konstantinos-doldoukis-278768282/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={dold} alt="dold" />
+            </a>
           </div>
 
           {/* Sergis */}
@@ -60,7 +66,13 @@ export default function Team() {
                 Nikolaos Sergis
               </a>
             </div>
-            <img src={ser} alt="ser" />
+            <a
+              href="https://gr.linkedin.com/in/nikolaos-sergis"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={ser} alt="ser" />
+            </a>
           </div>
 
           {/* Mat */}
@@ -76,7 +88,13 @@ export default function Team() {
                 Mat Eustathiou
               </a>
             </div>
-            <img src={mat} alt="mat" />
+            <a
+              href="https://www.instagram.com/mat_hazzart/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={mat} alt="mat" />
+            </a>
           </div>
 
           {/* Katerina */}
@@ -92,7 +110,13 @@ export default function Team() {
                 Katerina Gkatsou
               </a>
             </div>
-            <img src={kat} alt="kat" />
+            <a
+              href="https://www.linkedin.com/in/katerina-gkatsou-93a276237/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={kat} alt="kat" />
+            </a>
           </div>
         </div>
       </div>
