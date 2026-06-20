@@ -81,7 +81,7 @@ export default function Team() {
               <div className="team-title">The graphic designer</div>
               <a
                 className="team-name"
-                href="https://www.instagram.com/mat_hazzart/"
+                href="https://www.instagram.com/getting_batty/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -89,7 +89,7 @@ export default function Team() {
               </a>
             </div>
             <a
-              href="https://www.instagram.com/mat_hazzart/"
+              href="https://www.instagram.com/getting_batty/"
               target="_blank"
               rel="noopener noreferrer"
             >

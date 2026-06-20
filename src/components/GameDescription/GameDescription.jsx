@@ -10,8 +10,8 @@ export default function GameDescription() {
     <div className="game-description">
       <h1 className="titleOfDiscription">YOU ARE UP NEXT</h1>
       <p>
-        You have little but <strong>precious</strong> time to steal, trade,
-        accuse...
+        You have little but <strong>precious</strong> time to steal, trade, give
+        a gentle push...
       </p>
 
       <button className="buy-button" onClick={() => setBuy(true)}>
