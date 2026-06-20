@@ -1,11 +1,14 @@
 body {
   color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.horizontral-line {
-  height: 2px;
-  background-color: white;
-  width: 90%;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 .team-container {
@@ -13,13 +16,31 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 0 2rem;
 }
 
-/* Page title */
+/* Page title - Using fluid clamp() like the Lore page */
 .team-top-title {
-  font-size: 7rem;
-  margin-top: 7rem;
+  font-size: clamp(3.5rem, 6vw, 7rem);
+  margin-top: clamp(4rem, 8vw, 7rem);
   margin-bottom: 2rem;
+  text-align: center;
+}
+
+.horizontral-line {
+  height: 2px;
+  background-color: white;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.photos-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Team member row */
@@ -27,15 +48,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
-
+  flex-wrap: wrap; /* Allows stacking gracefully on tablets */
+  gap: clamp(2rem, 5vw, 5rem);
   width: 100%;
-  max-width: 1200px;
+  margin: clamp(3rem, 6vw, 6rem) 0;
 
-  margin: 6rem 0;
-
+  /* Animation rules preserved */
   opacity: 0;
-  transform: translateX(-20rem);
+  transform: translateX(
+    -10rem
+  ); /* Decreased to prevent extreme offscreen overflow */
   transition: all 1s ease;
 }
 
@@ -46,8 +68,8 @@ body {
 
 /* Left text section */
 .team-left-info {
-  width: 400px;
-
+  flex: 1 1 350px; /* Fluid scaling base */
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,14 +78,14 @@ body {
 
 /* Role title */
 .team-title {
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  margin-bottom: 1.5rem;
   line-height: 1.1;
 }
 
 /* Name links */
 .team-name {
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
   color: white;
   text-decoration: none;
 }
@@ -72,60 +94,54 @@ body {
   text-decoration: underline;
 }
 
+/* Wrapped Image Container Links */
+.team-photo a:has(img) {
+  flex: 0 1 360px; /* Don't grow past normal width, but allow shrinking */
+  width: 100%;
+  max-width: 360px;
+  display: block;
+}
+
 /* Images */
 .team-photo img {
-  width: 360px;
-  height: 460px;
+  width: 100%; /* Spans full width of its flex parent container */
+  max-width: 360px;
+  height: auto; /* Scales proportionally to prevent clipping/stretching */
+  aspect-ratio: 360 / 460; /* Replaces rigid height to prevent horizontal distortion */
 
   object-fit: cover;
   object-position: center;
-
   border-radius: 12px;
-
   display: block;
-
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Mobile */
-@media (max-width: 500px) {
-  .team-top-title {
-    font-size: 4rem;
-    margin-top: 4rem;
-    text-align: center;
-  }
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS & MID-SIZE OVERRIDES (Tablets like Legion)
+   ========================================================================== */
 
+/* Raised breakpoint to 850px to catch tablets beautifully */
+@media (max-width: 850px) {
   .team-photo {
     flex-direction: column;
-
-    gap: 2rem;
-
-    margin: 5rem 0;
-
     text-align: center;
+    gap: 2.5rem;
   }
 
   .team-left-info {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
     align-items: center;
-
-    padding: 0;
-  }
-
-  .team-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .team-name {
-    font-size: 1.8rem;
+    max-width: 100%;
+    flex-basis: auto;
   }
 
   .team-photo img {
-    width: 280px;
-    height: 360px;
+    max-width: 320px; /* Slightly compact profile for mid-range displays */
+  }
+}
+
+/* Small Mobile Viewports */
+@media (max-width: 480px) {
+  .team-photo img {
+    max-width: 280px;
   }
 }
