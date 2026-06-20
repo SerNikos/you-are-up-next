@@ -45,6 +45,32 @@ body {
 }
 
 /* ==========================================================================
+   INTERACTIVE HINT ANIMATION (SUPERNATURAL GLOW PULSE)
+   ========================================================================== */
+
+@keyframes darkGlowPulse {
+  0% {
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.8),
+      0 0 10px rgba(185, 26, 39, 0.1);
+    border-color: rgb(24, 24, 24);
+  }
+  50% {
+    box-shadow:
+      0 10px 35px rgba(0, 0, 0, 0.6),
+      0 0 25px rgba(185, 26, 39, 0.45);
+    /* Subtle change to the heavy border frame mimicking a slow lighting change */
+    border-color: rgb(40, 30, 31);
+  }
+  100% {
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.8),
+      0 0 10px rgba(185, 26, 39, 0.1);
+    border-color: rgb(24, 24, 24);
+  }
+}
+
+/* ==========================================================================
    ULTRA-DRAMATIC SUPERNATURAL REVEAL SYSTEM (HOVER + CLICK)
    ========================================================================== */
 
@@ -74,6 +100,7 @@ body {
     transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.5s ease-in-out,
     filter 0.5s ease,
+    border-color 0.4s ease,
     box-shadow 0.6s ease;
 
   /* Prevents dragging the card image with your finger on touchscreens */
@@ -84,7 +111,9 @@ body {
 .character-photo.alive {
   position: relative;
   z-index: 1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+
+  /* The fancy atmospheric background aura that lures the user's cursor */
+  animation: darkGlowPulse 3.5s ease-in-out infinite;
 
   /* EXPLICIT DEFAULT STATE: Ensures it returns back to baseline scale(1) flawlessly */
   opacity: 1;
@@ -95,10 +124,12 @@ body {
 /* Triggers on Desktop Hover OR Mobile/Tablet Class Toggle (.revealed) */
 .photo-container:hover .character-photo.alive,
 .photo-container.revealed .character-photo.alive {
+  animation: none; /* Stops the glow routine immediately to prevent shadow mixing */
   opacity: 0.15;
   filter: grayscale(100%) blur(4px);
   transform: scale(0.9) rotateY(-15deg) translateZ(-50px);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border-color: rgb(24, 24, 24);
 }
 
 /* --- THE DEAD CARD --- */
@@ -191,10 +222,11 @@ body {
    forcing the baseline properties unless the card has the `.revealed` class active! */
 @media (hover: none) {
   .photo-container:not(.revealed):hover .character-photo.alive {
+    animation: darkGlowPulse 3.5s ease-in-out infinite;
     opacity: 1;
     filter: grayscale(0%) blur(0px);
     transform: scale(1) rotateY(0deg) rotateZ(0deg) translateZ(0px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border-color: rgb(24, 24, 24);
   }
   .photo-container:not(.revealed):hover .character-photo.dead {
     opacity: 0;
