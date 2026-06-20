@@ -99,7 +99,7 @@ const characters = [
     deadImage: hamletDead,
     description: `
       It's the Middle Ages. A pig appears out of nowhere, knocks a flowerpot off a lady's balcony, and it
-      falls on the head of the local lord—killing him instantly.
+      falls on the head of the local lord, killing him instantly.
       Would you call that manslaughter or murder? Whether it's a pig doesn't matter...someone must pay for 
       this tragic accident. The worst part? The pig actually is intelligent and self-aware. In fact, he's 
       a secret member and informant of an underground organization plotting against the regime. His plan 
