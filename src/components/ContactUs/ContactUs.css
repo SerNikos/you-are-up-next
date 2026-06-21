@@ -1,11 +1,11 @@
 .contact-us-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to lift the form up */
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 10rem 2rem; /* Added extra padding to top/bottom for a balanced structure */
   box-sizing: border-box;
-  background-color: #121212; /* Dark fall-back wrapper background */
+  background-color: #121212;
 }
 
 .contact-us {
