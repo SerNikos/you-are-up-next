@@ -1,8 +1,7 @@
 import "./ContactUs.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer.jsx";
-import { useState } from "react";
-import React, { useRef } from "react";
+import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function ContactUs() {
@@ -33,6 +32,13 @@ export default function ContactUs() {
   const messageInvalid =
     didEdit.message && formValues.message.trim().length < 5;
 
+  // Basic check to see if fields are empty to handle proper disabled states
+  const isFormEmpty =
+    !formValues.name.trim() ||
+    !formValues.surname.trim() ||
+    !formValues.email.trim() ||
+    !formValues.message.trim();
+
   // ---------- INPUT HANDLERS ----------
   function handleInputChange(identifier, value) {
     setFormValues((prev) => ({
@@ -40,7 +46,6 @@ export default function ContactUs() {
       [identifier]: value,
     }));
 
-    // 🔥 Hides error immediately when typing (same as SignUp)
     setDidEdit((prev) => ({
       ...prev,
       [identifier]: false,
@@ -48,29 +53,28 @@ export default function ContactUs() {
   }
 
   function handleBlur(identifier) {
-    // 🔥 Only validates when user leaves the input (same as SignUp)
     setDidEdit((prev) => ({
       ...prev,
       [identifier]: true,
     }));
   }
 
-  // ---------- SUBMIT ----------
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (nameInvalid || surnameInvalid || emailInvalid || messageInvalid) {
-  //     return;
-  //   }
-
-  //   alert("THE KING SAID WE DON'T ACCEPT MESSAGES RIGHT NOW!");
-  // }
-
   // --------EMAILJS SERVICE--------
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    // Guard clause to lock submission if users bypass the disabled button state via Enter key
+    if (
+      nameInvalid ||
+      surnameInvalid ||
+      emailInvalid ||
+      messageInvalid ||
+      isFormEmpty
+    ) {
+      return;
+    }
 
     emailjs
       .sendForm("service_3m724yx", "template_ey7p0c9", form.current, {
@@ -79,8 +83,11 @@ export default function ContactUs() {
       .then(
         () => {
           console.log("SUCCESS!");
-          alert("The King Thanks you for your message we ll be in touch asap!");
-          // Reset state
+          alert(
+            "The King thanks you for your message, we'll be in touch asap!",
+          );
+
+          // Reset fields safely
           setFormValues({
             name: "",
             surname: "",
@@ -97,7 +104,7 @@ export default function ContactUs() {
         },
         (error) => {
           console.log("FAILED...", error.text);
-        }
+        },
       );
   };
 
@@ -119,6 +126,7 @@ export default function ContactUs() {
               value={formValues.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               onBlur={() => handleBlur("name")}
+              autoComplete="given-name"
             />
             <div className="invalid-error">
               {nameInvalid && <p>Name must be at least 2 characters long.</p>}
@@ -133,6 +141,7 @@ export default function ContactUs() {
               value={formValues.surname}
               onChange={(e) => handleInputChange("surname", e.target.value)}
               onBlur={() => handleBlur("surname")}
+              autoComplete="family-name"
             />
             <div className="invalid-error">
               {surnameInvalid && (
@@ -149,6 +158,7 @@ export default function ContactUs() {
               value={formValues.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               onBlur={() => handleBlur("email")}
+              autoComplete="email"
             />
             <div className="invalid-error">
               {emailInvalid && <p>Please enter a valid email.</p>}
@@ -173,7 +183,11 @@ export default function ContactUs() {
             <button
               type="submit"
               disabled={
-                nameInvalid || surnameInvalid || emailInvalid || messageInvalid
+                nameInvalid ||
+                surnameInvalid ||
+                emailInvalid ||
+                messageInvalid ||
+                isFormEmpty
               }
             >
               Send Message

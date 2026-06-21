@@ -3,28 +3,34 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
-  padding: 2rem;
+  padding: 4rem 2rem;
   box-sizing: border-box;
+  background-color: #121212; /* Dark fall-back wrapper background */
 }
 
 .contact-us {
   position: relative;
-  background: url("../../assets/hamlet.png") center/cover no-repeat;
+  /* FIXED: Pointing exactly to your hamlet.jpg asset */
+  background: url("../../assets/hamlet.jpg") center/cover no-repeat;
   border-radius: 1.6rem;
-  padding: 6rem;
-  max-width: 41rem;
+  padding: 4.5rem;
+  max-width: 45rem;
   width: 100%;
-  box-shadow: 0 10px 25px rgba(73, 72, 72, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   color: #fff;
   overflow: hidden;
 }
 
+/* Dark elegant cinematic overlay over the background image */
 .contact-us::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.85),
+    rgba(20, 20, 20, 0.75)
+  );
   z-index: 0;
 }
 
@@ -36,9 +42,10 @@
 
 .contact-us h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  font-weight: 600;
+  margin-bottom: 3rem;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
 }
 
 form {
@@ -47,51 +54,84 @@ form {
 }
 
 label {
-  margin-bottom: 0.8rem;
-  font-weight: 500;
-  font-size: 2rem;
-  color: #f1f1f1;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #cdcdcd;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
 }
 
 input,
 textarea {
-  margin-bottom: 1.6rem;
-  padding: 1rem 1.2rem;
-  border: none;
+  margin-bottom: 1.8rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.8rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-family: inherit;
   outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
-input,
-textarea {
-  background: rgba(255, 255, 255, 0.85);
-  color: #222;
+/* Subtle brand focus highlight */
+input:focus,
+textarea:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ff3333;
+  box-shadow: 0 0 12px rgba(255, 51, 51, 0.25);
 }
 
 textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 110px;
 }
 
 button {
-  background: #2575fc;
+  background: #e50914; /* Matches the dramatic red header accents */
   color: #fff;
   border: none;
-  padding: 12px;
+  padding: 1.4rem;
   border-radius: 0.8rem;
-  font-size: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  letter-spacing: 0.05rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
 
-button {
-  font-size: 2rem;
+button:hover:not(:disabled) {
+  background: #b80710;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
 }
 
-button:hover {
-  background: #1a5ed9;
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Clean styling for when fields fail validation loops */
+button:disabled {
+  background: #2e2e2e;
+  color: #777;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.invalid-error {
+  color: #ff4d4d;
+  font-size: 1.3rem;
+  margin-top: -1.4rem;
+  margin-bottom: 1.4rem;
+  min-height: 1.8rem; /* Keeps layout shifting stable when text pops up */
+  font-weight: 500;
 }
 
 .footer {
@@ -99,17 +139,17 @@ button:hover {
 }
 
 @media (max-width: 500px) {
-
-  .contact-us h2 {
-    font-size: 4rem;
+  .contact-us {
+    padding: 3rem 2rem;
+    margin: 1rem;
   }
 
-  .contact-us {
-    min-height: 80vh;
-    min-width: 80vw;
+  .contact-us h2 {
+    font-size: 2.4rem;
   }
 }
 
+/* Warn/Pulse Banners remain structurally intact below */
 .warning-contact-us {
   color: white;
   text-align: center;
@@ -118,21 +158,13 @@ button:hover {
   margin-bottom: 3rem;
   border-radius: 1rem;
   letter-spacing: 0.3rem;
-
-  /* Initial fade + slide */
-  animation: fadeSlide 0.8s ease-out forwards,
+  animation:
+    fadeSlide 0.8s ease-out forwards,
     pulse 2s 0.8s infinite ease-in-out;
   opacity: 0;
   transform: translateY(-10px);
 }
 
-.invalid-error{
-  color:red;
-  margin-top: -1rem;
-  margin-bottom: 1rem;
-}
-
-/* Fade in + slide */
 @keyframes fadeSlide {
   to {
     opacity: 1;
@@ -140,7 +172,6 @@ button:hover {
   }
 }
 
-/* Continuous pulse after fade in */
 @keyframes pulse {
   0% {
     transform: translateY(0) scale(1);
@@ -155,4 +186,3 @@ button:hover {
     box-shadow: 0 0 0 rgba(255, 0, 0, 0.2);
   }
 }
-
