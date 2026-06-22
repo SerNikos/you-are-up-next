@@ -10,8 +10,8 @@
 
 .contact-us {
   position: relative;
-  /* FIXED: Pointing exactly to your hamlet.jpg asset */
-  background: url("../../assets/hamlet.jpg") center/cover no-repeat;
+  /* FIXED: Pointing exactly to your executioner.jpg asset */
+  background: url("../../assets/executioner.jpg") center/cover no-repeat;
   border-radius: 1.6rem;
   padding: 4.5rem;
   max-width: 45rem;
