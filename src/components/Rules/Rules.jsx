@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
@@ -15,8 +15,10 @@ import step6Image from "../../assets/rules-photos/6 step.JPG";
 import step45Image from "../../assets/rules-photos/4.5 step.png";
 import img1132Image from "../../assets/rules-photos/IMG_1132.JPG";
 
-// Βελτιστοποιημένο component εικόνας (χωρίς XMLHttpRequest / Blobs)
+// Component εικόνας με ομαλό fade-in (χωρίς flickering)
 function LazyImage({ src, alt }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div className="image-progress-wrapper">
       <img
@@ -24,7 +26,8 @@ function LazyImage({ src, alt }) {
         alt={alt}
         loading="lazy"
         decoding="async"
-        className="rules-img loaded"
+        onLoad={() => setIsLoaded(true)}
+        className={`rules-img ${isLoaded ? "loaded" : ""}`}
       />
     </div>
   );
