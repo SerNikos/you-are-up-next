@@ -67,7 +67,7 @@ export default function Rules() {
                 any real player is in danger.
               </li>
               <li>
-                <strong>Player Turn Order (The Queue):</strong> Shuffle all
+                <strong>Player Turn Order (The Death Line):</strong> Shuffle all
                 chosen Character cards. Pick one randomly to decide who starts
                 first in line behind the Peasants (for example, <em>Misero</em>
                 ).
@@ -123,7 +123,7 @@ export default function Rules() {
             <ul className="rules-bullets">
               <li>
                 <strong>Order of Play:</strong> Players take turns drawing
-                strictly in line order (the queue).
+                strictly in line death line's order.
               </li>
               <li>
                 <strong>Taking a Card:</strong> The first character in line (in
@@ -176,7 +176,7 @@ export default function Rules() {
             <p className="rules-text">
               Once all players have drawn a card, the{" "}
               <strong>Action Phase</strong> begins in queue order starting with
-              the first player in line.
+              the first player in the death line.
             </p>
             <p className="rules-text">
               On your turn, you can perform one of three main options:
