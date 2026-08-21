@@ -1,3 +1,6 @@
+/* ==========================================
+   NAVBAR BASE STYLES & STICKY POSITIONING
+   ========================================== */
 .navbar {
   background-color: #1f1f1f;
   padding: 0 2rem;
@@ -7,10 +10,13 @@
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   z-index: 1000;
-  margin-bottom: 2rem;
   width: 100%;
   box-sizing: border-box;
-  position: relative;
+
+  /* Sticky Navbar στην κορυφή της σελίδας */
+  position: sticky;
+  top: 0;
+  margin-bottom: 2rem;
 }
 
 .nav-container {
@@ -36,7 +42,9 @@
   line-height: 1;
 }
 
-/* DESKTOP NAV LIST */
+/* ==========================================
+   DESKTOP NAV LIST
+   ========================================== */
 .nav-list {
   list-style: none;
   display: flex;
@@ -70,7 +78,9 @@
   color: #ff6b6b;
 }
 
-/* CONTROLS (DESKTOP) */
+/* ==========================================
+   DESKTOP CONTROLS
+   ========================================== */
 .desktop-controls {
   display: flex;
   align-items: center;
@@ -210,7 +220,7 @@
   border-radius: 2px;
 }
 
-/* HAMBURGER */
+/* HAMBURGER BUTTON */
 .hamburger-btn {
   display: none;
   background: transparent;
@@ -240,12 +250,20 @@
   }
 }
 
-/* ---------- MOBILE RESPONSIVE (MAX-WIDTH: 900px) ---------- */
-
+/* ==========================================
+   MOBILE RESPONSIVE (MAX-WIDTH: 900px)
+   ========================================== */
 @media (max-width: 900px) {
   .navbar {
     padding: 0 1.5rem;
     height: 60px;
+  }
+
+  /* Κεντράρισμα του Logo σε Mobile mode */
+  .nav-logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .desktop-controls {
@@ -256,31 +274,33 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
   }
 
   .mobile-controls-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
     margin-top: 1rem;
-    padding-top: 1rem;
+    padding-top: 1.2rem;
     border-top: 1px solid #333;
     width: 100%;
   }
 
+  /* Mobile menu με άνετη διάταξη */
   .nav-list {
     display: none !important;
-    position: fixed;
+    position: absolute;
     top: 60px;
     left: 0;
     right: 0;
-    width: 100vw;
+    width: 100%;
     height: auto;
     background-color: #1f1f1f;
     flex-direction: column;
-    padding: 2rem 0;
-    gap: 1.5rem;
+    padding: 1.5rem 0 2rem 0;
+    gap: 0.8rem;
     margin: 0;
     border-top: 1px solid #2a2a2a;
     box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.7);
@@ -291,12 +311,18 @@
     display: flex !important;
   }
 
+  /* Μεγάλη επιφάνεια κλικ (Tap Target) για τα δάχτυλα */
   .nav-list a {
     height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0;
   }
 
+  /* Αυξημένο μέγεθος γραμματοσειράς */
   .nav-item {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
   }
 }

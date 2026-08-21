@@ -11,14 +11,16 @@ import {
   FaVolumeUp,
   FaStop,
 } from "react-icons/fa";
-import { toggleSpeech } from "../../utils/voice"; // Προσαρμόστε το path αν χρειάζεται
+import { toggleSpeech, isInAppBrowser } from "../../utils/voice";
+import OpenSpeechInWindowModal from "../OpenSpeechInWindowModal/OpenSpeechInWindowModal";
 
 function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const { t, i18n } = useTranslation();
+  const [showSpeechModal, setShowSpeechModal] = useState(false);
 
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "el";
 
   const changeLanguage = (lng) => {
@@ -27,6 +29,11 @@ function Navbar() {
   };
 
   const handleVoiceToggle = () => {
+    if (isInAppBrowser()) {
+      setShowSpeechModal(true);
+      return;
+    }
+
     const active = toggleSpeech(i18n.language);
     setIsSpeaking(active);
   };
@@ -83,58 +90,67 @@ function Navbar() {
   );
 
   return (
-    <nav className="navbar">
-      <div className="nav-container">
-        {/* LOGO */}
-        <Link
-          to="/"
-          onClick={() => setMenuOpen(false)}
-          className="nav-logo-link"
-        >
-          <span className="nav-logo">{t("nav.title")}</span>
-        </Link>
-
-        {/* NAVIGATION LINKS */}
-        <ul className={`nav-list ${menuOpen ? "active" : ""}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            <li className="nav-item">{t("nav.home")}</li>
-          </Link>
-          <Link to="/AllCharactersLore" onClick={() => setMenuOpen(false)}>
-            <li className="nav-item">{t("nav.protagonists")}</li>
-          </Link>
-          <Link to="/Team" onClick={() => setMenuOpen(false)}>
-            <li className="nav-item">{t("nav.team")}</li>
-          </Link>
-          <Link to="/Rules" onClick={() => setMenuOpen(false)}>
-            <li className="nav-item">{t("nav.rules")}</li>
-          </Link>
-          <Link to="/ContactUs" onClick={() => setMenuOpen(false)}>
-            <li className="nav-item">{t("nav.contact")}</li>
+    <>
+      <nav className="navbar">
+        <div className="nav-container">
+          {/* LOGO */}
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            className="nav-logo-link"
+          >
+            <span className="nav-logo">{t("nav.title")}</span>
           </Link>
 
-          {/* MOBILE CONTROLS (VOICE & LANG) */}
-          <li className="mobile-controls-item">
+          {/* NAVIGATION LINKS */}
+          <ul className={`nav-list ${menuOpen ? "active" : ""}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <li className="nav-item">{t("nav.home")}</li>
+            </Link>
+            <Link to="/AllCharactersLore" onClick={() => setMenuOpen(false)}>
+              <li className="nav-item">{t("nav.protagonists")}</li>
+            </Link>
+            <Link to="/Team" onClick={() => setMenuOpen(false)}>
+              <li className="nav-item">{t("nav.team")}</li>
+            </Link>
+            <Link to="/Rules" onClick={() => setMenuOpen(false)}>
+              <li className="nav-item">{t("nav.rules")}</li>
+            </Link>
+            <Link to="/ContactUs" onClick={() => setMenuOpen(false)}>
+              <li className="nav-item">{t("nav.contact")}</li>
+            </Link>
+
+            {/* MOBILE CONTROLS (VOICE & LANG) */}
+            <li className="mobile-controls-item">
+              <VoiceButton />
+              <LangMenu />
+            </li>
+          </ul>
+
+          {/* DESKTOP CONTROLS */}
+          <div className="desktop-controls">
             <VoiceButton />
             <LangMenu />
-          </li>
-        </ul>
+          </div>
 
-        {/* DESKTOP CONTROLS */}
-        <div className="desktop-controls">
-          <VoiceButton />
-          <LangMenu />
+          {/* HAMBURGER BUTTON (Mobile Only) */}
+          <button
+            className="hamburger-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
+      </nav>
 
-        {/* HAMBURGER BUTTON (Mobile Only) */}
-        <button
-          className="hamburger-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-    </nav>
+      {/* CUSTOM IN-APP BROWSER MODAL */}
+      <OpenSpeechInWindowModal
+        isOpen={showSpeechModal}
+        onClose={() => setShowSpeechModal(false)}
+        lang={currentLang}
+      />
+    </>
   );
 }
 
