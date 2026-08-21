@@ -282,13 +282,13 @@
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
-    margin-top: 1rem;
-    padding-top: 1.2rem;
+    margin-top: 0.6rem;
+    padding-top: 0.8rem;
     border-top: 1px solid #333;
     width: 100%;
   }
 
-  /* Mobile menu με άνετη διάταξη */
+  /* Mobile menu: Συμπαγές ύψος (compact) */
   .nav-list {
     display: none !important;
     position: absolute;
@@ -299,8 +299,8 @@
     height: auto;
     background-color: #1f1f1f;
     flex-direction: column;
-    padding: 1.5rem 0 2rem 0;
-    gap: 0.8rem;
+    padding: 0.8rem 0 1.2rem 0;
+    gap: 0;
     margin: 0;
     border-top: 1px solid #2a2a2a;
     box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.7);
@@ -311,18 +311,18 @@
     display: flex !important;
   }
 
-  /* Μεγάλη επιφάνεια κλικ (Tap Target) για τα δάχτυλα */
+  /* Άνετο padding πάνω-κάτω για εύκολο πάτημα με το δάχτυλο */
   .nav-list a {
     height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.6rem 0;
+    padding: 0.7rem 0;
   }
 
-  /* Αυξημένο μέγεθος γραμματοσειράς */
+  /* Πολύ μεγαλύτερα & ευανάγνωστα γράμματα */
   .nav-item {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 2.1rem;
+    font-weight: 700;
   }
 }
