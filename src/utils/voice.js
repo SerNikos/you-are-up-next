@@ -14,28 +14,20 @@ export const isInAppBrowser = () => {
 };
 
 export const toggleSpeech = (i18nLanguage = "el") => {
-  // 1. Έλεγχος αν ο χρήστης είναι σε In-App Browser (Instagram/Messenger)
-  if (isInAppBrowser()) {
-    // Αν είναι Android, προσπαθεί να ανοίξει αυτόματα στον Chrome
-    if (/android/i.test(navigator.userAgent)) {
-      const currentUrl = window.location.href.replace(/^https?:\/\//, "");
-      window.location.href = `intent://${currentUrl}#Intent;scheme=https;package=com.android.chrome;end`;
-      return false;
-    }
+  const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
 
-    // Αν είναι iOS (iPhone), εμφανίζει καθοδηγητικό μήνυμα
-    const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
+  // 1. Αν ο χρήστης είναι σε In-App Browser (Instagram/Messenger/FB)
+  if (isInAppBrowser()) {
     alert(
       isGreek
-        ? "Για να ακούσετε τη σελίδα στο Instagram/Messenger:\n\nΠατήστε τις 3 τελείες (•••) πάνω δεξιά και επιλέξτε 'Άνοιγμα σε περιηγητή / Open in Safari'."
-        : "To listen to this page in Instagram/Messenger:\n\nTap the 3 dots (•••) at the top right and select 'Open in browser / Safari'.",
+        ? "Για να ακούσετε τη σελίδα:\n\nΠατήστε τις 3 τελείες (•••) πάνω δεξιά και επιλέξτε 'Άνοιγμα σε περιηγητή' (ή 'Open in Chrome/Safari')."
+        : "To listen to this page:\n\nTap the 3 dots (•••) at the top right and select 'Open in browser' (or 'Open in Chrome/Safari').",
     );
     return false;
   }
 
   // 2. Έλεγχος αν ο browser υποστηρίζει το Web Speech API
   if (!("speechSynthesis" in window)) {
-    const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
     alert(
       isGreek
         ? "Ο περιηγητής σας δεν υποστηρίζει φωνητική ανάγνωση. Παρακαλούμε χρησιμοποιήστε Google Chrome, Safari ή Edge."
@@ -50,7 +42,7 @@ export const toggleSpeech = (i18nLanguage = "el") => {
     return false;
   }
 
-  // 4. Επιλογή κειμένου για ανάγνωση (μόνο το <main> tag για να μην διαβάζει τα links του Navbar/Footer)
+  // 4. Επιλογή κειμένου για ανάγνωση
   const mainContent =
     document.querySelector("main") ||
     document.querySelector(".rules-container") ||
@@ -62,11 +54,9 @@ export const toggleSpeech = (i18nLanguage = "el") => {
   const utterance = new SpeechSynthesisUtterance(textToRead);
 
   // 5. Ρύθμιση Γλώσσας & Προφοράς
-  const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
   const targetLang = isGreek ? "el-GR" : "en-US";
   utterance.lang = targetLang;
 
-  // Επιλογή κατάλληλης φωνής από τις διαθέσιμες της συσκευής
   const voices = window.speechSynthesis.getVoices();
   const selectedVoice = voices.find((v) =>
     v.lang.startsWith(isGreek ? "el" : "en"),
