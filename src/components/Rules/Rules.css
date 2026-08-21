@@ -89,36 +89,26 @@
   margin-bottom: 35px;
 }
 
-/* Wrapper Εικόνας - Σταθερό πλαίσιο */
+/* Wrapper Εικόνας - Απλό background */
 .image-progress-wrapper {
   position: relative;
   width: 100%;
   max-width: 800px;
-  min-height: 200px;
   margin: 20px auto;
   border-radius: 8px;
   overflow: hidden;
   background-color: #1e1e1e;
   border: 1px solid #444;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Εικόνα με Smooth Fade-In */
+/* Default Εικόνα */
 .rules-img {
   width: 100%;
   height: auto;
   max-height: 500px;
   object-fit: contain;
   display: block;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.rules-img.loaded {
-  opacity: 1;
 }
 
 /* Callouts and Examples */
@@ -188,9 +178,5 @@
 
   .rules-callout-title {
     font-size: 17px;
-  }
-
-  .image-progress-wrapper {
-    min-height: 160px;
   }
 }

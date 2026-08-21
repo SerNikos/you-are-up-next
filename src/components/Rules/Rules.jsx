@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
@@ -14,24 +14,6 @@ import step5Image from "../../assets/rules-photos/5 step.JPG";
 import step6Image from "../../assets/rules-photos/6 step.JPG";
 import step45Image from "../../assets/rules-photos/4.5 step.png";
 import img1132Image from "../../assets/rules-photos/IMG_1132.JPG";
-
-// Component εικόνας με ομαλό fade-in (χωρίς flickering)
-function LazyImage({ src, alt }) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  return (
-    <div className="image-progress-wrapper">
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        className={`rules-img ${isLoaded ? "loaded" : ""}`}
-      />
-    </div>
-  );
-}
 
 export default function Rules() {
   const { t } = useTranslation();
@@ -52,10 +34,13 @@ export default function Rules() {
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step1_title")}</h3>
             <p className="rules-text">{t("rules.step1_desc")}</p>
-            <LazyImage
-              src={step0Image}
-              alt="Setup layout showing Black Market, Plot Armor, and Executioner deck"
-            />
+            <div className="image-progress-wrapper">
+              <img
+                src={step0Image}
+                alt="Setup layout showing Black Market, Plot Armor, and Executioner deck"
+                className="rules-img"
+              />
+            </div>
           </div>
 
           <div className="setup-step">
@@ -67,10 +52,13 @@ export default function Rules() {
               <li>{t("rules.step2_list3")}</li>
               <li>{t("rules.step2_list4")}</li>
             </ul>
-            <LazyImage
-              src={step1Image}
-              alt="Death Line layout showing Executioner, 3 Peasants, player queue, and Main Deck"
-            />
+            <div className="image-progress-wrapper">
+              <img
+                src={step1Image}
+                alt="Death Line layout showing Executioner, 3 Peasants, player queue, and Main Deck"
+                className="rules-img"
+              />
+            </div>
           </div>
 
           <div className="setup-step">
@@ -80,10 +68,13 @@ export default function Rules() {
               <li>{t("rules.step3_list1")}</li>
               <li>{t("rules.step3_list2")}</li>
             </ul>
-            <LazyImage
-              src={step2Image}
-              alt="The Board layout positioned below the Death Line"
-            />
+            <div className="image-progress-wrapper">
+              <img
+                src={step2Image}
+                alt="The Board layout positioned below the Death Line"
+                className="rules-img"
+              />
+            </div>
           </div>
         </section>
 
@@ -97,10 +88,13 @@ export default function Rules() {
               <li>{t("rules.phase1_list2")}</li>
               <li>{t("rules.phase1_list3")}</li>
             </ul>
-            <LazyImage
-              src={step3Image}
-              alt="Draw Phase step showing Misero taking a card from the board"
-            />
+            <div className="image-progress-wrapper">
+              <img
+                src={step3Image}
+                alt="Draw Phase step showing Misero taking a card from the board"
+                className="rules-img"
+              />
+            </div>
           </div>
 
           <div className="setup-step">
@@ -112,10 +106,13 @@ export default function Rules() {
               <li>{t("rules.phase1_complete_list1")}</li>
               <li>{t("rules.phase1_complete_list2")}</li>
             </ul>
-            <LazyImage
-              src={step4Image}
-              alt="Board after all players have drawn their card in queue order"
-            />
+            <div className="image-progress-wrapper">
+              <img
+                src={step4Image}
+                alt="Board after all players have drawn their card in queue order"
+                className="rules-img"
+              />
+            </div>
           </div>
         </section>
 
@@ -149,10 +146,13 @@ export default function Rules() {
                 {t("rules.phase2_ex1_title")}
               </h4>
               <p className="rules-text">{t("rules.phase2_ex1_text")}</p>
-              <LazyImage
-                src={step5Image}
-                alt="Showing a player playing an Action card during the Action Phase"
-              />
+              <div className="image-progress-wrapper">
+                <img
+                  src={step5Image}
+                  alt="Showing a player playing an Action card during the Action Phase"
+                  className="rules-img"
+                />
+              </div>
             </div>
 
             <div className="rules-example">
@@ -160,10 +160,13 @@ export default function Rules() {
                 {t("rules.phase2_ex2_title")}
               </h4>
               <p className="rules-text">{t("rules.phase2_ex2_text")}</p>
-              <LazyImage
-                src={step6Image}
-                alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
-              />
+              <div className="image-progress-wrapper">
+                <img
+                  src={step6Image}
+                  alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
+                  className="rules-img"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -186,10 +189,13 @@ export default function Rules() {
                 {t("rules.phase3_ex1_title")}
               </h4>
               <p className="rules-text">{t("rules.phase3_ex1_text")}</p>
-              <LazyImage
-                src={step45Image}
-                alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
-              />
+              <div className="image-progress-wrapper">
+                <img
+                  src={step45Image}
+                  alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
+                  className="rules-img"
+                />
+              </div>
             </div>
 
             <div className="rules-example">
@@ -197,10 +203,13 @@ export default function Rules() {
                 {t("rules.phase3_ex2_title")}
               </h4>
               <p className="rules-text">{t("rules.phase3_ex2_text")}</p>
-              <LazyImage
-                src={img1132Image}
-                alt="Character cards flipped over showing their death state illustrations"
-              />
+              <div className="image-progress-wrapper">
+                <img
+                  src={img1132Image}
+                  alt="Character cards flipped over showing their death state illustrations"
+                  className="rules-img"
+                />
+              </div>
             </div>
           </div>
         </section>
