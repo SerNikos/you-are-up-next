@@ -32,7 +32,7 @@
   font-weight: bold;
   font-size: 1.8rem;
   color: #ff6b6b;
-  white-space: nowrap; /* Απαγορεύει στο λογότυπο να σπάει σε πολλές γραμμές */
+  white-space: nowrap;
   line-height: 1;
 }
 
@@ -41,7 +41,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
   margin: 0 0 0 3rem;
   padding: 0;
   flex-grow: 1;
@@ -57,7 +57,7 @@
 
 .nav-item {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.3s ease;
   line-height: 1;
@@ -70,35 +70,58 @@
   color: #ff6b6b;
 }
 
-.desktop-lang {
+/* CONTROLS (DESKTOP) */
+.desktop-controls {
   display: flex;
   align-items: center;
+  gap: 0.8rem;
   margin-left: auto;
   height: 100%;
 }
 
-.mobile-lang-item {
+.mobile-controls-item {
   display: none;
 }
 
-.hamburger-btn {
-  display: none;
+/* VOICE BUTTON STYLE */
+.voice-btn {
   background: transparent;
-  border: none;
-  color: #ffffff !important;
-  font-size: 2.2rem;
+  border: 1px solid #444;
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 0.4rem 0.9rem;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
+  transition: all 0.3s ease;
   line-height: 1;
+  height: 32px;
+  box-sizing: border-box;
 }
 
-.hamburger-btn svg {
-  fill: #ffffff;
-  display: block;
+.voice-btn:hover {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
 }
 
-/* DROPDOWN STYLES */
+.voice-btn.speaking {
+  background-color: #b91a27;
+  border-color: #b91a27;
+  color: #ffffff;
+  animation: pulse 1.5s infinite;
+}
+
+.voice-icon {
+  font-size: 1.1rem;
+}
+
+.voice-text {
+  font-size: 1.1rem;
+}
+
+/* LANG BUTTON STYLE */
 .lang-menu-container {
   position: relative;
   display: flex;
@@ -111,13 +134,15 @@
   border-radius: 20px;
   color: #ffffff;
   padding: 0.4rem 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   line-height: 1;
+  height: 32px;
+  box-sizing: border-box;
 }
 
 .lang-btn:hover {
@@ -126,11 +151,11 @@
 }
 
 .globe-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .arrow-icon {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   transition: transform 0.3s ease;
 }
 
@@ -158,7 +183,7 @@
   border: none;
   color: #ffffff;
   padding: 0.8rem 1.2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -181,61 +206,69 @@
 }
 
 .fi {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   border-radius: 2px;
 }
 
-/* ---------- MOBILE & TABLET RESPONSIVE (MAX-WIDTH: 900px) ---------- */
+/* HAMBURGER */
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff !important;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.hamburger-btn svg {
+  fill: #ffffff;
+  display: block;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ---------- MOBILE RESPONSIVE (MAX-WIDTH: 900px) ---------- */
 
 @media (max-width: 900px) {
   .navbar {
     padding: 0 1.5rem;
     height: 60px;
-    position: relative;
-    margin-bottom: 2rem;
   }
 
-  .nav-container {
-    justify-content: center;
-    position: relative;
-    align-items: center;
+  .desktop-controls {
+    display: none !important;
   }
 
-  .nav-logo-link {
-    margin: 0 auto;
-  }
-
-  .nav-logo {
-    font-size: 1.8rem;
-    white-space: nowrap;
-  }
-
-  /* HAMBURGER BUTTON */
   .hamburger-btn {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    font-size: 2.2rem;
-    height: 2.2rem;
-    width: 2.2rem;
   }
 
-  .desktop-lang {
-    display: none !important;
-  }
-
-  .mobile-lang-item {
+  .mobile-controls-item {
     display: flex;
     justify-content: center;
-    margin-top: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #333;
+    width: 100%;
   }
 
-  /* ΑΠΟΚΡΥΨΗ DESKTOP MENU & ΕΜΦΑΝΙΣΗ ΜΟΝΟ ΣΤΟ CLICK (ACTIVE) */
   .nav-list {
     display: none !important;
     position: fixed;
@@ -246,8 +279,8 @@
     height: auto;
     background-color: #1f1f1f;
     flex-direction: column;
-    padding: 2.5rem 0;
-    gap: 2rem;
+    padding: 2rem 0;
+    gap: 1.5rem;
     margin: 0;
     border-top: 1px solid #2a2a2a;
     box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.7);
@@ -263,23 +296,7 @@
   }
 
   .nav-item {
-    font-size: 2rem;
-    font-weight: 600;
-  }
-
-  .lang-btn {
     font-size: 1.6rem;
-    padding: 0.6rem 1.4rem;
-  }
-
-  .lang-dropdown {
-    right: 50%;
-    transform: translateX(50%);
-    min-width: 160px;
-  }
-
-  .lang-option {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.2rem;
+    font-weight: 600;
   }
 }

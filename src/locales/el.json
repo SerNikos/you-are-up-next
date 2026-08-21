@@ -2,6 +2,10 @@
   "nav": {
     "title": "YOU ARE UP NEXT",
     "home": "Αρχική",
+    "voice": {
+      "listen": "Ακρόαση",
+      "stop": "Διακοπή"
+    },
     "protagonists": "Πρωταγωνιστές",
     "team": "Ομάδα",
     "rules": "Κανόνες",

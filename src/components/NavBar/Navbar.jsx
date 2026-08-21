@@ -3,11 +3,20 @@ import "./NavBar.css";
 import "flag-icons/css/flag-icons.min.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaGlobe, FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaGlobe,
+  FaChevronDown,
+  FaBars,
+  FaTimes,
+  FaVolumeUp,
+  FaStop,
+} from "react-icons/fa";
+import { toggleSpeech } from "../../utils/voice"; // Προσαρμόστε το path αν χρειάζεται
 
 function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const { t, i18n } = useTranslation();
 
   const currentLang = i18n.language || "el";
@@ -16,6 +25,29 @@ function Navbar() {
     i18n.changeLanguage(lng);
     setLangOpen(false);
   };
+
+  const handleVoiceToggle = () => {
+    const active = toggleSpeech(i18n.language);
+    setIsSpeaking(active);
+  };
+
+  const VoiceButton = () => (
+    <button
+      className={`voice-btn ${isSpeaking ? "speaking" : ""}`}
+      onClick={handleVoiceToggle}
+      aria-label={isSpeaking ? t("nav.voice.stop") : t("nav.voice.listen")}
+      title={isSpeaking ? t("nav.voice.stop") : t("nav.voice.listen")}
+    >
+      {isSpeaking ? (
+        <FaStop className="voice-icon" />
+      ) : (
+        <FaVolumeUp className="voice-icon" />
+      )}
+      <span className="voice-text">
+        {isSpeaking ? t("nav.voice.stop") : t("nav.voice.listen")}
+      </span>
+    </button>
+  );
 
   const LangMenu = () => (
     <div className="lang-menu-container">
@@ -80,14 +112,16 @@ function Navbar() {
             <li className="nav-item">{t("nav.contact")}</li>
           </Link>
 
-          {/* MOBILE LANG SELECTOR */}
-          <li className="mobile-lang-item">
+          {/* MOBILE CONTROLS (VOICE & LANG) */}
+          <li className="mobile-controls-item">
+            <VoiceButton />
             <LangMenu />
           </li>
         </ul>
 
-        {/* DESKTOP LANG SELECTOR (Τέρμα Δεξιά) */}
-        <div className="desktop-lang">
+        {/* DESKTOP CONTROLS */}
+        <div className="desktop-controls">
+          <VoiceButton />
           <LangMenu />
         </div>
 

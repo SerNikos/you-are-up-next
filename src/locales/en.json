@@ -2,6 +2,10 @@
   "nav": {
     "title": "YOU ARE UP NEXT",
     "home": "Home",
+    "voice": {
+      "listen": "Listen",
+      "stop": "Stop"
+    },
     "protagonists": "Protagonists",
     "team": "Team",
     "rules": "Rules",
