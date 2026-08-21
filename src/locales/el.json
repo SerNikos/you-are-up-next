@@ -14,24 +14,24 @@
   },
   "home": {
     "title": "YOU ARE UP NEXT",
-    "description_part1": "Έχεις ελάχιστο αλλά ",
+    "description_part1": "Έχετε ελάχιστο αλλά ",
     "description_highlight": "πολύτιμο",
-    "description_part2": " χρόνο για να κλέψεις, να κάνεις ανταλλαγές, να δώσεις μια μικρή σπρωξιά...",
+    "description_part2": " χρόνο για να κλέψετε, ανταλλάξετε, ή να δώσετε μια μικρή ώθηση...",
     "buy_button": "Αγορά Τώρα",
     "modal_kickstarter": "Σύντομα στο KICKSTARTER...",
     "cards": {
       "default_title": "Χαρακτήρας YAUN",
       "default_desc": "Όχι και ο πιο τυχερός τύπος",
       "executioner_title": "Ο Δήμιος",
-      "executioner_desc": "Είναι αυτός που αποφασίζει ποιος έχει σειρά",
+      "executioner_desc": "Αυτός αποφασίζει ποιος είναι ο επόμενος",
       "notferatu_title": "Κόμης Βλάκουλας",
-      "notferatu_desc": "Ο πιο ατρόμητος κυνηγός βαμπίρ που υπήρξε ποτέ",
+      "notferatu_desc": "Ο ατρομητερότερος κυνηγός βαμπίρ",
       "misero_title": "Μιζέριο",
       "misero_desc": "Δεν είναι εδώ για να σε διασκεδάσει",
       "paprika_title": "Πάπρικα",
       "paprika_desc": "Πιστεύει ότι μπορεί να τον αλλάξει",
       "hamlet_title": "Χάμλετ",
-      "hamlet_desc": "Ένα αθώο ζώο ή μια κακιά διάνοια;"
+      "hamlet_desc": "Ένα αθώο ζώο ή μια μοχθηρή διάνοια;"
     }
   },
   "rules": {
@@ -89,10 +89,14 @@
   },
   "team": {
     "page_title": "- Η Ομάδα του YAUN -",
-    "dold_role": "Game designer",
-    "sergis_role": "Game designer / programmer",
-    "mat_role": "Graphic designer",
-    "kat_role": "Digital Marketer"
+    "dold_role": "Σχεδιαστής Παιχνιδιού",
+    "dold_name": "Κωνσταντίνος Δολδουκίδης",
+    "sergis_role": "Σχεδιαστής Παιχνιδιού / Προγραμματιστής",
+    "sergis_name": "Νικόλαος Σέργης",
+    "mat_role": "Γραφίστας",
+    "mat_name": "Ματ Ευσταθίου",
+    "kat_role": "Ψηφιακή Μάρκετερ",
+    "kat_name": "Κατερίνα Γκάτσου"
   },
   "faq": {
     "title": "Συχνές Ερωτήσεις (FAQs)",
@@ -133,12 +137,12 @@
     }
   },
   "contact": {
-    "title": "Επικοινωνία",
+    "title": "ΕΠΙΚΟΙΝΩΝΙΑ",
     "labels": {
-      "name": "Όνομα",
-      "surname": "Επώνυμο",
-      "email": "E-mail",
-      "message": "Γράψτε μας το μήνυμά σας"
+      "name": "ΟΝΟΜΑ",
+      "surname": "ΕΠΩΝΥΜΟ",
+      "email": "E-MAIL",
+      "message": "ΓΡΑΨΤΕ ΜΑΣ ΤΟ ΜΗΝΥΜΑ ΣΑΣ"
     },
     "errors": {
       "name": "Το όνομα πρέπει να είναι τουλάχιστον 2 χαρακτήρες.",

@@ -1,54 +1,52 @@
 import React, { useState } from "react";
 import "./Accordion.css";
-
-const data = [
-  {
-    question: "What is YAUN?",
-    answer:
-      "YAUN is a self-published physical board game funded on Kickstarter.",
-  },
-  {
-    question: "In what period of time does it take place?",
-    answer: "YAUN takes place in the medieval times.",
-  },
-  {
-    question: "How can I buy it?",
-    answer:
-      "For now, send us a message from our Contact Us page and we'll let you know if we can send it to you",
-  },
-  {
-    question: "Do you have other social media?",
-    answer: (
-      <>
-        Yes, of course! Follow us on Instagram{" "}
-        <a
-          href="https://www.instagram.com/yaun_game"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="accordion-span"
-        >
-          click here
-        </a>
-        .
-      </>
-    ),
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export const Accordion = () => {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState(null);
 
   const toggle = (index) => {
     setSelected(selected === index ? null : index);
   };
 
+  const data = [
+    {
+      question: t("faq.questions.q1"),
+      answer: t("faq.questions.a1"),
+    },
+    {
+      question: t("faq.questions.q2"),
+      answer: t("faq.questions.a2"),
+    },
+    {
+      question: t("faq.questions.q3"),
+      answer: t("faq.questions.a3"),
+    },
+    {
+      question: t("faq.questions.q4"),
+      answer: (
+        <>
+          {t("faq.questions.a4_part1")}
+          <a
+            href="https://www.instagram.com/yaun_game"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="accordion-span"
+          >
+            {t("faq.questions.a4_link")}
+          </a>
+          {t("faq.questions.a4_part2")}
+        </>
+      ),
+    },
+  ];
+
   return (
     <div className="accordion-container">
       <div className="accordion">
-        <h1 className="accordion-title">FAQs</h1>
-        <h2 className="accordion-description">
-          Here are some of the most frequently asked questions about YAUN.
-        </h2>
+        <h1 className="accordion-title">{t("faq.title")}</h1>
+        <h2 className="accordion-description">{t("faq.description")}</h2>
         <ul>
           {data.map((faq, index) => (
             <li key={index} className="accordion-item">

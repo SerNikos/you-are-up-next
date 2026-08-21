@@ -13,7 +13,11 @@ import GameDescription from "./components/GameDescription/GameDescription.jsx";
 import { Link } from "react-router-dom";
 import { Accordion } from "./components/Accordion/Accordion.jsx";
 import { Analytics } from "@vercel/analytics/react";
+import { useTranslation } from "react-i18next";
+
 function App() {
+  const { t } = useTranslation();
+
   return (
     <>
       <section className="header">
@@ -28,40 +32,40 @@ function App() {
         <Link to="/AllCharactersLore#executioner">
           <YaunCard
             img={executioner}
-            name="The Executioner"
-            description="He is the one who decides who is next"
+            name={t("home.cards.executioner_title")}
+            description={t("home.cards.executioner_desc")}
           />
         </Link>
 
         <Link to="/AllCharactersLore#notferatu">
           <YaunCard
             img={notferatu}
-            name="Notferatu"
-            description="The most fearless vampire hunter ever"
+            name={t("home.cards.notferatu_title")}
+            description={t("home.cards.notferatu_desc")}
           />
         </Link>
 
         <Link to="/AllCharactersLore#misero">
           <YaunCard
             img={misero}
-            name="Misero"
-            description="He is not here to entertain you"
+            name={t("home.cards.misero_title")}
+            description={t("home.cards.misero_desc")}
           />
         </Link>
 
         <Link to="/AllCharactersLore#paprika">
           <YaunCard
             img={paprika}
-            name="Paprika"
-            description="She thinks she can fix him"
+            name={t("home.cards.paprika_title")}
+            description={t("home.cards.paprika_desc")}
           />
         </Link>
 
         <Link to="/AllCharactersLore#hamlet">
           <YaunCard
             img={hamlet}
-            name="Hamlet"
-            description="An Innocent animal or an evil genius?"
+            name={t("home.cards.hamlet_title")}
+            description={t("home.cards.hamlet_desc")}
           />
         </Link>
       </section>

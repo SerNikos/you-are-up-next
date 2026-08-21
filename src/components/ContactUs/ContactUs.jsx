@@ -3,8 +3,11 @@ import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer.jsx";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { useTranslation } from "react-i18next";
 
 export default function ContactUs() {
+  const { t } = useTranslation();
+
   const [formValues, setFormValues] = useState({
     name: "",
     surname: "",
@@ -65,7 +68,6 @@ export default function ContactUs() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // Guard clause to lock submission if users bypass the disabled button state via Enter key
     if (
       nameInvalid ||
       surnameInvalid ||
@@ -83,9 +85,7 @@ export default function ContactUs() {
       .then(
         () => {
           console.log("SUCCESS!");
-          alert(
-            "The King thanks you for your message, we'll be in touch asap!",
-          );
+          alert(t("contact.alert_success"));
 
           // Reset fields safely
           setFormValues({
@@ -114,11 +114,11 @@ export default function ContactUs() {
 
       <div className="contact-us-container">
         <div className="contact-us">
-          <h2>Contact Us</h2>
+          <h2>{t("contact.title")}</h2>
 
           <form ref={form} onSubmit={sendEmail}>
             {/* NAME */}
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{t("contact.labels.name")}</label>
             <input
               type="text"
               id="name"
@@ -129,11 +129,11 @@ export default function ContactUs() {
               autoComplete="given-name"
             />
             <div className="invalid-error">
-              {nameInvalid && <p>Name must be at least 2 characters long.</p>}
+              {nameInvalid && <p>{t("contact.errors.name")}</p>}
             </div>
 
             {/* SURNAME */}
-            <label htmlFor="surname">Surname</label>
+            <label htmlFor="surname">{t("contact.labels.surname")}</label>
             <input
               type="text"
               id="surname"
@@ -144,13 +144,11 @@ export default function ContactUs() {
               autoComplete="family-name"
             />
             <div className="invalid-error">
-              {surnameInvalid && (
-                <p>Surname must be at least 2 characters long.</p>
-              )}
+              {surnameInvalid && <p>{t("contact.errors.surname")}</p>}
             </div>
 
             {/* EMAIL */}
-            <label htmlFor="email">E-mail</label>
+            <label htmlFor="email">{t("contact.labels.email")}</label>
             <input
               type="email"
               id="email"
@@ -161,11 +159,11 @@ export default function ContactUs() {
               autoComplete="email"
             />
             <div className="invalid-error">
-              {emailInvalid && <p>Please enter a valid email.</p>}
+              {emailInvalid && <p>{t("contact.errors.email")}</p>}
             </div>
 
             {/* MESSAGE */}
-            <label htmlFor="message">Write us your message</label>
+            <label htmlFor="message">{t("contact.labels.message")}</label>
             <textarea
               id="message"
               name="message"
@@ -175,9 +173,7 @@ export default function ContactUs() {
               onBlur={() => handleBlur("message")}
             ></textarea>
             <div className="invalid-error">
-              {messageInvalid && (
-                <p>Message must be at least 5 characters long.</p>
-              )}
+              {messageInvalid && <p>{t("contact.errors.message")}</p>}
             </div>
 
             <button
@@ -190,7 +186,7 @@ export default function ContactUs() {
                 isFormEmpty
               }
             >
-              Send Message
+              {t("contact.button")}
             </button>
           </form>
         </div>

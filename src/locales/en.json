@@ -88,11 +88,15 @@
     "purpose_text2": "Alternatively, if all other players die, the last player standing wins immediately."
   },
   "team": {
-    "page_title": "- YAUN Team -",
-    "dold_role": "The game designer",
-    "sergis_role": "The game designer / programmer",
-    "mat_role": "The graphic designer",
-    "kat_role": "The digital Marketer"
+    "page_title": "- Η Ομάδα του YAUN -",
+    "dold_role": "Σχεδιαστής Παιχνιδιού",
+    "dold_name": "Κωνσταντίνος Δολδουκίδης",
+    "sergis_role": "Σχεδιαστής Παιχνιδιού / Προγραμματιστής",
+    "sergis_name": "Νικόλαος Σέργης",
+    "mat_role": "Γραφίστας",
+    "mat_name": "Ματ Ευσταθίου",
+    "kat_role": "Ψηφιακή Μάρκετερ",
+    "kat_name": "Κατερίνα Γκάτσου"
   },
   "faq": {
     "title": "FAQs",
@@ -103,7 +107,7 @@
       "q2": "In what period of time does it take place?",
       "a2": "YAUN takes place in the medieval times.",
       "q3": "How can I buy it?",
-      "a3": "For now, send us a message from our Contact Us page and we'll let you know if we can send it to you",
+      "a3": "For now, send us a message from our Contact Us page and we'll let you know if we can send it to you.",
       "q4": "Do you have other social media?",
       "a4_part1": "Yes, of course! Follow us on Instagram ",
       "a4_link": "click here",
