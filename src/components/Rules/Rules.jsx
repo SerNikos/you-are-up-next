@@ -2,20 +2,23 @@ import React from "react";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
-import setupImage from "../../assets/set-up/game-setup.png";
+
+// Asset Imports with exact folder name and file extensions
+import step0Image from "../../assets/rules-photos/0 step.png";
+import step1Image from "../../assets/rules-photos/1 step.png";
+import step2Image from "../../assets/rules-photos/2 step.png";
+import step3Image from "../../assets/rules-photos/3 step.JPG";
+import step4Image from "../../assets/rules-photos/4 step.JPG";
+import step5Image from "../../assets/rules-photos/5 step.JPG";
+import step6Image from "../../assets/rules-photos/6 step.JPG";
+import step45Image from "../../assets/rules-photos/4.5 step.png";
+import img1132Image from "../../assets/rules-photos/IMG_1132.JPG";
 
 export default function Rules() {
   return (
     <div className="the-container">
       <Navbar />
       <div className="rules-container">
-        <div className="rules-title rules-section">
-          Set up the game like this:
-        </div>
-        <div className="setup">
-          <img src={setupImage} alt="game image set up" />
-        </div>
-
         <header className="rules-header">
           <h1 className="rules-main-title">Rules of the Game</h1>
           <p className="rules-subtitle">
@@ -24,187 +27,307 @@ export default function Rules() {
           </p>
         </header>
 
+        {/* Initial Layout & Setup */}
         <section className="rules-section">
-          <h2 className="rules-title">Start of the Game</h2>
-          <p className="rules-text">
-            Each player draws <strong>3 cards</strong> during setup, always
-            following the order defined by the <strong>queue</strong>. The{" "}
-            <strong>board</strong> is then filled according to the number of
-            players. After dealing, the game begins normally from the{" "}
-            <strong>Draw Phase</strong> (see Game Flow).
-          </p>
-        </section>
+          <h2 className="rules-title">Initial Game Layout & Setup</h2>
 
-        <section className="rules-section">
-          <h2 className="rules-title">Game Flow</h2>
-
-          <p className="rules-text">Each round has three phases:</p>
-          <ol className="rules-list">
-            <li>
-              <strong>Draw Phase</strong>
-            </li>
-            <li>
-              <strong>Action Phase</strong>
-            </li>
-            <li>
-              <strong>Executioner Phase</strong>
-            </li>
-          </ol>
-
-          <h3 className="rules-subtitle2">1) Draw Phase</h3>
-          <p className="rules-text">
-            In queue order, each player draws <strong>one card</strong> from the
-            board. If the board is empty for them, they draw from the{" "}
-            <strong>main deck</strong> instead.
-          </p>
-
-          <h3 className="rules-subtitle2">2) Action Phase</h3>
-          <p className="rules-text">
-            In queue order, players may take actions. Some actions are{" "}
-            <strong>Free Moves</strong> and do not end your turn (you may act
-            again).
-          </p>
-
-          <ul className="rules-bullets">
-            <li>
-              Buy a <strong>Plot Armor</strong> card
-            </li>
-            <li>
-              Buy a <strong>Black Market</strong> card{" "}
-              <span className="tag">Free Move</span>
-            </li>
-            <li>
-              Play an <strong>Action</strong> card or a{" "}
-              <strong>Black Market</strong> card
-            </li>
-            <li>
-              Use an attribute from a purchased <strong>Plot Armor</strong> card{" "}
-              <span className="tag">Free Move</span> (see Plot Armor Cards
-              Operation)
-            </li>
-          </ul>
-
-          <div className="rules-callout">
-            <h4 className="rules-callout-title">How to buy Plot Armor</h4>
+          <div className="setup-step">
+            <h3 className="rules-subtitle2">Step 1: Set Up the Card Decks</h3>
             <p className="rules-text">
-              On your turn in the Action Phase, discard{" "}
-              <strong>3 identical Resource cards</strong> and{" "}
-              <strong>1 Holy Duct Tape</strong> from your hand. Then take a Plot
-              Armor card matching the resource color.
-              <br />
-              <em>Example:</em> 3 Strength (red) resources + 1 Holy Duct Tape →
-              1 Strength (red) Plot Armor card.
+              Arrange your play area by placing the{" "}
+              <strong>Black Market (BM)</strong> deck on the left, line up the
+              four
+              <strong> Plot Armor Cards (PA)</strong> face-up across the center
+              by attribute color (<strong>Strength</strong>,{" "}
+              <strong>Dexterity</strong>, <strong>Intelligence</strong>, and{" "}
+              <strong>Wisdom</strong>), and place the
+              <strong> Executioner's Deck</strong> on the far right.
             </p>
+            <img
+              src={step0Image}
+              alt="Setup layout showing Black Market, Plot Armor, and Executioner deck"
+            />
           </div>
 
-          <div className="rules-callout">
-            <h4 className="rules-callout-title">How to buy Black Market</h4>
+          <div className="setup-step">
+            <h3 className="rules-subtitle2">Step 2: Build the Death Line</h3>
             <p className="rules-text">
-              On your turn in the Action Phase, discard{" "}
-              <strong>any 3 cards</strong> from your hand and take the{" "}
-              <strong>top card</strong> of the Black Market deck. This counts as
-              a <strong>Free Move</strong>.
+              Directly below the top row, set up the <strong>Death Line</strong>{" "}
+              with the <strong>Main Deck (MD)</strong> sitting at the far right
+              end:
             </p>
-          </div>
-
-          <div className="rules-callout">
-            <h4 className="rules-callout-title">Action Phase Flow</h4>
-            <p className="rules-text">
-              The Action Phase is a repeating priority sequence based on the
-              queue: the first player acts, then the second, and so on. After
-              the last player acts, priority returns to the first player.
-            </p>
-            <p className="rules-text">
-              The Action Phase ends only when{" "}
-              <strong>all players say “pass” consecutively</strong> and no one
-              wants to take further actions.
-            </p>
-          </div>
-
-          <h3 className="rules-subtitle2">3) Executioner Phase</h3>
-          <p className="rules-text">
-            Players do not make choices here. Reveal the{" "}
-            <strong>top card</strong> of the Executioner’s deck and follow its
-            instructions. These cards replenish the board and can cause
-            characters to die (see The Executioner).
-          </p>
-
-          <p className="rules-text">
-            After resolving an Executioner card, place it in a{" "}
-            <strong>used stack</strong>. If the Executioner deck runs out,
-            shuffle its used stack to form a new Executioner deck.
-          </p>
-
-          <p className="rules-text">
-            Main deck and Black Market cards also go to their used stacks after
-            being used. If the main deck runs out, shuffle its used stack to
-            form a new main deck.
-          </p>
-
-          <div className="rules-example">
-            <h4 className="rules-callout-title">Example (3 players)</h4>
             <ul className="rules-bullets">
               <li>
-                <strong>Draw Phase:</strong> Players A, B, C each draw one card
-                from the board.
+                <strong>The Executioner:</strong> Always takes the very first
+                spot on the far left.
               </li>
               <li>
-                <strong>Action Phase:</strong> A plays an action card. B buys a
-                Black Market card (doesn’t use it) and passes. C passes.
-                Priority returns to A.
+                <strong>The 3 Peasants:</strong> Place all 3 Peasant cards
+                immediately after the Executioner. They serve as a buffer before
+                any real player is in danger.
               </li>
               <li>
-                A buys a Plot Armor card. B passes. C passes. Priority returns
-                to A.
+                <strong>Player Turn Order (The Queue):</strong> Shuffle all
+                chosen Character cards. Pick one randomly to decide who starts
+                first in line behind the Peasants (for example, <em>Misero</em>
+                ).
               </li>
               <li>
-                A passes. B passes. C passes.{" "}
-                <strong>All players passed consecutively</strong> → go to
-                Executioner Phase.
-              </li>
-              <li>
-                <strong>Executioner Phase:</strong> Reveal the top Executioner
-                card. Example: “Refill the board.” Players add cards from the
-                main deck until the board is back to 6 cards. Then a new round
-                begins at Draw Phase.
+                <strong>Seating Alignment:</strong> Place the remaining player
+                characters in line following the physical seating order around
+                the table, moving clockwise (e.g., the player sitting to the
+                right of Misero places their character next, followed by the
+                next player, and so on).
               </li>
             </ul>
-            <p className="rules-text subtle">
-              Note: If any player takes an action before everyone has passed
-              consecutively, the “pass” sequence resets.
+            <img
+              src={step1Image}
+              alt="Death Line layout showing Executioner, 3 Peasants, player queue, and Main Deck"
+            />
+          </div>
+
+          <div className="setup-step">
+            <h3 className="rules-subtitle2">Step 3: Lay Out the Board</h3>
+            <p className="rules-text">
+              Directly below the Death Line, create <strong>The Board</strong>{" "}
+              by drawing cards from the Main Deck.
             </p>
+            <ul className="rules-bullets">
+              <li>
+                <strong>Card Count Formula:</strong> Deal out{" "}
+                <strong>N + 2 cards</strong> face-down onto the board, where{" "}
+                <strong>N</strong> is the total number of players in the game
+                (e.g., if 4 players are playing, deal 6 cards).
+              </li>
+              <li>
+                <strong>Card Types:</strong> The board contains cards drawn from
+                the Main Deck, which include <strong>Resource cards</strong>{" "}
+                (red borders) and <strong>Action cards</strong> (blue borders).
+              </li>
+            </ul>
+            <img
+              src={step2Image}
+              alt="The Board layout positioned below the Death Line"
+            />
           </div>
         </section>
 
+        {/* Phase 1: Draw Phase */}
         <section className="rules-section">
-          <h2 className="rules-title">The Executioner</h2>
-          <p className="rules-text">
-            The Executioner is the mascot and permanent antagonist of the game.
-            Through the Executioner deck, the board is replenished, players may
-            be forced to draw, and characters can die.
-          </p>
-          <p className="rules-text">
-            When the <strong>“You are up next”</strong> card is revealed, the
-            Executioner kills the first character in the queue. The first{" "}
-            <strong>3 times</strong> this happens, a Peasant dies instead (there
-            are 3 Peasant cards). After all Peasants are gone, each future “You
-            are up next” kills the next player in the queue.
-          </p>
-          <p className="rules-text">
-            If a player dies: they are eliminated, discard their hand into the
-            used pile, and remove any acquired Plot Armor cards from the game.
-          </p>
+          <h2 className="rules-title">Phase 1: The Draw Phase</h2>
+          <div className="setup-step">
+            <p className="rules-text">
+              The game officially begins with the <strong>Draw Phase</strong>,
+              the first of three round phases.
+            </p>
+            <ul className="rules-bullets">
+              <li>
+                <strong>Order of Play:</strong> Players take turns drawing
+                strictly in line order (the queue).
+              </li>
+              <li>
+                <strong>Taking a Card:</strong> The first character in line (in
+                this example, <em>Misero</em>) chooses and draws{" "}
+                <strong>one card</strong> of their choice directly from the
+                available cards on the Board.
+              </li>
+              <li>
+                <strong>Empty Board Rule:</strong> If no cards are available on
+                the board when your turn comes, draw your card directly from the{" "}
+                <strong>Main Deck</strong> instead.
+              </li>
+            </ul>
+            <img
+              src={step3Image}
+              alt="Draw Phase step showing Misero taking a card from the board"
+            />
+          </div>
+
+          <div className="setup-step">
+            <h3 className="rules-subtitle2">Completing the Draw Phase</h3>
+            <p className="rules-text">
+              Drawing continues down the line in queue order until{" "}
+              <strong>every player</strong> has picked one card from the board.
+            </p>
+            <ul className="rules-bullets">
+              <li>
+                <strong>Queue Sequence:</strong> After Misero draws, the next
+                player in line (Notferatu) takes their card, followed by
+                Paprika, Hamlet, and so on.
+              </li>
+              <li>
+                <strong>Board Depletion:</strong> As players take their cards,
+                the board will naturally shrink. Once all players have drawn
+                their single card for the round, the Draw Phase ends and you
+                immediately move to the <strong>Action Phase</strong>.
+              </li>
+            </ul>
+            <img
+              src={step4Image}
+              alt="Board after all players have drawn their card in queue order"
+            />
+          </div>
         </section>
 
+        {/* Phase 2: Action Phase */}
+        <section className="rules-section">
+          <h2 className="rules-title">Phase 2: The Action Phase</h2>
+          <div className="setup-step">
+            <p className="rules-text">
+              Once all players have drawn a card, the{" "}
+              <strong>Action Phase</strong> begins in queue order starting with
+              the first player in line.
+            </p>
+            <p className="rules-text">
+              On your turn, you can perform one of three main options:
+            </p>
+
+            <ul className="rules-bullets">
+              <li>
+                <strong>1) Play an Action Card:</strong> Play a blue action card
+                from your hand (such as <em>Unfair Trade</em>) directly into
+                your play area and immediately resolve its printed effect.
+                Discarded Action cards go to the main discard pile below the
+                Main Deck (MD).
+              </li>
+              <li>
+                <strong>2) Buy a Plot Armor Card:</strong> Discard{" "}
+                <strong>3 matching Resource cards</strong> +{" "}
+                <strong>1 Holy Duck Tape card</strong> from your hand to claim
+                the corresponding Plot Armor card.
+                <br />
+                <em>Example:</em> Discarding 3 Strength resources + 1 Holy Duck
+                Tape awards you 1 Strength Plot Armor card. Discarding 3
+                Dexterity resources + 1 Holy Duck Tape awards 1 Dexterity Plot
+                Armor card (the same logic applies for Intelligence and Wisdom).
+              </li>
+              <li>
+                <strong>3) Buy or Play a Black Market Card:</strong> Discard{" "}
+                <strong>any 3 cards</strong> from your hand to take the top card
+                from the Black Market deck. When played, Black Market cards
+                resolve their effect and go directly to the main discard pile.
+              </li>
+            </ul>
+
+            <div className="rules-callout">
+              <h4 className="rules-callout-title">
+                Action Phase Priority & Passing
+              </h4>
+              <p className="rules-text">
+                During the Action Phase, each player takes{" "}
+                <strong>one action</strong> on their turn, or they may choose to{" "}
+                <strong>pass</strong> and do nothing.
+              </p>
+              <p className="rules-text">
+                Turn priority moves down the queue from player to player. If any
+                player performs an action, the cycle resets and continues around
+                the table. The Action Phase only ends when{" "}
+                <strong>every player passes consecutively in a row</strong>.
+              </p>
+            </div>
+
+            <div className="rules-example">
+              <h4 className="rules-callout-title">
+                Playing an Action Card Example
+              </h4>
+              <p className="rules-text">
+                The active player plays <strong>Unfair Trade</strong> to execute
+                its effect immediately ("Draw 2 cards from the Main Deck").
+              </p>
+              <img
+                src={step5Image}
+                alt="Showing a player playing an Action card during the Action Phase"
+              />
+            </div>
+
+            <div className="rules-example">
+              <h4 className="rules-callout-title">Buying Plot Armor Example</h4>
+              <p className="rules-text">
+                To purchase a Strength Plot Armor card, submit 3 Strength cards
+                alongside 1 Holy Duck Tape card.
+              </p>
+              <img
+                src={step6Image}
+                alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Phase 3: Executioner Phase */}
+        <section className="rules-section">
+          <h2 className="rules-title">Phase 3: The Executioner Phase</h2>
+          <div className="setup-step">
+            <p className="rules-text">
+              When all players have passed, reveal the top card of the{" "}
+              <strong>Executioner Deck</strong>. Discarded Executioner cards go
+              directly to the <strong>Executioner Discard Deck</strong> placed
+              right next to it (note: standard Main Deck cards and played Black
+              Market cards go directly to the main discard pile below the Main
+              Deck).
+            </p>
+
+            <ul className="rules-bullets">
+              <li>
+                <strong>Refilling the Board:</strong> Some Executioner cards
+                instruct players to refill empty spots on the Board using cards
+                from the Main Deck.
+              </li>
+              <li>
+                <strong>"YOU ARE UP NEXT":</strong> When this card is revealed,
+                the Executioner executes the very next card in the Death Line.
+              </li>
+              <li>
+                <strong>Peasant Buffer:</strong> The Executioner must kill all 3
+                Peasants first before any player character is in danger.
+              </li>
+              <li>
+                <strong>Flipping to Death State:</strong> When a player
+                character dies, flip their card over to reveal their{" "}
+                <strong>Death State</strong> artwork.
+              </li>
+            </ul>
+
+            <div className="rules-example">
+              <h4 className="rules-callout-title">
+                Executioner Reveal Example
+              </h4>
+              <p className="rules-text">
+                Drawing "YOU ARE UP NEXT" forces the Executioner to advance and
+                eliminate the next target in line.
+              </p>
+              <img
+                src={step45Image}
+                alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
+              />
+            </div>
+
+            <div className="rules-example">
+              <h4 className="rules-callout-title">
+                Character Death State Example
+              </h4>
+              <p className="rules-text">
+                Eliminated characters are flipped over to display their unique
+                Death State illustrations.
+              </p>
+              <img
+                src={img1132Image}
+                alt="Character cards flipped over showing their death state illustrations"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Purpose of the Game */}
         <section className="rules-section">
           <h2 className="rules-title">Purpose of the Game</h2>
           <p className="rules-text">
-            Prove you are the protagonist. The first player to collect{" "}
-            <strong>3 Plot Armor cards</strong> wins.
+            Prove you are the protagonist! The first player to collect
+            <strong> 3 Plot Armor cards</strong> wins.
           </p>
           <p className="rules-text">
-            Alternatively, if all other players die, the{" "}
-            <strong>last player standing</strong> wins immediately.
+            Alternatively, if all other players die, the
+            <strong> last player standing</strong> wins immediately.
           </p>
         </section>
       </div>

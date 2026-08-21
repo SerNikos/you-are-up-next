@@ -18,6 +18,8 @@ import miseroDead from "../../assets/heros-dead/misero-dead card.png";
 import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
 import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
+import { Helmet } from "react-helmet-async";
+
 // Comprehensive Character structural data array
 const characters = [
   {
@@ -134,6 +136,21 @@ export default function AllCharactersLore() {
 
   return (
     <div>
+      <Helmet>
+        <title>You Are Up Next - Characters & Lore | YAUN Board Game</title>
+        <meta
+          name="description"
+          content="Meet the characters of You Are Up Next: The Sexy Executioner, Notferatu, Misero, and more. Discover their medieval backstories!"
+        />
+        <meta
+          property="og:title"
+          content="You Are Up Next - Board Game Characters"
+        />
+        <meta
+          property="og:description"
+          content="Discover the lore behind YAUN, the upcoming Kickstarter medieval board game."
+        />
+      </Helmet>
       <Navbar />
 
       <main className="fullDescriptions">
