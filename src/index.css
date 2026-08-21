@@ -8,21 +8,45 @@
   font-family: "Comfortaa", sans-serif;
 }
 
-/*By default 1 rem is equal to 16 pixels because the font size of the root element (the hetmlelement) is equal to 16 pixels. I want ot convert one rem to 10 pixels and for that we need to decrease the font size of the html element so 1 rem is now = 10 px*/
 html {
   font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(21, 21, 21);
+  color: #ffffff;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.characterCards {
+  margin: 2rem auto;
 }
 
 @media (max-width: 1000px) {
   html {
     font-size: 50%;
   }
+
   .characterCards {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
   }
+
   #paprika,
   #misero,
   #notferatu,
@@ -30,13 +54,11 @@ html {
   #hamlet {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .game-description {
-    margin-bottom: 15rem;
-  }
-  .characterCards {
-    transform: scale(1.15);
+    margin-bottom: 4rem;
   }
 
   .character-photo,
@@ -47,17 +69,17 @@ html {
   }
 
   .character-photo {
-    margin-bottom: 20rem;
-    transform: scale(1.4);
+    margin-bottom: 2rem;
   }
+
   .photo-container {
     margin: auto;
   }
 
   .second-half p {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    font-size: 3rem;
+    padding: 0 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
   }
 }
 
@@ -79,12 +101,14 @@ html {
     padding: 1.5rem;
     font-size: 1.6rem;
   }
+
   .accordion-container {
-    margin-top: 25rem;
+    margin-top: 3rem;
   }
 
   .accordion-answer {
     background-color: #f0f8ff;
+    color: #111111;
     border-radius: 0.5rem;
     padding: 1.5rem;
     font-size: 1.4rem;
@@ -107,18 +131,4 @@ html {
     max-width: 90%;
     margin-bottom: 2rem;
   }
-
-  nav {
-    transform: scale(1.2);
-  }
-  .nav-item {
-    padding: 1.5rem;
-  }
-  .nav-logo {
-    padding-top: 3rem;
-  }
-  .accordion-container {
-    transform: scale(1.15);
-  }
-
 }

@@ -1,6 +1,7 @@
 import "./AllCharactersLore.css";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 
@@ -11,7 +12,7 @@ import misero from "../../assets/misero.jpg";
 import paprika from "../../assets/paprika.jpg";
 import hamlet from "../../assets/hamlet.jpg";
 
-// Cursed/Dead card image asset paths (mapped exactly from your folder structure)
+// Cursed/Dead card image asset paths
 import executionerDead from "../../assets/heros-dead/executioner-dead.png";
 import hamletDead from "../../assets/heros-dead/hamlet-dead.png";
 import miseroDead from "../../assets/heros-dead/misero-dead card.png";
@@ -20,101 +21,37 @@ import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
 import { Helmet } from "react-helmet-async";
 
-// Comprehensive Character structural data array
-const characters = [
+// Κρατάμε μόνο τα δομικά στοιχεία (IDs & Images)
+const characterList = [
   {
     id: "executioner",
-    name: "The Executioner",
     image: executioner,
     deadImage: executionerDead,
-    description: (
-      <>
-        Beauty is both a blessing and a curse. That's the problem of our beloved
-        executioner. Legend says his first conquest was the midwife who
-        delivered him. Having spent his entire life as the embodiment of the
-        halo effect, he grew tired. What's the point when everything and
-        everyone comes so easily? So he did the only thing that made sense: he
-        decided he's a fighter, not a lover. He took over the family business
-        and became the new executioner. Associated with death itself, surely
-        people would stop seeing him only for his looks. And with endless grace
-        and sex appeal, even in this line of work, he finally succeeded. Now,
-        he's not just a handsome guy.
-        <span style={{ fontWeight: "bold", color: "#b91a27e9" }}>
-          {" "}
-          He's the sexy executioner.
-        </span>
-      </>
-    ),
   },
   {
     id: "notferatu",
-    name: "Notferatu",
     image: notferatu,
     deadImage: notferatuDead,
-    description: `He is a ruthless and relentless vampire hunter. After his mother died when a vampire 
-      cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming 
-      the greatest vampire hunter in the world, so that no one else would ever go through what 
-      he did. After years of training and finding the perfect equipment, he's finally ready to
-      face a vampire… once he finds one. His latest trick? To dress up as a vampire so that a 
-      real one might come out of hiding without fear… and then… theeeen… they mistook him for a 
-      vampire and sent him to be executed. He's now waving garlic around, scrubbing off his makeup,
-      and shouting that he's human hoping to save himself. Useless though, since everyone already knows
-      he's human; they just wanted an excuse to get rid of him after ten long years of him driving everyone
-      crazy with his vampire obsession. `,
   },
   {
     id: "misero",
-    name: "Misero",
     image: misero,
     deadImage: miseroDead,
-    description: `
-      Humor ages with man. We don't know if that's true, but that's the state of the king's once beloved clown.
-      After more than forty years of jokes, cream pies, and sarcasm, this jester stopped spreading smiles and joy.
-      In a last attempt to be funny again, he decided to reinvent himself by changing his stage name from Bozo to Smiley, Harleking, Sad-Sad-Sammy, and every other terrible name imaginable, until he finally gave up and called himself Mizero.
-      Now, all he wants is to retire. But the king won't let him because, besides being useless entertainment, he also happens to be the king's only real advisor (when you're the clown no one pays attention to, you overhear a lot).
-      Finally, he decided to go out the way he lived: with a joke.
-      He made a particularly vulgar joke about the queen's behind and ended up in line for execution.
-      He's oddly happy about it, until a child gives him a clown scepter and says he's his biggest fan.
-      Realizing he can still make someone laugh, Mizero decides… it's not his time yet.  
-    `,
   },
   {
     id: "paprika",
-    name: "Paprika",
     image: paprika,
     deadImage: paprikaDead,
-    description: `
-      A young maid with a talent for cooking, who, despite barely being able to read, finds a spice book
-      with pictures and uses it for her next pie. She leaves everyone speechless, they've just tasted the
-      most gourmet medieval dish imaginable. A woman who's good at something, can read, and uses spices? 
-      She must be a witch. The court sentenced her to two months of community service, but she requested 
-      execution because she's in love with the executioner (she thinks she can “fix” him).
-      After annoying the judge for over three hours, he gave up and sentenced her to death.
-      Unfortunately, while waiting in the execution line, she suddenly remembered: if the executioner 
-      kills her, she'll never see him again. So, she decides to escape and change her approach.
-    `,
   },
   {
     id: "hamlet",
-    name: "Hamlet",
     image: hamlet,
     deadImage: hamletDead,
-    description: `
-      It's the Middle Ages. A pig appears out of nowhere, knocks a flowerpot off a lady's balcony, and it
-      falls on the head of the local lord, killing him instantly.
-      Would you call that manslaughter or murder? Whether it's a pig doesn't matter...someone must pay for 
-      this tragic accident. The worst part? The pig actually is intelligent and self-aware. In fact, he's 
-      a secret member and informant of an underground organization plotting against the regime. His plan 
-      all along was to assassinate the nobleman so that the city would fall under the control of this
-      secret order and all without breaking the law! After all, who would accuse a pig? Well, everyone 
-      actually, because he forgot he's in the Middle Ages, when people do believe animals have consciousness, 
-      and criminal law is still in its early stages and so, a cunning conspirator now finds himself trying
-      desperately not to become bacon.
-    `,
   },
 ];
 
 export default function AllCharactersLore() {
+  const { t } = useTranslation();
   const { hash } = useLocation();
 
   // Tracks active dynamic elements across small screen display touch triggers
@@ -137,56 +74,60 @@ export default function AllCharactersLore() {
   return (
     <div>
       <Helmet>
-        <title>You Are Up Next - Characters & Lore | YAUN Board Game</title>
-        <meta
-          name="description"
-          content="Meet the characters of You Are Up Next: The Sexy Executioner, Notferatu, Misero, and more. Discover their medieval backstories!"
-        />
-        <meta
-          property="og:title"
-          content="You Are Up Next - Board Game Characters"
-        />
+        <title>{t("meta.charactersTitle")}</title>
+        <meta name="description" content={t("meta.charactersDescription")} />
+        <meta property="og:title" content={t("meta.charactersTitle")} />
         <meta
           property="og:description"
-          content="Discover the lore behind YAUN, the upcoming Kickstarter medieval board game."
+          content={t("meta.charactersDescription")}
         />
       </Helmet>
+
       <Navbar />
 
       <main className="fullDescriptions">
-        {characters.map((char) => (
-          <section
-            key={char.id}
-            id={char.id}
-            aria-labelledby={`${char.id}-title`}
-          >
-            {/* Photo-container handles dynamic class bindings to allow the unified 
-              CSS styles to listen seamlessly to clicks and hovers simultaneously.
-            */}
-            <div
-              className={`photo-container ${activeCard === char.id ? "revealed" : ""}`}
-              onClick={() => handleCardClick(char.id)}
-            >
-              <img
-                src={char.image}
-                alt={`${char.name} alive card`}
-                className="character-photo alive"
-              />
-              {char.deadImage && (
-                <img
-                  src={char.deadImage}
-                  alt={`${char.name} dead card`}
-                  className="character-photo dead"
-                />
-              )}
-            </div>
+        {characterList.map((char) => {
+          const name = t(`characters.${char.id}.name`);
+          const descriptionHtml = t(`characters.${char.id}.description`);
 
-            <div className="second-half">
-              <h2 id={`${char.id}-title`}>{char.name}</h2>
-              <p className="character-discription">{char.description}</p>
-            </div>
-          </section>
-        ))}
+          return (
+            <section
+              key={char.id}
+              id={char.id}
+              aria-labelledby={`${char.id}-title`}
+            >
+              <div
+                className={`photo-container ${
+                  activeCard === char.id ? "revealed" : ""
+                }`}
+                onClick={() => handleCardClick(char.id)}
+              >
+                <img
+                  src={char.image}
+                  alt={`${name} alive card`}
+                  className="character-photo alive"
+                />
+                {char.deadImage && (
+                  <img
+                    src={char.deadImage}
+                    alt={`${name} dead card`}
+                    className="character-photo dead"
+                  />
+                )}
+              </div>
+
+              <div className="second-half">
+                <h2 id={`${char.id}-title`}>{name}</h2>
+
+                {/* Εδώ γίνεται το render του HTML από τα JSON αρχεία */}
+                <p
+                  className="character-discription"
+                  dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+                />
+              </div>
+            </section>
+          );
+        })}
       </main>
 
       <Footer />

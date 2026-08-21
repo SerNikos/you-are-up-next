@@ -1,142 +1,172 @@
-.setup {
+/* Container Layout */
+.the-container {
   display: flex;
-  justify-content: left;
-  align-items: start;
-  margin: 2rem 0;
-}
-
-/* Aspect ratio fix to prevent stretching and distortion */
-.setup img,
-.setup-step img,
-.rules-example img {
-  width: 100%;
-  max-width: 1167px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  margin-top: 12px;
-  display: block;
-}
-
-.setup-step {
-  margin-top: 24px;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .rules-container {
-  max-width: 920px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 28px 18px 64px;
-  line-height: 1.65;
-  font-size: 16px;
+  padding: 40px 20px;
+  flex: 1;
 }
 
+/* Header Section */
 .rules-header {
-  margin-bottom: 22px;
-  padding: 18px 18px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 20px;
 }
 
 .rules-main-title {
-  margin: 0 0 6px;
-  font-size: 30px;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
+  font-size: 3rem;
+  color: #f5a623;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .rules-subtitle {
-  margin: 0;
-  opacity: 0.8;
+  font-size: 1.35rem;
+  color: #bbb;
+  line-height: 1.6;
 }
 
+/* Sections */
 .rules-section {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .rules-title {
-  margin: 0 0 10px;
-  font-size: 20px;
-  letter-spacing: 0.2px;
+  font-size: 2.2rem;
+  color: #f5a623;
+  border-left: 5px solid #f5a623;
+  padding-left: 15px;
+  margin-bottom: 25px;
 }
 
 .rules-subtitle2 {
-  margin: 16px 0 6px;
-  font-size: 16px;
-  opacity: 0.92;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-top: 25px;
+  margin-bottom: 12px;
 }
 
 .rules-text {
-  margin: 8px 0;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #dddddd;
+  margin-bottom: 15px;
 }
 
-.rules-list,
+/* Lists */
 .rules-bullets {
-  margin: 10px 0 12px 22px;
-  padding: 0;
+  list-style-type: disc;
+  padding-left: 25px;
+  margin-bottom: 20px;
 }
 
-.rules-list li,
 .rules-bullets li {
-  margin: 6px 0;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 12px;
+  line-height: 1.6;
 }
 
-.rules-callout {
-  margin-top: 14px;
-  padding: 14px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.05);
+/* Steps and Images */
+.setup-step {
+  margin-bottom: 35px;
 }
 
-.rules-callout-title {
-  margin: 0 0 6px;
-  font-size: 15px;
-  letter-spacing: 0.15px;
+.setup-step img,
+.rules-example img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Callouts and Examples */
+.rules-callout,
+.rules-example {
+  background-color: #2a2a2a;
+  border-left: 5px solid #4a90e2;
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 25px 0;
 }
 
 .rules-example {
-  margin-top: 16px;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.03);
-  overflow: hidden;
+  border-left-color: #e67e22;
 }
 
-.tag {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 12px;
-  vertical-align: middle;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  opacity: 0.95;
+.rules-callout-title {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
-.subtle {
-  opacity: 0.78;
-}
-
-@media (max-width: 520px) {
+/* Responsive adjustments για κινητά & tablet (Pixel 7 / 412px width) */
+@media (max-width: 768px) {
   .rules-container {
-    padding: 18px 12px 48px;
-    font-size: 15px;
+    padding: 10px 8px;
+  }
+
+  .rules-section {
+    padding: 16px 12px;
   }
 
   .rules-main-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
-  .rules-section,
-  .rules-header {
-    padding: 14px;
+  .rules-subtitle {
+    font-size: 16px;
+  }
+
+  .rules-title {
+    font-size: 22px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  .rules-subtitle2 {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  /* Σταθερές, μεγάλες τιμές px για τα κείμενα */
+  .rules-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .rules-bullets {
+    padding-left: 18px;
+  }
+
+  .rules-bullets li {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .rules-callout-title {
+    font-size: 17px;
   }
 }

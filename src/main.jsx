@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
+
 import App from "./App.jsx";
-import AllCharactersLore from "./components/AllCharactersLore/AllCharactersLore.jsx"
+import AllCharactersLore from "./components/AllCharactersLore/AllCharactersLore.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import Rules from "./components/Rules/Rules.jsx";
 import ContactUs from "./components/ContactUs/ContactUs.jsx";
@@ -21,5 +23,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
