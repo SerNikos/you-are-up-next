@@ -13,6 +13,28 @@ export const isInAppBrowser = () => {
   );
 };
 
+// ΝΕΟ: Συνάρτηση που σπάει το μεγάλο κείμενο σε ασφαλή μικρά κομμάτια για τα κινητά
+const chunkText = (text, maxLength = 150) => {
+  const words = text.split(/\s+/);
+  const chunks = [];
+  let currentChunk = "";
+
+  words.forEach((word) => {
+    if (currentChunk.length + word.length > maxLength) {
+      chunks.push(currentChunk.trim());
+      currentChunk = word + " ";
+    } else {
+      currentChunk += word + " ";
+    }
+  });
+
+  if (currentChunk.trim()) {
+    chunks.push(currentChunk.trim());
+  }
+
+  return chunks;
+};
+
 export const toggleSpeech = (i18nLanguage = "el") => {
   const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
 
@@ -36,8 +58,8 @@ export const toggleSpeech = (i18nLanguage = "el") => {
     return false;
   }
 
-  // 3. Toggle Play / Pause: Αν παίζει ήδη, σταμάτησέ το
-  if (window.speechSynthesis.speaking) {
+  // 3. Toggle Play / Pause: Καθαρίζουμε ΟΛΗ την ουρά ομιλίας αν παίζει
+  if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
     window.speechSynthesis.cancel();
     return false;
   }
@@ -50,26 +72,30 @@ export const toggleSpeech = (i18nLanguage = "el") => {
 
   if (!mainContent) return false;
 
-  const textToRead = mainContent.innerText;
-  const utterance = new SpeechSynthesisUtterance(textToRead);
+  // Καθαρίζουμε το κείμενο από πολλαπλά κενά/αλλαγές γραμμής
+  const rawText = mainContent.innerText.replace(/\s+/g, " ").trim();
 
-  // 5. Ρύθμιση Γλώσσας & Προφοράς
+  // 5. Σπάμε το κείμενο σε ασφαλή κομμάτια (chunks)
+  const textChunks = chunkText(rawText, 150);
+
+  // 6. Ρύθμιση Γλώσσας & Προφοράς
   const targetLang = isGreek ? "el-GR" : "en-US";
-  utterance.lang = targetLang;
-
   const voices = window.speechSynthesis.getVoices();
   const selectedVoice = voices.find((v) =>
     v.lang.startsWith(isGreek ? "el" : "en"),
   );
 
-  if (selectedVoice) {
-    utterance.voice = selectedVoice;
-  }
+  // 7. Προσθέτουμε κάθε κομμάτι στην ουρά του browser
+  textChunks.forEach((chunk) => {
+    const utterance = new SpeechSynthesisUtterance(chunk);
+    utterance.lang = targetLang;
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+    utterance.rate = 0.95; // Ήπιος ρυθμός
 
-  utterance.rate = 0.95; // Ήπιος ρυθμός για καθαρή ανάγνωση
-
-  // Έναρξη φωνητικής ανάγνωσης
-  window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.speak(utterance);
+  });
 
   return true;
 };
