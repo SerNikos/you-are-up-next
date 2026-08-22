@@ -68,7 +68,7 @@
     "phase2_desc2": "On your turn, you can perform one of three main options:",
     "phase2_opt1": "1) Play an Action Card: Play a blue action card from your hand directly into your play area and immediately resolve its effect.",
     "phase2_opt2": "2) Buy a Plot Armor Card: Discard 3 matching Resource cards + 1 Holy Duck Tape card from your hand to claim the corresponding Plot Armor card.",
-    "phase2_opt2_ex": "Example: Discarding 3 Strength resources + 1 Holy Duck Tape awards you 1 Strength Plot Armor card.",
+    "phase2_opt2_ex": "Example: Discarding 3 Wisdom resources and 1 Holy Duck Tape awards you a Wisdom Plot Armor card. Place it in front of you and use the advantage written on its back for as long as you keep it.",
     "phase2_opt3": "3) Buy or Play a Black Market Card: Discard any 3 cards from your hand to take the top card from the Black Market deck.",
     "phase2_priority_title": "Action Phase Priority & Passing",
     "phase2_priority_text1": "During the Action Phase, each player takes one action on their turn, or they may choose to pass and do nothing.",
