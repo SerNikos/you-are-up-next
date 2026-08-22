@@ -1,5 +1,3 @@
-// src/utils/voice.js
-
 // Ανίχνευση αν ο χρήστης βρίσκεται μέσα στον In-App Browser (Instagram, Messenger, FB κλπ.)
 export const isInAppBrowser = () => {
   if (typeof navigator === "undefined") return false;
@@ -13,18 +11,25 @@ export const isInAppBrowser = () => {
   );
 };
 
-// ΝΕΟ: Συνάρτηση που σπάει το μεγάλο κείμενο σε ασφαλή μικρά κομμάτια για τα κινητά
-const chunkText = (text, maxLength = 150) => {
+// ΝΕΟ: Έξυπνος τεμαχισμός που σέβεται τις προτάσεις (τελείες, ερωτηματικά)
+const chunkText = (text, maxLength = 180) => {
   const words = text.split(/\s+/);
   const chunks = [];
   let currentChunk = "";
 
   words.forEach((word) => {
+    // Αν προσθέσουμε τη λέξη και περάσει το όριο, κλείνουμε το chunk
     if (currentChunk.length + word.length > maxLength) {
       chunks.push(currentChunk.trim());
       currentChunk = word + " ";
     } else {
       currentChunk += word + " ";
+      // Έξυπνο κόψιμο: Αν η λέξη τελειώνει σε τελεία, θαυμαστικό ή ερωτηματικό
+      // και το chunk είναι ήδη πάνω από 80 χαρακτήρες, το κλείνουμε εδώ για φυσική παύση!
+      if (/[.!?]$/.test(word) && currentChunk.length > 80) {
+        chunks.push(currentChunk.trim());
+        currentChunk = "";
+      }
     }
   });
 
@@ -72,11 +77,18 @@ export const toggleSpeech = (i18nLanguage = "el") => {
 
   if (!mainContent) return false;
 
-  // Καθαρίζουμε το κείμενο από πολλαπλά κενά/αλλαγές γραμμής
-  const rawText = mainContent.innerText.replace(/\s+/g, " ").trim();
+  // --- ΒΕΛΤΙΩΜΕΝΗ ΛΟΓΙΚΗ ΓΙΑ ΠΑΥΣΕΙΣ ---
+  // 1. Μετατρέπουμε μόνο τις ΔΙΠΛΕΣ αλλαγές γραμμής (Τίτλος -> Κείμενο) σε παύσεις με αποσιωπητικά
+  let rawText = mainContent.innerText.replace(/\n{2,}/g, " ... ");
 
-  // 5. Σπάμε το κείμενο σε ασφαλή κομμάτια (chunks)
-  const textChunks = chunkText(rawText, 150);
+  // 2. Μετατρέπουμε τις μονές αλλαγές γραμμής (τυχαία κοψίματα λέξεων) σε απλό κενό
+  rawText = rawText.replace(/\n/g, " ");
+
+  // 3. Καθαρίζουμε το κείμενο από πολλαπλά κενά
+  rawText = rawText.replace(/\s+/g, " ").trim();
+
+  // 5. Σπάμε το κείμενο σε ασφαλή κομμάτια (chunks) με μέγιστο μέγεθος 180
+  const textChunks = chunkText(rawText, 180);
 
   // 6. Ρύθμιση Γλώσσας & Προφοράς
   const targetLang = isGreek ? "el-GR" : "en-US";
