@@ -1,6 +1,6 @@
 {
   "nav": {
-    "title": "YOU ARE UP NEXT",
+    "title": "YOU ARE NEXT",
     "home": "Home",
     "voice": {
       "listen": "Listen",
@@ -9,92 +9,92 @@
     "protagonists": "Protagonists",
     "team": "Team",
     "rules": "Rules",
-    "contact": "Contact Us",
-    "congrats": "Congrats, you bought YAUN!"
+    "contact": "Contact",
+    "congrats": "Congratulations, you bought YOU ARE NEXT!"
   },
   "meta": {
-    "charactersTitle": "You Are Up Next - Characters & Lore | YAUN Board Game",
-    "charactersDescription": "Meet the characters of You Are Up Next: The Sexy Executioner, Notferatu, Misero, and more. Discover their medieval stories!"
+    "charactersTitle": "YOU ARE NEXT - Characters & Lore | YOU ARE NEXT Board Game",
+    "charactersDescription": "Meet the characters of YOU ARE NEXT: The Sexy Executioner, Notferatu, Misero and others. Discover their medieval stories!"
   },
   "home": {
-    "title": "YOU ARE UP NEXT",
-    "description_part1": "You have little but ",
+    "title": "YOU ARE NEXT",
+    "description_part1": "You have minimal but ",
     "description_highlight": "precious",
-    "description_part2": " time to steal, trade, give a gentle push...",
+    "description_part2": " time to steal, trade, or give a little push...",
     "buy_button": "Buy Now",
-    "modal_kickstarter": "Soon on KICKSTARTER...",
+    "modal_kickstarter": "Coming soon on KICKSTARTER...",
     "cards": {
-      "default_title": "YAUN Character",
-      "default_desc": "Not the luckiest individual",
+      "default_title": "YOU ARE NEXT Character",
+      "default_desc": "Not the luckiest guy around",
       "executioner_title": "The Executioner",
-      "executioner_desc": "He is the one who decides who is next",
-      "notferatu_title": "Notferatu",
-      "notferatu_desc": "The most fearless vampire hunter ever",
+      "executioner_desc": "He decides who is next",
+      "notferatu_title": "Count Vlakoulas",
+      "notferatu_desc": "The most fearless vampire hunter",
       "misero_title": "Misero",
       "misero_desc": "He is not here to entertain you",
       "paprika_title": "Paprika",
-      "paprika_desc": "She thinks she can fix him",
+      "paprika_desc": "She believes she can change him",
       "hamlet_title": "Hamlet",
-      "hamlet_desc": "An Innocent animal or an evil genius?"
+      "hamlet_desc": "An innocent animal or a malicious genius?"
     }
   },
   "rules": {
-    "header_title": "Rules of the Game",
-    "header_subtitle": "Learn how setup works, how turns flow, what the Executioner does, and how to win.",
+    "header_title": "Game Rules",
+    "header_subtitle": "Learn how the game is set up, how rounds progress, what the Executioner does, and how to win.",
     "setup_title": "Initial Game Layout & Setup",
-    "step1_title": "Step 1: Set Up the Card Decks",
-    "step1_desc": "Arrange your play area by placing the Black Market (BM) deck on the left, line up the four Plot Armor Cards (PA) face-up across the center by attribute color (Strength, Dexterity, Intelligence, and Wisdom), and place the Executioner's Deck on the far right.",
-    "step2_title": "Step 2: Build the Death Line",
-    "step2_desc": "Directly below the top row, set up the Death Line with the Main Deck (MD) sitting at the far right end:",
-    "step2_list1": "The Executioner: Always takes the very first spot on the far left.",
-    "step2_list2": "The 3 Peasants: Place all 3 Peasant cards immediately after the Executioner. They serve as a buffer before any real player is in danger.",
-    "step2_list3": "Player Turn Order (The Death Line): Shuffle all chosen Character cards. Pick one randomly to decide who starts first in line behind the Peasants (for example, Misero).",
-    "step2_list4": "Seating Alignment: Place the remaining player characters in line following the physical seating order around the table, moving clockwise.",
-    "step3_title": "Step 3: Lay Out the Board",
-    "step3_desc": "Directly below the Death Line, create The Board by drawing cards from the Main Deck.",
-    "step3_list1": "Card Count Formula: Deal out N + 2 cards face-down onto the board, where N is the total number of players in the game.",
-    "step3_list2": "Card Types: The board contains cards drawn from the Main Deck, which include Resource cards (red borders) and Action cards (blue borders).",
-    "phase1_title": "Phase 1: The Draw Phase",
-    "phase1_desc": "The game officially begins with the Draw Phase, the first of three round phases.",
-    "phase1_list1": "Order of Play: Players take turns drawing strictly in line death line's order.",
-    "phase1_list2": "Taking a Card: The first character in line chooses and draws one card of their choice directly from the available cards on the Board.",
-    "phase1_list3": "Empty Board Rule: If no cards are available on the board when your turn comes, draw your card directly from the Main Deck instead.",
+    "step1_title": "Step 1: Set Up Decks & Starting Cards",
+    "step1_desc": "Arrange your play area by placing the <strong>Black Market (BM)</strong> deck on the left, line up the <strong>Plot Armor (PA)</strong> cards face-up across the center by attribute color (Strength, Dexterity, Intelligence, and Wisdom — note that the number of PA cards per type equals the <strong>total number of players</strong>, e.g., 2 players mean 2 of each PA card), and place the Executioner's Deck on the far right. At the beginning of the game, each player receives <strong>3 cards in hand</strong> from the Main Deck (MD).",
+    "step2_title": "Step 2: Set Up the Death Line",
+    "step2_desc": "Positioned just below the top row, set up the <strong>Death Line</strong> with the Main Deck (MD) on the far right. The significance of the Death Line is crucial, as whoever remains alive until the end wins:",
+    "step2_list1": "<strong>The Executioner:</strong> Always takes the absolute first position on the far left.",
+    "step2_list2": "<strong>The Three Peasants:</strong> Place all <strong>3 Peasant cards</strong> immediately after the Executioner. They act as a protective buffer before any player is in danger.",
+    "step2_list3": "<strong>Player Queue:</strong> Shuffle the selected Character cards. Draw one at random to decide who goes <strong>first in line</strong> behind the Peasants.",
+    "step2_list4": "<strong>Seating Layout:</strong> Place the remaining player characters in line following the <strong>natural seating order</strong> around the table, going clockwise.",
+    "step3_title": "Step 3: Set Up the Board",
+    "step3_desc": "Directly below the Death Line, create the Board by drawing cards from the Main Deck.",
+    "step3_list1": "<strong>Card Mathematical Formula:</strong> Deal exactly <strong>N + 2 cards</strong> to the board, where N is the total number of players.",
+    "step3_list2": "<strong>Card Types:</strong> The board contains cards where <strong>Resource cards</strong> are <strong>face up</strong>, while <strong>Action cards</strong> are <strong>face down</strong>.",
+    "phase1_title": "Phase 1: Draw Phase",
+    "phase1_desc": "The game officially begins with the Draw Phase, the first of the three phases each round.",
+    "phase1_list1": "<strong>Turn Order:</strong> Players play <strong>strictly in the order</strong> they appear on the Death Line.",
+    "phase1_list2": "<strong>Card Selection:</strong> The first character in line chooses and draws <strong>one card of their choice</strong> directly from the available cards on the Board.",
+    "phase1_list3": "<strong>Empty Board Rule:</strong> If there are no available cards on the board when your turn comes, draw your card <strong>directly from the Main Deck</strong>.",
     "phase1_complete_title": "Completing the Draw Phase",
-    "phase1_complete_desc": "Drawing continues down the line in queue order until every player has picked one card from the board.",
-    "phase1_complete_list1": "Queue Sequence: After the first draws, the next player in line takes their card, and so on.",
-    "phase1_complete_list2": "Board Depletion: As players take their cards, the board will naturally shrink. Once all players have drawn, the Draw Phase ends.",
-    "phase2_title": "Phase 2: The Action Phase",
-    "phase2_desc1": "Once all players have drawn a card, the Action Phase begins in queue order starting with the first player in the death line.",
-    "phase2_desc2": "On your turn, you can perform one of three main options:",
-    "phase2_opt1": "1) Play an Action Card: Play a blue action card from your hand directly into your play area and immediately resolve its effect.",
-    "phase2_opt2": "2) Buy a Plot Armor Card: Discard 3 matching Resource cards + 1 Holy Duck Tape card from your hand to claim the corresponding Plot Armor card.",
-    "phase2_opt2_ex": "Example: Discarding 3 Wisdom resources and 1 Holy Duck Tape awards you a Wisdom Plot Armor card. Place it in front of you and use the advantage written on its back for as long as you keep it.",
-    "phase2_opt3": "3) Buy or Play a Black Market Card: Discard any 3 cards from your hand to take the top card from the Black Market deck.",
-    "phase2_priority_title": "Action Phase Priority & Passing",
-    "phase2_priority_text1": "During the Action Phase, each player takes one action on their turn, or they may choose to pass and do nothing.",
-    "phase2_priority_text2": "The Action Phase only ends when every player passes consecutively in a row.",
-    "phase2_ex1_title": "Playing an Action Card Example",
-    "phase2_ex1_text": "The active player plays Unfair Trade to execute its effect immediately (\"Draw 2 cards from the Main Deck\").",
-    "phase2_ex2_title": "Buying Plot Armor Example",
-    "phase2_ex2_text": "To purchase a Strength Plot Armor card, submit 3 Strength cards alongside 1 Holy Duck Tape card.",
-    "phase3_title": "Phase 3: The Executioner Phase",
-    "phase3_desc": "When all players have passed, reveal the top card of the Executioner Deck.",
-    "phase3_list1": "Refilling the Board: Some Executioner cards instruct players to refill empty spots on the Board using cards from the Main Deck.",
-    "phase3_list2": "\"YOU ARE UP NEXT\": When this card is revealed, the Executioner executes the very next card in the Death Line.",
-    "phase3_list3": "Peasant Buffer: The Executioner must kill all 3 Peasants first before any player character is in danger.",
-    "phase3_list4": "Flipping to Death State: When a player character dies, flip their card over to reveal their Death State artwork.",
-    "phase3_ex1_title": "Executioner Reveal Example",
-    "phase3_ex1_text": "Drawing \"YOU ARE UP NEXT\" forces the Executioner to advance and eliminate the next target in line.",
-    "phase3_ex2_title": "Character Death State Example",
-    "phase3_ex2_text": "Eliminated characters are flipped over to display their unique Death State illustrations.",
+    "phase1_complete_desc": "Drawing continues down the line until every player has chosen one card from the board.",
+    "phase1_complete_list1": "Order Sequence: After the first, the next player in line takes their card, and so on.",
+    "phase1_complete_list2": "<strong>Board Reduction:</strong> As players take cards, the board will naturally shrink. Once all players have drawn, the Draw Phase ends.",
+    "phase2_title": "Phase 2: Action Phase",
+    "phase2_desc1": "Once all players have drawn a card, the Action Phase begins according to the queue order, starting with the first player on the Death Line.",
+    "phase2_desc2": "On your turn, you can perform <strong>one of the following three main options</strong>:",
+    "phase2_opt1": "1) <strong>Play an Action Card:</strong> Play a blue action card from your hand into your play area, immediately apply its effect, and then send it to the <strong>discard pile</strong>.",
+    "phase2_opt2": "2) <strong>Purchase a Plot Armor Card:</strong> Discard <strong>3 identical Resource cards + 1 Holy Duck Tape card</strong> from your hand to acquire the corresponding Plot Armor card. Note: The Plot Armor card <strong>DOES NOT go to the discard pile</strong> when you use its effect; it stays in front of you and you can use it once per round.",
+    "phase2_opt2_ex": "Example: Discarding 3 Wisdom resources and one rubber duck (Holy Ducktape) wins you a Wisdom Plot Armor card.",
+    "phase2_opt3": "3) <strong>Purchase or Play a Black Market Card:</strong> Discard <strong>any 3 cards</strong> from your hand to take the top card from the Black Market deck.",
+    "phase2_priority_title": "Priority & Passing in the Action Phase",
+    "phase2_priority_text1": "During the Action Phase, each player takes one action in turn, or can choose to <strong>pass</strong> and do nothing.",
+    "phase2_priority_text2": "The Action Phase ends only when <strong>all players pass consecutively</strong> one after the other.",
+    "phase2_ex1_title": "Example of Playing an Action Card",
+    "phase2_ex1_text": "The active player plays Unfair Trade to immediately execute its effect (\"Draw 2 cards from the Main Deck\"). Immediately after, the card goes to the discard pile as shown in the image below.",
+    "phase2_ex2_title": "Example of Purchasing Plot Armor",
+    "phase2_ex2_text": "To purchase a Strength Plot Armor card, hand over 3 Strength cards along with 1 Holy Duck Tape card.",
+    "phase3_title": "Phase 3: Executioner Phase",
+    "phase3_desc": "When all players have passed, reveal the <strong>top card of the Executioner's Deck</strong>. (Note: When the Executioner's cards run out, shuffle them to continue Phase 3 seamlessly).",
+    "phase3_list1": "<strong>Board Replenishment:</strong> Certain Executioner cards instruct players to fill empty spaces on the Board using cards from the Main Deck.",
+    "phase3_list2": "<strong>\"YOU ARE UP NEXT\":</strong> When this card is revealed, the Executioner executes the immediate next card in the Death Line.",
+    "phase3_list3": "<strong>Peasant Protection:</strong> The Executioner must first execute all <strong>3 Peasants</strong> before any player character is in danger.",
+    "phase3_list4": "<strong>Flipping to Death State:</strong> When a player character dies, <strong>flip their card over</strong> to reveal the Death State artwork.",
+    "phase3_ex1_title": "Example of Executioner Card Reveal",
+    "phase3_ex1_text": "By drawing \"YOU ARE UP NEXT\", the Executioner moves forward and executes the next target in line.",
+    "phase3_ex2_title": "Example of Character Death State",
+    "phase3_ex2_text": "Executed characters flip over to display their Death State.",
     "purpose_title": "Purpose of the Game",
-    "purpose_text1": "Prove you are the protagonist! The first player to collect 3 Plot Armor cards wins.",
-    "purpose_text2": "Alternatively, if all other players die, the last player standing wins immediately."
+    "purpose_text1": "Prove that you are the protagonist! The first player to collect <strong>3 Plot Armor cards</strong> wins.",
+    "purpose_text2": "What matters is the Death Line and whoever <strong>remains alive</strong> wins. Alternatively, if all other players die, the <strong>last survivor wins immediately</strong>."
   },
   "team": {
-    "page_title": "- The YAUN Team -",
+    "page_title": "- The YOU ARE NEXT Team -",
     "dold_role": "Game Designer",
-    "dold_name": "Konstantinos Doldoukidis",
+    "dold_name": "Konstantinos Dol Doukidis",
     "sergis_role": "Game Designer / Developer",
     "sergis_name": "Nikolaos Sergis",
     "mat_role": "Graphic Designer",
@@ -103,15 +103,15 @@
     "kat_name": "Katerina Gkatsou"
   },
   "faq": {
-    "title": "FAQs",
-    "description": "Here are some of the most frequently asked questions about YAUN.",
+    "title": "Frequently Asked Questions (FAQs)",
+    "description": "Here you will find some of the most frequently asked questions about YOU ARE NEXT.",
     "questions": {
-      "q1": "What is YAUN?",
-      "a1": "YAUN is a self-published physical board game funded on Kickstarter.",
-      "q2": "In what period of time does it take place?",
-      "a2": "YAUN takes place in the medieval times.",
+      "q1": "What is YOU ARE NEXT?",
+      "a1": "YOU ARE NEXT is an indie self-published board game funded via Kickstarter.",
+      "q2": "What era is it set in?",
+      "a2": "YOU ARE NEXT is set in the medieval era.",
       "q3": "How can I buy it?",
-      "a3": "For now, send us a message from our Contact Us page and we'll let you know if we can send it to you.",
+      "a3": "For now, send us a message through the Contact page and we will let you know if we can ship it to you.",
       "q4": "Do you have other social media?",
       "a4_part1": "Yes, of course! Follow us on Instagram ",
       "a4_link": "click here",
@@ -121,46 +121,62 @@
   "characters": {
     "executioner": {
       "name": "The Executioner",
-      "description": "Beauty is both a blessing and a curse. That's the problem of our beloved executioner. Legend says his first conquest was the midwife who delivered him. Having spent his entire life as the embodiment of the halo effect, he grew tired. What's the point when everything and everyone comes so easily? So he did the only thing that made sense: he decided he's a fighter, not a lover. He took over the family business and became the new executioner. Associated with death itself, surely people would stop seeing him only for his looks. And with endless grace and sex appeal, even in this line of work, he finally succeeded. Now, he's not just a handsome guy. <span style=\"font-weight: bold; color: #b91a27e9;\">He's the sexy executioner.</span>"
+      "description": "Beauty is a blessing and a curse. This is the problem of our story's beloved executioner. Male, female, and everything in between: if you want romantic company, you want the executioner. Legends say his first conquest was the midwife who delivered him. Having spent his entire life as the embodiment of the halo of beauty, he got tired. What is the point when everything and everyone is handed to you on a silver platter? So, he did the only thing that made sense: he decided he is a <span style=\"font-weight: bold; color: #b91a27e9;\">fighter</span>, not a lover. Thus, he took over the family execution business and became the new executioner. Intertwined with death itself, people would surely stop looking at him just for his looks. With endless grace and sexuality, even in this, he finally succeeded. No longer just a sexy hunk. <span style=\"font-weight: bold; color: #b91a27e9;\">He is the sexy executioner.</span>"
     },
     "notferatu": {
-      "name": "Notferatu",
-      "description": "He is a ruthless and relentless vampire hunter. After his mother died when a vampire cursed her blood (she suffered from sepsis), he swore to dedicate his life to becoming the greatest vampire hunter in the world, so that no one else would ever go through what he did. After years of training and finding the perfect equipment, he's finally ready to face a vampire… once he finds one. His latest trick? <span style=\"font-weight: bold; color: #b91a27e9;\">To dress up as a vampire</span> so that a real one might come out of hiding without fear… and then… theeeen… the local villagers mistook him for a vampire and sent him to be executed. He's now waving garlic around, scrubbing off his makeup, and shouting that he's human hoping to save himself. Useless though, since everyone already knows he's human; they just wanted an excuse to get rid of him after ten long years of him driving everyone crazy with his vampire obsession."
+      "name": "Count Vlakoulas",
+      "description": "A tough and ruthless vampire hunter. After his mother died from a vampire that cursed her blood, he vowed to dedicate his life to becoming the best vampire hunter in the world, so no one else would go through what he did. After years of training and finding the right equipment, he is ready to face a vampire... whenever he finds one. His latest trick? <span style=\"font-weight: bold; color: #b91a27e9;\">Dressing up as a vampire himself</span> so that a real one would come out of hiding without fear... and then... then... the local peasants mistook him for a vampire and sent him to be executed. He holds garlic, wipes the makeup off his face, and shouts that he is a human hoping to be saved. Futile though, since everyone already knows he is human, they were just looking for an excuse to get rid of him for years because he drove everyone crazy with his vampire obsession."
     },
     "misero": {
       "name": "Misero",
-      "description": "Humor ages with man. We don't know if that's true, but that's the state of the king's once beloved clown. After more than forty years of jokes, cream pies, and sarcasm, this jester stopped spreading smiles and joy. In a last attempt to be funny again, he decided to reinvent himself by changing his stage name from Bozo to Smiley, Harleking, Sad-Sad-Sammy, and every other terrible name imaginable, until he finally gave up and called himself Mizero. Now, all he wants is to <span style=\"font-weight: bold; color: #b91a27e9;\">retire</span>. But the king won't let him because, besides being useless entertainment, he also happens to be the king's only real advisor (when you're the clown no one pays attention to, you overhear a lot). Finally, he decided to go out the way he lived: with a joke. He made a particularly vulgar joke about the queen's behind and ended up in line for execution. He's oddly happy about it, until a child gives him a clown scepter and says he's his biggest fan. Realizing he can still make someone laugh, Mizero decides… it's not his time yet."
+      "description": "Humor ages right along with a person. We don't know if that's true, but that is the current state of the king's once-beloved jester. After forty years of jokes, pie fights, and sarcasm, this clown stopped spreading smiles and joy. In a final attempt to become funny again, he decided to breathe new air into his presence by changing his stage name from Bozo to Laughie, Harley King, Gloom, and every other terrible name you can imagine, until he finally gave up and named himself Misero. Now, all he wants is to <span style=\"font-weight: bold; color: #b91a27e9;\">retire</span>. But the king won't let him because, aside from being an unsurpassable performer/entertainer, he happens to be the king's only real advisor (when you're at court and no one counts you, you hear and learn a lot). Finally, he decided to go out the way he lived: with a joke. He made a particularly vulgar joke about the queen's backside and ended up in the execution line. He is happy with this development, but unfortunately for him, a child gave him a clown scepter and told him he is his biggest fan. Realizing he can still make someone laugh, he decides it's not his time yet."
     },
     "paprika": {
       "name": "Paprika",
-      "description": "A young maid with a talent for cooking, who, despite barely being able to read, finds a spice book with pictures and uses it for her next pie. She leaves everyone speechless, they've just tasted the most gourmet medieval dish imaginable. A woman who's good at something, can read, and uses spices? She must be a witch. The court sentenced her to two months of community service, but she requested execution because she's in love with the executioner (<span style=\"font-weight: bold; color: #b91a27e9;\">she thinks she can “fix” him</span>). After annoying the judge for over three hours, he gave up and sentenced her to death. Unfortunately, while waiting in the execution line, she suddenly remembered: if the executioner kills her, she'll never see him again. So, she decides to escape and change her approach."
+      "description": "A young maid with a talent for cooking who, having minimal reading skills, finds a spice book with pictures and applies it to her next pie. She leaves everyone speechless as they taste the most gourmet medieval food of their lives. A woman being good at something, reading, and even using spices? She must be a witch! The court sentenced her to two months of community service, but she asked for execution instead because she is in love with the executioner (<span style=\"font-weight: bold; color: #b91a27e9;\">she believes she can ''change'' him</span>). After driving the judge crazy for over 3 hours, he finally threw in the towel and sentenced her to death. Standing in the execution line, she unfortunately remembered that if the Executioner kills her, she will never see him again! So she decided to escape and change her approach."
     },
     "hamlet": {
       "name": "Hamlet",
-      "description": "It's the Middle Ages. A pig appears out of nowhere, knocks a flowerpot off a lady's balcony, and it falls on the head of the local lord, killing him instantly. Would you call that manslaughter or murder? Whether it's a pig doesn't matter...someone must pay for this tragic accident. The worst part? <span style=\"font-weight: bold; color: #b91a27e9;\">The pig actually is intelligent</span> and self-aware. In fact, he's a secret member and informant of an underground organization plotting against the regime. His plan all along was to assassinate the nobleman so that the city would fall under the control of this secret order and all without breaking the law! After all, who would accuse a pig? Well, everyone actually, because he forgot he's in the Middle Ages, when people do believe animals have consciousness, and criminal law is still in its early stages and so, a cunning conspirator now finds himself trying desperately not to become bacon."
+      "description": "It's the Middle Ages. A pig appears out of nowhere, pushes a flower pot off a lady's balcony, and it falls on the local lord's head, killing him instantly. You'd call that involuntary manslaughter or murder? Whether it's a pig doesn't matter... someone has to pay for this tragic accident. The worst part? <span style=\"font-weight: bold; color: #b91a27e9;\">The pig actually has intelligence</span> and consciousness, specifically being a secret member and informant of an underground anti-regime organization. His plan all along was to assassinate this noble so the city would fall into the hands of this secret organization, all without trouble with the law! After all, who would accuse a pig? Everyone basically, because he forgot he was in the Middle Ages, and the prevailing notion is that animals have consciousness since criminal law is still in its infancy. Thus, a cunning conspirator now finds himself trying desperately not to become bacon."
     }
   },
   "contact": {
-    "title": "Contact Us",
+    "title": "CONTACT",
     "labels": {
-      "name": "Name",
-      "surname": "Surname",
-      "email": "E-mail",
-      "message": "Write us your message"
+      "name": "NAME",
+      "surname": "SURNAME",
+      "email": "E-MAIL",
+      "message": "WRITE US YOUR MESSAGE"
     },
     "errors": {
-      "name": "Name must be at least 2 characters long.",
-      "surname": "Surname must be at least 2 characters long.",
+      "name": "Name must be at least 2 characters.",
+      "surname": "Surname must be at least 2 characters.",
       "email": "Please enter a valid email.",
-      "message": "Message must be at least 5 characters long."
+      "message": "Message must be at least 5 characters."
     },
     "button": "Send Message",
-    "alert_success": "The King thanks you for your message, we'll be in touch asap!"
+    "alert_success": "The King thanks you for your message, we will contact you as soon as possible!"
   },
   "not_found": {
-    "title": "NOT FOUND 404 UNFORTUNATELY"
+    "title": "UNFORTUNATELY THE PAGE WAS NOT FOUND 404"
   },
   "footer": {
-    "rights": "You Are Up Next All rights reserved."
+    "rights": "YOU ARE NEXT. All rights reserved."
+  },
+  "game_flow": {
+    "title": "Game Flow",
+    "phase1_title": "Phase 1: Draw Phase",
+    "phase1_action": "Draw Card from Board",
+    "phase2_title": "Phase 2: Action Phase",
+    "phase2_action": "Play Cards",
+    "phase3_title": "Phase 3: Executioner Phase",
+    "phase3_action": "Hear the Executioner"
+  },
+  "glossary": {
+    "title": "GLOSSARY OF TERMS & ABBREVIATIONS",
+    "description": "Quick reference guide for abbreviations used in the game:",
+    "md_desc": "Main Game Deck",
+    "bm_desc": "Black Market",
+    "pa_desc": "Plot Armor"
   }
 }

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
+import GameFlow from "../GameFlow/GameFlow";
 
 // Asset Imports
 import step0Image from "../../assets/rules-photos/0 step.png";
@@ -27,13 +28,19 @@ export default function Rules() {
           <p className="rules-subtitle">{t("rules.header_subtitle")}</p>
         </header>
 
+        {/* Game Flow Component */}
+        <GameFlow />
+
         {/* Initial Layout & Setup */}
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.setup_title")}</h2>
 
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step1_title")}</h3>
-            <p className="rules-text">{t("rules.step1_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.step1_desc") }}
+            />
             <div className="image-progress-wrapper">
               <img
                 src={step0Image}
@@ -45,12 +52,23 @@ export default function Rules() {
 
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step2_title")}</h3>
-            <p className="rules-text">{t("rules.step2_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.step2_desc") }}
+            />
             <ul className="rules-bullets">
-              <li>{t("rules.step2_list1")}</li>
-              <li>{t("rules.step2_list2")}</li>
-              <li>{t("rules.step2_list3")}</li>
-              <li>{t("rules.step2_list4")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step2_list1") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step2_list2") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step2_list3") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step2_list4") }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -63,10 +81,17 @@ export default function Rules() {
 
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step3_title")}</h3>
-            <p className="rules-text">{t("rules.step3_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.step3_desc") }}
+            />
             <ul className="rules-bullets">
-              <li>{t("rules.step3_list1")}</li>
-              <li>{t("rules.step3_list2")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step3_list1") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step3_list2") }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -82,11 +107,20 @@ export default function Rules() {
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.phase1_title")}</h2>
           <div className="setup-step">
-            <p className="rules-text">{t("rules.phase1_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.phase1_desc") }}
+            />
             <ul className="rules-bullets">
-              <li>{t("rules.phase1_list1")}</li>
-              <li>{t("rules.phase1_list2")}</li>
-              <li>{t("rules.phase1_list3")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list1") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list2") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list3") }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -101,10 +135,23 @@ export default function Rules() {
             <h3 className="rules-subtitle2">
               {t("rules.phase1_complete_title")}
             </h3>
-            <p className="rules-text">{t("rules.phase1_complete_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{
+                __html: t("rules.phase1_complete_desc"),
+              }}
+            />
             <ul className="rules-bullets">
-              <li>{t("rules.phase1_complete_list1")}</li>
-              <li>{t("rules.phase1_complete_list2")}</li>
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.phase1_complete_list1"),
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.phase1_complete_list2"),
+                }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -120,32 +167,56 @@ export default function Rules() {
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.phase2_title")}</h2>
           <div className="setup-step">
-            <p className="rules-text">{t("rules.phase2_desc1")}</p>
-            <p className="rules-text">{t("rules.phase2_desc2")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
+            />
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc2") }}
+            />
 
             <ul className="rules-bullets">
-              <li>{t("rules.phase2_opt1")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
+              />
               <li>
-                {t("rules.phase2_opt2")}
-                <br />
-                <em>{t("rules.phase2_opt2_ex")}</em>
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
+                />
+                <p className="rules-note">{t("rules.phase2_opt2_ex")}</p>
               </li>
-              <li>{t("rules.phase2_opt3")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
+              />
             </ul>
 
             <div className="rules-callout">
               <h4 className="rules-callout-title">
                 {t("rules.phase2_priority_title")}
               </h4>
-              <p className="rules-text">{t("rules.phase2_priority_text1")}</p>
-              <p className="rules-text">{t("rules.phase2_priority_text2")}</p>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.phase2_priority_text1"),
+                }}
+              />
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.phase2_priority_text2"),
+                }}
+              />
             </div>
 
             <div className="rules-example">
               <h4 className="rules-callout-title">
                 {t("rules.phase2_ex1_title")}
               </h4>
-              <p className="rules-text">{t("rules.phase2_ex1_text")}</p>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_ex1_text") }}
+              />
               <div className="image-progress-wrapper">
                 <img
                   src={step5Image}
@@ -159,7 +230,10 @@ export default function Rules() {
               <h4 className="rules-callout-title">
                 {t("rules.phase2_ex2_title")}
               </h4>
-              <p className="rules-text">{t("rules.phase2_ex2_text")}</p>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_ex2_text") }}
+              />
               <div className="image-progress-wrapper">
                 <img
                   src={step6Image}
@@ -175,20 +249,34 @@ export default function Rules() {
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.phase3_title")}</h2>
           <div className="setup-step">
-            <p className="rules-text">{t("rules.phase3_desc")}</p>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.phase3_desc") }}
+            />
 
             <ul className="rules-bullets">
-              <li>{t("rules.phase3_list1")}</li>
-              <li>{t("rules.phase3_list2")}</li>
-              <li>{t("rules.phase3_list3")}</li>
-              <li>{t("rules.phase3_list4")}</li>
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_list1") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_list2") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_list3") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_list4") }}
+              />
             </ul>
 
             <div className="rules-example">
               <h4 className="rules-callout-title">
                 {t("rules.phase3_ex1_title")}
               </h4>
-              <p className="rules-text">{t("rules.phase3_ex1_text")}</p>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_ex1_text") }}
+              />
               <div className="image-progress-wrapper">
                 <img
                   src={step45Image}
@@ -202,7 +290,10 @@ export default function Rules() {
               <h4 className="rules-callout-title">
                 {t("rules.phase3_ex2_title")}
               </h4>
-              <p className="rules-text">{t("rules.phase3_ex2_text")}</p>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_ex2_text") }}
+              />
               <div className="image-progress-wrapper">
                 <img
                   src={img1132Image}
@@ -217,8 +308,43 @@ export default function Rules() {
         {/* Purpose of the Game */}
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.purpose_title")}</h2>
-          <p className="rules-text">{t("rules.purpose_text1")}</p>
-          <p className="rules-text">{t("rules.purpose_text2")}</p>
+          <p
+            className="rules-text"
+            dangerouslySetInnerHTML={{ __html: t("rules.purpose_text1") }}
+          />
+          <p
+            className="rules-text"
+            dangerouslySetInnerHTML={{ __html: t("rules.purpose_text2") }}
+          />
+        </section>
+
+        {/* Glossary of Terms / Λεξικό Όρων */}
+        <section className="rules-section glossary-section">
+          <h2 className="rules-title">{t("glossary.title")}</h2>
+          <p className="rules-text">{t("glossary.description")}</p>
+          <div className="glossary-grid">
+            <div className="glossary-item">
+              <span className="glossary-badge">MD</span>
+              <div className="glossary-content">
+                <strong>Main Deck</strong>
+                <span>{t("glossary.md_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">BM</span>
+              <div className="glossary-content">
+                <strong>Black Market</strong>
+                <span>{t("glossary.bm_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">PA</span>
+              <div className="glossary-content">
+                <strong>Plot Armor</strong>
+                <span>{t("glossary.pa_desc")}</span>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
       <Footer />
