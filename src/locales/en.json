@@ -43,7 +43,7 @@
     "header_subtitle": "Learn how the game is set up, how rounds progress, what the Executioner does, and how to win.",
     "setup_title": "Initial Game Layout & Setup",
     "step1_title": "Step 1: Set Up Decks & Starting Cards",
-    "step1_desc": "Arrange your play area by placing the <strong>Black Market (BM)</strong> deck on the left, line up the <strong>Plot Armor (PA)</strong> cards face-up across the center by attribute color (Strength, Dexterity, Intelligence, and Wisdom — note that the number of PA cards per type equals the <strong>total number of players</strong>, e.g., 2 players mean 2 of each PA card), and place the Executioner's Deck on the far right. At the beginning of the game, each player receives <strong>3 cards in hand</strong> from the Main Deck (MD).",
+    "step1_desc": "Arrange your play area by placing the <strong>Black Market (BM)</strong> deck on the left, line up the <strong>Plot Armor (PA)</strong> cards face-up across the center by attribute color (Intelligence, Wisdom, Dexterity, Strength <br /> — note that the number of PA cards per type equals the <strong>total number of players</strong>, e.g., 2 players mean 2 of each PA card), and place the Executioner's Deck on the far right. At the beginning of the game, each player receives <strong>3 cards in hand</strong> from the Main Deck (MD).",
     "step2_title": "Step 2: Set Up the Death Line",
     "step2_desc": "Positioned just below the top row, set up the <strong>Death Line</strong> with the Main Deck (MD) on the far right. The significance of the Death Line is crucial, as whoever remains alive until the end wins:",
     "step2_list1": "<strong>The Executioner:</strong> Always takes the absolute first position on the far left.",
