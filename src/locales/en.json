@@ -77,7 +77,7 @@
     "phase2_ex1_text": "The active player plays Unfair Trade to immediately execute its effect (\"Draw 2 cards from the Main Deck\"). Immediately after, the card goes to the discard pile as shown in the image below.",
     "phase2_ex2_title": "Example of Purchasing Plot Armor",
     "phase2_ex2_text": "To purchase a Strength Plot Armor card, hand over 3 Strength cards along with 1 Holy Duck Tape card.",
-    "phase3_title": "Phase 3: Executioner Phase",
+    "phase3_title": "Phase 3: Execution Phase",
     "phase3_desc": "When all players have passed, reveal the <strong>top card of the Executioner's Deck</strong>. (Note: When the Executioner's cards run out, shuffle them to continue Phase 3 seamlessly).",
     "phase3_list1": "<strong>Board Replenishment:</strong> Certain Executioner cards instruct players to fill empty spaces on the Board using cards from the Main Deck.",
     "phase3_list2": "<strong>\"YOU ARE UP NEXT\":</strong> When this card is revealed, the Executioner executes the immediate next card in the Death Line.",
