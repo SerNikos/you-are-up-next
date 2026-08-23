@@ -62,7 +62,7 @@
     "phase1_complete_title": "Completing the Draw Phase",
     "phase1_complete_desc": "Drawing continues down the line until every player has chosen one card from the board.",
     "phase1_complete_list1": "Order Sequence: After the first, the next player in line takes their card, and so on.",
-    "phase1_complete_list2": "<strong>Board Reduction:</strong> As players take cards, the board will naturally shrink. Once all players have drawn, the Draw Phase ends.",
+    "phase1_complete_list2": "<strong>Board Reduction:</strong> As players take cards, the board will naturally shrink. Once all players have drawn 1 card, the Draw Phase ends.",
     "phase2_title": "Phase 2: Action Phase",
     "phase2_desc1": "Once all players have drawn a card, the Action Phase begins according to the queue order, starting with the first player on the Death Line.",
     "phase2_desc2": "On your turn, you can perform <strong>one of the following three main options</strong>:",
