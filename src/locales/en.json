@@ -1,6 +1,6 @@
 {
   "nav": {
-    "title": "YOU'RE NEXT",
+    "title": "YOU ARE UP NEXT",
     "home": "Home",
     "voice": {
       "listen": "Listen",
@@ -10,21 +10,21 @@
     "team": "Team",
     "rules": "Rules",
     "contact": "Contact",
-    "congrats": "Congratulations, you bought YOU'RE NEXT!"
+    "congrats": "Congratulations, you bought YOU ARE UP NEXT!"
   },
   "meta": {
-    "charactersTitle": "YOU'RE NEXT - Characters & Lore | YOU'RE NEXT Board Game",
-    "charactersDescription": "Meet the characters of YOU'RE NEXT: The Sexy Executioner, Notferatu, Misero and others. Discover their medieval stories!"
+    "charactersTitle": "YOU ARE UP NEXT - Characters & Lore | YOU ARE UP NEXT Board Game",
+    "charactersDescription": "Meet the characters of YOU ARE UP NEXT: The Sexy Executioner, Notferatu, Misero and others. Discover their medieval stories!"
   },
   "home": {
-    "title": "YOU'RE NEXT",
+    "title": "YOU ARE UP NEXT",
     "description_part1": "You have minimal but ",
     "description_highlight": "precious",
     "description_part2": " time to steal, trade, or give a little push...",
     "buy_button": "Buy Now",
     "modal_kickstarter": "Coming soon on KICKSTARTER...",
     "cards": {
-      "default_title": "YOU'RE NEXT Character",
+      "default_title": "YOU ARE UP NEXT Character",
       "default_desc": "Not the luckiest guy around",
       "executioner_title": "The Executioner",
       "executioner_desc": "He is the one who decides who is next",
@@ -84,7 +84,7 @@
     "phase3_list3": "<strong>Peasant Protection:</strong> The Executioner must first execute all <strong>3 Peasants</strong> before any player character is in danger.",
     "phase3_list4": "<strong>Flipping to Death State:</strong> When a player character dies, <strong>flip their card over</strong> to reveal the Death State artwork.",
     "phase3_ex1_title": "Example of Executioner Reveal",
-    "phase3_ex1_text": "Drawing \"YOU'RE NEXT\", the Executioner moves forward and executes the next target in line.",
+    "phase3_ex1_text": "Drawing \"YOU ARE UP NEXT\", the Executioner moves forward and executes the next target in line.",
     "phase3_ex2_title": "Example of Character Death State",
     "phase3_ex2_text": "Executed characters flip over to reveal their Death State.",
     "purpose_title": "Purpose of the Game",
@@ -92,7 +92,7 @@
     "purpose_text2": "The Death Line matters and whoever <strong>remains alive</strong> wins. Alternatively, if all other players die, the <strong>last survivor wins immediately</strong>."
   },
   "team": {
-    "page_title": "- The YOU'RE NEXT Team -",
+    "page_title": "- The YOU ARE UP NEXT Team -",
     "dold_role": "Game Designer",
     "dold_name": "Konstantinos DolDoukidis",
     "sergis_role": "Game Designer / Developer",
@@ -104,12 +104,12 @@
   },
   "faq": {
     "title": "Frequently Asked Questions (FAQs)",
-    "description": "Here you will find some of the most frequently asked questions about YOU'RE NEXT.",
+    "description": "Here you will find some of the most frequently asked questions about YOU ARE UP NEXT.",
     "questions": {
-      "q1": "What is YOU'RE NEXT?",
-      "a1": "YOU'RE NEXT is a self-published board game funded via Kickstarter.",
+      "q1": "What is YOU ARE UP NEXT?",
+      "a1": "YOU ARE UP NEXT is a self-published board game funded via Kickstarter.",
       "q2": "What era is it set in?",
-      "a2": "YOU'RE NEXT is set in the medieval era.",
+      "a2": "YOU ARE UP NEXT is set in the medieval era.",
       "q3": "How can I buy it?",
       "a3": "For now, send us a message from the Contact page and we'll let you know if we can ship it to you.",
       "q4": "Do you have other social media?",
@@ -161,7 +161,7 @@
     "title": "UNFORTUNATELY PAGE NOT FOUND 404"
   },
   "footer": {
-    "rights": "YOU'RE NEXT. All rights reserved."
+    "rights": "YOU ARE UP NEXT. All rights reserved."
   },
   "game_flow": {
     "title": "Game Flow",
