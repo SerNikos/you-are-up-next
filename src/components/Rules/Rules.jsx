@@ -344,6 +344,27 @@ export default function Rules() {
                 <span>{t("glossary.pa_desc")}</span>
               </div>
             </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">RM</span>
+              <div className="glossary-content">
+                <strong>Remove</strong>
+                <span>{t("glossary.remove_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">AV</span>
+              <div className="glossary-content">
+                <strong>Available</strong>
+                <span>{t("glossary.available_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">ST</span>
+              <div className="glossary-content">
+                <strong>Steal</strong>
+                <span>{t("glossary.steal_desc")}</span>
+              </div>
+            </div>
           </div>
         </section>
       </div>

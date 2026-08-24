@@ -175,8 +175,11 @@
   "glossary": {
     "title": "GLOSSARY OF TERMS & ABBREVIATIONS",
     "description": "Quick reference guide for abbreviations used in the game:",
-    "md_desc": "Main Game Deck",
+    "md_desc": "Main Deck",
     "bm_desc": "Black Market",
-    "pa_desc": "Plot Armor"
+    "pa_desc": "Plot Armor",
+    "remove_desc": "Remove from the game completely",
+    "available_desc": "Unclaimed PA card",
+    "steal_desc": "Pick and draw a card from another player's hand"
   }
 }
