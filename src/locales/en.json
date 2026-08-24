@@ -80,7 +80,7 @@
     "phase3_title": "Phase 3: Executioner Phase",
     "phase3_desc": "When all players have passed, reveal the <strong>top card of the Executioner Deck</strong>. (Note: When the Executioner's cards run out, shuffle them to continue Phase 3 smoothly).",
     "phase3_list1": "<strong>Board Replenishment:</strong> When the board needs replenishment, existing cards are <strong>not destroyed (\"burned\")</strong>, but empty slots are filled with cards from the Main Deck (MD) following the same formula (N + 2).",
-    "phase3_list2": "<strong>\"YOU'RE NEXT\":</strong> When this card is revealed, the Executioner executes the very next card in the Death Line.",
+    "phase3_list2": "<strong>\"YOU ARE UP NEXT\":</strong> When this card is revealed, the Executioner executes the very next card in the Death Line.",
     "phase3_list3": "<strong>Peasant Protection:</strong> The Executioner must first execute all <strong>3 Peasants</strong> before any player character is in danger.",
     "phase3_list4": "<strong>Flipping to Death State:</strong> When a player character dies, <strong>flip their card over</strong> to reveal the Death State artwork.",
     "phase3_ex1_title": "Example of Executioner Reveal",
