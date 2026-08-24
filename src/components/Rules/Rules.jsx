@@ -103,8 +103,8 @@ export default function Rules() {
           </div>
         </section>
 
-        {/* Phase 1: Draw Phase */}
-        <section className="rules-section">
+        {/* Phase 1: Draw Phase with id */}
+        <section className="rules-section" id="phase1-section">
           <h2 className="rules-title">{t("rules.phase1_title")}</h2>
           <div className="setup-step">
             <p
@@ -163,8 +163,8 @@ export default function Rules() {
           </div>
         </section>
 
-        {/* Phase 2: Action Phase */}
-        <section className="rules-section">
+        {/* Phase 2: Action Phase with id */}
+        <section className="rules-section" id="phase2-section">
           <h2 className="rules-title">{t("rules.phase2_title")}</h2>
           <div className="setup-step">
             <p
@@ -245,8 +245,8 @@ export default function Rules() {
           </div>
         </section>
 
-        {/* Phase 3: Executioner Phase */}
-        <section className="rules-section">
+        {/* Phase 3: Executioner Phase with id */}
+        <section className="rules-section" id="phase3-section">
           <h2 className="rules-title">{t("rules.phase3_title")}</h2>
           <div className="setup-step">
             <p
@@ -305,8 +305,8 @@ export default function Rules() {
           </div>
         </section>
 
-        {/* Purpose of the Game */}
-        <section className="rules-section">
+        {/* Purpose of the Game / Win State with id */}
+        <section className="rules-section" id="purpose-section">
           <h2 className="rules-title">{t("rules.purpose_title")}</h2>
           <p
             className="rules-text"

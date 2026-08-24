@@ -172,7 +172,8 @@
     "phase3_title": "Phase 3: Executioner Phase",
     "phase3_action": "Listen to Executioner",
     "win_state_title": "Win Condition",
-    "win_state_action": "Collect 3 PA or Survive"
+    "win_state_action": "Collect 3 PA or Survive",
+    "loop_text": "If no winner ➔ New Round (Return to Phase 1)"
   },
   "glossary": {
     "title": "GLOSSARY OF TERMS & ABBREVIATIONS",
