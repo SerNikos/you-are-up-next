@@ -1,0 +1,92 @@
+.audio-player-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(185, 26, 39, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  max-width: 100%;
+}
+
+.lore-play-btn {
+  background: linear-gradient(135deg, #b91a27 0%, #700f17 100%);
+  color: #fff;
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(185, 26, 39, 0.4);
+}
+
+.lore-play-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #d41f2e 0%, #8a121c 100%);
+  box-shadow: 0 6px 20px rgba(185, 26, 39, 0.6);
+}
+
+.lore-play-btn svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.soundwave-wrapper {
+  position: relative;
+  flex-grow: 1;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  user-select: none;
+}
+
+.soundwave-bars {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 3px; /* Σφιχτό κενό για να δείχνει γεμάτο */
+}
+
+.wave-bar {
+  width: 3px; /* Πιο παχιές και γεμάτες γραμμές */
+  flex-grow: 1;
+  max-width: 4px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.wave-bar.active {
+  background-color: rgba(185, 26, 39, 0.6);
+}
+
+.wave-bar.passed {
+  background-color: #b91a27;
+  box-shadow: 0 0 8px rgba(185, 26, 39, 0.8);
+}
+
+@media (max-width: 768px) {
+  .audio-player-container {
+    padding: 0.8rem 1rem;
+    gap: 1rem;
+  }
+  .lore-play-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
