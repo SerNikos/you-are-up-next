@@ -82,14 +82,14 @@
     "phase3_list1": "<strong>Board Replenishment:</strong> When the board needs replenishment, existing cards are <strong>not destroyed (\"burned\")</strong>, but empty slots are filled with cards from the Main Deck (MD) by dealing a number of cards equal to the number of players + 2.",
     "phase3_list2": "<strong>\"YOU ARE UP NEXT\":</strong> When this card is revealed, the Executioner executes the very next card in the Death Line.",
     "phase3_list3": "<strong>Peasant Protection:</strong> The Executioner must first execute all <strong>3 Peasants</strong> before any player character is in danger.",
-    "phase3_list4": "<strong>Flipping to Death State:</strong> When a player character dies, <strong>flip their card over</strong> to reveal the Death State artwork.",
+    "phase3_list4": "<strong>Flipping to Death State:</strong> When a player character dies, <strong>flip their card over</strong> to reveal the Death State artwork, and the player is removed from the game.",
     "phase3_ex1_title": "Example of Executioner Reveal",
     "phase3_ex1_text": "Drawing \"YOU ARE UP NEXT\", the Executioner moves forward and executes the next target in line.",
     "phase3_ex2_title": "Example of Character Death State",
     "phase3_ex2_text": "Executed characters flip over to reveal their Death State.",
     "purpose_title": "Purpose of the Game",
     "purpose_text1": "Prove that you are the protagonist! The first player to collect <strong>3 Plot Armor cards</strong> wins.",
-    "purpose_text2": "The Death Line matters and whoever <strong>remains alive</strong> wins. Alternatively, if all other players die, the <strong>last survivor wins immediately</strong>."
+    "purpose_text2": "Alternatively, if all other players die, the <strong>last survivor wins immediately</strong>."
   },
   "team": {
     "page_title": "- The YOU ARE UP NEXT Team -",
