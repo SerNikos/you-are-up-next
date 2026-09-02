@@ -28,9 +28,6 @@ export default function Rules() {
           <p className="rules-subtitle">{t("rules.header_subtitle")}</p>
         </header>
 
-        {/* Game Flow Component */}
-        <GameFlow />
-
         {/* Initial Layout & Setup */}
         <section className="rules-section">
           <h2 className="rules-title">{t("rules.setup_title")}</h2>
@@ -69,6 +66,9 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.step2_list4") }}
               />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step2_list5") }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -92,6 +92,9 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.step3_list2") }}
               />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.step4_list3") }}
+              />
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -102,6 +105,9 @@ export default function Rules() {
             </div>
           </div>
         </section>
+
+        {/* Game Flow Component */}
+        <GameFlow />
 
         {/* Phase 1: Draw Phase with id */}
         <section className="rules-section" id="phase1-section">
@@ -114,9 +120,6 @@ export default function Rules() {
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list1") }}
-              />
-              <li
-                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list2") }}
               />
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list3") }}
@@ -144,11 +147,6 @@ export default function Rules() {
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{
-                  __html: t("rules.phase1_complete_list1"),
-                }}
-              />
-              <li
-                dangerouslySetInnerHTML={{
                   __html: t("rules.phase1_complete_list2"),
                 }}
               />
@@ -171,11 +169,6 @@ export default function Rules() {
               className="rules-text"
               dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
             />
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc2") }}
-            />
-
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
@@ -184,10 +177,12 @@ export default function Rules() {
                 <span
                   dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
                 />
-                <p className="rules-note">{t("rules.phase2_opt2_ex")}</p>
               </li>
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt4") }}
               />
             </ul>
 
@@ -199,12 +194,6 @@ export default function Rules() {
                 className="rules-text"
                 dangerouslySetInnerHTML={{
                   __html: t("rules.phase2_priority_text1"),
-                }}
-              />
-              <p
-                className="rules-text"
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.phase2_priority_text2"),
                 }}
               />
             </div>
@@ -321,27 +310,23 @@ export default function Rules() {
         {/* Glossary of Terms / Λεξικό Όρων */}
         <section className="rules-section glossary-section">
           <h2 className="rules-title">{t("glossary.title")}</h2>
-          <p className="rules-text">{t("glossary.description")}</p>
           <div className="glossary-grid">
             <div className="glossary-item">
               <span className="glossary-badge">MD</span>
               <div className="glossary-content">
                 <strong>Main Deck</strong>
-                <span>{t("glossary.md_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">
               <span className="glossary-badge">BM</span>
               <div className="glossary-content">
                 <strong>Black Market</strong>
-                <span>{t("glossary.bm_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">
               <span className="glossary-badge">PA</span>
               <div className="glossary-content">
                 <strong>Plot Armor</strong>
-                <span>{t("glossary.pa_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">
@@ -351,13 +336,13 @@ export default function Rules() {
                 <span>{t("glossary.remove_desc")}</span>
               </div>
             </div>
-            <div className="glossary-item">
+            {/* <div className="glossary-item">
               <span className="glossary-badge">AV</span>
               <div className="glossary-content">
                 <strong>Available</strong>
                 <span>{t("glossary.available_desc")}</span>
               </div>
-            </div>
+            </div> */}
             <div className="glossary-item">
               <span className="glossary-badge">ST</span>
               <div className="glossary-content">
