@@ -81,6 +81,41 @@ export default function Rules() {
             </div>
           </div>
 
+          {/* Player Count Deck Adjustments Section */}
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
+            />
+            <div className="rules-callout">
+              <h4 className="rules-callout-title">
+                {t("rules.adjustments_2p_title")}
+              </h4>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_intro"),
+                }}
+              />
+              <ul className="rules-bullets">
+                <li
+                  dangerouslySetInnerHTML={{
+                    __html: t("rules.adjustments_2p_item1"),
+                  }}
+                />
+                <li
+                  dangerouslySetInnerHTML={{
+                    __html: t("rules.adjustments_2p_item2"),
+                  }}
+                />
+                <li
+                  dangerouslySetInnerHTML={{
+                    __html: t("rules.adjustments_2p_item3"),
+                  }}
+                />
+              </ul>
+            </div>
+
+
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step3_title")}</h3>
             <p
@@ -107,43 +142,6 @@ export default function Rules() {
                 className="rules-img"
               />
             </div>
-          </div>
-        </section>
-
-        {/* Player Count Deck Adjustments Section */}
-        <section className="rules-section" id="deck-adjustments-section">
-          <h2 className="rules-title">{t("rules.adjustments_title")}</h2>
-          <p
-            className="rules-text"
-            dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
-          />
-          <div className="rules-callout">
-            <h4 className="rules-callout-title">
-              {t("rules.adjustments_2p_title")}
-            </h4>
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{
-                __html: t("rules.adjustments_2p_intro"),
-              }}
-            />
-            <ul className="rules-bullets">
-              <li
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.adjustments_2p_item1"),
-                }}
-              />
-              <li
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.adjustments_2p_item2"),
-                }}
-              />
-              <li
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.adjustments_2p_item3"),
-                }}
-              />
-            </ul>
           </div>
         </section>
 
