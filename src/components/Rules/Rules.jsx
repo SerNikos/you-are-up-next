@@ -82,39 +82,38 @@ export default function Rules() {
           </div>
 
           {/* Player Count Deck Adjustments Section */}
+          <p
+            className="rules-text"
+            dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
+          />
+          <div className="rules-callout">
+            <h4 className="rules-callout-title">
+              {t("rules.adjustments_2p_title")}
+            </h4>
             <p
               className="rules-text"
-              dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
+              dangerouslySetInnerHTML={{
+                __html: t("rules.adjustments_2p_intro"),
+              }}
             />
-            <div className="rules-callout">
-              <h4 className="rules-callout-title">
-                {t("rules.adjustments_2p_title")}
-              </h4>
-              <p
-                className="rules-text"
+            <ul className="rules-bullets">
+              <li
                 dangerouslySetInnerHTML={{
-                  __html: t("rules.adjustments_2p_intro"),
+                  __html: t("rules.adjustments_2p_item1"),
                 }}
               />
-              <ul className="rules-bullets">
-                <li
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.adjustments_2p_item1"),
-                  }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.adjustments_2p_item2"),
-                  }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.adjustments_2p_item3"),
-                  }}
-                />
-              </ul>
-            </div>
-
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_item2"),
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_item3"),
+                }}
+              />
+            </ul>
+          </div>
 
           <div className="setup-step">
             <h3 className="rules-subtitle2">{t("rules.step3_title")}</h3>
@@ -129,9 +128,9 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.step3_list2") }}
               />
-              {t("rules.step3_list3") && (
+              {t("rules.step4_list3") && (
                 <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.step3_list3") }}
+                  dangerouslySetInnerHTML={{ __html: t("rules.step4_list3") }}
                 />
               )}
             </ul>
