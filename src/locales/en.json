@@ -55,7 +55,7 @@
     "step3_list1": "<strong>Number of Board Cards:</strong> Deal a number of cards equal to the number of players + 2 to the board.",
     "step3_list2": "<strong>Card Types:</strong> The board contains cards where <strong>Resource cards</strong> are <strong>face up</strong>, while <strong>Action cards</strong> are <strong>face down</strong>.",
     "adjustments_title": "Deck Adjustments Based on Player Count",
-    "adjustments_desc": "Depending on how many players are participating, you may need to adjust the central deck to keep the game balanced. With 3 or 4 players, use the full deck as per normal.",
+    "adjustments_desc": "Depending on how many players are participating, you may need to adjust the Main Deck (MD) to keep the game balanced. With 3 or 4 players, use the full deck as per normal.",
     "adjustments_2p_title": "Game Setup for 2 Players",
     "adjustments_2p_intro": "If you are playing with <strong><span style=\"font-weight: bold; color: #b91a27e9;\">only 2</span> players</strong>, <span style=\"font-weight: bold; color: #b91a27e9;\"> remove</span> the following cards from the central deck before starting:",
     "adjustments_2p_item1": "<strong>1x</strong> Steal Card",
