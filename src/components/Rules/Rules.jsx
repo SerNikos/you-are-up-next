@@ -16,6 +16,17 @@ import step6Image from "../../assets/rules-photos/6 step.JPG";
 import step45Image from "../../assets/rules-photos/4.5 step.png";
 import img1132Image from "../../assets/rules-photos/IMG_1132.JPG";
 
+// New Component Asset Imports
+import resourcesAllImg from "../../assets/rules-photos/ResourcesAll.png";
+import actionCardsAllImg from "../../assets/rules-photos/ActionCardsAll.png";
+import dBackImg from "../../assets/rules-photos/D BACK.jpg";
+import wImg from "../../assets/rules-photos/W.jpg";
+import iBackImg from "../../assets/rules-photos/I BACK.jpg";
+import sImg from "../../assets/rules-photos/S.jpg";
+import plotArmorAllImg from "../../assets/rules-photos/PlotArmorAll.png";
+import executionersDeckAllImg from "../../assets/rules-photos/ExecutionersDeckAll.png";
+import blackMarketAllImg from "../../assets/rules-photos/BlackMarketAll.png";
+
 export default function Rules() {
   const { t } = useTranslation();
 
@@ -27,6 +38,95 @@ export default function Rules() {
           <h1 className="rules-main-title">{t("rules.header_title")}</h1>
           <p className="rules-subtitle">{t("rules.header_subtitle")}</p>
         </header>
+
+        {/* --- GAME COMPONENTS SECTION --- */}
+        <section className="rules-section">
+          <h2 className="rules-title">{t("rules.components.title")}</h2>
+          <p className="rules-text">{t("rules.components.subtitle")}</p>
+
+          {/* 1. Plot Armor Cards */}
+          <h3 className="rules-subtitle2">
+            {t("rules.components.plot_armor_card_title")}
+          </h3>
+          <p className="rules-text">
+            {t("rules.components.plot_armor_card_desc")}
+          </p>
+          <div className="image-progress-wrapper">
+            <img
+              src={plotArmorAllImg}
+              alt="Plot Armor Cards"
+              className="rules-img"
+            />
+          </div>
+
+          {/* 2. Executioner's Deck */}
+          <h3 className="rules-subtitle2">
+            {t("rules.components.executioner_card_title")}
+          </h3>
+          <p className="rules-text">
+            {t("rules.components.executioner_card_desc")}
+          </p>
+          <div className="image-progress-wrapper">
+            <img
+              src={executionersDeckAllImg}
+              alt="Executioner's Deck Cards"
+              className="rules-img"
+              style={{ maxHeight: "300px" }}
+            />
+          </div>
+
+          {/* 3. Black Market Cards (Νέα Προσθήκη) */}
+          <h3 className="rules-subtitle2">
+            {t("rules.components.black_market_card_title")}
+          </h3>
+          <p className="rules-text">
+            {t("rules.components.black_market_card_desc")}
+          </p>
+          <div className="image-progress-wrapper">
+            <img
+              src={blackMarketAllImg}
+              alt="Black Market Cards"
+              className="rules-img"
+            />
+          </div>
+
+          {/* 4. Resource Cards Sub-section */}
+          <h3 className="rules-subtitle2">
+            {t("rules.components.res_card_title")}
+          </h3>
+          <p className="rules-text">{t("rules.components.res_card_desc")}</p>
+          <div className="image-progress-wrapper">
+            <img
+              src={resourcesAllImg}
+              alt="Resource Cards"
+              className="rules-img"
+            />
+          </div>
+
+          {/* 5. Action Cards Sub-section */}
+          <h3 className="rules-subtitle2">
+            {t("rules.components.action_card_title")}
+          </h3>
+          <p className="rules-text">{t("rules.components.action_card_desc")}</p>
+          <div className="image-progress-wrapper">
+            <img
+              src={actionCardsAllImg}
+              alt="Action Cards"
+              className="rules-img"
+            />
+          </div>
+
+          {/* 6. Deck Mixing Callout */}
+          <div className="rules-callout rules-mt-30">
+            <p
+              className="rules-text"
+              style={{ margin: 0 }}
+              dangerouslySetInnerHTML={{
+                __html: t("rules.components.deck_mixing_desc"),
+              }}
+            />
+          </div>
+        </section>
 
         {/* Initial Layout & Setup */}
         <section className="rules-section">
@@ -143,10 +243,8 @@ export default function Rules() {
             </div>
           </div>
         </section>
-
         {/* Game Flow Component */}
         <GameFlow />
-
         {/* Phase 1: Draw Phase with id */}
         <section className="rules-section" id="phase1-section">
           <h2 className="rules-title">{t("rules.phase1_title")}</h2>
@@ -206,7 +304,6 @@ export default function Rules() {
             </div>
           </div>
         </section>
-
         {/* Phase 2: Action Phase with id */}
         <section className="rules-section" id="phase2-section">
           <h2 className="rules-title">{t("rules.phase2_title")}</h2>
@@ -284,7 +381,6 @@ export default function Rules() {
             </div>
           </div>
         </section>
-
         {/* Phase 3: Executioner Phase with id */}
         <section className="rules-section" id="phase3-section">
           <h2 className="rules-title">{t("rules.phase3_title")}</h2>
@@ -344,7 +440,6 @@ export default function Rules() {
             </div>
           </div>
         </section>
-
         {/* Purpose of the Game / Win State with id */}
         <section className="rules-section" id="purpose-section">
           <h2 className="rules-title">{t("rules.purpose_title")}</h2>
@@ -357,7 +452,6 @@ export default function Rules() {
             dangerouslySetInnerHTML={{ __html: t("rules.purpose_text2") }}
           />
         </section>
-
         {/* Glossary of Terms / Λεξικό Όρων */}
         <section className="rules-section glossary-section">
           <h2 className="rules-title">{t("glossary.title")}</h2>

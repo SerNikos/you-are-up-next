@@ -41,6 +41,21 @@
   "rules": {
     "header_title": "Game Rules",
     "header_subtitle": "Learn how the setup works, how turns progress, what the Executioner does, and how to win.",
+    "components": {
+      "title": "Game Components",
+      "subtitle": "Explore the basic card types that make up the main deck.",
+      "plot_armor_card_title": "Plot Armor Cards (PA)",
+      "plot_armor_card_desc": "Collect them to gain permanent advantages in the game or even win when you reach 3 PA.",
+      "executioner_card_title": "Executioner's Deck",
+      "executioner_card_desc": "Executioner's deck has himself calling the crows as a cardback.",
+      "black_market_card_title": "Black Market (BM) Cards",
+      "black_market_card_desc": "Powerful cards found in the shadowy depths of the market. Their card back depicts a merchant showing an open treasure chest surrounded by chains and weapons.",
+      "res_card_title": "Resource Cards",
+      "res_card_desc": "Resource cards have a red axe cardback.",
+      "action_card_title": "Action Cards",
+      "action_card_desc": "Action cards have a blue axe cardback.",
+      "deck_mixing_desc": "Shuffle the <span style=\"font-weight: bold; color: #d9534f;\">resource cards</span> and <span style=\"font-weight: bold; color: #3D63B3;\">action cards</span> together to form the Main Deck (MD)."
+    },
     "setup_title": "Initial Layout & Setup",
     "step1_title": "Step 1: Setting up Decks & Initial Cards",
     "step1_desc": "Organize the first row by placing the <strong>Black Market (BM)</strong> deck on the left, line up the <strong>Plot Armor (PA)</strong> cards face up in the center by color (<span style=\"font-weight: bold; color: #FCF8AA;\">Intelligence</span>, <span style=\"font-weight: bold; color: #3D63B3;\">Wisdom</span>, <span style=\"font-weight: bold; color: #2D473F;\">Dexterity</span>, and <span style=\"font-weight: bold; color: #BC6061;\">Strength</span>) — note that their number equals the <strong>total number of players</strong>, e.g., if there are 2 players, there will be 2 <span style=\"font-weight: bold; color: #BC6061;\">Strength</span> PA, 2 <span style=\"font-weight: bold; color: #FCF8AA;\">Intelligence</span> PA, 2 <span style=\"font-weight: bold; color: #2D473F;\">Dexterity</span> PA, and 2 <span style=\"font-weight: bold; color: #3D63B3;\">Wisdom</span> PA and excess PA cards are removed from the game — and place the Executioner's deck on the far right.",
