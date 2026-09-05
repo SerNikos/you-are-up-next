@@ -460,18 +460,28 @@ export default function Rules() {
               <span className="glossary-badge">MD</span>
               <div className="glossary-content">
                 <strong>Main Deck</strong>
+                <span>{t("glossary.md_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">
               <span className="glossary-badge">BM</span>
               <div className="glossary-content">
                 <strong>Black Market</strong>
+                <span>{t("glossary.bm_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">
               <span className="glossary-badge">PA</span>
               <div className="glossary-content">
                 <strong>Plot Armor</strong>
+                <span>{t("glossary.pa_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">DP</span>
+              <div className="glossary-content">
+                <strong>Discard Pile</strong>
+                <span>{t("glossary.dp_desc")}</span>
               </div>
             </div>
             <div className="glossary-item">

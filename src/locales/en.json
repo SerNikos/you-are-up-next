@@ -62,7 +62,7 @@
     "step2_title": "Step 2: Creating the Death Line",
     "step2_desc": "Directly below the first row, set up the <strong>Death Line</strong> by placing the <strong>Executioner below the (BM)</strong> deck.",
     "step2_list1": "<strong>The Executioner:</strong> Always takes the very first position on the far left.",
-    "step2_list2": "<strong>The Peasants:</strong> Place all <strong>Peasant cards</strong> immediately after the Executioner. They act as protection for the players.",
+    "step2_list2": "<strong>The Peasants:</strong> Place all 3 <strong>Peasant cards</strong> immediately after the Executioner. They act as protection for the players.",
     "step2_list3": "<strong>Character Selection:</strong> All players choose a character that represents them for the game. Any unpicked characters are removed from the game. Shuffle the chosen Character cards and pick one at random to decide who starts <strong>first in the queue</strong> behind the Peasants.",
     "step2_list4": "<strong>Seat Arrangement:</strong> Place the remaining player characters in order, following the <strong>natural seating order</strong> around the table in a clockwise direction. Players' positions in the Death Line are important: Players always draw and play cards in the order dictated by the Death Line. Additionally, if all other players die, the last living player automatically wins the game. Players can sometimes change positions in the Death line, but only amongst themselves. <strong>Players cannot swap positions with peasants</strong>.",
     "step2_list5": "<strong>Main Deck & Discard Pile</strong>: After the end of the Death Line, place the Main Deck (<strong>MD</strong>). Unless stated otherwise, all cards are drawn from the <strong>MD</strong>. Make sure to leave space near the <strong>MD</strong> for the <strong>Discard Pile</strong>. All used cards are sent to the <strong>Discard Pile</strong> <strong>face up</strong>.",
@@ -202,7 +202,11 @@
   },
   "glossary": {
     "title": "GLOSSARY OF TERMS & ABBREVIATIONS",
-    "YOU ARE UP NEXT_desc": "Flip over the next card in Death Line. Found in the Executioner's deck and the Black Market(BM) card A gentle push",
+    "description": "Quick reference guide for abbreviations used in the game:",
+    "md_desc": "Main Deck",
+    "bm_desc": "Black Market",
+    "pa_desc": "Plot Armor",
+    "dp_desc": "Discard Pile",
     "remove_desc": "Complete removal from the game",
     "available_desc": "Available PA card",
     "steal_desc": "Choose and draw a card from another player's hand"
