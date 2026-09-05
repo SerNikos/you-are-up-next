@@ -66,9 +66,11 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.step2_list4") }}
               />
-              <li
-                dangerouslySetInnerHTML={{ __html: t("rules.step2_list5") }}
-              />
+              {t("rules.step2_list5") && (
+                <li
+                  dangerouslySetInnerHTML={{ __html: t("rules.step2_list5") }}
+                />
+              )}
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -92,9 +94,11 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.step3_list2") }}
               />
-              <li
-                dangerouslySetInnerHTML={{ __html: t("rules.step4_list3") }}
-              />
+              {t("rules.step3_list3") && (
+                <li
+                  dangerouslySetInnerHTML={{ __html: t("rules.step3_list3") }}
+                />
+              )}
             </ul>
             <div className="image-progress-wrapper">
               <img
@@ -106,7 +110,7 @@ export default function Rules() {
           </div>
         </section>
 
-        {/* NEW: Player Count Deck Adjustments Section */}
+        {/* Player Count Deck Adjustments Section */}
         <section className="rules-section" id="deck-adjustments-section">
           <h2 className="rules-title">{t("rules.adjustments_title")}</h2>
           <p
@@ -141,17 +145,6 @@ export default function Rules() {
               />
             </ul>
           </div>
-          <div className="rules-example">
-            <h4 className="rules-callout-title">
-              {t("rules.adjustments_3_4p_title")}
-            </h4>
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{
-                __html: t("rules.adjustments_3_4p_desc"),
-              }}
-            />
-          </div>
         </section>
 
         {/* Game Flow Component */}
@@ -168,6 +161,9 @@ export default function Rules() {
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list1") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list2") }}
               />
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list3") }}
@@ -195,6 +191,11 @@ export default function Rules() {
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{
+                  __html: t("rules.phase1_complete_list1"),
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
                   __html: t("rules.phase1_complete_list2"),
                 }}
               />
@@ -217,20 +218,19 @@ export default function Rules() {
               className="rules-text"
               dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
             />
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc2") }}
+            />
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
               />
-              <li>
-                <span
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
-                />
-              </li>
               <li
-                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
               />
               <li
-                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt4") }}
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
               />
             </ul>
 
@@ -242,6 +242,12 @@ export default function Rules() {
                 className="rules-text"
                 dangerouslySetInnerHTML={{
                   __html: t("rules.phase2_priority_text1"),
+                }}
+              />
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.phase2_priority_text2"),
                 }}
               />
             </div>
