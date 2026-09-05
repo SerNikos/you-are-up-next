@@ -8,10 +8,11 @@ export default function GameFlow() {
   return (
     <div className="game-flow-wrapper">
       <h3 className="game-flow-main-title">{t("game_flow.title")}</h3>
-      <div className="game-flow-box">
-        {/* Phase 1 Link */}
-        <a href="#phase1-section" className="flow-step flow-link-step">
-          <span className="flow-indicator phase-1"></span>
+
+      <div className="game-flow-grid">
+        {/* Phase 1 */}
+        <a href="#phase1-section" className="flow-card phase-1-card">
+          <div className="flow-badge">1</div>
           <div className="flow-content">
             <span className="flow-phase-title">
               {t("game_flow.phase1_title")}
@@ -20,11 +21,11 @@ export default function GameFlow() {
           </div>
         </a>
 
-        <div className="flow-arrow">↓</div>
+        <div className="flow-connector">→</div>
 
-        {/* Phase 2 Link */}
-        <a href="#phase2-section" className="flow-step flow-link-step">
-          <span className="flow-indicator phase-2"></span>
+        {/* Phase 2 */}
+        <a href="#phase2-section" className="flow-card phase-2-card">
+          <div className="flow-badge">2</div>
           <div className="flow-content">
             <span className="flow-phase-title">
               {t("game_flow.phase2_title")}
@@ -33,11 +34,11 @@ export default function GameFlow() {
           </div>
         </a>
 
-        <div className="flow-arrow">↓</div>
+        <div className="flow-connector">→</div>
 
-        {/* Phase 3 Link */}
-        <a href="#phase3-section" className="flow-step flow-link-step">
-          <span className="flow-indicator phase-3"></span>
+        {/* Phase 3 */}
+        <a href="#phase3-section" className="flow-card phase-3-card">
+          <div className="flow-badge">3</div>
           <div className="flow-content">
             <span className="flow-phase-title">
               {t("game_flow.phase3_title")}
@@ -46,11 +47,11 @@ export default function GameFlow() {
           </div>
         </a>
 
-        <div className="flow-arrow">↓</div>
+        <div className="flow-connector">→</div>
 
-        {/* Win State Link */}
-        <a href="#purpose-section" className="flow-step flow-link-step">
-          <span className="flow-indicator win-state"></span>
+        {/* Win State */}
+        <a href="#purpose-section" className="flow-card win-card">
+          <div className="flow-badge win-badge">🏆</div>
           <div className="flow-content">
             <span className="flow-phase-title">
               {t("game_flow.win_state_title")}
@@ -60,12 +61,12 @@ export default function GameFlow() {
             </span>
           </div>
         </a>
+      </div>
 
-        {/* Loop Graphic / Indicator back to Phase 1 */}
-        <div className="flow-loop-indicator">
-          <span className="loop-icon">🔄</span>
-          <span className="loop-text">{t("game_flow.loop_text")}</span>
-        </div>
+      {/* Loop Indicator */}
+      <div className="flow-loop-indicator">
+        <span className="loop-icon">🔄</span>
+        <span className="loop-text">{t("game_flow.loop_text")}</span>
       </div>
     </div>
   );

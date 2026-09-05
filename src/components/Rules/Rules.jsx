@@ -106,6 +106,54 @@ export default function Rules() {
           </div>
         </section>
 
+        {/* NEW: Player Count Deck Adjustments Section */}
+        <section className="rules-section" id="deck-adjustments-section">
+          <h2 className="rules-title">{t("rules.adjustments_title")}</h2>
+          <p
+            className="rules-text"
+            dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
+          />
+          <div className="rules-callout">
+            <h4 className="rules-callout-title">
+              {t("rules.adjustments_2p_title")}
+            </h4>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{
+                __html: t("rules.adjustments_2p_intro"),
+              }}
+            />
+            <ul className="rules-bullets">
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_item1"),
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_item2"),
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("rules.adjustments_2p_item3"),
+                }}
+              />
+            </ul>
+          </div>
+          <div className="rules-example">
+            <h4 className="rules-callout-title">
+              {t("rules.adjustments_3_4p_title")}
+            </h4>
+            <p
+              className="rules-text"
+              dangerouslySetInnerHTML={{
+                __html: t("rules.adjustments_3_4p_desc"),
+              }}
+            />
+          </div>
+        </section>
+
         {/* Game Flow Component */}
         <GameFlow />
 
@@ -336,13 +384,6 @@ export default function Rules() {
                 <span>{t("glossary.remove_desc")}</span>
               </div>
             </div>
-            {/* <div className="glossary-item">
-              <span className="glossary-badge">AV</span>
-              <div className="glossary-content">
-                <strong>Available</strong>
-                <span>{t("glossary.available_desc")}</span>
-              </div>
-            </div> */}
             <div className="glossary-item">
               <span className="glossary-badge">ST</span>
               <div className="glossary-content">
