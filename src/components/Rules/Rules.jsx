@@ -182,10 +182,7 @@ export default function Rules() {
           </div>
 
           {/* Player Count Deck Adjustments Section */}
-          <p
-            className="rules-text"
-            dangerouslySetInnerHTML={{ __html: t("rules.adjustments_desc") }}
-          />
+
           <div className="rules-callout">
             <h4 className="rules-callout-title">
               {t("rules.adjustments_2p_title")}
@@ -258,9 +255,6 @@ export default function Rules() {
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list1") }}
               />
               <li
-                dangerouslySetInnerHTML={{ __html: t("rules.phase1_list2") }}
-              />
-              <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase1_list3") }}
               />
             </ul>
@@ -283,18 +277,14 @@ export default function Rules() {
                 __html: t("rules.phase1_complete_desc"),
               }}
             />
-            <ul className="rules-bullets">
-              <li
+            <div className="rules-callout">
+              <p
+                className="rules-text"
                 dangerouslySetInnerHTML={{
                   __html: t("rules.phase1_complete_list1"),
                 }}
               />
-              <li
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.phase1_complete_list2"),
-                }}
-              />
-            </ul>
+            </div>
             <div className="image-progress-wrapper">
               <img
                 src={step4Image}
@@ -312,10 +302,6 @@ export default function Rules() {
               className="rules-text"
               dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
             />
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc2") }}
-            />
             <ul className="rules-bullets">
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
@@ -325,6 +311,9 @@ export default function Rules() {
               />
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
+              />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt4") }}
               />
             </ul>
 
@@ -496,6 +485,17 @@ export default function Rules() {
               <div className="glossary-content">
                 <strong>Steal</strong>
                 <span>{t("glossary.steal_desc")}</span>
+              </div>
+            </div>
+            <div className="glossary-item">
+              <span className="glossary-badge">YU</span>
+              <div className="glossary-content">
+                <strong>YOU ARE UP NEXT</strong>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("glossary.yuan_desc"),
+                  }}
+                />
               </div>
             </div>
           </div>
