@@ -7,7 +7,7 @@ import {
 } from "../../utils/localePath.js";
 
 const SITE_URL = "https://www.youareupnext.gr";
-const DEFAULT_IMAGE = `${SITE_URL}/tablogo.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/social-share.png`;
 
 const pageMetadata = {
   "/": {
@@ -125,6 +125,9 @@ export default function SEO({ noindex = false }) {
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={DEFAULT_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/png" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

@@ -1,3 +1,18 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/en", "destination": "/" },
+    { "source": "/en/characters", "destination": "/" },
+    { "source": "/en/rules", "destination": "/" },
+    { "source": "/en/team", "destination": "/" },
+    { "source": "/en/contact", "destination": "/" },
+    { "source": "/el", "destination": "/" },
+    { "source": "/el/characters", "destination": "/" },
+    { "source": "/el/rules", "destination": "/" },
+    { "source": "/el/team", "destination": "/" },
+    { "source": "/el/contact", "destination": "/" },
+    { "source": "/AllCharactersLore", "destination": "/" },
+    { "source": "/Rules", "destination": "/" },
+    { "source": "/Team", "destination": "/" },
+    { "source": "/ContactUs", "destination": "/" }
+  ]
 }
