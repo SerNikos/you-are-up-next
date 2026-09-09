@@ -50,6 +50,12 @@
 }
 
 .accordion-question {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-family: inherit;
+  text-align: left;
   background-color: #000;
   padding: 1.6rem 2rem;
   cursor: pointer;

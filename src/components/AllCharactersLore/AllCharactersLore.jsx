@@ -5,13 +5,14 @@ import { useTranslation } from "react-i18next";
 import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 import AudioPlayer from "../AudioPlayer/AudioPlayer.jsx";
+import LoadingImage from "../LoadingImage/LoadingImage.jsx";
 
 // Alive card image asset paths
-import executioner from "../../assets/executioner.jpg";
-import notferatu from "../../assets/notferatu.jpg";
-import misero from "../../assets/misero.jpg";
-import paprika from "../../assets/paprika.jpg";
-import hamlet from "../../assets/hamlet.jpg";
+import executioner from "../../assets/protagonists/executioner.jpg";
+import notferatu from "../../assets/protagonists/notferatu.jpg";
+import misero from "../../assets/protagonists/misero.jpg";
+import paprika from "../../assets/protagonists/paprika.jpg";
+import hamlet from "../../assets/protagonists/hamlet.jpg";
 
 // Cursed/Dead card image asset paths
 import executionerDead from "../../assets/heros-dead/executioner-dead.png";
@@ -27,7 +28,7 @@ import miseroAudio from "../../assets/audio/misero.mp3";
 import notferatuAudio from "../../assets/audio/notferatu.mp3";
 import paprikaAudio from "../../assets/audio/paprika.mp3";
 
-import { Helmet } from "react-helmet-async";
+import SEO from "../SEO/SEO.jsx";
 
 const characterList = [
   {
@@ -91,19 +92,12 @@ export default function AllCharactersLore() {
 
   return (
     <div>
-      <Helmet>
-        <title>{t("meta.charactersTitle")}</title>
-        <meta name="description" content={t("meta.charactersDescription")} />
-        <meta property="og:title" content={t("meta.charactersTitle")} />
-        <meta
-          property="og:description"
-          content={t("meta.charactersDescription")}
-        />
-      </Helmet>
+      <SEO />
 
       <Navbar />
 
       <main className="fullDescriptions">
+        <h1 className="visually-hidden">{t("nav.protagonists")}</h1>
         {characterList.map((char) => {
           const name = t(`characters.${char.id}.name`);
           const descriptionHtml = t(`characters.${char.id}.description`);
@@ -120,16 +114,20 @@ export default function AllCharactersLore() {
                 }`}
                 onClick={() => handleCardClick(char.id)}
               >
-                <img
+                <LoadingImage
                   src={char.image}
                   alt={`${name} alive card`}
                   className="character-photo alive"
+                  wrapperClassName="character-image-loader alive-image"
+                  loading="eager"
                 />
                 {char.deadImage && (
-                  <img
+                  <LoadingImage
                     src={char.deadImage}
                     alt={`${name} dead card`}
                     className="character-photo dead"
+                    wrapperClassName="character-image-loader dead-image"
+                    loading="eager"
                   />
                 )}
               </div>

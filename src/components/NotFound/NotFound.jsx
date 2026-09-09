@@ -1,17 +1,21 @@
 import "./NotFound.css";
-import executioner from "../../assets/executioner.jpg";
+import executioner from "../../assets/protagonists/executioner.jpg";
 import Navbar from "../NavBar/Navbar";
+import LoadingImage from "../LoadingImage/LoadingImage";
+import SEO from "../SEO/SEO";
 
 export default function NotFound() {
   return (
     <div>
+      <SEO noindex />
       <Navbar />
-      <h1 className="not-found-test">NOT FOUND 404 UNFORTUNATELLY</h1>
-      <img
+      <main>
+        <h1 className="not-found-test">404 - Page Not Found</h1>
+      <LoadingImage
         src={executioner}
-        alt="executioner image"
-        aria-labelledby="executioner image"
+        alt="The Executioner character card"
       />
+      </main>
     </div>
   );
 }

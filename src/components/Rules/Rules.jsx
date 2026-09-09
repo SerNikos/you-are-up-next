@@ -4,34 +4,33 @@ import "./Rules.css";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import GameFlow from "../GameFlow/GameFlow";
+import LoadingImage from "../LoadingImage/LoadingImage";
+import SEO from "../SEO/SEO";
 
 // Asset Imports
-import step0Image from "../../assets/rules-photos/0 step.png";
-import step1Image from "../../assets/rules-photos/1 step.png";
-import step2Image from "../../assets/rules-photos/2 step.png";
-import step3Image from "../../assets/rules-photos/3 step.JPG";
-import step4Image from "../../assets/rules-photos/4 step.JPG";
-import step5Image from "../../assets/rules-photos/5 step.JPG";
-import step6Image from "../../assets/rules-photos/6 step.JPG";
-import step45Image from "../../assets/rules-photos/4.5 step.png";
-import img1132Image from "../../assets/rules-photos/IMG_1132.JPG";
+import step0Image from "../../assets/rules-photos/setup-initial-layout.png";
+import step1Image from "../../assets/rules-photos/setup-death-line.png";
+import step2Image from "../../assets/rules-photos/setup-board-layout.png";
+import step3Image from "../../assets/rules-photos/draw-phase.png";
+import step4Image from "../../assets/rules-photos/draw-phase-complete.png";
+import step5Image from "../../assets/rules-photos/action-phase-action-card.jpg";
+import step6Image from "../../assets/rules-photos/action-phase-purchase.png";
+import step45Image from "../../assets/rules-photos/executioner-phase-reveal.png";
+import img1132Image from "../../assets/rules-photos/executioner-phase-dead-characters.jpg";
 
 // New Component Asset Imports
-import resourcesAllImg from "../../assets/rules-photos/ResourcesAll.png";
-import actionCardsAllImg from "../../assets/rules-photos/ActionCardsAll.png";
-import dBackImg from "../../assets/rules-photos/D BACK.jpg";
-import wImg from "../../assets/rules-photos/W.jpg";
-import iBackImg from "../../assets/rules-photos/I BACK.jpg";
-import sImg from "../../assets/rules-photos/S.jpg";
-import plotArmorAllImg from "../../assets/rules-photos/PlotArmorAll.png";
-import executionersDeckAllImg from "../../assets/rules-photos/ExecutionersDeckAll.png";
-import blackMarketAllImg from "../../assets/rules-photos/BlackMarketAll.png";
+import resourcesAllImg from "../../assets/rules-photos/resources-all.png";
+import actionCardsAllImg from "../../assets/rules-photos/action-cards-all.png";
+import plotArmorAllImg from "../../assets/rules-photos/plot-armor-all.png";
+import executionersDeckAllImg from "../../assets/rules-photos/executioner-deck-all.png";
+import blackMarketAllImg from "../../assets/rules-photos/black-market-all.png";
 
 export default function Rules() {
   const { t } = useTranslation();
 
   return (
     <div className="the-container">
+      <SEO />
       <Navbar />
       <div className="rules-container">
         <header className="rules-header">
@@ -52,7 +51,7 @@ export default function Rules() {
             {t("rules.components.plot_armor_card_desc")}
           </p>
           <div className="image-progress-wrapper">
-            <img
+            <LoadingImage
               src={plotArmorAllImg}
               alt="Plot Armor Cards"
               className="rules-img"
@@ -67,7 +66,7 @@ export default function Rules() {
             {t("rules.components.executioner_card_desc")}
           </p>
           <div className="image-progress-wrapper">
-            <img
+            <LoadingImage
               src={executionersDeckAllImg}
               alt="Executioner's Deck Cards"
               className="rules-img"
@@ -83,7 +82,7 @@ export default function Rules() {
             {t("rules.components.black_market_card_desc")}
           </p>
           <div className="image-progress-wrapper">
-            <img
+            <LoadingImage
               src={blackMarketAllImg}
               alt="Black Market Cards"
               className="rules-img"
@@ -96,7 +95,7 @@ export default function Rules() {
           </h3>
           <p className="rules-text">{t("rules.components.res_card_desc")}</p>
           <div className="image-progress-wrapper">
-            <img
+            <LoadingImage
               src={resourcesAllImg}
               alt="Resource Cards"
               className="rules-img"
@@ -109,7 +108,7 @@ export default function Rules() {
           </h3>
           <p className="rules-text">{t("rules.components.action_card_desc")}</p>
           <div className="image-progress-wrapper">
-            <img
+            <LoadingImage
               src={actionCardsAllImg}
               alt="Action Cards"
               className="rules-img"
@@ -139,7 +138,7 @@ export default function Rules() {
               dangerouslySetInnerHTML={{ __html: t("rules.step1_desc") }}
             />
             <div className="image-progress-wrapper">
-              <img
+              <LoadingImage
                 src={step0Image}
                 alt="Setup layout showing Black Market, Plot Armor, and Executioner deck"
                 className="rules-img"
@@ -173,7 +172,7 @@ export default function Rules() {
               )}
             </ul>
             <div className="image-progress-wrapper">
-              <img
+              <LoadingImage
                 src={step1Image}
                 alt="Death Line layout showing Executioner, 3 Peasants, player queue, and Main Deck"
                 className="rules-img"
@@ -232,7 +231,7 @@ export default function Rules() {
               )}
             </ul>
             <div className="image-progress-wrapper">
-              <img
+              <LoadingImage
                 src={step2Image}
                 alt="The Board layout positioned below the Death Line"
                 className="rules-img"
@@ -259,7 +258,7 @@ export default function Rules() {
               />
             </ul>
             <div className="image-progress-wrapper">
-              <img
+              <LoadingImage
                 src={step3Image}
                 alt="Draw Phase step showing Misero taking a card from the board"
                 className="rules-img"
@@ -286,7 +285,7 @@ export default function Rules() {
               />
             </div>
             <div className="image-progress-wrapper">
-              <img
+              <LoadingImage
                 src={step4Image}
                 alt="Board after all players have drawn their card in queue order"
                 className="rules-img"
@@ -344,7 +343,7 @@ export default function Rules() {
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_ex1_text") }}
               />
               <div className="image-progress-wrapper">
-                <img
+                <LoadingImage
                   src={step5Image}
                   alt="Showing a player playing an Action card during the Action Phase"
                   className="rules-img"
@@ -361,7 +360,7 @@ export default function Rules() {
                 dangerouslySetInnerHTML={{ __html: t("rules.phase2_ex2_text") }}
               />
               <div className="image-progress-wrapper">
-                <img
+                <LoadingImage
                   src={step6Image}
                   alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
                   className="rules-img"
@@ -392,6 +391,9 @@ export default function Rules() {
               <li
                 dangerouslySetInnerHTML={{ __html: t("rules.phase3_list4") }}
               />
+              <li
+                dangerouslySetInnerHTML={{ __html: t("rules.phase3_list5") }}
+              />
             </ul>
 
             <div className="rules-example">
@@ -403,7 +405,7 @@ export default function Rules() {
                 dangerouslySetInnerHTML={{ __html: t("rules.phase3_ex1_text") }}
               />
               <div className="image-progress-wrapper">
-                <img
+                <LoadingImage
                   src={step45Image}
                   alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
                   className="rules-img"
@@ -420,7 +422,7 @@ export default function Rules() {
                 dangerouslySetInnerHTML={{ __html: t("rules.phase3_ex2_text") }}
               />
               <div className="image-progress-wrapper">
-                <img
+                <LoadingImage
                   src={img1132Image}
                   alt="Character cards flipped over showing their death state illustrations"
                   className="rules-img"

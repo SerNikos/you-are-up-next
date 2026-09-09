@@ -1,4 +1,5 @@
 import "./YaunCard.css";
+import LoadingImage from "../LoadingImage/LoadingImage";
 
 function YaunCard({
   img,
@@ -7,9 +8,9 @@ function YaunCard({
 }) {
   return (
     <div className="yaun-card">
-      <img src={img} alt={name} className="imgCard" />
-      <h2>{name}</h2>
-      <p>{description}</p>
+      <LoadingImage src={img} alt={name} className="imgCard" />
+      <h2 dangerouslySetInnerHTML={{ __html: name }} />
+      <p dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   );
 }

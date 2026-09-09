@@ -1,5 +1,6 @@
 import "./ContactUs.css";
 import Navbar from "../NavBar/Navbar";
+import SEO from "../SEO/SEO";
 import Footer from "../Footer/Footer.jsx";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
@@ -110,11 +111,12 @@ export default function ContactUs() {
 
   return (
     <div>
+      <SEO />
       <Navbar />
 
       <div className="contact-us-container">
         <div className="contact-us">
-          <h2>{t("contact.title")}</h2>
+          <h1>{t("contact.title")}</h1>
 
           <form ref={form} onSubmit={sendEmail}>
             {/* NAME */}

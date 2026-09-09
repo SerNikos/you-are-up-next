@@ -1,0 +1,48 @@
+.loading-image {
+  position: relative;
+  display: block;
+}
+
+.loading-image > img {
+  transition: opacity 0.25s ease-in;
+}
+
+.loading-image.is-loading > img {
+  opacity: 0;
+}
+
+.loading-image-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(70%, 300px);
+  transform: translate(-50%, -50%);
+}
+
+.loading-image-bar {
+  flex: 1;
+  width: min(70%, 260px);
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.loading-image-bar > span {
+  display: block;
+  height: 100%;
+  background: #f5a623;
+  transition: width 0.1s linear;
+}
+
+.loading-image-percentage {
+  min-width: 3.5ch;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

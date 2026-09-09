@@ -70,8 +70,8 @@
 }
 
 .rules-text {
-  font-size: 1.25rem;
-  line-height: 1.8;
+  font-size: 1.35rem;
+  line-height: 1.85;
   color: #dddddd;
   margin-bottom: 20px;
 }
@@ -84,10 +84,10 @@
 }
 
 .rules-bullets li {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #cccccc;
   margin-bottom: 14px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* Steps */
@@ -145,7 +145,7 @@
 
 /* Note Styling για ξεχωριστό, ξεκούραστο στυλ παραδειγμάτων */
 .rules-note {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: #aaaaaa;
   background-color: #161616;
   border-left: 3px solid #e67e22;
@@ -352,8 +352,8 @@
   }
 
   .rules-text {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.75;
   }
 
   .rules-bullets {
@@ -361,8 +361,8 @@
   }
 
   .rules-bullets li {
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 17px;
+    line-height: 1.65;
     margin-bottom: 10px;
   }
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import "flag-icons/css/flag-icons.min.css";
 import { useState } from "react";
@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { toggleSpeech, isInAppBrowser } from "../../utils/voice";
 import OpenSpeechInWindowModal from "../OpenSpeechInWindowModal/OpenSpeechInWindowModal";
+import { getLocalizedPath } from "../../utils/localePath.js";
 
 function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
@@ -21,10 +22,14 @@ function Navbar() {
   const [showSpeechModal, setShowSpeechModal] = useState(false);
 
   const { t, i18n } = useTranslation();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const currentLang = i18n.language || "el";
+  const localizedLink = (path) => getLocalizedPath(path, currentLang.slice(0, 2));
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    navigate(getLocalizedPath(pathname, lng));
     setLangOpen(false);
   };
 
@@ -95,7 +100,7 @@ function Navbar() {
         <div className="nav-container">
           {/* LOGO */}
           <Link
-            to="/"
+            to={localizedLink("/")}
             onClick={() => setMenuOpen(false)}
             className="nav-logo-link"
           >
@@ -104,19 +109,19 @@ function Navbar() {
 
           {/* NAVIGATION LINKS */}
           <ul className={`nav-list ${menuOpen ? "active" : ""}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
+            <Link to={localizedLink("/")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.home")}</li>
             </Link>
-            <Link to="/AllCharactersLore" onClick={() => setMenuOpen(false)}>
+            <Link to={localizedLink("/AllCharactersLore")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.protagonists")}</li>
             </Link>
-            <Link to="/Team" onClick={() => setMenuOpen(false)}>
+            <Link to={localizedLink("/Team")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.team")}</li>
             </Link>
-            <Link to="/Rules" onClick={() => setMenuOpen(false)}>
+            <Link to={localizedLink("/Rules")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.rules")}</li>
             </Link>
-            <Link to="/ContactUs" onClick={() => setMenuOpen(false)}>
+            <Link to={localizedLink("/ContactUs")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.contact")}</li>
             </Link>
 

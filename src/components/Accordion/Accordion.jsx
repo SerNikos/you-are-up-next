@@ -45,22 +45,31 @@ export const Accordion = () => {
   return (
     <div className="accordion-container">
       <div className="accordion">
-        <h1 className="accordion-title">{t("faq.title")}</h1>
-        <h2 className="accordion-description">{t("faq.description")}</h2>
+        <h2 className="accordion-title">{t("faq.title")}</h2>
+        <p className="accordion-description">{t("faq.description")}</p>
         <ul>
           {data.map((faq, index) => (
             <li key={index} className="accordion-item">
-              <div className="accordion-question" onClick={() => toggle(index)}>
+              <button
+                type="button"
+                className="accordion-question"
+                onClick={() => toggle(index)}
+                aria-expanded={selected === index}
+                aria-controls={`faq-answer-${index}`}
+              >
                 {faq.question}
                 <span className="expand-symbol">
                   {selected === index ? "-" : "+"}
                 </span>
-              </div>
+              </button>
 
               <div
+                id={`faq-answer-${index}`}
                 className={`accordion-answer ${
                   selected === index ? "open" : ""
                 }`}
+                role="region"
+                aria-hidden={selected !== index}
               >
                 {faq.answer}
               </div>

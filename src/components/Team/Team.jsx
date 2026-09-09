@@ -8,6 +8,8 @@ import dold from "../../assets/team-photos/dold.png";
 import kat from "../../assets/team-photos/kat.png";
 import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
+import LoadingImage from "../LoadingImage/LoadingImage";
+import SEO from "../SEO/SEO";
 
 export default function Team() {
   const { t } = useTranslation();
@@ -27,10 +29,11 @@ export default function Team() {
 
   return (
     <div>
+      <SEO />
       <Navbar />
 
-      <div className="team-container">
-        <div className="team-top-title">{t("team.page_title")}</div>
+      <main className="team-container">
+        <h1 className="team-top-title">{t("team.page_title")}</h1>
         <div className="horizontral-line"></div>
 
         <div className="photos-container">
@@ -52,7 +55,7 @@ export default function Team() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={dold} alt="dold" />
+              <LoadingImage src={dold} alt={t("team.dold_name")} />
             </a>
           </div>
 
@@ -74,7 +77,7 @@ export default function Team() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={ser} alt="ser" />
+              <LoadingImage src={ser} alt={t("team.sergis_name")} />
             </a>
           </div>
 
@@ -96,7 +99,7 @@ export default function Team() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={mat} alt="mat" />
+              <LoadingImage src={mat} alt={t("team.mat_name")} />
             </a>
           </div>
 
@@ -118,11 +121,11 @@ export default function Team() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={kat} alt="kat" />
+              <LoadingImage src={kat} alt={t("team.kat_name")} />
             </a>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

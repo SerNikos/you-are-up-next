@@ -17,6 +17,14 @@ body {
   color: #ffffff;
 }
 
+.route-loading {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  color: #f5a623;
+  font-size: 1.6rem;
+}
+
 h2 {
   font-size: 2rem;
 }
