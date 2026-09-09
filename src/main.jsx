@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 
+const rootElement = document.getElementById("root");
+
 const AllCharactersLore = lazy(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
 );
@@ -69,7 +71,7 @@ const router = createBrowserRouter([
   { path: "*", element: <NotFound /> },
 ]);
 
-createRoot(document.getElementById("root")).render(
+createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
       <Suspense

@@ -19,7 +19,6 @@
       property="og:description"
       content="Discover the medieval strategy board game and card game where every player can be next."
     />
-    <meta property="og:url" content="https://www.youareupnext.gr/en" />
     <meta
       property="og:image"
       content="https://www.youareupnext.gr/social-share.png"
@@ -40,39 +39,22 @@
       name="twitter:image"
       content="https://www.youareupnext.gr/social-share.png"
     />
-    <link rel="canonical" href="https://www.youareupnext.gr/en" />
-    <link rel="alternate" hreflang="en" href="https://www.youareupnext.gr/en" />
-    <link rel="alternate" hreflang="el" href="https://www.youareupnext.gr/el" />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href="https://www.youareupnext.gr/en"
-    />
     <title>You Are Up Next | Medieval Strategy Board Game</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BoardGame",
+        "name": "You Are Up Next",
+        "url": "https://www.youareupnext.gr/en",
+        "description": "You Are Up Next is a medieval strategy board game and card game about survival, tactics, and taking your place in the Death Line.",
+        "image": "https://www.youareupnext.gr/social-share.png",
+        "genre": ["Strategy", "Card game", "Medieval game"]
+      }
+    </script>
   </head>
-  <body>
+  <body style="background-color: #151515">
     <div id="buy-modal"></div>
-    <div id="root">
-      <main aria-label="You Are Up Next">
-        <h1>You Are Up Next | Medieval Strategy Board Game</h1>
-        <p>
-          You Are Up Next is a medieval strategy board game and card game about
-          survival, tactics, and taking your place in the Death Line.
-        </p>
-        <nav aria-label="Main navigation">
-          <a href="/en">Home</a>
-          <a href="/en/characters">Characters</a>
-          <a href="/en/rules">Rules</a>
-          <a href="/en/team">Team</a>
-          <a href="/en/contact">Contact</a>
-        </nav>
-        <h2>Frequently Asked Questions</h2>
-        <p>
-          Discover the characters, rules, strategy, and story behind You Are Up
-          Next.
-        </p>
-      </main>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
