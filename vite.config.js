@@ -13,6 +13,7 @@ export default defineConfig({
         new URL("./prerender.jsx", import.meta.url),
       ),
       additionalPrerenderRoutes: [
+        "/",
         "/en",
         "/en/characters",
         "/en/rules",
