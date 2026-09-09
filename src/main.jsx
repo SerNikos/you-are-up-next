@@ -90,4 +90,5 @@ createRoot(rootElement).render(
 
 requestAnimationFrame(() => {
   rootElement.classList.remove("app-loading");
+  rootElement.style.visibility = "visible";
 });
