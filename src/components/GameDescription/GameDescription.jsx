@@ -12,6 +12,8 @@ export default function GameDescription() {
     <div className="game-description">
       <h1 className="titleOfDiscription">{t("home.title")}</h1>
 
+      <p className="game-description-seo">{t("home.seo_description")}</p>
+
       <p>
         {t("home.description_part1")}{" "}
         <strong>{t("home.description_highlight")}</strong>{" "}

@@ -13,7 +13,7 @@
     "congrats": "Congratulations, you bought YOU ARE UP NEXT!"
   },
   "meta": {
-    "homeTitle": "You Are Up Next | Medieval Strategy Board Game",
+    "homeTitle": "You Are Up Next | Medieval Card Game Board Game.",
     "homeDescription": "Discover You Are Up Next, a medieval strategy board game and card game of survival, tactics, and betrayal. Choose your character, outsmart rivals, and survive the Death Line.",
     "charactersTitle": "YOU ARE UP NEXT - Characters & Lore | YOU ARE UP NEXT Board Game",
     "charactersDescription": "Meet the characters of You Are Up Next, a medieval board game and strategy card game. Discover the stories of the Executioner, Notferatu, Misero, Paprika, and Hamlet.",
@@ -28,6 +28,7 @@
   },
   "home": {
     "title": "YOU ARE UP NEXT",
+    "seo_description": "You Are Up Next is a medieval strategy board game and card game about survival, tactics, and betrayal.",
     "description_part1": "You have minimal but ",
     "description_highlight": "precious",
     "description_part2": " time to steal, trade, or give a gentle push...",

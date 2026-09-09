@@ -1,18 +1,17 @@
 {
-  "rewrites": [
-    { "source": "/en", "destination": "/" },
-    { "source": "/en/characters", "destination": "/" },
-    { "source": "/en/rules", "destination": "/" },
-    { "source": "/en/team", "destination": "/" },
-    { "source": "/en/contact", "destination": "/" },
-    { "source": "/el", "destination": "/" },
-    { "source": "/el/characters", "destination": "/" },
-    { "source": "/el/rules", "destination": "/" },
-    { "source": "/el/team", "destination": "/" },
-    { "source": "/el/contact", "destination": "/" },
-    { "source": "/AllCharactersLore", "destination": "/" },
-    { "source": "/Rules", "destination": "/" },
-    { "source": "/Team", "destination": "/" },
-    { "source": "/ContactUs", "destination": "/" }
+  "redirects": [
+    { "source": "/", "destination": "/en", "permanent": true },
+    {
+      "source": "/AllCharactersLore",
+      "destination": "/en/characters",
+      "permanent": true
+    },
+    { "source": "/Rules", "destination": "/en/rules", "permanent": true },
+    { "source": "/Team", "destination": "/en/team", "permanent": true },
+    {
+      "source": "/ContactUs",
+      "destination": "/en/contact",
+      "permanent": true
+    }
   ]
 }
