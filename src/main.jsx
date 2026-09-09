@@ -9,6 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 
 const rootElement = document.getElementById("root");
+rootElement.classList.add("app-loading");
 
 const AllCharactersLore = lazy(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
@@ -86,3 +87,7 @@ createRoot(rootElement).render(
     </HelmetProvider>
   </StrictMode>,
 );
+
+requestAnimationFrame(() => {
+  rootElement.classList.remove("app-loading");
+});

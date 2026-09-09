@@ -44,6 +44,11 @@ function getPage(pathname) {
   return pathname.split("/").filter(Boolean)[1] || "home";
 }
 
+function getLocalizedPath(pathname, language) {
+  const routePath = pathname.replace(/^\/(en|el)(?=\/|$)/, "") || "/";
+  return `/${language}${routePath === "/" ? "" : routePath}`;
+}
+
 function getContent(pathname, language) {
   const translations = language === "el" ? greek : english;
   const page = getPage(pathname);
@@ -84,11 +89,10 @@ export async function prerender({ url }) {
   const title = translations.meta[titleKey] || translations.meta.homeTitle;
   const description =
     translations.meta[descriptionKey] || translations.meta.homeDescription;
-  const canonical = `https://www.youareupnext.gr${pathname}`;
-  const alternatePath = pathname.replace(
-    /^\/(en|el)/,
-    language === "en" ? "/el" : "/en",
-  );
+  const canonicalPath = getLocalizedPath(pathname, language);
+  const canonical = `https://www.youareupnext.gr${canonicalPath}`;
+  const englishUrl = `https://www.youareupnext.gr${getLocalizedPath(pathname, "en")}`;
+  const greekUrl = `https://www.youareupnext.gr${getLocalizedPath(pathname, "el")}`;
 
   return {
     html: getContent(pathname, language),
@@ -107,14 +111,18 @@ export async function prerender({ url }) {
         { type: "link", props: { rel: "canonical", href: canonical } },
         {
           type: "link",
-          props: { rel: "alternate", hrefLang: language, href: canonical },
+          props: { rel: "alternate", hrefLang: "en", href: englishUrl },
+        },
+        {
+          type: "link",
+          props: { rel: "alternate", hrefLang: "el", href: greekUrl },
         },
         {
           type: "link",
           props: {
             rel: "alternate",
-            hrefLang: language === "en" ? "el" : "en",
-            href: `https://www.youareupnext.gr${alternatePath}`,
+            hrefLang: "x-default",
+            href: englishUrl,
           },
         },
       ]),
