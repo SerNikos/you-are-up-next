@@ -110,6 +110,10 @@ body {
   display: block;
 }
 
+.character-image-loader.dead-image .loading-image-progress {
+  display: none;
+}
+
 .character-photo {
   border: 1rem solid rgb(24, 24, 24);
   border-radius: 0.75rem;

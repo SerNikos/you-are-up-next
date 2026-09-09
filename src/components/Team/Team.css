@@ -113,6 +113,7 @@ body {
   object-position: center;
   border-radius: 12px;
   display: block;
+  margin-inline: auto;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
