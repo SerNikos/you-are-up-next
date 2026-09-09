@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
+import AppReveal from "./components/AppReveal/AppReveal.jsx";
 
 const rootElement = document.getElementById("root");
 rootElement.classList.add("app-loading");
@@ -75,20 +76,17 @@ const router = createBrowserRouter([
 createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
-      <Suspense
-        fallback={
-          <div className="route-loading" role="status" aria-live="polite">
-            Loading page...
-          </div>
-        }
-      >
-        <RouterProvider router={router} />
-      </Suspense>
+      <AppReveal rootElement={rootElement}>
+        <Suspense
+          fallback={
+            <div className="route-loading" role="status" aria-live="polite">
+              Loading page...
+            </div>
+          }
+        >
+          <RouterProvider router={router} />
+        </Suspense>
+      </AppReveal>
     </HelmetProvider>
   </StrictMode>,
 );
-
-requestAnimationFrame(() => {
-  rootElement.classList.remove("app-loading");
-  rootElement.style.visibility = "visible";
-});
