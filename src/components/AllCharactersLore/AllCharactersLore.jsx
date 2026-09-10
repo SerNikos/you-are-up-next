@@ -21,12 +21,17 @@ import miseroDead from "../../assets/heros-dead/misero-dead card.png";
 import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
 import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
-// Audio asset paths (για τα Αγγλικά ή όποτε υπάρχουν)
-import executionerAudio from "../../assets/audio/executioner.mp3";
-import hamletAudio from "../../assets/audio/hamlet.mp3";
-import miseroAudio from "../../assets/audio/misero.mp3";
-import notferatuAudio from "../../assets/audio/notferatu.mp3";
-import paprikaAudio from "../../assets/audio/paprika.mp3";
+// Locale-specific audio asset paths
+import executionerEnglishAudio from "../../assets/audio/English/executioner-en.mp3";
+import hamletEnglishAudio from "../../assets/audio/English/hamlet-en.mp3";
+import miseroEnglishAudio from "../../assets/audio/English/misero-en.mp3";
+import notferatuEnglishAudio from "../../assets/audio/English/notferatu-en.mp3";
+import paprikaEnglishAudio from "../../assets/audio/English/paprika-en.mp3";
+import executionerGreekAudio from "../../assets/audio/Greek/executioner-gr.mp3";
+import hamletGreekAudio from "../../assets/audio/Greek/hamlet-gr.mp3";
+import miseroGreekAudio from "../../assets/audio/Greek/misero-gr.mp3";
+import notferatuGreekAudio from "../../assets/audio/Greek/notferatu-gr.mp3";
+import paprikaGreekAudio from "../../assets/audio/Greek/paprika-gr.mp3";
 
 import SEO from "../SEO/SEO.jsx";
 
@@ -35,31 +40,36 @@ const characterList = [
     id: "executioner",
     image: executioner,
     deadImage: executionerDead,
-    audio: executionerAudio,
+    englishAudio: executionerEnglishAudio,
+    greekAudio: executionerGreekAudio,
   },
   {
     id: "notferatu",
     image: notferatu,
     deadImage: notferatuDead,
-    audio: notferatuAudio,
+    englishAudio: notferatuEnglishAudio,
+    greekAudio: notferatuGreekAudio,
   },
   {
     id: "misero",
     image: misero,
     deadImage: miseroDead,
-    audio: miseroAudio,
+    englishAudio: miseroEnglishAudio,
+    greekAudio: miseroGreekAudio,
   },
   {
     id: "paprika",
     image: paprika,
     deadImage: paprikaDead,
-    audio: paprikaAudio,
+    englishAudio: paprikaEnglishAudio,
+    greekAudio: paprikaGreekAudio,
   },
   {
     id: "hamlet",
     image: hamlet,
     deadImage: hamletDead,
-    audio: hamletAudio,
+    englishAudio: hamletEnglishAudio,
+    greekAudio: hamletGreekAudio,
   },
 ];
 
@@ -140,17 +150,14 @@ export default function AllCharactersLore() {
                   dangerouslySetInnerHTML={{ __html: descriptionHtml }}
                 />
 
-                {/* Εμφάνιση του AudioPlayer ΜΟΝΟ αν ΔΕΝ είναι στα ελληνικά (!isGreek) */}
-                {!isGreek && (
-                  <AudioPlayer
-                    audioSrc={char.audio}
-                    characterName={name}
-                    isPlaying={playingAudioId === char.id}
-                    onToggle={(isPlaying) =>
-                      handleAudioToggle(char.id, isPlaying)
-                    }
-                  />
-                )}
+                <AudioPlayer
+                  audioSrc={isGreek ? char.greekAudio : char.englishAudio}
+                  characterName={name}
+                  isPlaying={playingAudioId === char.id}
+                  onToggle={(isPlaying) =>
+                    handleAudioToggle(char.id, isPlaying)
+                  }
+                />
               </div>
             </section>
           );
