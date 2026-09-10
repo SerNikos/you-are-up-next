@@ -7,7 +7,7 @@ import {
 } from "../../utils/localePath.js";
 
 const SITE_URL = "https://www.youareupnext.gr";
-const DEFAULT_IMAGE = `${SITE_URL}/social-share.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/social-share-v2.png`;
 
 const pageMetadata = {
   "/": {
