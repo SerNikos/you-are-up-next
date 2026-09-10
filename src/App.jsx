@@ -2,7 +2,7 @@ import "./App.css";
 import Navbar from "./components/NavBar/Navbar.jsx";
 import YaunCard from "./components/YaunCard/YaunCard.jsx";
 
-import misero from "./assets/protagonists/misero.jpg";
+import misero from "./assets/protagonists/misero.png";
 import executioner from "./assets/protagonists/executioner.jpg";
 import notferatu from "./assets/protagonists/notferatu.jpg";
 import hamlet from "./assets/protagonists/hamlet.jpg";

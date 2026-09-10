@@ -7,6 +7,11 @@
   height: clamp(7rem, 12vw, 18rem);
   overflow: hidden;
   background: #000000;
+  transition: height 0.35s ease;
+}
+
+.above-nav-art.is-scrolled {
+  height: clamp(5rem, 7vw, 9rem);
 }
 
 .above-nav-blood,
@@ -44,6 +49,12 @@
   transform: translate(-50%, -50%);
   display: block;
   pointer-events: auto;
+  transition: height 0.35s ease, width 0.35s ease;
+}
+
+.above-nav-art.is-scrolled .above-nav-logo-link {
+  width: min(25vw, 27rem);
+  height: 78%;
 }
 
 .above-nav-logo {
@@ -51,13 +62,20 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: filter 0.25s ease;
 }
 
-.above-nav-logo-link:hover .above-nav-logo,
-.above-nav-logo-link:focus-visible .above-nav-logo {
+.above-nav-logo-hover {
+  position: absolute;
+  inset: 0;
   filter: brightness(0) saturate(100%) invert(37%) sepia(61%) saturate(1800%)
     hue-rotate(328deg) brightness(91%) contrast(91%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.above-nav-logo-link:hover .above-nav-logo-hover,
+.above-nav-logo-link:focus-visible .above-nav-logo-hover {
+  opacity: 1;
 }
 
 /* ==========================================
@@ -66,20 +84,24 @@
 .navbar {
   background-color: #1f1f1f;
   padding: 0 clamp(28px, 3vw, 48px);
-  height: clamp(78px, 5vw, 86px);
+  height: clamp(64px, 4vw, 72px);
   display: flex;
   align-items: center;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   z-index: 1000;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
 
   /* Sticky Navbar στην κορυφή της σελίδας */
   position: sticky;
   top: 0;
   margin-bottom: 2rem;
+}
+
+.navbar.is-scrolled {
+  box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.45);
 }
 
 .nav-container {
@@ -114,7 +136,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 0 0 0 3rem;
   padding: 0;
   flex-grow: 1;
@@ -141,7 +163,7 @@
 
 .nav-item {
   color: #ffffff;
-  font-size: clamp(1.7rem, 1.3vw, 2.3rem);
+  font-size: clamp(1.5rem, 1.1vw, 2rem);
   cursor: pointer;
   transition: color 0.3s ease;
   line-height: 1;
@@ -349,10 +371,14 @@
    MOBILE RESPONSIVE (MAX-WIDTH: 900px)
    ========================================== */
 @media (max-width: 1100px) {
+  .above-nav-art.is-scrolled {
+    height: 5rem;
+  }
+
   .navbar {
     padding: 0 1.5rem;
-    height: 66px;
-    width: 100vw;
+    height: 56px;
+    width: 100%;
   }
 
   /* Κεντράρισμα του Logo σε Mobile mode */
@@ -392,10 +418,10 @@
   .nav-list {
     display: none !important;
     position: absolute;
-    top: 66px;
-    left: 0;
-    right: 0;
-    width: 100%;
+    top: 56px;
+    left: -1.5rem;
+    right: auto;
+    width: calc(100% + 3rem);
     height: auto;
     background-color: #1f1f1f;
     flex-direction: column;
@@ -430,6 +456,11 @@
 @media (max-width: 360px) {
   .navbar {
     padding: 0 1rem;
+  }
+
+  .nav-list {
+    left: -1rem;
+    width: calc(100% + 2rem);
   }
 
   .nav-logo {

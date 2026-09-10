@@ -25,11 +25,11 @@
 
 .rules-main-title {
   font-size: 3rem;
-  color: #f5a623;
+  color: #ffffff;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 2px 8px rgba(245, 166, 35, 0.2);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 }
 
 .rules-subtitle {

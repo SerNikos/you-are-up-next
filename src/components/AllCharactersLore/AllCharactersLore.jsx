@@ -10,15 +10,15 @@ import LoadingImage from "../LoadingImage/LoadingImage.jsx";
 // Alive card image asset paths
 import executioner from "../../assets/protagonists/executioner.jpg";
 import notferatu from "../../assets/protagonists/notferatu.jpg";
-import misero from "../../assets/protagonists/misero.jpg";
+import misero from "../../assets/protagonists/misero.png";
 import paprika from "../../assets/protagonists/paprika.jpg";
 import hamlet from "../../assets/protagonists/hamlet.jpg";
 
 // Cursed/Dead card image asset paths
 import executionerDead from "../../assets/heros-dead/executioner-dead.png";
 import hamletDead from "../../assets/heros-dead/hamlet-dead.png";
-import miseroDead from "../../assets/heros-dead/misero-dead card.png";
-import notferatuDead from "../../assets/heros-dead/notferatu-dead card.png";
+import miseroDead from "../../assets/heros-dead/misero-dead.png";
+import notferatuDead from "../../assets/heros-dead/notferatu-dead.png";
 import paprikaDead from "../../assets/heros-dead/paprika-dead.png";
 
 // Locale-specific audio asset paths

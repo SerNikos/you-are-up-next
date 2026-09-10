@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import "flag-icons/css/flag-icons.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaGlobe,
@@ -23,6 +23,18 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showSpeechModal, setShowSpeechModal] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
@@ -99,7 +111,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="above-nav-art">
+      <div className={`above-nav-art ${isScrolled ? "is-scrolled" : ""}`}>
         <img className="above-nav-blood above-nav-blood-left" src={bloodLeft} alt="" aria-hidden="true" />
         <Link
           to={localizedLink("/")}
@@ -108,10 +120,16 @@ function Navbar() {
           aria-label={t("nav.home")}
         >
           <img className="above-nav-logo" src={yaunLogo} alt="You Are Up Next logo" />
+          <img
+            className="above-nav-logo above-nav-logo-hover"
+            src={yaunLogo}
+            alt=""
+            aria-hidden="true"
+          />
         </Link>
         <img className="above-nav-blood above-nav-blood-right" src={bloodRight} alt="" aria-hidden="true" />
       </div>
-      <nav className="navbar">
+      <nav className={`navbar ${isScrolled ? "is-scrolled" : ""}`}>
         <div className="nav-container">
           {/* NAVIGATION LINKS */}
           <ul className={`nav-list ${menuOpen ? "active" : ""}`}>
