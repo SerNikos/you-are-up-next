@@ -14,6 +14,9 @@ import {
 import { toggleSpeech, isInAppBrowser } from "../../utils/voice";
 import OpenSpeechInWindowModal from "../OpenSpeechInWindowModal/OpenSpeechInWindowModal";
 import { getLocalizedPath } from "../../utils/localePath.js";
+import bloodLeft from "../../assets/useful-art/BLOOD1.svg";
+import bloodRight from "../../assets/useful-art/BLOOD2.svg";
+import yaunLogo from "../../assets/useful-art/LOGO YAUN.svg";
 
 function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
@@ -96,6 +99,11 @@ function Navbar() {
 
   return (
     <>
+      <div className="above-nav-art">
+        <img className="above-nav-blood above-nav-blood-left" src={bloodLeft} alt="" aria-hidden="true" />
+        <img className="above-nav-logo" src={yaunLogo} alt="You Are Up Next logo" />
+        <img className="above-nav-blood above-nav-blood-right" src={bloodRight} alt="" aria-hidden="true" />
+      </div>
       <nav className="navbar">
         <div className="nav-container">
           {/* LOGO */}

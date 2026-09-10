@@ -5,7 +5,7 @@
   min-height: 100vh;
   padding: 6rem 2rem 10rem 2rem; /* Added extra padding to top/bottom for a balanced structure */
   box-sizing: border-box;
-  background-color: #121212;
+  background-color: transparent;
 }
 
 .contact-us {
