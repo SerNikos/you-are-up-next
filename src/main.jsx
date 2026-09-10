@@ -12,13 +12,38 @@ import AppReveal from "./components/AppReveal/AppReveal.jsx";
 const rootElement = document.getElementById("root");
 rootElement.classList.add("app-loading");
 
-const AllCharactersLore = lazy(
+function lazyWithReloadRetry(importer) {
+  return lazy(async () => {
+    const retryKey = `chunk-retry:${window.location.pathname}${window.location.search}`;
+
+    try {
+      const module = await importer();
+      sessionStorage.removeItem(retryKey);
+      return module;
+    } catch (error) {
+      if (!sessionStorage.getItem(retryKey)) {
+        sessionStorage.setItem(retryKey, "true");
+        window.location.reload();
+        return new Promise(() => {});
+      }
+
+      sessionStorage.removeItem(retryKey);
+      throw error;
+    }
+  });
+}
+
+const AllCharactersLore = lazyWithReloadRetry(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
 );
-const NotFound = lazy(() => import("./components/NotFound/NotFound.jsx"));
-const Rules = lazy(() => import("./components/Rules/Rules.jsx"));
-const ContactUs = lazy(() => import("./components/ContactUs/ContactUs.jsx"));
-const Team = lazy(() => import("./components/Team/Team.jsx"));
+const NotFound = lazyWithReloadRetry(
+  () => import("./components/NotFound/NotFound.jsx"),
+);
+const Rules = lazyWithReloadRetry(() => import("./components/Rules/Rules.jsx"));
+const ContactUs = lazyWithReloadRetry(
+  () => import("./components/ContactUs/ContactUs.jsx"),
+);
+const Team = lazyWithReloadRetry(() => import("./components/Team/Team.jsx"));
 
 const localizedRoutes = ["en", "el"].flatMap((language) => [
   {
