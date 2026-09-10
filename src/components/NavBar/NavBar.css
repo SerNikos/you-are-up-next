@@ -34,14 +34,30 @@
   object-position: right center;
 }
 
-.above-nav-logo {
+.above-nav-logo-link {
+  position: absolute;
   z-index: 1;
   top: 50%;
   left: 50%;
   width: min(34vw, 38rem);
   height: 88%;
   transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: auto;
+}
+
+.above-nav-logo {
+  position: relative;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  transition: filter 0.25s ease;
+}
+
+.above-nav-logo-link:hover .above-nav-logo,
+.above-nav-logo-link:focus-visible .above-nav-logo {
+  filter: brightness(0) saturate(100%) invert(37%) sepia(61%) saturate(1800%)
+    hue-rotate(328deg) brightness(91%) contrast(91%);
 }
 
 /* ==========================================
@@ -67,6 +83,7 @@
 }
 
 .nav-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,6 +119,17 @@
   padding: 0;
   flex-grow: 1;
   height: 100%;
+}
+
+@media (min-width: 1101px) {
+  .nav-list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    flex-grow: 0;
+    width: max-content;
+  }
 }
 
 .nav-list a {

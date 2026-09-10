@@ -101,7 +101,14 @@ function Navbar() {
     <>
       <div className="above-nav-art">
         <img className="above-nav-blood above-nav-blood-left" src={bloodLeft} alt="" aria-hidden="true" />
-        <img className="above-nav-logo" src={yaunLogo} alt="You Are Up Next logo" />
+        <Link
+          to={localizedLink("/")}
+          onClick={() => setMenuOpen(false)}
+          className="above-nav-logo-link"
+          aria-label={t("nav.home")}
+        >
+          <img className="above-nav-logo" src={yaunLogo} alt="You Are Up Next logo" />
+        </Link>
         <img className="above-nav-blood above-nav-blood-right" src={bloodRight} alt="" aria-hidden="true" />
       </div>
       <nav className="navbar">
