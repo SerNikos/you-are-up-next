@@ -1,7 +1,7 @@
 import "./GameDescription.css";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function GameDescription() {
   const { t } = useTranslation();
@@ -26,7 +26,17 @@ export default function GameDescription() {
         createPortal(
           <div className="modal-overlay" onClick={() => setBuy(false)}>
             <div className="buy-box" onClick={(e) => e.stopPropagation()}>
-              {t("home.modal_kickstarter")}
+              <Trans
+                i18nKey="home.modal_kickstarter"
+                components={[
+                  <a
+                    className="instagram-link"
+                    href="https://www.instagram.com/yaun_game"
+                    target="_blank"
+                    rel="noreferrer"
+                  />,
+                ]}
+              />
               <button className="x-btn" onClick={() => setBuy(false)}>
                 X
               </button>

@@ -14,6 +14,20 @@
   }
 }
 
+@keyframes instagram-link-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(250, 229, 113, 0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+    text-shadow: 0 0 1rem rgba(250, 229, 113, 0.95);
+  }
+}
+
 .game-description {
   color: white;
   text-align: center;
@@ -108,15 +122,42 @@
   width: 90%;
   max-width: 550px; /* Όμορφο μέγιστο πλάτος για desktop/tablets */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
   text-align: center;
   border-radius: 1rem;
   font-size: clamp(2rem, 4vw, 3.5rem); /* Δυναμικό μέγεθος γραμματοσειράς */
   box-shadow: 0 0 1.5rem rgb(229, 61, 61);
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.instagram-link {
+  display: inline-block;
+  color: #fae571;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.15em;
+  animation: instagram-link-pulse 1.5s ease-in-out infinite;
+  will-change: transform, filter;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.instagram-link:hover,
+.instagram-link:focus-visible {
+  color: #ffffff;
+  outline: none;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(250, 229, 113, 0.9));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-link {
+    animation: none;
+  }
 }
 
 .x-btn {
