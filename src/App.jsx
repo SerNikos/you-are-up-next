@@ -37,43 +37,43 @@ function App() {
       <main>
         <section className="characterCards">
           <Link to={`${charactersPath}#executioner`}>
-          <YaunCard
-            img={executioner}
-            name={t("home.cards.executioner_title")}
-            description={t("home.cards.executioner_desc")}
-          />
+            <YaunCard
+              img={executioner}
+              name={t("home.cards.executioner_title")}
+              description={t("home.cards.executioner_desc")}
+            />
           </Link>
 
-        <Link to={`${charactersPath}#notferatu`}>
-          <YaunCard
-            img={notferatu}
-            name={t("home.cards.notferatu_title")}
-            description={t("home.cards.notferatu_desc")}
-          />
+          <Link to={`${charactersPath}#notferatu`}>
+            <YaunCard
+              img={notferatu}
+              name={t("home.cards.notferatu_title")}
+              description={t("home.cards.notferatu_desc")}
+            />
           </Link>
 
-        <Link to={`${charactersPath}#misero`}>
-          <YaunCard
-            img={misero}
-            name={t("home.cards.misero_title")}
-            description={t("home.cards.misero_desc")}
-          />
+          <Link to={`${charactersPath}#misero`}>
+            <YaunCard
+              img={misero}
+              name={t("home.cards.misero_title")}
+              description={t("home.cards.misero_desc")}
+            />
           </Link>
 
-        <Link to={`${charactersPath}#paprika`}>
-          <YaunCard
-            img={paprika}
-            name={t("home.cards.paprika_title")}
-            description={t("home.cards.paprika_desc")}
-          />
+          <Link to={`${charactersPath}#paprika`}>
+            <YaunCard
+              img={paprika}
+              name={t("home.cards.paprika_title")}
+              description={t("home.cards.paprika_desc")}
+            />
           </Link>
 
-        <Link to={`${charactersPath}#hamlet`}>
-          <YaunCard
-            img={hamlet}
-            name={t("home.cards.hamlet_title")}
-            description={t("home.cards.hamlet_desc")}
-          />
+          <Link to={`${charactersPath}#hamlet`}>
+            <YaunCard
+              img={hamlet}
+              name={t("home.cards.hamlet_title")}
+              description={t("home.cards.hamlet_desc")}
+            />
           </Link>
         </section>
 

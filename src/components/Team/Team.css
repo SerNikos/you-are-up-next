@@ -85,7 +85,7 @@ body {
 
 /* Name links */
 .team-name {
-  font-size: clamp(1.6rem, 2vw, 2rem);
+  font-size: clamp(1.6rem, 1.5vw, 2rem);
   color: white;
   text-decoration: none;
 }

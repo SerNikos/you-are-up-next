@@ -12,7 +12,7 @@
 
 .game-flow-main-title {
   color: #f5a623;
-  font-size: 1.6rem; /* Αυξημένο */
+  font-size: clamp(1.8rem, 1.5vw, 2.4rem);
   margin-bottom: 25px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -66,7 +66,7 @@
 }
 
 .flow-badge {
-  font-size: 0.9rem; /* Αυξημένο */
+  font-size: 1.4rem;
   font-weight: bold;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.08);
@@ -88,7 +88,7 @@
 }
 
 .flow-phase-title {
-  font-size: 1.05rem; /* Αυξημένο αισθητά */
+  font-size: clamp(1.5rem, 1.1vw, 1.8rem);
   font-weight: bold;
   color: #fff;
   margin-bottom: 6px;
@@ -96,13 +96,13 @@
 }
 
 .flow-action {
-  font-size: 0.88rem; /* Αυξημένο για να διαβάζεται άνετα */
+  font-size: clamp(1.4rem, 1vw, 1.6rem);
   color: #ccc; /* Ελαφρώς πιο ανοιχτόχρωμο για καλύτερη αντίθεση */
   line-height: 1.35;
 }
 
 .flow-connector {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: #777;
   font-weight: bold;
   flex-shrink: 0;
@@ -130,7 +130,7 @@
 }
 
 .loop-text {
-  font-size: 0.95rem; /* Αυξημένο */
+  font-size: clamp(1.4rem, 1vw, 1.6rem);
   color: #f5a623;
   font-weight: bold;
 }

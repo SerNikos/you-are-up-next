@@ -71,7 +71,37 @@
 }
 
 .expand-symbol {
-  font-size: 2rem;
+  position: relative;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  color: #eed39b;
+  filter: drop-shadow(0 0 0.3rem rgba(238, 211, 155, 0.35));
+}
+
+.expand-symbol::before,
+.expand-symbol::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5rem;
+  height: 0.24rem;
+  border-radius: 0.1rem;
+  clip-path: polygon(0 50%, 12% 0, 88% 0, 100% 50%, 88% 100%, 12% 100%);
+  background-color: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1.4, 0.36, 1),
+    width 0.35s ease;
+}
+
+.expand-symbol::after {
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(0.9);
+}
+
+.expand-symbol.open::after {
+  transform: translate(-50%, -50%) rotate(0deg) scaleX(1);
 }
 
 .accordion-answer {
@@ -81,16 +111,21 @@
   font-size: 1.6rem;
   line-height: 1.6;
   border-radius: 0 0 0.8rem 0.8rem;
-
-  /* animation */
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.4s ease,
+    padding 0.4s ease;
 }
 
 .accordion-answer.open {
-  max-height: 30rem; 
+  grid-template-rows: 1fr;
   padding: 1.6rem 2rem;
+}
+
+.accordion-answer-content {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .accordion-span {

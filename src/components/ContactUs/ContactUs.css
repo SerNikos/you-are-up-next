@@ -34,13 +34,13 @@
   z-index: 0;
 }
 
-.contact-us h2,
+.contact-us h1,
 .contact-us form {
   position: relative;
   z-index: 1;
 }
 
-.contact-us h2 {
+.contact-us h1 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2.8rem;
@@ -56,7 +56,7 @@ form {
 label {
   margin-bottom: 0.6rem;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   color: #cdcdcd;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -68,7 +68,7 @@ textarea {
   padding: 1.2rem 1.4rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.8rem;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-family: inherit;
   outline: none;
   background: rgba(255, 255, 255, 0.07);
@@ -97,7 +97,7 @@ button {
   border: none;
   padding: 1.4rem;
   border-radius: 0.8rem;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.05rem;
@@ -127,7 +127,7 @@ button:disabled {
 
 .invalid-error {
   color: #ff4d4d;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   margin-top: -1.4rem;
   margin-bottom: 1.4rem;
   min-height: 1.8rem; /* Keeps layout shifting stable when text pops up */
@@ -144,7 +144,7 @@ button:disabled {
     margin: 1rem;
   }
 
-  .contact-us h2 {
+  .contact-us h1 {
     font-size: 2.4rem;
   }
 }

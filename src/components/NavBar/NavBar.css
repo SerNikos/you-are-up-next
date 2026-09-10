@@ -3,14 +3,15 @@
    ========================================== */
 .navbar {
   background-color: #1f1f1f;
-  padding: 0 2rem;
-  height: 60px;
+  padding: 0 clamp(28px, 3vw, 48px);
+  height: clamp(78px, 5vw, 86px);
   display: flex;
   align-items: center;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   z-index: 1000;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
   box-sizing: border-box;
 
   /* Sticky Navbar στην κορυφή της σελίδας */
@@ -24,6 +25,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  min-width: 0;
   height: 100%;
 }
 
@@ -36,7 +38,7 @@
 
 .nav-logo {
   font-weight: bold;
-  font-size: 1.8rem;
+  font-size: clamp(2.1rem, 1.5vw, 3.4rem);
   color: #ff6b6b;
   white-space: nowrap;
   line-height: 1;
@@ -65,7 +67,7 @@
 
 .nav-item {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: clamp(1.7rem, 1.3vw, 2.3rem);
   cursor: pointer;
   transition: color 0.3s ease;
   line-height: 1;
@@ -100,7 +102,7 @@
   border-radius: 20px;
   color: #ffffff;
   padding: 0.4rem 0.9rem;
-  font-size: 1.1rem;
+  font-size: clamp(1.3rem, 1vw, 1.8rem);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -128,7 +130,7 @@
 }
 
 .voice-text {
-  font-size: 1.1rem;
+  font-size: inherit;
 }
 
 /* LANG BUTTON STYLE */
@@ -144,7 +146,7 @@
   border-radius: 20px;
   color: #ffffff;
   padding: 0.4rem 0.9rem;
-  font-size: 1.1rem;
+  font-size: clamp(1.3rem, 1vw, 1.8rem);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -193,7 +195,7 @@
   border: none;
   color: #ffffff;
   padding: 0.8rem 1.2rem;
-  font-size: 1.1rem;
+  font-size: clamp(1.3rem, 1vw, 1.8rem);
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -218,6 +220,25 @@
 .fi {
   font-size: 1.2rem;
   border-radius: 2px;
+}
+
+@media (min-width: 901px) {
+  .voice-btn,
+  .lang-btn {
+    height: 38px;
+  }
+
+  .voice-icon {
+    font-size: 1.6rem;
+  }
+
+  .globe-icon {
+    font-size: 1.5rem;
+  }
+
+  .arrow-icon {
+    font-size: 1rem;
+  }
 }
 
 /* HAMBURGER BUTTON */
@@ -253,10 +274,11 @@
 /* ==========================================
    MOBILE RESPONSIVE (MAX-WIDTH: 900px)
    ========================================== */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .navbar {
     padding: 0 1.5rem;
-    height: 60px;
+    height: 66px;
+    width: 100vw;
   }
 
   /* Κεντράρισμα του Logo σε Mobile mode */
@@ -264,6 +286,10 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .nav-logo {
+    font-size: 2.1rem;
   }
 
   .desktop-controls {
@@ -292,7 +318,7 @@
   .nav-list {
     display: none !important;
     position: absolute;
-    top: 60px;
+    top: 66px;
     left: 0;
     right: 0;
     width: 100%;
@@ -324,5 +350,19 @@
   .nav-item {
     font-size: 2.1rem;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .nav-logo {
+    font-size: 1.7rem;
+  }
+
+  .hamburger-btn {
+    font-size: 1.9rem;
   }
 }

@@ -2,17 +2,61 @@ body {
   background-color: rgb(21, 21, 21);
 }
 
-.characterCards{
-margin: 6rem
+.GameDescription {
+  position: relative;
+  padding: 1rem 2rem 0;
 }
 
-h2{
+/* ΠΑΝΩ ΓΡΑΜΜΗ */
+.GameDescription::before {
+  content: "";
+  display: block;
+  width: min(50vw, 500px);
+  height: 2px;
+  margin: 0 auto 2.5rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(221, 182, 112, 0.4) 15%,
+    rgba(238, 205, 142, 1) 50%,
+    rgba(221, 182, 112, 0.4) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(221, 182, 112, 0.5);
+}
+
+/* ΚΑΤΩ ΓΡΑΜΜΗ */
+.GameDescription::after {
+  content: "";
+  display: block;
+  width: min(35vw, 350px);
+  height: 2px;
+  margin: 2.5rem auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(221, 182, 112, 0.3) 15%,
+    rgba(238, 205, 142, 0.9) 50%,
+    rgba(221, 182, 112, 0.3) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(221, 182, 112, 0.4);
+}
+
+.characterCards {
+  position: relative;
+  margin: 4rem auto 6rem;
+  max-width: 1400px;
+}
+
+h2 {
   font-size: 2rem;
 }
 
-p{
+p {
   font-size: 1.5rem;
 }
-.header{
+
+.header {
   margin-bottom: 5rem;
 }

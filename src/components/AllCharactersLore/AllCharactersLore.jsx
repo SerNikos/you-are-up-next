@@ -88,7 +88,15 @@ export default function AllCharactersLore() {
 
     const element = document.querySelector(hash);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const navbar = document.querySelector(".navbar");
+      const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+      const scrollTop =
+        element.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
+
+      window.scrollTo({
+        top: Math.max(0, scrollTop),
+        behavior: "smooth",
+      });
     }
   }, [hash]);
 

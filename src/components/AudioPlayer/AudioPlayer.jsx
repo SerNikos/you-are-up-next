@@ -15,11 +15,11 @@ export default function AudioPlayer({
   const isDraggingRef = useRef(false);
   isDraggingRef.current = isDragging;
 
-  const triggerToggle = (value) => {
+  const triggerToggle = useCallback((value) => {
     if (typeof onToggle === "function") {
       onToggle(value);
     }
-  };
+  }, [onToggle]);
 
   useEffect(() => {
     const audio = new Audio(audioSrc);
@@ -46,7 +46,7 @@ export default function AudioPlayer({
       audio.removeEventListener("ended", handleEnded);
       audioRef.current = null;
     };
-  }, [audioSrc]);
+  }, [audioSrc, triggerToggle]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -60,7 +60,7 @@ export default function AudioPlayer({
     } else {
       audio.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, triggerToggle]);
 
   const updateAudioPosition = useCallback((clientX) => {
     const audio = audioRef.current;

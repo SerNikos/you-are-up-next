@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import "./Accordion.css";
 import { useTranslation } from "react-i18next";
+import scrollCloseSound from "../../assets/audio/sound effects/scroll close.mp3";
+import scrollOpenSound from "../../assets/audio/sound effects/scroll open.mp3";
+
+function playAccordionSound(isOpening) {
+  const sound = new Audio(isOpening ? scrollOpenSound : scrollCloseSound);
+  sound.volume = 0.7;
+  sound.play().catch(() => {});
+}
 
 export const Accordion = () => {
   const { t } = useTranslation();
   const [selected, setSelected] = useState(null);
 
   const toggle = (index) => {
-    setSelected(selected === index ? null : index);
+    const isOpening = selected !== index;
+    playAccordionSound(isOpening);
+    setSelected(isOpening ? index : null);
   };
 
   const data = [
@@ -58,9 +68,10 @@ export const Accordion = () => {
                 aria-controls={`faq-answer-${index}`}
               >
                 {faq.question}
-                <span className="expand-symbol">
-                  {selected === index ? "-" : "+"}
-                </span>
+                <span
+                  className={`expand-symbol ${selected === index ? "open" : ""}`}
+                  aria-hidden="true"
+                />
               </button>
 
               <div
@@ -71,7 +82,7 @@ export const Accordion = () => {
                 role="region"
                 aria-hidden={selected !== index}
               >
-                {faq.answer}
+                <div className="accordion-answer-content">{faq.answer}</div>
               </div>
             </li>
           ))}
