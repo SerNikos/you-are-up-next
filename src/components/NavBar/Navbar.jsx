@@ -113,15 +113,6 @@ function Navbar() {
       </div>
       <nav className="navbar">
         <div className="nav-container">
-          {/* LOGO */}
-          <Link
-            to={localizedLink("/")}
-            onClick={() => setMenuOpen(false)}
-            className="nav-logo-link"
-          >
-            <span className="nav-logo">{t("nav.title")}</span>
-          </Link>
-
           {/* NAVIGATION LINKS */}
           <ul className={`nav-list ${menuOpen ? "active" : ""}`}>
             <Link to={localizedLink("/")} onClick={() => setMenuOpen(false)}>
