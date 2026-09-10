@@ -114,8 +114,10 @@
 }
 
 .buy-box {
-  color: aliceblue;
-  background-color: #63080e;
+  color: #241812;
+  background:
+    linear-gradient(rgba(244, 224, 183, 0.18), rgba(244, 224, 183, 0.18)),
+    url("../../assets/useful-art/dialog-card.png") center / cover no-repeat;
   position: relative; /* relative για να λειτουργεί σωστά το absolute κουμπί X */
 
   /* Fluid padding αντί για το στατικό 20rem */
@@ -127,7 +129,7 @@
   text-align: center;
   border-radius: 1rem;
   font-size: clamp(2rem, 4vw, 3.5rem); /* Δυναμικό μέγεθος γραμματοσειράς */
-  box-shadow: 0 0 1.5rem rgb(229, 61, 61);
+  box-shadow: 0 0 1.5rem rgba(229, 180, 110, 0.65);
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -156,7 +158,7 @@
 }
 
 .x-btn {
-  background-color: #63080e;
+  background-color: rgba(54, 27, 18, 0.72);
   border: none;
   padding: 1.2rem 1.6rem;
   position: absolute; /* Κλειδώνει πάνω δεξιά ΜΕΣΑ στο buy-box */
@@ -172,6 +174,6 @@
 }
 
 .x-btn:hover {
-  background-color: white;
-  color: #63080e;
+  background-color: #f4e0b7;
+  color: #361b12;
 }

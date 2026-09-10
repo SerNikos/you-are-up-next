@@ -2,11 +2,29 @@ import "./GameDescription.css";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Trans, useTranslation } from "react-i18next";
+import scrollCloseSound from "../../assets/audio/sound effects/scroll close.mp3";
+import scrollOpenSound from "../../assets/audio/sound effects/scroll open.mp3";
+
+function playModalSound(soundSource) {
+  const sound = new Audio(soundSource);
+  sound.volume = 0.7;
+  sound.play().catch(() => {});
+}
 
 export default function GameDescription() {
   const { t } = useTranslation();
   const [buy, setBuy] = useState(false);
   const modalRoot = document.getElementById("buy-modal");
+
+  const openModal = () => {
+    playModalSound(scrollOpenSound);
+    setBuy(true);
+  };
+
+  const closeModal = () => {
+    playModalSound(scrollCloseSound);
+    setBuy(false);
+  };
 
   return (
     <div className="game-description">
@@ -18,13 +36,13 @@ export default function GameDescription() {
         {t("home.description_part2")}
       </p>
 
-      <button className="buy-button" onClick={() => setBuy(true)}>
+      <button className="buy-button" onClick={openModal}>
         {t("home.buy_button")}
       </button>
 
       {buy &&
         createPortal(
-          <div className="modal-overlay" onClick={() => setBuy(false)}>
+          <div className="modal-overlay" onClick={closeModal}>
             <div className="buy-box" onClick={(e) => e.stopPropagation()}>
               <Trans
                 i18nKey="home.modal_kickstarter"
@@ -37,7 +55,7 @@ export default function GameDescription() {
                   />,
                 ]}
               />
-              <button className="x-btn" onClick={() => setBuy(false)}>
+              <button className="x-btn" onClick={closeModal}>
                 X
               </button>
             </div>
