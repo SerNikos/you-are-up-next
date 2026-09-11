@@ -106,6 +106,14 @@ p {
 }
 
 @media (max-width: 1000px) {
+  body {
+    background-attachment: scroll, scroll, scroll;
+  }
+
+  body::before {
+    position: absolute;
+  }
+
   html {
     font-size: 50%;
   }
