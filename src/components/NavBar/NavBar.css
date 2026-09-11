@@ -438,18 +438,30 @@
     margin-left: auto;
   }
 
+  /* Mobile Controls Layout */
   .mobile-controls-item {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     padding-top: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
   }
 
-  /* Mobile menu: solid background keeps page content hidden behind it */
+  /* Mobile Language Dropdown Positioning */
+  .mobile-controls-item .lang-menu-container {
+    position: relative;
+  }
+
+  .mobile-controls-item .lang-dropdown {
+    top: calc(100% + 6px);
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  /* Mobile menu container: Allows expanding content cleanly */
   .nav-list {
     display: flex !important;
     position: absolute;
@@ -474,14 +486,16 @@
     transform-origin: top;
     visibility: hidden;
     transition:
-      max-height 0.3s ease,
-      opacity 0.2s ease,
-      transform 0.3s ease,
-      visibility 0.3s ease;
+      max-height 0.35s ease,
+      opacity 0.25s ease,
+      transform 0.35s ease,
+      visibility 0.35s ease;
   }
 
+  /* Active State fixes for Mobile: allows dropdown expansion without clipping */
   .nav-list.active {
-    max-height: 32rem;
+    max-height: 85vh;
+    overflow: visible;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
