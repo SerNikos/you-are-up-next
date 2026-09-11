@@ -87,17 +87,33 @@ export default function AllCharactersLore() {
     if (!hash) return;
 
     const element = document.querySelector(hash);
-    if (element) {
-      const navbar = document.querySelector(".navbar");
-      const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
-      const scrollTop =
-        element.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
+    if (!element) return;
 
-      window.scrollTo({
-        top: Math.max(0, scrollTop),
-        behavior: "smooth",
+    // Use native scrollIntoView so CSS `scroll-margin-top` controls precise alignment
+    const scrollToCharacter = () => {
+      element.scrollIntoView({
+        behavior: "auto",
+        block: "start",
       });
+    };
+
+    let resizeTimer;
+    const resizeObserver = new ResizeObserver(() => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(scrollToCharacter, 80);
+    });
+
+    const fullDescContainer = document.querySelector(".fullDescriptions");
+    if (fullDescContainer) {
+      resizeObserver.observe(fullDescContainer);
     }
+
+    requestAnimationFrame(scrollToCharacter);
+
+    return () => {
+      window.clearTimeout(resizeTimer);
+      resizeObserver.disconnect();
+    };
   }, [hash]);
 
   const handleCardClick = (id) => {

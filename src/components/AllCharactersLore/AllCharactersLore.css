@@ -42,6 +42,7 @@ body {
   font-size: 1rem;
   margin-bottom: 12vw; /* Fluid spacing between sections that scales with window size */
   padding: 6rem 8rem 4rem; /* Adds space inside the gold character frame */
+  scroll-margin-top: 8.5rem; /* INCREASED OFFSET: Pushes section lower below navbar to match Image 2 */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; /* Allows text to break elegantly below the image on small screens */
@@ -307,6 +308,7 @@ body {
   #notferatu {
     padding-left: 1rem;
     padding-right: 1rem;
+    scroll-margin-top: 5.5rem; /* Balanced scroll offset for smaller screens */
     flex-direction: column; /* Switches rows to neat stacked columns */
     align-items: center; /* Balances elements center stage */
     text-align: center; /* Aligns text center cleanly for smaller layouts */
