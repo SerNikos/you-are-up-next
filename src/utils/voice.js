@@ -40,6 +40,8 @@ const chunkText = (text, maxLength = 180) => {
   return chunks;
 };
 
+let speechSession = 0;
+
 export const toggleSpeech = (i18nLanguage = "el") => {
   const isGreek = i18nLanguage && i18nLanguage.startsWith("el");
 
@@ -65,6 +67,7 @@ export const toggleSpeech = (i18nLanguage = "el") => {
 
   // 3. Toggle Play / Pause: Καθαρίζουμε ΟΛΗ την ουρά ομιλίας αν παίζει
   if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+    speechSession += 1;
     window.speechSynthesis.cancel();
     return false;
   }
@@ -100,8 +103,12 @@ export const toggleSpeech = (i18nLanguage = "el") => {
     v.lang.startsWith(isGreek ? "el" : "en"),
   );
 
-  // 7. Προσθέτουμε κάθε κομμάτι στην ουρά του browser
-  textChunks.forEach((chunk) => {
+  // 7. Παίζουμε ένα chunk τη φορά για να αποφεύγουμε καθυστερήσεις στην ουρά.
+  const currentSession = ++speechSession;
+  const speakChunk = (index) => {
+    if (currentSession !== speechSession || index >= textChunks.length) return;
+
+    const chunk = textChunks[index];
     const utterance = new SpeechSynthesisUtterance(chunk);
     utterance.lang = targetLang;
     if (selectedVoice) {
@@ -109,8 +116,12 @@ export const toggleSpeech = (i18nLanguage = "el") => {
     }
     utterance.rate = 0.95; // Ήπιος ρυθμός
 
+    utterance.onend = () => speakChunk(index + 1);
+    utterance.onerror = () => speakChunk(index + 1);
     window.speechSynthesis.speak(utterance);
-  });
+  };
+
+  speakChunk(0);
 
   return true;
 };

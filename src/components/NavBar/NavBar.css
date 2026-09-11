@@ -449,18 +449,16 @@
     width: 100%;
   }
 
-  /* Mobile menu: Backdrop Blur & Clean Spacing */
+  /* Mobile menu: solid background keeps page content hidden behind it */
   .nav-list {
-    display: none !important;
+    display: flex !important;
     position: absolute;
     top: 56px;
     left: -1.5rem;
     right: auto;
     width: calc(100% + 3rem);
     height: auto;
-    background-color: rgba(14, 13, 23, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: #0e0d17;
     flex-direction: column;
     padding: 1rem 0 1.8rem 0;
     gap: 0;
@@ -468,10 +466,26 @@
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.85);
     z-index: 9999;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.8rem);
+    transform-origin: top;
+    visibility: hidden;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.2s ease,
+      transform 0.3s ease,
+      visibility 0.3s ease;
   }
 
   .nav-list.active {
-    display: flex !important;
+    max-height: 32rem;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
   }
 
   /* Touch Target 48px Ergonomics */

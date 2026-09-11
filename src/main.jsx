@@ -2,6 +2,7 @@ import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
+import websiteBackground from "./assets/useful-art/bg_website.png";
 
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -10,6 +11,14 @@ import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 import AppReveal from "./components/AppReveal/AppReveal.jsx";
 
 const rootElement = document.getElementById("root");
+
+const backgroundPreload = document.createElement("link");
+backgroundPreload.rel = "preload";
+backgroundPreload.as = "image";
+backgroundPreload.href = websiteBackground;
+backgroundPreload.fetchPriority = "high";
+document.head.appendChild(backgroundPreload);
+
 rootElement.classList.add("app-loading");
 
 function lazyWithReloadRetry(importer) {
