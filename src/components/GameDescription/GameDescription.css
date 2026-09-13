@@ -141,6 +141,12 @@
   z-index: 1;
 }
 
+.buy-box-art-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
 .buy-box-art {
   position: absolute;
   inset: 0;

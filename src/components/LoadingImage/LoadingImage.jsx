@@ -1,7 +1,39 @@
+import { decode } from "blurhash";
 import { useEffect, useRef, useState } from "react";
 import "./LoadingImage.css";
+import { getBlurHash } from "../../utils/blurhashes.js";
 
 const MINIMUM_LOADING_TIME = 150;
+const BLURHASH_SIZE = 32;
+const EMPTY_IMAGE_SRC =
+  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
+function BlurHashPlaceholder({ hash }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    const pixels = decode(hash, BLURHASH_SIZE, BLURHASH_SIZE);
+    const imageData = context.createImageData(BLURHASH_SIZE, BLURHASH_SIZE);
+    imageData.data.set(pixels);
+    context.putImageData(imageData, 0, 0);
+  }, [hash]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="loading-image-blurhash"
+      width={BLURHASH_SIZE}
+      height={BLURHASH_SIZE}
+      aria-hidden="true"
+    />
+  );
+}
 
 export default function LoadingImage({
   alt,
@@ -18,6 +50,7 @@ export default function LoadingImage({
   const [isVisible, setIsVisible] = useState(loading !== "lazy");
   const wrapperRef = useRef(null);
   const loadingTimer = useRef(null);
+  const blurHash = getBlurHash(src);
 
   useEffect(() => {
     if (loading !== "lazy" || !wrapperRef.current) return undefined;
@@ -98,6 +131,8 @@ export default function LoadingImage({
   }, [isVisible, src]);
 
   const handleLoad = () => {
+    if (!imageSrc || imageSrc === EMPTY_IMAGE_SRC) return;
+
     loadingTimer.current = window.setTimeout(() => {
       setProgress(100);
       setIsLoading(false);
@@ -105,6 +140,8 @@ export default function LoadingImage({
   };
 
   const handleError = () => {
+    if (loadingTimer.current) window.clearTimeout(loadingTimer.current);
+    setImageSrc(EMPTY_IMAGE_SRC);
     setProgress(100);
     setIsLoading(false);
   };
@@ -115,6 +152,7 @@ export default function LoadingImage({
       className={`loading-image ${isLoading ? "is-loading" : ""} ${wrapperClassName}`.trim()}
       aria-busy={isLoading}
     >
+      {isLoading && blurHash && <BlurHashPlaceholder hash={blurHash} />}
       {isLoading && (
         <span
           className="loading-image-progress"
@@ -136,7 +174,7 @@ export default function LoadingImage({
       )}
       <img
         {...imageProps}
-        src={imageSrc || undefined}
+        src={imageSrc || EMPTY_IMAGE_SRC}
         alt={alt}
         className={className}
         loading={loading}

@@ -3,7 +3,7 @@
 @font-face {
   font-family: "Getting";
   src: url("./assets/fonts/Getting-Regular2.otf") format("opentype");
-  font-display: swap;
+  font-display: block;
 }
 
 * {
@@ -86,6 +86,7 @@ body::before {
   min-height: 100vh;
   place-items: center;
   color: #f5a623;
+  font-family: "Getting";
   font-size: 1.6rem;
 }
 

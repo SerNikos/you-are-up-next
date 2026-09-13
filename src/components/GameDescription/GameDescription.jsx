@@ -5,6 +5,7 @@ import { Trans, useTranslation } from "react-i18next";
 import scrollCloseSound from "../../assets/audio/sound effects/scroll close.mp3";
 import scrollOpenSound from "../../assets/audio/sound effects/scroll open.mp3";
 import dialogCard from "../../assets/useful-art/dialog-card.png";
+import LoadingImage from "../LoadingImage/LoadingImage";
 
 function playModalSound(soundSource) {
   const sound = new Audio(soundSource);
@@ -45,11 +46,13 @@ export default function GameDescription() {
         createPortal(
           <div className="modal-overlay" onClick={closeModal}>
             <div className="buy-box" onClick={(e) => e.stopPropagation()}>
-              <img
+              <LoadingImage
                 className="buy-box-art"
                 src={dialogCard}
                 alt=""
                 aria-hidden="true"
+                loading="eager"
+                wrapperClassName="buy-box-art-wrapper"
               />
               <p className="buy-box-message">
                 <Trans

@@ -386,6 +386,7 @@ export default function Rules() {
                   src={step3Image}
                   alt="Draw Phase step showing Misero taking a card from the board"
                   className="rules-img"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -413,6 +414,7 @@ export default function Rules() {
                   src={step4Image}
                   alt="Board after all players have drawn their card in queue order"
                   className="rules-img"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -487,6 +489,7 @@ export default function Rules() {
                     src={step5Image}
                     alt="Showing a player playing an Action card during the Action Phase"
                     className="rules-img"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -506,6 +509,7 @@ export default function Rules() {
                     src={step6Image}
                     alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
                     className="rules-img"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -567,6 +571,7 @@ export default function Rules() {
                     src={step45Image}
                     alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
                     className="rules-img"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -586,6 +591,7 @@ export default function Rules() {
                     src={img1132Image}
                     alt="Character cards flipped over showing their death state illustrations"
                     className="rules-img"
+                    loading="eager"
                   />
                 </div>
               </div>

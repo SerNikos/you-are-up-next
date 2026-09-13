@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "generate:blurhashes": "node scripts/generate-blurhashes.mjs",
+    "prebuild": "npm run generate:blurhashes",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -12,6 +14,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@vercel/analytics": "^1.5.0",
+    "blurhash": "^2.0.5",
     "flag-icons": "^7.5.0",
     "i18next": "^26.4.0",
     "i18next-browser-languagedetector": "^8.2.1",
@@ -33,6 +36,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "sharp": "^0.35.4",
     "vite": "^7.1.7",
     "vite-prerender-plugin": "^0.5.13"
   }

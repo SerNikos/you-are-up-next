@@ -4,6 +4,7 @@ import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
 import websiteBackground from "./assets/useful-art/bg_website.png";
 import dialogCard from "./assets/useful-art/dialog-card.png";
+import gettingFont from "./assets/fonts/Getting-Regular2.otf";
 
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -26,6 +27,14 @@ dialogCardPreload.as = "image";
 dialogCardPreload.href = dialogCard;
 dialogCardPreload.fetchPriority = "high";
 document.head.appendChild(dialogCardPreload);
+
+const gettingFontPreload = document.createElement("link");
+gettingFontPreload.rel = "preload";
+gettingFontPreload.as = "font";
+gettingFontPreload.type = "font/otf";
+gettingFontPreload.crossOrigin = "anonymous";
+gettingFontPreload.href = gettingFont;
+document.head.appendChild(gettingFontPreload);
 
 rootElement.classList.add("app-loading");
 
