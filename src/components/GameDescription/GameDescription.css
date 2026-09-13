@@ -114,23 +114,56 @@
 
 .buy-box {
   color: #241812;
-  background:
-    linear-gradient(rgba(244, 224, 183, 0.18), rgba(244, 224, 183, 0.18)),
-    url("../../assets/useful-art/dialog-card.png") center / cover no-repeat;
+  background: #d4ae91;
   position: relative; /* relative για να λειτουργεί σωστά το absolute κουμπί X */
 
-  /* Fluid padding αντί για το στατικό 20rem */
-  padding: clamp(5rem, 12vw, 8rem) clamp(2rem, 6vw, 6rem);
-  width: 90%;
+  width: min(90%, 550px, calc((100dvh - 2rem) * 1.56));
+  aspect-ratio: 1272 / 815;
   max-width: 550px; /* Όμορφο μέγιστο πλάτος για desktop/tablets */
+  padding: 0;
 
-  display: block;
+  display: grid;
+  place-items: center;
   text-align: center;
   border-radius: 1rem;
-  font-size: clamp(2rem, 4vw, 3.5rem); /* Δυναμικό μέγεθος γραμματοσειράς */
+  font-size: clamp(16px, 3.5vw, 35px);
   box-shadow: 0 0 1.5rem rgba(229, 180, 110, 0.65);
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.buy-box::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgba(244, 224, 183, 0.18);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.buy-box-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.buy-box-message {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(16px, 4.5vw, 50px) clamp(14px, 5vw, 40px);
+  margin: 0;
+  font-size: inherit;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .instagram-link {
@@ -167,6 +200,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
+  z-index: 3;
   transition: all 0.2s ease-in-out;
   border-bottom-left-radius: 0.8rem;
   cursor: pointer;
@@ -176,3 +210,4 @@
   background-color: #f4e0b7;
   color: #361b12;
 }
+

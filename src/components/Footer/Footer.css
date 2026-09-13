@@ -3,9 +3,7 @@ body {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  flex-shrink: 0;
   padding: 1.5rem;
   background-color: #b91a27e9;
   width: 100%;

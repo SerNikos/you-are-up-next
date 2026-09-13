@@ -93,7 +93,8 @@
 }
 
 .accordion-answer {
-  background-color: #f0f8ff;
+  background: #f0f8ff url("../../assets/useful-art/papirus texture.jpg") center /
+    cover no-repeat;
   color: #000;
   padding: 0 2rem;
   font-size: 1.6rem;

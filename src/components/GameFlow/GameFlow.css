@@ -42,6 +42,10 @@
   min-height: 130px; /* Αυξημένο ελάχιστο ύψος για τα μεγαλύτερα γράμματα */
   box-sizing: border-box;
   position: relative;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
 }
 
 .flow-card:hover {
@@ -49,6 +53,17 @@
   border-color: #f5a623;
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(245, 166, 35, 0.15);
+}
+
+.flow-card:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.flow-card[aria-expanded="true"] {
+  background-color: #2e2e2e;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.2);
 }
 
 /* Χρώματα πάνω πλευράς (Accent borders) */

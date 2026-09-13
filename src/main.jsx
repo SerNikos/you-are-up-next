@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
 import websiteBackground from "./assets/useful-art/bg_website.png";
+import dialogCard from "./assets/useful-art/dialog-card.png";
 
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -18,6 +19,13 @@ backgroundPreload.as = "image";
 backgroundPreload.href = websiteBackground;
 backgroundPreload.fetchPriority = "high";
 document.head.appendChild(backgroundPreload);
+
+const dialogCardPreload = document.createElement("link");
+dialogCardPreload.rel = "preload";
+dialogCardPreload.as = "image";
+dialogCardPreload.href = dialogCard;
+dialogCardPreload.fetchPriority = "high";
+document.head.appendChild(dialogCardPreload);
 
 rootElement.classList.add("app-loading");
 

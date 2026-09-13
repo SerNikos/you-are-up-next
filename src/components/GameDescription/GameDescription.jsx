@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { Trans, useTranslation } from "react-i18next";
 import scrollCloseSound from "../../assets/audio/sound effects/scroll close.mp3";
 import scrollOpenSound from "../../assets/audio/sound effects/scroll open.mp3";
+import dialogCard from "../../assets/useful-art/dialog-card.png";
 
 function playModalSound(soundSource) {
   const sound = new Audio(soundSource);
@@ -44,17 +45,25 @@ export default function GameDescription() {
         createPortal(
           <div className="modal-overlay" onClick={closeModal}>
             <div className="buy-box" onClick={(e) => e.stopPropagation()}>
-              <Trans
-                i18nKey="home.modal_kickstarter"
-                components={[
-                  <a
-                    className="instagram-link"
-                    href="https://www.instagram.com/yaun_game"
-                    target="_blank"
-                    rel="noreferrer"
-                  />,
-                ]}
+              <img
+                className="buy-box-art"
+                src={dialogCard}
+                alt=""
+                aria-hidden="true"
               />
+              <p className="buy-box-message">
+                <Trans
+                  i18nKey="home.modal_kickstarter"
+                  components={[
+                    <a
+                      className="instagram-link"
+                      href="https://www.instagram.com/yaun_game"
+                      target="_blank"
+                      rel="noreferrer"
+                    />,
+                  ]}
+                />
+              </p>
               <button className="x-btn" onClick={closeModal}>
                 X
               </button>
