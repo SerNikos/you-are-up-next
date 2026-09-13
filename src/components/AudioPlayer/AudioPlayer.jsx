@@ -14,12 +14,14 @@ export default function AudioPlayer({
 
   const isDraggingRef = useRef(false);
   isDraggingRef.current = isDragging;
+  const onToggleRef = useRef(onToggle);
+  onToggleRef.current = onToggle;
 
   const triggerToggle = useCallback((value) => {
-    if (typeof onToggle === "function") {
-      onToggle(value);
+    if (typeof onToggleRef.current === "function") {
+      onToggleRef.current(value);
     }
-  }, [onToggle]);
+  }, []);
 
   useEffect(() => {
     const audio = new Audio(audioSrc);
