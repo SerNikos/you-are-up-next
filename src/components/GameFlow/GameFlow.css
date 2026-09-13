@@ -49,8 +49,11 @@
 .flow-node .rules-phase-panel {
   display: grid;
   grid-template-rows: 0fr;
+  margin-top: 0;
   overflow: hidden;
-  transition: grid-template-rows 0.35s ease-out;
+  transition:
+    grid-template-rows 0.35s ease-out,
+    margin-top 0.35s ease-out;
 }
 
 .flow-node .rules-phase-panel.is-open {
@@ -382,5 +385,9 @@
     align-self: center;
     margin: 4px 0;
     font-size: 1rem;
+  }
+
+  .flow-node .rules-phase-panel.is-open {
+    margin-top: 12px;
   }
 }

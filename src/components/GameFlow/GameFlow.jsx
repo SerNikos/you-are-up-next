@@ -11,19 +11,62 @@ export default function GameFlow({ activePhase, onPhaseToggle, children }) {
   const phasePanels = React.Children.toArray(children);
 
   useLayoutEffect(() => {
-    if (!pendingScrollPosition.current) {
+    const pendingPosition = pendingScrollPosition.current;
+
+    if (!pendingPosition) {
       return;
     }
 
-    const { left, top } = pendingScrollPosition.current;
-    window.scrollTo(left, top);
+    const { left, top, anchorPhase, anchorTop } = pendingPosition;
+    const phaseCard = anchorPhase
+      ? document.querySelector(
+          `.flow-node[data-phase="${anchorPhase}"] .flow-card`,
+        )
+      : null;
+
+    if (!phaseCard || anchorTop === null) {
+      window.scrollTo(left, top);
+      pendingScrollPosition.current = null;
+      return;
+    }
+
+    const keepPhaseCardInPlace = () => {
+      const scrollDelta = phaseCard.getBoundingClientRect().top - anchorTop;
+
+      if (Math.abs(scrollDelta) > 0.5) {
+        window.scrollTo(window.scrollX, window.scrollY + scrollDelta);
+      }
+    };
+
+    const transitionEnd = performance.now() + 400;
+    let frameId;
+    const preservePhaseCardPosition = () => {
+      keepPhaseCardInPlace();
+
+      if (performance.now() < transitionEnd) {
+        frameId = requestAnimationFrame(preservePhaseCardPosition);
+      }
+    };
+
+    keepPhaseCardInPlace();
+    frameId = requestAnimationFrame(preservePhaseCardPosition);
+
     pendingScrollPosition.current = null;
+
+    return () => cancelAnimationFrame(frameId);
   }, [activePhase]);
 
   const handlePhaseToggle = (phase) => {
+    const phaseCard = document.querySelector(
+      `.flow-node[data-phase="${phase}"] .flow-card`,
+    );
+    const isPhaseSwitch = activePhase && activePhase !== phase;
+
     pendingScrollPosition.current = {
       left: window.scrollX,
       top: window.scrollY,
+      anchorPhase: isPhaseSwitch ? phase : null,
+      anchorTop: isPhaseSwitch ? phaseCard?.getBoundingClientRect().top : null,
     };
 
     if (phase === cuePhase) {
