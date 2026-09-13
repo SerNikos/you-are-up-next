@@ -51,6 +51,15 @@
   cursor: pointer;
   padding: 0 0.5rem;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+}
+
+.soundwave-wrapper:focus,
+.soundwave-wrapper:focus-visible {
+  outline: none;
 }
 
 .soundwave-bars {
