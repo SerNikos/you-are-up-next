@@ -28,6 +28,23 @@
   box-sizing: border-box;
 }
 
+.game-flow-details {
+  text-align: left;
+}
+
+.game-flow-details.has-open-phase {
+  margin-top: 20px;
+}
+
+.game-flow-details .rules-phase-panel.is-open {
+  margin-bottom: 0;
+}
+
+.game-flow-details .rules-phase-section {
+  background-color: #202020;
+  border-color: #4a3c24;
+}
+
 .flow-card {
   flex: 1;
   display: flex;
@@ -69,6 +86,44 @@
 /* Χρώματα πάνω πλευράς (Accent borders) */
 .phase-1-card {
   border-top: 4px solid #f1c40f;
+}
+
+.flow-click-cue {
+  position: absolute;
+  inset: -7px;
+  border: 2px solid currentColor;
+  border-radius: 8px;
+  pointer-events: none;
+  animation: flow-cue-pulse 1.7s ease-in-out infinite;
+}
+
+.phase-1-card .flow-click-cue {
+  color: #f1c40f;
+}
+
+.phase-2-card .flow-click-cue {
+  color: #3498db;
+}
+
+.phase-3-card .flow-click-cue {
+  color: #e74c3c;
+}
+
+.win-card .flow-click-cue {
+  color: #2ecc71;
+}
+
+.flow-click-cue::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: translateX(-50%) rotate(45deg);
+  background-color: #1a1a1a;
 }
 .phase-2-card {
   border-top: 4px solid #3498db;
@@ -156,6 +211,18 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes flow-cue-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.03);
   }
 }
 

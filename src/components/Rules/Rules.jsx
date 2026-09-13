@@ -351,7 +351,7 @@ export default function Rules() {
           </div>
         </section>
         {/* Game Flow Component */}
-        <GameFlow activePhase={activePhase} onPhaseToggle={togglePhase} />
+        <GameFlow activePhase={activePhase} onPhaseToggle={togglePhase}>
         {/* Phase 1: Draw Phase with id */}
         <div
           className={`rules-phase-panel ${
@@ -618,6 +618,7 @@ export default function Rules() {
             />
           </section>
         </div>
+        </GameFlow>
         {/* Glossary of Terms / Λεξικό Όρων */}
         <section className="rules-section glossary-section">
           <h2 className="rules-title">{t("glossary.title")}</h2>
