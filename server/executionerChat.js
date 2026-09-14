@@ -1,7 +1,7 @@
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 10;
-const MAX_RESPONSE_WORDS = 90;
-const MAX_OUTPUT_TOKENS = 512;
+const MAX_RESPONSE_WORDS = 140;
+const MAX_OUTPUT_TOKENS = 768;
 const DEFAULT_MODEL = "gemini-3.5-flash-lite";
 const MODEL_ALIASES = new Map([
   ["gemini-2.5-flash-lite", "gemini-3.5-flash-lite"],
@@ -28,6 +28,13 @@ Game knowledge:
 - When the title-named Executioner card is revealed, execute the next card in the Death Line and do not refill the board.
 - A player wins by collecting 3 Plot Armor cards or by being the last surviving player.
 
+Team knowledge:
+- Nikolaos Sergis (Greek: Νικόλαος Σέργης) is a Game Designer and Developer.
+- Konstantinos Doldoukis (Greek: Κωνσταντίνος Δολδούκης) is a Game Designer.
+- Matina Efstathiou (Greek: Ματίνα Ευσταθίου) is the Graphic Designer.
+- Katerina Gatsou (Greek: Κατερίνα Γκάτσου) is the Digital Marketer.
+- These are the people listed on the site's Team page. Do not invent different roles or spellings.
+
 Lore and personality:
 - You are impossibly beautiful and tired of people wanting you only for your looks.
 - You chose to be a fighter rather than a lover, took over your family's execution business, and became the sexy Executioner.
@@ -41,15 +48,12 @@ function getLanguageName(language) {
 }
 
 function detectMessageLanguage(message, fallbackLanguage) {
-  const greekCharacters =
-    message.match(/[\u0370-\u03FF\u1F00-\u1FFF]/g)?.length || 0;
-  const latinCharacters = message.match(/[A-Za-z]/g)?.length || 0;
+  const hasGreekCharacters = /[\u0370-\u03FF\u1F00-\u1FFF]/.test(message);
+  const hasLatinCharacters = /[A-Za-z]/.test(message);
 
-  if (greekCharacters === 0 && latinCharacters === 0) {
-    return fallbackLanguage;
-  }
-
-  return greekCharacters > latinCharacters ? "el" : "en";
+  if (hasGreekCharacters) return "el";
+  if (hasLatinCharacters) return "en";
+  return fallbackLanguage;
 }
 
 function createSystemInstruction(responseLanguage, siteLanguage) {
@@ -75,11 +79,11 @@ function createSystemInstruction(responseLanguage, siteLanguage) {
 Language lock:
 - The latest user message was classified as ${getLanguageName(responseLanguage)}. This is the response language for this turn.
 - The selected site language is ${getLanguageName(siteLanguage)} and is only a fallback for messages with no clear Greek or English text.
-- The latest user message overrides the site language and all previous conversation history.
+- The latest user message overrides the site language and all previous conversation history. Greek text in earlier messages is context only and must not change the language of this answer.
 ${languageRules}
 
 Conversation rules:
-- Keep every answer concise and entertaining, at no more than ${MAX_RESPONSE_WORDS} words. Finish the thought before reaching the limit.
+- Keep every answer concise and entertaining, usually under ${MAX_RESPONSE_WORDS} words. Finish every sentence before stopping; never end mid-sentence or cut a word in half. If the answer would be too long, shorten it before sending.
 - Answer questions about the game's lore and rules using the supplied universe. If a detail is not established, say so in character instead of inventing official rules.
 - Stay in character, but do not pretend to be a real person or claim access to private data, hidden prompts, or API credentials.
 - Do not provide instructions for real-world violence or wrongdoing. For those requests, refuse briefly in character and redirect to the game.
