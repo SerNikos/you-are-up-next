@@ -14,6 +14,8 @@ export default function ExecutionerChat() {
   ]);
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(null);
   const inputRef = useRef(null);
   const messagesRef = useRef(null);
 
@@ -22,11 +24,38 @@ export default function ExecutionerChat() {
   }, [isOpen]);
 
   useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return undefined;
+
+    const updateViewport = () => {
+      const inputHasFocus = document.activeElement === inputRef.current;
+      const nextKeyboardOffset =
+        isOpen && inputHasFocus
+          ? Math.max(
+              0,
+              window.innerHeight - viewport.height - viewport.offsetTop,
+            )
+          : 0;
+
+      setKeyboardOffset(nextKeyboardOffset);
+      setViewportHeight(viewport.height);
+    };
+
+    updateViewport();
+    viewport.addEventListener("resize", updateViewport);
+    viewport.addEventListener("scroll", updateViewport);
+    window.addEventListener("resize", updateViewport);
+
+    return () => {
+      viewport.removeEventListener("resize", updateViewport);
+      viewport.removeEventListener("scroll", updateViewport);
+      window.removeEventListener("resize", updateViewport);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     setMessages((currentMessages) => {
-      if (
-        currentMessages.length !== 1 ||
-        currentMessages[0].role !== "model"
-      ) {
+      if (currentMessages.length !== 1 || currentMessages[0].role !== "model") {
         return currentMessages;
       }
 
@@ -100,7 +129,15 @@ export default function ExecutionerChat() {
   };
 
   return (
-    <div className="executioner-chat">
+    <div
+      className="executioner-chat"
+      style={{
+        "--executioner-keyboard-offset": `${keyboardOffset}px`,
+        "--executioner-viewport-height": viewportHeight
+          ? `${viewportHeight}px`
+          : undefined,
+      }}
+    >
       {isOpen && (
         <section
           className="executioner-chat-panel"
