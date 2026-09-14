@@ -14,7 +14,7 @@ export default async function handler(request, response) {
   try {
     const result = await createExecutionerChatResponse({
       apiKey: globalThis.process.env.GEMINI_API_KEY,
-      model: globalThis.process.env.GEMINI_MODEL || "gemini-3.6-flash",
+      model: globalThis.process.env.GEMINI_MODEL || "gemini-3.5-flash-lite",
       body: request.body,
     });
 

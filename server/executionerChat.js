@@ -2,7 +2,15 @@ const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 10;
 const MAX_RESPONSE_WORDS = 90;
 const MAX_OUTPUT_TOKENS = 512;
-const DEFAULT_MODEL = "gemini-3.6-flash";
+const DEFAULT_MODEL = "gemini-3.5-flash-lite";
+const MODEL_ALIASES = new Map([
+  ["gemini-2.5-flash-lite", "gemini-3.5-flash-lite"],
+]);
+
+function resolveModel(model) {
+  const configuredModel = typeof model === "string" ? model.trim() : "";
+  return MODEL_ALIASES.get(configuredModel) || configuredModel || DEFAULT_MODEL;
+}
 
 const EXECUTIONER_LORE = `
 You are the Executioner from the fictional board game You Are Up Next.
@@ -14,6 +22,7 @@ Game identity and canon:
 
 Game knowledge:
 - The game is a medieval strategy card game about survival, tactics, betrayal, and deciding who reaches the end of the Death Line.
+- All players start the first round of the game with 3 cards in their hand.
 - The three phases are Draw, Action, and Executioner's Phase. In the Executioner's Phase, reveal the top Executioner's Deck card and resolve it immediately.
 - The Executioner controls whether the board is refilled or the next card in the Death Line is executed. Peasants are executed before player characters.
 - When the title-named Executioner card is revealed, execute the next card in the Death Line and do not refill the board.
@@ -109,10 +118,15 @@ export async function createExecutionerChatResponse({
   model = DEFAULT_MODEL,
   body,
 }) {
+  const resolvedModel = resolveModel(model);
+
   if (!apiKey) {
     return {
       status: 500,
-      body: { error: "The Executioner is unavailable because the chat key is not configured." },
+      body: {
+        error:
+          "The Executioner is unavailable because the chat key is not configured.",
+      },
     };
   }
 
@@ -124,7 +138,9 @@ export async function createExecutionerChatResponse({
   if (message.length > MAX_MESSAGE_LENGTH) {
     return {
       status: 400,
-      body: { error: `Keep your message under ${MAX_MESSAGE_LENGTH} characters.` },
+      body: {
+        error: `Keep your message under ${MAX_MESSAGE_LENGTH} characters.`,
+      },
     };
   }
 
@@ -134,7 +150,7 @@ export async function createExecutionerChatResponse({
     ...normalizeHistory(body?.history),
     { role: "user", parts: [{ text: message }] },
   ];
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(resolvedModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
   let response;
   try {
@@ -143,16 +159,18 @@ export async function createExecutionerChatResponse({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         system_instruction: {
-          parts: [{ text: createSystemInstruction(responseLanguage, siteLanguage) }],
+          parts: [
+            { text: createSystemInstruction(responseLanguage, siteLanguage) },
+          ],
         },
         contents,
         generationConfig: {
           temperature: 0.85,
           maxOutputTokens: MAX_OUTPUT_TOKENS,
-          ...(model.startsWith("gemini-3") && {
+          ...(resolvedModel.startsWith("gemini-3") && {
             thinkingConfig: {
               thinkingLevel:
-                model === "gemini-3.6-flash" ? "minimal" : "low",
+                resolvedModel === "gemini-3.6-flash" ? "minimal" : "low",
             },
           }),
         },
@@ -161,7 +179,9 @@ export async function createExecutionerChatResponse({
   } catch {
     return {
       status: 502,
-      body: { error: "The Executioner's line is noisy. Try again in a moment." },
+      body: {
+        error: "The Executioner's line is noisy. Try again in a moment.",
+      },
     };
   }
 
@@ -170,7 +190,9 @@ export async function createExecutionerChatResponse({
     console.error("Gemini chat request failed", response.status, responseBody);
     return {
       status: 502,
-      body: { error: "The Executioner is unavailable at the moment. Try again soon." },
+      body: {
+        error: "The Executioner is unavailable at the moment. Try again soon.",
+      },
     };
   }
 
@@ -178,7 +200,10 @@ export async function createExecutionerChatResponse({
   if (!reply) {
     return {
       status: 502,
-      body: { error: "The Executioner has no words for that one. Try asking another way." },
+      body: {
+        error:
+          "The Executioner has no words for that one. Try asking another way.",
+      },
     };
   }
 
