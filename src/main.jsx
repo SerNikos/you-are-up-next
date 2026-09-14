@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 import AppReveal from "./components/AppReveal/AppReveal.jsx";
+import ExecutionerChat from "./components/ExecutionerChat/ExecutionerChat.jsx";
 
 const rootElement = document.getElementById("root");
 
@@ -137,6 +138,7 @@ createRoot(rootElement).render(
         >
           <RouterProvider router={router} />
         </Suspense>
+        <ExecutionerChat />
       </AppReveal>
     </HelmetProvider>
   </StrictMode>,

@@ -12,6 +12,17 @@
     "contact": "Contact",
     "congrats": "Congratulations, you bought YOU ARE UP NEXT!"
   },
+  "chat": {
+    "title": "Ask the Executioner",
+    "subtitle": "He already knows who is next.",
+    "open": "Open Executioner chat",
+    "close": "Close Executioner chat",
+    "placeholder": "Ask about the game or the lore...",
+    "send": "Send message",
+    "initial": "You have found me. Ask about the game, the Death Line, or my unfortunate victims. Choose your words carefully.",
+    "typing": "The Executioner is considering your fate...",
+    "error": "The line went silent. Try again."
+  },
   "meta": {
     "homeTitle": "You Are Up Next | Medieval Card Game.",
     "homeDescription": "Discover You Are Up Next, a medieval strategy board game and card game of survival, tactics, and betrayal. Choose your character, outsmart rivals, and survive the Death Line.",
