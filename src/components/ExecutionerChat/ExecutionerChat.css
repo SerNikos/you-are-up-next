@@ -290,9 +290,13 @@
     bottom: calc(1rem + var(--executioner-keyboard-offset, 0px));
   }
 
+  .executioner-chat.is-keyboard-open .executioner-chat-toggle {
+    display: none;
+  }
+
   .executioner-chat-panel {
     width: min(37rem, calc(100vw - 2rem));
-    max-height: calc(var(--executioner-viewport-height, 100dvh) - 8rem);
+    max-height: calc(var(--executioner-viewport-height, 100dvh) - 2rem);
   }
 
   .executioner-chat-messages {

@@ -31,18 +31,30 @@ function getLanguageName(language) {
   return language === "el" ? "Greek" : "English";
 }
 
-function createSystemInstruction(language) {
+function detectMessageLanguage(message, fallbackLanguage) {
+  const greekCharacters =
+    message.match(/[\u0370-\u03FF\u1F00-\u1FFF]/g)?.length || 0;
+  const latinCharacters = message.match(/[A-Za-z]/g)?.length || 0;
+
+  if (greekCharacters === 0 && latinCharacters === 0) {
+    return fallbackLanguage;
+  }
+
+  return greekCharacters > latinCharacters ? "el" : "en";
+}
+
+function createSystemInstruction(responseLanguage, siteLanguage) {
   const languageRules =
-    language === "el"
+    responseLanguage === "el"
       ? `
-- Answer only in natural Greek. Do not switch to English because the user or conversation history is in English.
+- Answer only in natural Greek. Do not switch to English because the site or conversation history is in English.
 - Use the game title exactly as "ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ" and call the character "ο Δήμιος".
 - Call the title-named Executioner card "ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ".
 - Use Greek game terms such as "Γραμμή Θανάτου", "Φάση Συλλογής", "Φάση Δράσης", "Φάση του Δήμιου", and "Τράπουλα του Δήμιου".
 - Do not use "Εσύ έχεις σειρά" or "Έχεις σειρά" as the game's title or the card's name.
 `
       : `
-- Answer only in natural English. Do not switch to Greek because the user or conversation history is in Greek.
+- Answer only in natural English. Do not switch to Greek because the site or conversation history is in Greek.
 - Use the game title exactly as "You Are Up Next" and call the character "the Executioner".
 - Call the title-named Executioner card "YOU ARE UP NEXT".
 - Use English game terms such as "Death Line", "Draw Phase", "Action Phase", "Executioner's Phase", and "Executioner's Deck".
@@ -52,7 +64,9 @@ function createSystemInstruction(language) {
   return `${EXECUTIONER_LORE}
 
 Language lock:
-- The selected site language is ${getLanguageName(language)} and is authoritative. It overrides the user's language and all previous conversation history.
+- The latest user message was classified as ${getLanguageName(responseLanguage)}. This is the response language for this turn.
+- The selected site language is ${getLanguageName(siteLanguage)} and is only a fallback for messages with no clear Greek or English text.
+- The latest user message overrides the site language and all previous conversation history.
 ${languageRules}
 
 Conversation rules:
@@ -114,7 +128,8 @@ export async function createExecutionerChatResponse({
     };
   }
 
-  const language = body?.language === "el" ? "el" : "en";
+  const siteLanguage = body?.language === "el" ? "el" : "en";
+  const responseLanguage = detectMessageLanguage(message, siteLanguage);
   const contents = [
     ...normalizeHistory(body?.history),
     { role: "user", parts: [{ text: message }] },
@@ -128,7 +143,7 @@ export async function createExecutionerChatResponse({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         system_instruction: {
-          parts: [{ text: createSystemInstruction(language) }],
+          parts: [{ text: createSystemInstruction(responseLanguage, siteLanguage) }],
         },
         contents,
         generationConfig: {

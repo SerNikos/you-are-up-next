@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import "./ExecutionerChat.css";
 
 const MAX_MESSAGE_LENGTH = 1200;
+const MOBILE_BREAKPOINT = 520;
 
 export default function ExecutionerChat() {
   const { i18n, t } = useTranslation();
@@ -14,6 +15,7 @@ export default function ExecutionerChat() {
   ]);
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(null);
   const inputRef = useRef(null);
@@ -25,33 +27,79 @@ export default function ExecutionerChat() {
 
   useEffect(() => {
     const viewport = window.visualViewport;
-    if (!viewport) return undefined;
+    const virtualKeyboard = navigator.virtualKeyboard;
 
     const updateViewport = () => {
-      const inputHasFocus = document.activeElement === inputRef.current;
+      const layoutViewportHeight = Math.max(
+        window.innerHeight,
+        document.documentElement.clientHeight,
+      );
+      const visualViewportHeight = viewport?.height || layoutViewportHeight;
+      const visualViewportBottom =
+        visualViewportHeight + (viewport?.offsetTop || 0);
+      const measuredKeyboardOffset = Math.max(
+        0,
+        layoutViewportHeight - visualViewportBottom,
+      );
+      const virtualKeyboardOffset = virtualKeyboard?.boundingRect?.height || 0;
+      const isMobileViewport = window.matchMedia(
+        `(max-width: ${MOBILE_BREAKPOINT}px)`,
+      ).matches;
+      const hasKeyboardGeometry =
+        measuredKeyboardOffset > 80 || virtualKeyboardOffset > 0;
+      const fallbackKeyboardOffset =
+        isOpen && isInputFocused && isMobileViewport && !hasKeyboardGeometry
+          ? Math.min(Math.max(layoutViewportHeight * 0.45, 300), 440)
+          : 0;
       const nextKeyboardOffset =
-        isOpen && inputHasFocus
+        isOpen && isInputFocused
           ? Math.max(
-              0,
-              window.innerHeight - viewport.height - viewport.offsetTop,
+              measuredKeyboardOffset,
+              virtualKeyboardOffset,
+              fallbackKeyboardOffset,
             )
           : 0;
+      const nextViewportHeight = Math.max(
+        0,
+        isOpen
+          ? Math.min(
+              visualViewportHeight,
+              layoutViewportHeight - nextKeyboardOffset,
+            )
+          : visualViewportHeight,
+      );
 
       setKeyboardOffset(nextKeyboardOffset);
-      setViewportHeight(viewport.height);
+      setViewportHeight(nextViewportHeight);
+    };
+
+    let animationFrameId = 0;
+    const handleViewportChange = () => {
+      updateViewport();
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = window.requestAnimationFrame(updateViewport);
     };
 
     updateViewport();
-    viewport.addEventListener("resize", updateViewport);
-    viewport.addEventListener("scroll", updateViewport);
-    window.addEventListener("resize", updateViewport);
+    viewport?.addEventListener("resize", handleViewportChange);
+    viewport?.addEventListener("scroll", handleViewportChange);
+    window.addEventListener("resize", handleViewportChange);
+    document.addEventListener("focusin", updateViewport);
+    document.addEventListener("focusout", updateViewport);
+    virtualKeyboard?.addEventListener("geometrychange", updateViewport);
+    const delayedUpdate = window.setTimeout(updateViewport, 250);
 
     return () => {
-      viewport.removeEventListener("resize", updateViewport);
-      viewport.removeEventListener("scroll", updateViewport);
-      window.removeEventListener("resize", updateViewport);
+      viewport?.removeEventListener("resize", handleViewportChange);
+      viewport?.removeEventListener("scroll", handleViewportChange);
+      window.removeEventListener("resize", handleViewportChange);
+      document.removeEventListener("focusin", updateViewport);
+      document.removeEventListener("focusout", updateViewport);
+      virtualKeyboard?.removeEventListener("geometrychange", updateViewport);
+      window.cancelAnimationFrame(animationFrameId);
+      window.clearTimeout(delayedUpdate);
     };
-  }, [isOpen]);
+  }, [isInputFocused, isOpen]);
 
   useEffect(() => {
     setMessages((currentMessages) => {
@@ -130,7 +178,7 @@ export default function ExecutionerChat() {
 
   return (
     <div
-      className="executioner-chat"
+      className={`executioner-chat ${keyboardOffset > 0 ? "is-keyboard-open" : ""}`}
       style={{
         "--executioner-keyboard-offset": `${keyboardOffset}px`,
         "--executioner-viewport-height": viewportHeight
@@ -200,6 +248,8 @@ export default function ExecutionerChat() {
               type="text"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setIsInputFocused(false)}
               placeholder={t("chat.placeholder")}
               maxLength={MAX_MESSAGE_LENGTH}
               disabled={isSending}
