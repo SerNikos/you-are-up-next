@@ -12,7 +12,7 @@ shown in `.env.example`:
 
 ```env
 GEMINI_API_KEY=your-gemini-api-key
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-3.6-flash
 ```
 
 The Vite development server also understands the existing `src/.env` file as a

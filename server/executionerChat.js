@@ -1,5 +1,6 @@
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 10;
+const DEFAULT_MODEL = "gemini-3.6-flash";
 
 const EXECUTIONER_LORE = `
 You are the Executioner from the fictional board game You Are Up Next.
@@ -57,7 +58,7 @@ function getResponseText(responseBody) {
 
 export async function createExecutionerChatResponse({
   apiKey,
-  model = "gemini-2.5-flash",
+  model = DEFAULT_MODEL,
   body,
 }) {
   if (!apiKey) {

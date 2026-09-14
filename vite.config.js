@@ -22,7 +22,7 @@ function executionerChatDevPlugin(mode) {
         sourceEnv.GEMINI_API_KEY ||
         sourceEnv.VITE_GEMINI_API_KEY;
       const model =
-        rootEnv.GEMINI_MODEL || sourceEnv.GEMINI_MODEL || "gemini-2.5-flash";
+        rootEnv.GEMINI_MODEL || sourceEnv.GEMINI_MODEL || "gemini-3.6-flash";
 
       server.middlewares.use("/api/executioner-chat", async (request, response) => {
         if (request.method === "OPTIONS") {
