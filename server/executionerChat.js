@@ -1,15 +1,12 @@
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 10;
 const MAX_RESPONSE_WORDS = 140;
-const MAX_OUTPUT_TOKENS = 768;
+const MAX_OUTPUT_TOKENS = 1024;
+const REPAIR_OUTPUT_TOKENS = 640;
 const DEFAULT_MODEL = "gemini-3.5-flash-lite";
-const MODEL_ALIASES = new Map([
-  ["gemini-2.5-flash-lite", "gemini-3.5-flash-lite"],
-]);
 
-function resolveModel(model) {
-  const configuredModel = typeof model === "string" ? model.trim() : "";
-  return MODEL_ALIASES.get(configuredModel) || configuredModel || DEFAULT_MODEL;
+function resolveModel() {
+  return DEFAULT_MODEL;
 }
 
 const EXECUTIONER_LORE = `
@@ -27,6 +24,13 @@ Game knowledge:
 - The Executioner controls whether the board is refilled or the next card in the Death Line is executed. Peasants are executed before player characters.
 - When the title-named Executioner card is revealed, execute the next card in the Death Line and do not refill the board.
 - A player wins by collecting 3 Plot Armor cards or by being the last surviving player.
+
+Character knowledge from the site's Characters page:
+- The Executioner (Greek: ο Δήμιος) is a beautiful, charismatic fighter who grew tired of the halo effect, chose fighting over romance, took over the family execution business, and became the sexy Executioner.
+- Notferatu (Greek: Κόμης Βλάκουλας) is a relentless vampire hunter. After his mother died following a vampire's blood curse, he trained to hunt vampires, disguised himself as one to lure a real vampire out, and was sent to execution by villagers who thought the disguise was real.
+- Misero (Greek: Μίζερο) is the king's former clown of more than 40 years and secretly the king's only real adviser. He wants to retire, but a vulgar joke about the queen landed him in the execution line; a child's admiration reminds him that he can still make people laugh.
+- Paprika (Greek: Πάπρικα) is a young maid and gifted cook who uses a picture-based spice book to create remarkable food. Mistaken for a witch, she falls in love with the Executioner, believes she can fix him, and changes her mind about execution when she realizes death would mean never seeing him again.
+- Hamlet (Greek: Λουδοπίγκος) is an intelligent, self-aware pig. After a flowerpot accident kills a local lord, it is revealed that Hamlet is a secret member and informant of an underground organization plotting against the regime, and he is desperately trying not to become bacon.
 
 Team knowledge:
 - Nikolaos Sergis (Greek: Νικόλαος Σέργης) is a Game Designer and Developer.
@@ -91,6 +95,59 @@ Conversation rules:
 `;
 }
 
+function createGenerationConfig(maxOutputTokens, useMinimalThinking = false) {
+  return {
+    temperature: 0.85,
+    maxOutputTokens,
+    thinkingConfig: {
+      thinkingLevel: useMinimalThinking ? "minimal" : "low",
+    },
+  };
+}
+
+function createGeminiRequestBody({
+  contents,
+  responseLanguage,
+  siteLanguage,
+  maxOutputTokens = MAX_OUTPUT_TOKENS,
+  isRepair = false,
+}) {
+  const repairInstruction = isRepair
+    ? `
+
+The previous answer was cut off or used the wrong language. Reply again from the beginning with one complete answer in ${getLanguageName(responseLanguage)} and no more than 70 words. Answer the latest user message directly and finish every sentence.`
+    : "";
+
+  return {
+    system_instruction: {
+      parts: [
+        {
+          text: `${createSystemInstruction(responseLanguage, siteLanguage)}${repairInstruction}`,
+        },
+      ],
+    },
+    contents,
+    generationConfig: createGenerationConfig(maxOutputTokens, isRepair),
+  };
+}
+
+async function requestGemini(endpoint, requestBody) {
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+
+    return {
+      response,
+      body: await response.json().catch(() => null),
+    };
+  } catch {
+    return null;
+  }
+}
+
 function normalizeHistory(history) {
   if (!Array.isArray(history)) return [];
 
@@ -117,12 +174,21 @@ function getResponseText(responseBody) {
     .trim();
 }
 
-export async function createExecutionerChatResponse({
-  apiKey,
-  model = DEFAULT_MODEL,
-  body,
-}) {
-  const resolvedModel = resolveModel(model);
+function getFinishReason(responseBody) {
+  return responseBody?.candidates?.[0]?.finishReason;
+}
+
+function responseMatchesLanguage(text, language) {
+  const greekCharacters =
+    text.match(/[\u0370-\u03FF\u1F00-\u1FFF]/g)?.length || 0;
+  const latinCharacters = text.match(/[A-Za-z]/g)?.length || 0;
+
+  if (language === "el") return greekCharacters > 0;
+  return latinCharacters > 0 && greekCharacters === 0;
+}
+
+export async function createExecutionerChatResponse({ apiKey, body }) {
+  const resolvedModel = resolveModel();
 
   if (!apiKey) {
     return {
@@ -155,32 +221,14 @@ export async function createExecutionerChatResponse({
     { role: "user", parts: [{ text: message }] },
   ];
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(resolvedModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const requestBody = createGeminiRequestBody({
+    contents,
+    responseLanguage,
+    siteLanguage,
+  });
 
-  let response;
-  try {
-    response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [
-            { text: createSystemInstruction(responseLanguage, siteLanguage) },
-          ],
-        },
-        contents,
-        generationConfig: {
-          temperature: 0.85,
-          maxOutputTokens: MAX_OUTPUT_TOKENS,
-          ...(resolvedModel.startsWith("gemini-3") && {
-            thinkingConfig: {
-              thinkingLevel:
-                resolvedModel === "gemini-3.6-flash" ? "minimal" : "low",
-            },
-          }),
-        },
-      }),
-    });
-  } catch {
+  let requestResult = await requestGemini(endpoint, requestBody);
+  if (!requestResult) {
     return {
       status: 502,
       body: {
@@ -189,9 +237,12 @@ export async function createExecutionerChatResponse({
     };
   }
 
-  const responseBody = await response.json().catch(() => null);
-  if (!response.ok) {
-    console.error("Gemini chat request failed", response.status, responseBody);
+  if (!requestResult.response.ok) {
+    console.error(
+      "Gemini chat request failed",
+      requestResult.response.status,
+      requestResult.body,
+    );
     return {
       status: 502,
       body: {
@@ -200,7 +251,43 @@ export async function createExecutionerChatResponse({
     };
   }
 
-  const reply = getResponseText(responseBody);
+  let responseBody = requestResult.body;
+  let reply = getResponseText(responseBody);
+  const needsRepair =
+    getFinishReason(responseBody) === "MAX_TOKENS" ||
+    (reply && !responseMatchesLanguage(reply, responseLanguage));
+
+  if (needsRepair) {
+    requestResult = await requestGemini(
+      endpoint,
+      createGeminiRequestBody({
+        contents,
+        responseLanguage,
+        siteLanguage,
+        maxOutputTokens: REPAIR_OUTPUT_TOKENS,
+        isRepair: true,
+      }),
+    );
+
+    if (!requestResult?.response.ok) {
+      console.error(
+        "Gemini chat repair request failed",
+        requestResult?.response.status,
+        requestResult?.body,
+      );
+      return {
+        status: 502,
+        body: {
+          error:
+            "The Executioner's answer was interrupted. Try asking again, and I will finish the verdict.",
+        },
+      };
+    }
+
+    responseBody = requestResult.body;
+    reply = getResponseText(responseBody);
+  }
+
   if (!reply) {
     return {
       status: 502,

@@ -15,9 +15,10 @@ GEMINI_API_KEY=your-gemini-api-key
 GEMINI_MODEL=gemini-3.5-flash-lite
 ```
 
-For production, add `GEMINI_API_KEY` and optionally `GEMINI_MODEL` in the Vercel
-project environment settings. The browser calls `/api/executioner-chat`; it
-never receives the key.
+For production, add `GEMINI_API_KEY` in the Vercel project environment
+settings. The chat is fixed to `gemini-3.5-flash-lite`; `GEMINI_MODEL` is kept
+in the local example for clarity but is not used to select a different model.
+The browser calls `/api/executioner-chat`; it never receives the key.
 
 ## Contact Form
 

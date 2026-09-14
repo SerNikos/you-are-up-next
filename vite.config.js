@@ -17,7 +17,6 @@ function executionerChatDevPlugin(mode) {
       const workingDirectory = globalThis.process.cwd();
       const rootEnv = loadEnv(mode, workingDirectory, "");
       const apiKey = rootEnv.GEMINI_API_KEY;
-      const model = rootEnv.GEMINI_MODEL || "gemini-3.5-flash-lite";
 
       server.middlewares.use(
         "/api/executioner-chat",
@@ -58,7 +57,6 @@ function executionerChatDevPlugin(mode) {
 
           const result = await createExecutionerChatResponse({
             apiKey,
-            model,
             body,
           });
           response.statusCode = result.status;
