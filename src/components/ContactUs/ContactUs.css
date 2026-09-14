@@ -134,6 +134,14 @@ button:disabled {
   font-weight: 500;
 }
 
+.contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .footer {
   z-index: 2;
 }

@@ -2,9 +2,14 @@ import "./ContactUs.css";
 import Navbar from "../NavBar/Navbar";
 import SEO from "../SEO/SEO";
 import Footer from "../Footer/Footer.jsx";
-import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
+const MAX_NAME_LENGTH = 80;
+const MAX_SURNAME_LENGTH = 80;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 2000;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
 
 export default function ContactUs() {
   const { t } = useTranslation();
@@ -22,19 +27,31 @@ export default function ContactUs() {
     email: false,
     message: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   // ---------- VALIDATION ----------
-  const nameInvalid = didEdit.name && formValues.name.trim().length < 2;
+  const nameValueInvalid =
+    formValues.name.trim().length < 2 ||
+    formValues.name.trim().length > MAX_NAME_LENGTH;
+  const nameInvalid = didEdit.name && nameValueInvalid;
 
+  const surnameValueInvalid =
+    formValues.surname.trim().length < 2 ||
+    formValues.surname.trim().length > MAX_SURNAME_LENGTH;
   const surnameInvalid =
-    didEdit.surname && formValues.surname.trim().length < 2;
+    didEdit.surname && surnameValueInvalid;
 
+  const emailValueInvalid =
+    formValues.email.trim().length > MAX_EMAIL_LENGTH ||
+    !EMAIL_PATTERN.test(formValues.email.trim());
   const emailInvalid =
-    didEdit.email &&
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email.trim());
+    didEdit.email && emailValueInvalid;
 
-  const messageInvalid =
-    didEdit.message && formValues.message.trim().length < 5;
+  const messageValueInvalid =
+    formValues.message.trim().length < 5 ||
+    formValues.message.trim().length > MAX_MESSAGE_LENGTH;
+  const messageInvalid = didEdit.message && messageValueInvalid;
 
   // Basic check to see if fields are empty to handle proper disabled states
   const isFormEmpty =
@@ -42,6 +59,12 @@ export default function ContactUs() {
     !formValues.surname.trim() ||
     !formValues.email.trim() ||
     !formValues.message.trim();
+
+  const isFormInvalid =
+    nameValueInvalid ||
+    surnameValueInvalid ||
+    emailValueInvalid ||
+    messageValueInvalid;
 
   // ---------- INPUT HANDLERS ----------
   function handleInputChange(identifier, value) {
@@ -54,6 +77,7 @@ export default function ContactUs() {
       ...prev,
       [identifier]: false,
     }));
+    setSubmitError("");
   }
 
   function handleBlur(identifier) {
@@ -63,50 +87,56 @@ export default function ContactUs() {
     }));
   }
 
-  // --------EMAILJS SERVICE--------
-  const form = useRef();
-
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    if (
-      nameInvalid ||
-      surnameInvalid ||
-      emailInvalid ||
-      messageInvalid ||
-      isFormEmpty
-    ) {
+    if (isFormInvalid || isFormEmpty || isSubmitting) {
       return;
     }
 
-    emailjs
-      .sendForm("service_3m724yx", "template_ey7p0c9", form.current, {
-        publicKey: "zMXdAVQUMDWNFxPBj",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
-          alert(t("contact.alert_success"));
+    const formData = new FormData(e.currentTarget);
+    const website = formData.get("website");
+    setIsSubmitting(true);
+    setSubmitError("");
 
-          // Reset fields safely
-          setFormValues({
-            name: "",
-            surname: "",
-            email: "",
-            message: "",
-          });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formValues.name.trim(),
+          surname: formValues.surname.trim(),
+          email: formValues.email.trim(),
+          message: formValues.message.trim(),
+          website: typeof website === "string" ? website : "",
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
 
-          setDidEdit({
-            name: false,
-            surname: false,
-            email: false,
-            message: false,
-          });
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        },
+      if (!response.ok) {
+        throw new Error(data.error || t("contact.alert_error"));
+      }
+
+      alert(t("contact.alert_success"));
+      setFormValues({
+        name: "",
+        surname: "",
+        email: "",
+        message: "",
+      });
+      setDidEdit({
+        name: false,
+        surname: false,
+        email: false,
+        message: false,
+      });
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : t("contact.alert_error"),
       );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -118,7 +148,7 @@ export default function ContactUs() {
         <div className="contact-us">
           <h1>{t("contact.title")}</h1>
 
-          <form ref={form} onSubmit={sendEmail}>
+          <form onSubmit={sendEmail} aria-busy={isSubmitting}>
             {/* NAME */}
             <label htmlFor="name">{t("contact.labels.name")}</label>
             <input
@@ -129,6 +159,8 @@ export default function ContactUs() {
               onChange={(e) => handleInputChange("name", e.target.value)}
               onBlur={() => handleBlur("name")}
               autoComplete="given-name"
+              maxLength={MAX_NAME_LENGTH}
+              required
             />
             <div className="invalid-error">
               {nameInvalid && <p>{t("contact.errors.name")}</p>}
@@ -144,6 +176,8 @@ export default function ContactUs() {
               onChange={(e) => handleInputChange("surname", e.target.value)}
               onBlur={() => handleBlur("surname")}
               autoComplete="family-name"
+              maxLength={MAX_SURNAME_LENGTH}
+              required
             />
             <div className="invalid-error">
               {surnameInvalid && <p>{t("contact.errors.surname")}</p>}
@@ -159,6 +193,8 @@ export default function ContactUs() {
               onChange={(e) => handleInputChange("email", e.target.value)}
               onBlur={() => handleBlur("email")}
               autoComplete="email"
+              maxLength={MAX_EMAIL_LENGTH}
+              required
             />
             <div className="invalid-error">
               {emailInvalid && <p>{t("contact.errors.email")}</p>}
@@ -173,23 +209,37 @@ export default function ContactUs() {
               value={formValues.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
               onBlur={() => handleBlur("message")}
+              maxLength={MAX_MESSAGE_LENGTH}
+              required
             ></textarea>
             <div className="invalid-error">
               {messageInvalid && <p>{t("contact.errors.message")}</p>}
             </div>
 
+            <div className="contact-honeypot" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabIndex="-1"
+                autoComplete="off"
+              />
+            </div>
+
             <button
               type="submit"
               disabled={
-                nameInvalid ||
-                surnameInvalid ||
-                emailInvalid ||
-                messageInvalid ||
-                isFormEmpty
+                isFormInvalid || isFormEmpty || isSubmitting
               }
             >
-              {t("contact.button")}
+              {isSubmitting ? t("contact.sending") : t("contact.button")}
             </button>
+            {submitError && (
+              <p className="invalid-error" role="alert">
+                {submitError}
+              </p>
+            )}
           </form>
         </div>
       </div>

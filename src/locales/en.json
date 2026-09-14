@@ -201,7 +201,9 @@
       "message": "Message must be at least 5 characters."
     },
     "button": "Send Message",
-    "alert_success": "The King thanks you for your message, we will contact you as soon as possible!"
+    "sending": "Sending...",
+    "alert_success": "The King thanks you for your message, we will contact you as soon as possible!",
+    "alert_error": "We could not send your message. Please try again later."
   },
   "not_found": {
     "title": "UNFORTUNATELY PAGE NOT FOUND 404"
