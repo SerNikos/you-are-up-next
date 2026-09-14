@@ -22,6 +22,24 @@ export default function ExecutionerChat() {
   }, [isOpen]);
 
   useEffect(() => {
+    setMessages((currentMessages) => {
+      if (
+        currentMessages.length !== 1 ||
+        currentMessages[0].role !== "model"
+      ) {
+        return currentMessages;
+      }
+
+      const translatedInitialMessage = t("chat.initial");
+      if (currentMessages[0].text === translatedInitialMessage) {
+        return currentMessages;
+      }
+
+      return [{ role: "model", text: translatedInitialMessage }];
+    });
+  }, [i18n.language, t]);
+
+  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" && isOpen) {
         setIsOpen(false);

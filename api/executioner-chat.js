@@ -22,6 +22,8 @@ export default async function handler(request, response) {
     response.status(result.status).json(result.body);
   } catch (error) {
     console.error("Executioner chat handler failed", error);
-    response.status(500).json({ error: "The Executioner's line is unavailable." });
+    response
+      .status(500)
+      .json({ error: "The Executioner's line is unavailable." });
   }
 }
