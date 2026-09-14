@@ -29,12 +29,27 @@
     background 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(185, 26, 39, 0.4);
+
+  /* Removes the blue touch highlight without hiding keyboard focus. */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .lore-play-btn:hover {
   transform: scale(1.08);
   background: linear-gradient(135deg, #d41f2e 0%, #8a121c 100%);
   box-shadow: 0 6px 20px rgba(185, 26, 39, 0.6);
+}
+
+.lore-play-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.lore-play-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .lore-play-btn svg {
@@ -68,11 +83,11 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  gap: 3px; /* Σφιχτό κενό για να δείχνει γεμάτο */
+  gap: 3px;
 }
 
 .wave-bar {
-  width: 3px; /* Πιο παχιές και γεμάτες γραμμές */
+  width: 3px;
   flex-grow: 1;
   max-width: 4px;
   border-radius: 2px;
