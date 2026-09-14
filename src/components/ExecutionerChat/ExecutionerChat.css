@@ -133,6 +133,18 @@
   align-items: center;
 }
 
+.executioner-chat .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .executioner-chat-dots {
   display: flex;
   gap: 0.35rem;
@@ -197,7 +209,9 @@
   background: #b91a27;
   border-radius: 0.5rem;
   font-size: 1.4rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .executioner-chat-send:hover:not(:disabled),
@@ -222,7 +236,9 @@
   border-radius: 50%;
   box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.42);
   font-size: 2.1rem;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 .executioner-chat-toggle:hover,
