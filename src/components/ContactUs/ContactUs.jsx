@@ -39,14 +39,12 @@ export default function ContactUs() {
   const surnameValueInvalid =
     formValues.surname.trim().length < 2 ||
     formValues.surname.trim().length > MAX_SURNAME_LENGTH;
-  const surnameInvalid =
-    didEdit.surname && surnameValueInvalid;
+  const surnameInvalid = didEdit.surname && surnameValueInvalid;
 
   const emailValueInvalid =
     formValues.email.trim().length > MAX_EMAIL_LENGTH ||
     !EMAIL_PATTERN.test(formValues.email.trim());
-  const emailInvalid =
-    didEdit.email && emailValueInvalid;
+  const emailInvalid = didEdit.email && emailValueInvalid;
 
   const messageValueInvalid =
     formValues.message.trim().length < 5 ||
@@ -229,14 +227,12 @@ export default function ContactUs() {
 
             <button
               type="submit"
-              disabled={
-                isFormInvalid || isFormEmpty || isSubmitting
-              }
+              disabled={isFormInvalid || isFormEmpty || isSubmitting}
             >
               {isSubmitting ? t("contact.sending") : t("contact.button")}
             </button>
             {submitError && (
-              <p className="invalid-error" role="alert">
+              <p className="contact-submit-error" role="alert">
                 {submitError}
               </p>
             )}

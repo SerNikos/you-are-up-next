@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { loadEnv } from "vite";
 import { vitePrerenderPlugin } from "vite-prerender-plugin";
 import { createExecutionerChatResponse } from "./server/executionerChat.js";
@@ -17,58 +16,57 @@ function executionerChatDevPlugin(mode) {
     configureServer(server) {
       const workingDirectory = globalThis.process.cwd();
       const rootEnv = loadEnv(mode, workingDirectory, "");
-      const sourceEnv = loadEnv(
-        mode,
-        path.resolve(workingDirectory, "src"),
-        "",
-      );
-      const apiKey =
-        rootEnv.GEMINI_API_KEY ||
-        sourceEnv.GEMINI_API_KEY;
-      const model =
-        rootEnv.GEMINI_MODEL || sourceEnv.GEMINI_MODEL || "gemini-3.6-flash";
+      const apiKey = rootEnv.GEMINI_API_KEY;
+      const model = rootEnv.GEMINI_MODEL || "gemini-3.6-flash";
 
-      server.middlewares.use("/api/executioner-chat", async (request, response) => {
-        if (request.method === "OPTIONS") {
-          response.statusCode = 204;
-          response.end();
-          return;
-        }
-
-        if (request.method !== "POST") {
-          response.statusCode = 405;
-          response.setHeader("Content-Type", "application/json");
-          response.end(JSON.stringify({ error: "Method not allowed." }));
-          return;
-        }
-
-        let rawBody = "";
-        for await (const chunk of request) {
-          rawBody += chunk;
-          if (rawBody.length > 100000) {
-            response.statusCode = 413;
-            response.setHeader("Content-Type", "application/json");
-            response.end(JSON.stringify({ error: "Request is too large." }));
+      server.middlewares.use(
+        "/api/executioner-chat",
+        async (request, response) => {
+          if (request.method === "OPTIONS") {
+            response.statusCode = 204;
+            response.end();
             return;
           }
-        }
 
-        let body;
-        try {
-          body = JSON.parse(rawBody || "{}");
-        } catch {
-          response.statusCode = 400;
+          if (request.method !== "POST") {
+            response.statusCode = 405;
+            response.setHeader("Content-Type", "application/json");
+            response.end(JSON.stringify({ error: "Method not allowed." }));
+            return;
+          }
+
+          let rawBody = "";
+          for await (const chunk of request) {
+            rawBody += chunk;
+            if (rawBody.length > 100000) {
+              response.statusCode = 413;
+              response.setHeader("Content-Type", "application/json");
+              response.end(JSON.stringify({ error: "Request is too large." }));
+              return;
+            }
+          }
+
+          let body;
+          try {
+            body = JSON.parse(rawBody || "{}");
+          } catch {
+            response.statusCode = 400;
+            response.setHeader("Content-Type", "application/json");
+            response.end(JSON.stringify({ error: "Invalid request." }));
+            return;
+          }
+
+          const result = await createExecutionerChatResponse({
+            apiKey,
+            model,
+            body,
+          });
+          response.statusCode = result.status;
+          response.setHeader("Cache-Control", "no-store");
           response.setHeader("Content-Type", "application/json");
-          response.end(JSON.stringify({ error: "Invalid request." }));
-          return;
-        }
-
-        const result = await createExecutionerChatResponse({ apiKey, model, body });
-        response.statusCode = result.status;
-        response.setHeader("Cache-Control", "no-store");
-        response.setHeader("Content-Type", "application/json");
-        response.end(JSON.stringify(result.body));
-      });
+          response.end(JSON.stringify(result.body));
+        },
+      );
     },
   };
 }
@@ -79,20 +77,14 @@ function contactDevPlugin(mode) {
     configureServer(server) {
       const workingDirectory = globalThis.process.cwd();
       const rootEnv = loadEnv(mode, workingDirectory, "");
-      const sourceEnv = loadEnv(
-        mode,
-        path.resolve(workingDirectory, "src"),
-        "",
-      );
-      const getEnvValue = (name) => rootEnv[name] || sourceEnv[name];
       const allowedOrigins = parseAllowedOrigins(
-        getEnvValue("CONTACT_ALLOWED_ORIGINS"),
+        rootEnv.CONTACT_ALLOWED_ORIGINS,
       );
       const emailjsConfig = {
-        serviceId: getEnvValue("EMAILJS_SERVICE_ID"),
-        templateId: getEnvValue("EMAILJS_TEMPLATE_ID"),
-        publicKey: getEnvValue("EMAILJS_PUBLIC_KEY"),
-        privateKey: getEnvValue("EMAILJS_PRIVATE_KEY"),
+        serviceId: rootEnv.EMAILJS_SERVICE_ID,
+        templateId: rootEnv.EMAILJS_TEMPLATE_ID,
+        publicKey: rootEnv.EMAILJS_PUBLIC_KEY,
+        privateKey: rootEnv.EMAILJS_PRIVATE_KEY,
       };
 
       server.middlewares.use("/api/contact", async (request, response) => {
