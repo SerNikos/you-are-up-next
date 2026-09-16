@@ -1,0 +1,1 @@
+const e="/assets/executioner-B0tUzRfn.jpg";export{e};

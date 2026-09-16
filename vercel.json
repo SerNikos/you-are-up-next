@@ -8,6 +8,7 @@
     },
     { "source": "/Rules", "destination": "/en/rules", "permanent": true },
     { "source": "/Team", "destination": "/en/team", "permanent": true },
+    { "source": "/News", "destination": "/en/news", "permanent": true },
     {
       "source": "/ContactUs",
       "destination": "/en/contact",

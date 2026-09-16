@@ -8,11 +8,13 @@ const routes = [
   "/en/rules",
   "/en/team",
   "/en/contact",
+  "/en/news",
   "/el",
   "/el/characters",
   "/el/rules",
   "/el/team",
   "/el/contact",
+  "/el/news",
 ];
 
 const pageNames = {
@@ -21,6 +23,7 @@ const pageNames = {
     rules: "Game Rules",
     team: "The Team",
     contact: "Contact You Are Up Next",
+    news: "News",
     home: "Frequently Asked Questions",
   },
   el: {
@@ -28,6 +31,7 @@ const pageNames = {
     rules: "Κανόνες Παιχνιδιού",
     team: "Η Ομάδα",
     contact: "Επικοινωνία με το ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ",
+    news: "Νέα για το ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ",
     home: "Συχνές Ερωτήσεις",
   },
 };
@@ -115,6 +119,15 @@ function getContent(pathname, language) {
       <p>${escapeHtml(description)}</p>
       <p>${escapeHtml(translations.contact.button)}</p>
     `;
+  } else if (page === "news") {
+    pageContent = `
+      <h2>${escapeHtml(translations.news.latest_title)}</h2>
+      <ul>${translations.news.latest_items
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join("")}</ul>
+      <h2>${escapeHtml(translations.dailyFact.title)}</h2>
+      <p>${escapeHtml(translations.dailyFact.items[0])}</p>
+    `;
   }
 
   return `
@@ -123,6 +136,7 @@ function getContent(pathname, language) {
       <p>${escapeHtml(description)}</p>
       <nav aria-label="${language === "el" ? "Κύρια πλοήγηση" : "Main navigation"}">
         <a href="${homePath}">${language === "el" ? "Αρχική" : "Home"}</a>
+        <a href="${homePath}/news">${pageNames[language].news}</a>
         <a href="${homePath}/characters">${pageNames[language].characters}</a>
         <a href="${homePath}/rules">${pageNames[language].rules}</a>
         <a href="${homePath}/team">${pageNames[language].team}</a>

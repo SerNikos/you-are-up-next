@@ -2,40 +2,14 @@ import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
-import websiteBackground from "./assets/useful-art/bg_website.png";
-import dialogCard from "./assets/useful-art/dialog-card.png";
-import gettingFont from "./assets/fonts/Getting-Regular2.otf";
 
-import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 import AppReveal from "./components/AppReveal/AppReveal.jsx";
-import ExecutionerChat from "./components/ExecutionerChat/ExecutionerChat.jsx";
+import DeferredExecutionerChat from "./components/DeferredExecutionerChat/DeferredExecutionerChat.jsx";
 
 const rootElement = document.getElementById("root");
-
-const backgroundPreload = document.createElement("link");
-backgroundPreload.rel = "preload";
-backgroundPreload.as = "image";
-backgroundPreload.href = websiteBackground;
-backgroundPreload.fetchPriority = "high";
-document.head.appendChild(backgroundPreload);
-
-const dialogCardPreload = document.createElement("link");
-dialogCardPreload.rel = "preload";
-dialogCardPreload.as = "image";
-dialogCardPreload.href = dialogCard;
-dialogCardPreload.fetchPriority = "high";
-document.head.appendChild(dialogCardPreload);
-
-const gettingFontPreload = document.createElement("link");
-gettingFontPreload.rel = "preload";
-gettingFontPreload.as = "font";
-gettingFontPreload.type = "font/otf";
-gettingFontPreload.crossOrigin = "anonymous";
-gettingFontPreload.href = gettingFont;
-document.head.appendChild(gettingFontPreload);
 
 rootElement.classList.add("app-loading");
 
@@ -60,6 +34,7 @@ function lazyWithReloadRetry(importer) {
   });
 }
 
+const App = lazyWithReloadRetry(() => import("./App.jsx"));
 const AllCharactersLore = lazyWithReloadRetry(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
 );
@@ -71,7 +46,7 @@ const ContactUs = lazyWithReloadRetry(
   () => import("./components/ContactUs/ContactUs.jsx"),
 );
 const Team = lazyWithReloadRetry(() => import("./components/Team/Team.jsx"));
-
+const News = lazyWithReloadRetry(() => import("./components/News/News.jsx"));
 const localizedRoutes = ["en", "el"].flatMap((language) => [
   {
     path: `/${language}/*`,
@@ -113,6 +88,14 @@ const localizedRoutes = ["en", "el"].flatMap((language) => [
       </LocaleRoute>
     ),
   },
+  {
+    path: `/${language}/news`,
+    element: (
+      <LocaleRoute language={language}>
+        <News />
+      </LocaleRoute>
+    ),
+  },
 ]);
 
 const router = createBrowserRouter([
@@ -121,6 +104,7 @@ const router = createBrowserRouter([
   { path: "/Rules", element: <Rules /> },
   { path: "/ContactUs", element: <ContactUs /> },
   { path: "/Team", element: <Team /> },
+  { path: "/News", element: <News /> },
   ...localizedRoutes,
   { path: "*", element: <NotFound /> },
 ]);
@@ -128,7 +112,7 @@ const router = createBrowserRouter([
 createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
-      <AppReveal rootElement={rootElement}>
+      <AppReveal>
         <Suspense
           fallback={
             <div className="route-loading" role="status" aria-live="polite">
@@ -138,7 +122,7 @@ createRoot(rootElement).render(
         >
           <RouterProvider router={router} />
         </Suspense>
-        <ExecutionerChat />
+        <DeferredExecutionerChat />
       </AppReveal>
     </HelmetProvider>
   </StrictMode>,

@@ -4,6 +4,7 @@ const routeNames = {
   "/Rules": "/rules",
   "/Team": "/team",
   "/ContactUs": "/contact",
+  "/News": "/news",
 };
 
 export function getLocalizedPath(pathname, language) {

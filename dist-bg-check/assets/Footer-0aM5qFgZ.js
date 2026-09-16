@@ -1,0 +1,1 @@
+import{j as r}from"./index-CccMzOlC.js";import{u as o}from"./index-jIEKuLbD.js";function n(){const{t}=o();return r.jsx("div",{className:"footer",children:r.jsxs("p",{children:["© ",new Date().getFullYear()," ",t("footer.rights")]})})}export{n as F};

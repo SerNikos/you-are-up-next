@@ -344,8 +344,11 @@
   color: #f5a623;
 }
 
-.fi {
-  font-size: 1.2rem;
+.language-flag {
+  display: block;
+  width: 2rem;
+  height: 1.5rem;
+  object-fit: cover;
   border-radius: 2px;
 }
 

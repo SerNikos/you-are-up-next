@@ -30,6 +30,10 @@ const pageMetadata = {
     titleKey: "meta.contactTitle",
     descriptionKey: "meta.contactDescription",
   },
+  "/News": {
+    titleKey: "meta.newsTitle",
+    descriptionKey: "meta.newsDescription",
+  },
 };
 
 const routeAliases = {
@@ -43,6 +47,8 @@ const routeAliases = {
   "/el/team": "/Team",
   "/en/contact": "/ContactUs",
   "/el/contact": "/ContactUs",
+  "/en/news": "/News",
+  "/el/news": "/News",
 };
 
 export default function SEO({ noindex = false }) {

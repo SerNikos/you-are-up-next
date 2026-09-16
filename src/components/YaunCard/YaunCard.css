@@ -4,6 +4,7 @@
   padding: 1rem;
   border: 0.2rem solid black;
   border-radius: 1rem;
+  width: min(22rem, calc(100vw - 3rem));
   max-width: 22rem;
   text-align: center;
   box-shadow: 0.5rem 0.5rem 1rem rgb(55, 55, 55);
@@ -22,6 +23,8 @@
 .imgCard {
   width: 100%;
   height: 30rem;
+  display: block;
+  object-fit: cover;
   border-radius: 1rem;
   margin-bottom: 1rem;
 }

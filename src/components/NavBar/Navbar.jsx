@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavBar.css";
-import "flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -17,6 +16,8 @@ import { getLocalizedPath } from "../../utils/localePath.js";
 import bloodLeft from "../../assets/useful-art/BLOOD1.svg";
 import bloodRight from "../../assets/useful-art/BLOOD2.svg";
 import yaunLogo from "../../assets/useful-art/LOGO YAUN.svg";
+import gbFlag from "flag-icons/flags/4x3/gb.svg";
+import grFlag from "flag-icons/flags/4x3/gr.svg";
 
 function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
@@ -40,7 +41,8 @@ function Navbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const currentLang = i18n.language || "el";
-  const localizedLink = (path) => getLocalizedPath(path, currentLang.slice(0, 2));
+  const localizedLink = (path) =>
+    getLocalizedPath(path, currentLang.slice(0, 2));
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -96,13 +98,25 @@ function Navbar() {
             className={`lang-option ${currentLang.startsWith("el") ? "active" : ""}`}
             onClick={() => changeLanguage("el")}
           >
-            <span className="fi fi-gr"></span> Ελληνικά
+            <img
+              className="language-flag"
+              src={grFlag}
+              alt=""
+              aria-hidden="true"
+            />
+            Ελληνικά
           </button>
           <button
             className={`lang-option ${currentLang.startsWith("en") ? "active" : ""}`}
             onClick={() => changeLanguage("en")}
           >
-            <span className="fi fi-gb"></span> English
+            <img
+              className="language-flag"
+              src={gbFlag}
+              alt=""
+              aria-hidden="true"
+            />
+            English
           </button>
         </div>
       )}
@@ -112,14 +126,23 @@ function Navbar() {
   return (
     <>
       <div className={`above-nav-art ${isScrolled ? "is-scrolled" : ""}`}>
-        <img className="above-nav-blood above-nav-blood-left" src={bloodLeft} alt="" aria-hidden="true" />
+        <img
+          className="above-nav-blood above-nav-blood-left"
+          src={bloodLeft}
+          alt=""
+          aria-hidden="true"
+        />
         <Link
           to={localizedLink("/")}
           onClick={() => setMenuOpen(false)}
           className="above-nav-logo-link"
           aria-label={t("nav.home")}
         >
-          <img className="above-nav-logo" src={yaunLogo} alt="You Are Up Next logo" />
+          <img
+            className="above-nav-logo"
+            src={yaunLogo}
+            alt="You Are Up Next logo"
+          />
           <img
             className="above-nav-logo above-nav-logo-hover"
             src={yaunLogo}
@@ -127,7 +150,12 @@ function Navbar() {
             aria-hidden="true"
           />
         </Link>
-        <img className="above-nav-blood above-nav-blood-right" src={bloodRight} alt="" aria-hidden="true" />
+        <img
+          className="above-nav-blood above-nav-blood-right"
+          src={bloodRight}
+          alt=""
+          aria-hidden="true"
+        />
       </div>
       <nav className={`navbar ${isScrolled ? "is-scrolled" : ""}`}>
         <div className="nav-container">
@@ -136,16 +164,34 @@ function Navbar() {
             <Link to={localizedLink("/")} onClick={() => setMenuOpen(false)}>
               <li className="nav-item">{t("nav.home")}</li>
             </Link>
-            <Link to={localizedLink("/AllCharactersLore")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to={localizedLink("/News")}
+              onClick={() => setMenuOpen(false)}
+            >
+              <li className="nav-item">{t("nav.news")}</li>
+            </Link>
+            <Link
+              to={localizedLink("/AllCharactersLore")}
+              onClick={() => setMenuOpen(false)}
+            >
               <li className="nav-item">{t("nav.protagonists")}</li>
             </Link>
-            <Link to={localizedLink("/Team")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to={localizedLink("/Team")}
+              onClick={() => setMenuOpen(false)}
+            >
               <li className="nav-item">{t("nav.team")}</li>
             </Link>
-            <Link to={localizedLink("/Rules")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to={localizedLink("/Rules")}
+              onClick={() => setMenuOpen(false)}
+            >
               <li className="nav-item">{t("nav.rules")}</li>
             </Link>
-            <Link to={localizedLink("/ContactUs")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to={localizedLink("/ContactUs")}
+              onClick={() => setMenuOpen(false)}
+            >
               <li className="nav-item">{t("nav.contact")}</li>
             </Link>
 

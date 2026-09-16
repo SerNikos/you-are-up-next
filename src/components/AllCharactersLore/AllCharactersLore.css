@@ -33,72 +33,6 @@ body {
   width: 100%;
 }
 
-.daily-lore-fact {
-  position: relative;
-  width: min(calc(100% - 2rem), 980px);
-  margin: 2rem auto 8rem;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  overflow: hidden;
-  border: 1px solid rgba(238, 211, 155, 0.3);
-  border-radius: 0.5rem;
-  background:
-    linear-gradient(135deg, rgba(185, 26, 39, 0.16), transparent 45%),
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(238, 211, 155, 0.12),
-      transparent 38%
-    ),
-    #121214;
-  box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-.daily-lore-fact::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 7rem;
-  height: 0.35rem;
-  content: "";
-  background: #b91a27;
-  box-shadow: 0 0 18px rgba(185, 26, 39, 0.55);
-}
-
-.daily-lore-fact-eyebrow,
-.daily-lore-fact-refresh {
-  margin: 0;
-  color: #e4b86d;
-  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.daily-lore-fact h2 {
-  margin: 0.65rem 0 1rem;
-  color: #f4e4c2;
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  line-height: 1.1;
-}
-
-.daily-lore-fact-text {
-  max-width: 68ch;
-  margin: 0;
-  color: #eee7dc;
-  font-size: clamp(1.2rem, 1.7vw, 1.7rem);
-  line-height: 1.65;
-}
-
-.daily-lore-fact-refresh {
-  margin-top: 1.5rem;
-  color: rgba(238, 231, 220, 0.68);
-  font-size: clamp(0.75rem, 1vw, 0.95rem);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-}
-
 /* Individual character section wrapper */
 #executioner,
 #misero,
@@ -386,9 +320,6 @@ body {
     min-width: 0;
   }
 
-  .daily-lore-fact {
-    margin-top: 0;
-  }
 }
 
 /* Mobile Devices Base Configuration Override */
@@ -400,19 +331,6 @@ body {
     border-width: 0.6rem; /* Shrinks dense border sizes to balance small mobile viewports */
   }
 
-  .daily-lore-fact {
-    width: calc(100% - 2rem);
-    margin-bottom: 5rem;
-    padding: 1.5rem 1.25rem;
-    text-align: center;
-  }
-
-  .daily-lore-fact::before {
-    right: 0;
-    left: 50%;
-    width: 5rem;
-    transform: translateX(-50%);
-  }
 }
 
 /* Touchscreens Safety Zone: Clears sticky DESKTOP HOVER completely on mobile, 
