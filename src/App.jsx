@@ -41,6 +41,9 @@ function App() {
               img={executioner}
               name={t("home.cards.executioner_title")}
               description={t("home.cards.executioner_desc")}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 500px) 121px, (max-width: 1000px) 110px, 220px"
             />
           </Link>
 

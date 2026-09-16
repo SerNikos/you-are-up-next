@@ -130,7 +130,6 @@ function Navbar() {
           className="above-nav-blood above-nav-blood-left"
           src={bloodLeft}
           alt=""
-          aria-hidden="true"
         />
         <Link
           to={localizedLink("/")}
@@ -147,14 +146,12 @@ function Navbar() {
             className="above-nav-logo above-nav-logo-hover"
             src={yaunLogo}
             alt=""
-            aria-hidden="true"
           />
         </Link>
         <img
           className="above-nav-blood above-nav-blood-right"
           src={bloodRight}
           alt=""
-          aria-hidden="true"
         />
       </div>
       <nav className={`navbar ${isScrolled ? "is-scrolled" : ""}`}>

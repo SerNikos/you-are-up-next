@@ -19,8 +19,22 @@ const optimizedManifestPath = path.join(
 );
 const rasterExtensions = new Set([".gif", ".jpeg", ".jpg", ".png", ".webp"]);
 const optimizedWidths = [320, 640, 960, 1280, 1600, 1920];
+const unoptimizedFileNames = new Set([
+  "action-cards-all.png",
+  "black-market-all.png",
+  "defense-card.jpg",
+  "defense-card-back.jpg",
+  "executioner-phase-board-state.jpg",
+  "intelligence-card.jpg",
+  "intelligence-card-back.jpg",
+  "resources-all.png",
+  "strength-card.jpg",
+  "strength-card-back.jpg",
+  "wisdom-card.jpg",
+  "wisdom-card-back.jpg",
+]);
 
-async function getRasterFiles(directory) {
+async function getFiles(directory, extensions) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
 
@@ -28,11 +42,11 @@ async function getRasterFiles(directory) {
     const entryPath = path.join(directory, entry.name);
 
     if (entry.isDirectory()) {
-      files.push(...(await getRasterFiles(entryPath)));
+      files.push(...(await getFiles(entryPath, extensions)));
       continue;
     }
 
-    if (rasterExtensions.has(path.extname(entry.name).toLowerCase())) {
+    if (extensions.has(path.extname(entry.name).toLowerCase())) {
       files.push(entryPath);
     }
   }
@@ -40,7 +54,8 @@ async function getRasterFiles(directory) {
   return files.sort();
 }
 
-const files = await getRasterFiles(assetsRoot);
+const rasterFiles = await getFiles(assetsRoot, rasterExtensions);
+const files = rasterFiles;
 const hashes = await Promise.all(
   files.map(async (filePath) => {
     const { data, info } = await sharp(filePath)
@@ -113,8 +128,15 @@ async function generateOptimizedAsset(filePath) {
 
 const optimizedAssets = [];
 const generationBatchSize = 4;
-for (let index = 0; index < files.length; index += generationBatchSize) {
-  const batch = files.slice(index, index + generationBatchSize);
+const optimizableFiles = files.filter(
+  (filePath) => !unoptimizedFileNames.has(path.basename(filePath)),
+);
+for (
+  let index = 0;
+  index < optimizableFiles.length;
+  index += generationBatchSize
+) {
+  const batch = optimizableFiles.slice(index, index + generationBatchSize);
   optimizedAssets.push(
     ...(await Promise.all(batch.map(generateOptimizedAsset))),
   );

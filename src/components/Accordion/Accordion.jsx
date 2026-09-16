@@ -80,7 +80,7 @@ export const Accordion = () => {
                   selected === index ? "open" : ""
                 }`}
                 role="region"
-                aria-hidden={selected !== index}
+                inert={selected !== index}
               >
                 <div className="accordion-answer-content">{faq.answer}</div>
               </div>

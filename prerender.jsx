@@ -202,6 +202,24 @@ export async function prerender({ url }) {
       lang: language,
       title,
       elements: new Set([
+        ...(page === "home"
+          ? [
+              {
+                type: "link",
+                props: {
+                  rel: "preload",
+                  as: "image",
+                  href: "/optimized/executioner-jpg-320.avif",
+                  imagesrcset:
+                    "/optimized/executioner-jpg-320.avif 320w, /optimized/executioner-jpg-640.avif 640w, /optimized/executioner-jpg-673.avif 673w",
+                  imagesizes:
+                    "(max-width: 500px) 121px, (max-width: 1000px) 110px, 220px",
+                  type: "image/avif",
+                  fetchpriority: "high",
+                },
+              },
+            ]
+          : []),
         { type: "meta", props: { name: "description", content: description } },
         { type: "meta", props: { name: "robots", content: "index, follow" } },
         { type: "meta", props: { property: "og:type", content: "website" } },

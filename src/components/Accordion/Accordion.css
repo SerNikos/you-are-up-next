@@ -93,8 +93,15 @@
 }
 
 .accordion-answer {
-  background: #f0f8ff url("../../assets/useful-art/papirus texture.jpg") center /
-    cover no-repeat;
+  background-color: #f0f8ff;
+  background-image: image-set(
+    url("/optimized/papirus-texture-jpg-612.avif") type("image/avif"),
+    url("/optimized/papirus-texture-jpg-612.webp") type("image/webp"),
+    url("../../assets/useful-art/papirus texture.jpg") type("image/jpeg")
+  );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: #000;
   padding: 0 2rem;
   font-size: 1.6rem;
@@ -126,7 +133,6 @@
 .accordion-span:hover {
   text-decoration: none;
 }
-
 
 @media (max-width: 500px) {
   html {

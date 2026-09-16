@@ -152,7 +152,8 @@ export default function LoadingImage({
   const [useOriginalSource, setUseOriginalSource] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
-  const [useNativeSource, setUseNativeSource] = useState(!optimizedSources);
+  const shouldUseNativeSource = !optimizedSources || loading === "eager";
+  const [useNativeSource, setUseNativeSource] = useState(shouldUseNativeSource);
   const wrapperRef = useRef(null);
   const loadingTimer = useRef(null);
   const abortController = useRef(null);
@@ -265,16 +266,16 @@ export default function LoadingImage({
     revokeObjectUrl();
     clearLoadingTimer();
     retryOriginalSource.current = null;
-    activeSource.current = optimizedSources ? "waiting" : "native";
+    activeSource.current = shouldUseNativeSource ? "native" : "waiting";
     setIsLoading(Boolean(src));
     setProgress(0);
     setIsIndeterminate(false);
     setUseOriginalSource(false);
     setImageFailed(false);
     setImageSrc(null);
-    setUseNativeSource(!optimizedSources);
+    setUseNativeSource(shouldUseNativeSource);
 
-    if (!src || !optimizedSources) {
+    if (!src || !optimizedSources || loading === "eager") {
       return () => {
         cancelled = true;
         abortController.current?.abort();
@@ -316,7 +317,14 @@ export default function LoadingImage({
       revokeObjectUrl();
       clearLoadingTimer();
     };
-  }, [fetchPriority, loading, onImageError, optimizedSources, src]);
+  }, [
+    fetchPriority,
+    loading,
+    onImageError,
+    optimizedSources,
+    shouldUseNativeSource,
+    src,
+  ]);
 
   const handleLoad = (event) => {
     if (src && !useNativeSource && !imageSrc) return;
@@ -410,7 +418,7 @@ export default function LoadingImage({
           className={className}
           loading={useNativeSource ? loading : "eager"}
           decoding={decoding}
-          fetchPriority={useNativeSource ? fetchPriority : undefined}
+          fetchPriority={fetchPriority}
           onLoad={handleLoad}
           onError={handleError}
         />

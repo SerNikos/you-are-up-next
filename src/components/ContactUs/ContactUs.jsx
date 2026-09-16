@@ -214,7 +214,7 @@ export default function ContactUs() {
               {messageInvalid && <p>{t("contact.errors.message")}</p>}
             </div>
 
-            <div className="contact-honeypot" aria-hidden="true">
+            <div className="contact-honeypot" inert>
               <label htmlFor="website">Website</label>
               <input
                 id="website"
