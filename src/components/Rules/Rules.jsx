@@ -28,10 +28,9 @@ import executionerBackImg from "../../assets/rules-photos/Components/ED/executio
 import executionerLastMealImg from "../../assets/rules-photos/Components/ED/last-meal.jpg";
 import executionerPaidGuardImg from "../../assets/rules-photos/Components/ED/paid-guard.jpg";
 import executionerYouAreUpNextImg from "../../assets/rules-photos/Components/ED/you-are-up-next.jpg";
-import blackMarketBackImg from "../../assets/rules-photos/Components/BM/black-market-card-back.jpg";
-import blackMarketGentlePushImg from "../../assets/rules-photos/Components/BM/a-gentle-push.jpg";
-import blackMarketInfectionImg from "../../assets/rules-photos/Components/BM/infection.jpg";
-import blackMarketImpostorestImg from "../../assets/rules-photos/Components/BM/the-impostor-est.jpg";
+import blackMarketBreakPlotArmorImg from "../../assets/rules-photos/Components/BM/BREAK PLOT ARMOR.jpg";
+import blackMarketGentlePushImg from "../../assets/rules-photos/Components/BM/GENTLE PUSH.jpg";
+import blackMarketImpostorestImg from "../../assets/rules-photos/Components/BM/THE IMPOSTOREST.jpg";
 import resourceCardBackImg from "../../assets/rules-photos/Components/Resources/resource-card-back.jpg";
 import resourceDexterityImg from "../../assets/rules-photos/Components/Resources/resource-dexterity.jpg";
 import resourceHolyDuckTapeImg from "../../assets/rules-photos/Components/Resources/resource-holy-duck-tape.jpg";
@@ -48,9 +47,9 @@ const executionerBackCards = [
 
 const executionerExampleCards = [
   {
-    src: executionerYouAreUpNextImg,
-    label: "You Are Up Next",
-    alt: "Executioner's Deck card example: You Are Up Next",
+    src: executionerLastMealImg,
+    label: "Last Meal",
+    alt: "Executioner's Deck card example: Last Meal",
   },
   {
     src: executionerPaidGuardImg,
@@ -58,17 +57,9 @@ const executionerExampleCards = [
     alt: "Executioner's Deck card example: Paid Guard",
   },
   {
-    src: executionerLastMealImg,
-    label: "Last Meal",
-    alt: "Executioner's Deck card example: Last Meal",
-  },
-];
-
-const blackMarketBackCards = [
-  {
-    src: blackMarketBackImg,
-    flip: true,
-    alt: "Black Market card back showing a merchant and an open treasure chest",
+    src: executionerYouAreUpNextImg,
+    label: "You Are Up Next",
+    alt: "Executioner's Deck card example: You Are Up Next",
   },
 ];
 
@@ -79,14 +70,14 @@ const blackMarketExampleCards = [
     alt: "Black Market card example: A Gentle Push",
   },
   {
-    src: blackMarketInfectionImg,
-    label: "Infection",
-    alt: "Black Market card example: Infection",
-  },
-  {
     src: blackMarketImpostorestImg,
     label: "The Impostor-est",
     alt: "Black Market card example: The Impostor-est",
+  },
+  {
+    src: blackMarketBreakPlotArmorImg,
+    label: "Break Plot Armor",
+    alt: "Black Market card example: Break Plot Armor",
   },
 ];
 
@@ -202,7 +193,7 @@ export default function Rules() {
           <DeckShowcase
             title={t("rules.components.black_market_card_title")}
             description={t("rules.components.black_market_card_desc")}
-            backCards={blackMarketBackCards}
+            className="black-market-showcase"
             sampleCards={blackMarketExampleCards}
             backLabel={t("rules.components.card_back_label")}
             sampleLabel={t("rules.components.example_cards_label")}
@@ -352,278 +343,292 @@ export default function Rules() {
         </section>
         {/* Game Flow Component */}
         <GameFlow activePhase={activePhase} onPhaseToggle={togglePhase}>
-        {/* Phase 1: Draw Phase with id */}
-        <div
-          className={`rules-phase-panel ${
-            activePhase === "phase1" ? "is-open" : ""
-          }`}
-        >
-          <section
-            className="rules-section rules-phase-section"
-            id="phase1-section"
-            role="region"
-            aria-labelledby="phase1-title"
-            aria-hidden={activePhase !== "phase1"}
+          {/* Phase 1: Draw Phase with id */}
+          <div
+            className={`rules-phase-panel ${
+              activePhase === "phase1" ? "is-open" : ""
+            }`}
           >
-            <h2 className="rules-title" id="phase1-title">
-              {t("rules.phase1_title")}
-            </h2>
-            <div className="setup-step">
-              <p
-                className="rules-text"
-                dangerouslySetInnerHTML={{ __html: t("rules.phase1_desc") }}
-              />
-              <ul className="rules-bullets">
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase1_list1") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase1_list3") }}
-                />
-              </ul>
-              <div className="image-progress-wrapper">
-                <LoadingImage
-                  src={step3Image}
-                  alt="Draw Phase step showing Misero taking a card from the board"
-                  className="rules-img"
-                  loading="eager"
-                />
-              </div>
-            </div>
-
-            <div className="setup-step">
-              <h3 className="rules-subtitle2">
-                {t("rules.phase1_complete_title")}
-              </h3>
-              <p
-                className="rules-text"
-                dangerouslySetInnerHTML={{
-                  __html: t("rules.phase1_complete_desc"),
-                }}
-              />
-              <div className="rules-callout">
+            <section
+              className="rules-section rules-phase-section"
+              id="phase1-section"
+              role="region"
+              aria-labelledby="phase1-title"
+              aria-hidden={activePhase !== "phase1"}
+            >
+              <h2 className="rules-title" id="phase1-title">
+                {t("rules.phase1_title")}
+              </h2>
+              <div className="setup-step">
                 <p
                   className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase1_complete_list1"),
-                  }}
+                  dangerouslySetInnerHTML={{ __html: t("rules.phase1_desc") }}
                 />
-              </div>
-              <div className="image-progress-wrapper">
-                <LoadingImage
-                  src={step4Image}
-                  alt="Board after all players have drawn their card in queue order"
-                  className="rules-img"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </section>
-        </div>
-        {/* Phase 2: Action Phase with id */}
-        <div
-          className={`rules-phase-panel ${
-            activePhase === "phase2" ? "is-open" : ""
-          }`}
-        >
-          <section
-            className="rules-section rules-phase-section"
-            id="phase2-section"
-            role="region"
-            aria-labelledby="phase2-title"
-            aria-hidden={activePhase !== "phase2"}
-          >
-            <h2 className="rules-title" id="phase2-title">
-              {t("rules.phase2_title")}
-            </h2>
-            <div className="setup-step">
-              <p
-                className="rules-text"
-                dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
-              />
-              <ul className="rules-bullets">
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt4") }}
-                />
-              </ul>
-
-              <div className="rules-callout">
-                <h4 className="rules-callout-title">
-                  {t("rules.phase2_priority_title")}
-                </h4>
-                <p
-                  className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase2_priority_text1"),
-                  }}
-                />
-                <p
-                  className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase2_priority_text2"),
-                  }}
-                />
-              </div>
-
-              <div className="rules-example">
-                <h4 className="rules-callout-title">
-                  {t("rules.phase2_ex1_title")}
-                </h4>
-                <p
-                  className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase2_ex1_text"),
-                  }}
-                />
+                <ul className="rules-bullets">
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase1_list1"),
+                    }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase1_list3"),
+                    }}
+                  />
+                </ul>
                 <div className="image-progress-wrapper">
                   <LoadingImage
-                    src={step5Image}
-                    alt="Showing a player playing an Action card during the Action Phase"
+                    src={step3Image}
+                    alt="Draw Phase step showing Misero taking a card from the board"
                     className="rules-img"
                     loading="eager"
                   />
                 </div>
               </div>
 
-              <div className="rules-example">
-                <h4 className="rules-callout-title">
-                  {t("rules.phase2_ex2_title")}
-                </h4>
+              <div className="setup-step">
+                <h3 className="rules-subtitle2">
+                  {t("rules.phase1_complete_title")}
+                </h3>
                 <p
                   className="rules-text"
                   dangerouslySetInnerHTML={{
-                    __html: t("rules.phase2_ex2_text"),
+                    __html: t("rules.phase1_complete_desc"),
                   }}
                 />
+                <div className="rules-callout">
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase1_complete_list1"),
+                    }}
+                  />
+                </div>
                 <div className="image-progress-wrapper">
                   <LoadingImage
-                    src={step6Image}
-                    alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
+                    src={step4Image}
+                    alt="Board after all players have drawn their card in queue order"
                     className="rules-img"
                     loading="eager"
                   />
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
-        {/* Phase 3: Executioner Phase with id */}
-        <div
-          className={`rules-phase-panel ${
-            activePhase === "phase3" ? "is-open" : ""
-          }`}
-        >
-          <section
-            className="rules-section rules-phase-section"
-            id="phase3-section"
-            role="region"
-            aria-labelledby="phase3-title"
-            aria-hidden={activePhase !== "phase3"}
+            </section>
+          </div>
+          {/* Phase 2: Action Phase with id */}
+          <div
+            className={`rules-phase-panel ${
+              activePhase === "phase2" ? "is-open" : ""
+            }`}
           >
-            <h2 className="rules-title" id="phase3-title">
-              {t("rules.phase3_title")}
-            </h2>
-            <div className="setup-step">
+            <section
+              className="rules-section rules-phase-section"
+              id="phase2-section"
+              role="region"
+              aria-labelledby="phase2-title"
+              aria-hidden={activePhase !== "phase2"}
+            >
+              <h2 className="rules-title" id="phase2-title">
+                {t("rules.phase2_title")}
+              </h2>
+              <div className="setup-step">
+                <p
+                  className="rules-text"
+                  dangerouslySetInnerHTML={{ __html: t("rules.phase2_desc1") }}
+                />
+                <ul className="rules-bullets">
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt1") }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt2") }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt3") }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("rules.phase2_opt4") }}
+                  />
+                </ul>
+
+                <div className="rules-callout">
+                  <h4 className="rules-callout-title">
+                    {t("rules.phase2_priority_title")}
+                  </h4>
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase2_priority_text1"),
+                    }}
+                  />
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase2_priority_text2"),
+                    }}
+                  />
+                </div>
+
+                <div className="rules-example">
+                  <h4 className="rules-callout-title">
+                    {t("rules.phase2_ex1_title")}
+                  </h4>
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase2_ex1_text"),
+                    }}
+                  />
+                  <div className="image-progress-wrapper">
+                    <LoadingImage
+                      src={step5Image}
+                      alt="Showing a player playing an Action card during the Action Phase"
+                      className="rules-img"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
+
+                <div className="rules-example">
+                  <h4 className="rules-callout-title">
+                    {t("rules.phase2_ex2_title")}
+                  </h4>
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase2_ex2_text"),
+                    }}
+                  />
+                  <div className="image-progress-wrapper">
+                    <LoadingImage
+                      src={step6Image}
+                      alt="Showing 3 Strength resources and 1 Holy Duck Tape card used to purchase Strength Plot Armor"
+                      className="rules-img"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          {/* Phase 3: Executioner Phase with id */}
+          <div
+            className={`rules-phase-panel ${
+              activePhase === "phase3" ? "is-open" : ""
+            }`}
+          >
+            <section
+              className="rules-section rules-phase-section"
+              id="phase3-section"
+              role="region"
+              aria-labelledby="phase3-title"
+              aria-hidden={activePhase !== "phase3"}
+            >
+              <h2 className="rules-title" id="phase3-title">
+                {t("rules.phase3_title")}
+              </h2>
+              <div className="setup-step">
+                <p
+                  className="rules-text"
+                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_desc") }}
+                />
+
+                <ul className="rules-bullets">
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_list1"),
+                    }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_list2"),
+                    }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_list3"),
+                    }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_list4"),
+                    }}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_list5"),
+                    }}
+                  />
+                </ul>
+
+                <div className="rules-example">
+                  <h4 className="rules-callout-title">
+                    {t("rules.phase3_ex1_title")}
+                  </h4>
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_ex1_text"),
+                    }}
+                  />
+                  <div className="image-progress-wrapper">
+                    <LoadingImage
+                      src={step45Image}
+                      alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
+                      className="rules-img"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
+
+                <div className="rules-example">
+                  <h4 className="rules-callout-title">
+                    {t("rules.phase3_ex2_title")}
+                  </h4>
+                  <p
+                    className="rules-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("rules.phase3_ex2_text"),
+                    }}
+                  />
+                  <div className="image-progress-wrapper">
+                    <LoadingImage
+                      src={img1132Image}
+                      alt="Character cards flipped over showing their death state illustrations"
+                      className="rules-img"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          {/* Purpose of the Game / Win State with id */}
+          <div
+            className={`rules-phase-panel ${
+              activePhase === "win" ? "is-open" : ""
+            }`}
+          >
+            <section
+              className="rules-section rules-phase-section"
+              id="purpose-section"
+              role="region"
+              aria-labelledby="purpose-title"
+              aria-hidden={activePhase !== "win"}
+            >
+              <h2 className="rules-title" id="purpose-title">
+                {t("rules.purpose_title")}
+              </h2>
               <p
                 className="rules-text"
-                dangerouslySetInnerHTML={{ __html: t("rules.phase3_desc") }}
+                dangerouslySetInnerHTML={{ __html: t("rules.purpose_text1") }}
               />
-
-              <ul className="rules-bullets">
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_list1") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_list2") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_list3") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_list4") }}
-                />
-                <li
-                  dangerouslySetInnerHTML={{ __html: t("rules.phase3_list5") }}
-                />
-              </ul>
-
-              <div className="rules-example">
-                <h4 className="rules-callout-title">
-                  {t("rules.phase3_ex1_title")}
-                </h4>
-                <p
-                  className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase3_ex1_text"),
-                  }}
-                />
-                <div className="image-progress-wrapper">
-                  <LoadingImage
-                    src={step45Image}
-                    alt="Executioner card reveal showing YOU ARE UP NEXT next to the Executioner discard stack"
-                    className="rules-img"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-
-              <div className="rules-example">
-                <h4 className="rules-callout-title">
-                  {t("rules.phase3_ex2_title")}
-                </h4>
-                <p
-                  className="rules-text"
-                  dangerouslySetInnerHTML={{
-                    __html: t("rules.phase3_ex2_text"),
-                  }}
-                />
-                <div className="image-progress-wrapper">
-                  <LoadingImage
-                    src={img1132Image}
-                    alt="Character cards flipped over showing their death state illustrations"
-                    className="rules-img"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-        {/* Purpose of the Game / Win State with id */}
-        <div
-          className={`rules-phase-panel ${
-            activePhase === "win" ? "is-open" : ""
-          }`}
-        >
-          <section
-            className="rules-section rules-phase-section"
-            id="purpose-section"
-            role="region"
-            aria-labelledby="purpose-title"
-            aria-hidden={activePhase !== "win"}
-          >
-            <h2 className="rules-title" id="purpose-title">
-              {t("rules.purpose_title")}
-            </h2>
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{ __html: t("rules.purpose_text1") }}
-            />
-            <p
-              className="rules-text"
-              dangerouslySetInnerHTML={{ __html: t("rules.purpose_text2") }}
-            />
-          </section>
-        </div>
+              <p
+                className="rules-text"
+                dangerouslySetInnerHTML={{ __html: t("rules.purpose_text2") }}
+              />
+            </section>
+          </div>
         </GameFlow>
         {/* Glossary of Terms / Λεξικό Όρων */}
         <section className="rules-section glossary-section">

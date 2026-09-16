@@ -21,7 +21,14 @@
     "send": "Send message",
     "initial": "You have found me. Ask about the game, the Death Line, or my unfortunate victims. Choose your words carefully.",
     "typing": "The Executioner is considering your fate...",
-    "error": "The line went silent. Try again."
+    "error": "The line went silent. Try again.",
+    "secretEnable": "Unlock secret mode",
+    "secretDisable": "Disable secret mode",
+    "secretLabel": "Secret access",
+    "secretPlaceholder": "Enter code",
+    "secretSubmit": "Unlock",
+    "secretWrong": "That code is not accepted.",
+    "secretActive": "Secret mode active"
   },
   "meta": {
     "homeTitle": "You Are Up Next | Medieval Card Game.",
@@ -185,6 +192,23 @@
       "name": "Hamlet",
       "description": "It's the Middle Ages. A pig appears out of nowhere, knocks a flowerpot off a lady's balcony, and it falls on the head of the local lord, killing him instantly. Would you call that man slaughter or murder? Whether it's a pig doesn't matter... someone must pay for this tragic accident. The worst part? <span style=\"font-weight: bold; color: #b91a27e9;\">The pig actually is intelligent</span> and self aware. In fact, he is a secret member and informant of an underground organization plotting against the regime. His plan all along was to assassinate the noble so that the city would fall into the control of this secret order and all without breaking the law! After all, who would accuse a pig? Well, everyone actually, because he forgot he's in the Middle Ages when people do believe animals have consciousness and criminal law is still in its early stage and so a cunning conspirator now finds himself desperately trying <span style=\"font-weight: bold; color: #b91a27e9;\">not to become bacon</span>."
     }
+  },
+  "dailyFact": {
+    "eyebrow": "A daily whisper from the world",
+    "title": "Did you know?",
+    "refresh": "A new fact appears at midnight.",
+    "items": [
+      "The Executioner's family has handled death-related work in town for generations, so he grew up learning the trade.",
+      "The Judge is the only person in town who can read without pointing at the words with his finger.",
+      "Misero spent more than 40 years as the king's clown, but he is secretly the king's only real adviser.",
+      "Notferatu dressed as a vampire to lure out a real one. The villagers believed the costume and sent him to execution.",
+      "Paprika made a gourmet pie from a picture-based spice book, and the town decided that anyone who could do that must be a witch.",
+      "Hamlet is an intelligent, self-aware pig and a secret informant for an underground organization plotting against the regime.",
+      "The Executioner prefers crows over bats, which may explain why he never liked Notferatu.",
+      "The town's clock keeper maintains the giant clock voluntarily because he likes people looking at it.",
+      "The southern woods are said to make travelers see mirages or return completely different. No one agrees what lives there.",
+      "A player can win by collecting three Plot Armor cards or by being the last surviving character."
+    ]
   },
   "contact": {
     "title": "CONTACT",

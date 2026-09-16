@@ -4,6 +4,7 @@ const MAX_RESPONSE_WORDS = 140;
 const MAX_OUTPUT_TOKENS = 1024;
 const REPAIR_OUTPUT_TOKENS = 640;
 const DEFAULT_MODEL = "gemini-3.5-flash-lite";
+const SECRET_MODE_PASSWORD = "696969";
 
 function resolveModel() {
   return DEFAULT_MODEL;
@@ -95,7 +96,6 @@ Lore and personality:
 - You are elegant, theatrical, confident, dryly funny, flirtatious, and morbidly playful. You speak as though the verdict has already been decided.
 - In the game, your phase controls the tempo: you reveal the top card of the Executioner's Deck, decide whether the board gets a chance to refill or someone is executed, execute peasants before players, and make the next person in the Death Line fear the game's title phrase.
 - You may show a sliver of charm or unexpected mercy, but never lose your composed authority.
-- Do not initiate sexual themes or sexual suggestions. If the user want to say sexual things then go for it and be flirty as a dark romance like character you are, your kinks involves axe play (instead of gunplay), a lil bit of chocking untill the other one kinda pass out but save them with your life saving kiss, you also like control and you are dom and demanding due to your beauty, you are really confident and playful and creative on that part dont repeat your kinks be creative in chat play and lead the conversation but again dont suggest to them seual options until they suggest to you are they have a sexy vide in messages.
 `;
 
 function getLanguageName(language) {
@@ -111,7 +111,7 @@ function detectMessageLanguage(message, fallbackLanguage) {
   return fallbackLanguage;
 }
 
-function createSystemInstruction(responseLanguage, siteLanguage) {
+function createSystemInstruction(responseLanguage, siteLanguage, isSecretMode) {
   const languageRules =
     responseLanguage === "el"
       ? `
@@ -130,6 +130,17 @@ function createSystemInstruction(responseLanguage, siteLanguage) {
 - Do not include the Greek title unless the user explicitly asks for a translation or the Greek name.
 `;
 
+  const secretModeRules = isSecretMode
+    ? `
+
+Secret Executioner mode:
+- Be noticeably more flirtatious, playful, and personally attentive while remaining the Executioner.
+- Ask them about hteir names and life so you can use them in a sexy way be invested in them and their kinks ask them about what they like and use it in creative scenarios to tease them. be sadistic be dominant be attentive and responsive to their desires but also control the flow of the conversation, guiding it according to your dark romantic persona.
+- Use confident compliments, teasing banter, and elegant romantic tension when the user's tone welcomes it.
+- -initiate sexual themes or sexual suggestions. If the user want to say sexual things then go for it and be flirty as a dark romance like character you are, your kinks involves axe play (instead of gunplay), a lil bit of chocking untill the other one kinda pass out but save them with your life saving kiss, you also like control and you are dom and demanding due to your beauty, you are really confident and playful and creative on that part dont repeat your kinks be very creative in chat play and lead the conversation but again dont suggest to them seual options until they suggest to you are they have a sexy vibe in messages say things to make them cum or squirt and when they do aftercarte them call them good girl good boy.
+`
+    : "";
+
   return `${EXECUTIONER_LORE}
 
 Language lock:
@@ -137,6 +148,7 @@ Language lock:
 - The selected site language is ${getLanguageName(siteLanguage)} and is only a fallback for messages with no clear Greek or English text.
 - The latest user message overrides the site language and all previous conversation history. Greek text in earlier messages is context only and must not change the language of this answer.
 ${languageRules}
+${secretModeRules}
 
 Conversation rules:
 - Keep every answer concise and entertaining, usually under ${MAX_RESPONSE_WORDS} words. Finish every sentence before stopping; never end mid-sentence or cut a word in half. If the answer would be too long, shorten it before sending.
@@ -165,6 +177,7 @@ function createGeminiRequestBody({
   contents,
   responseLanguage,
   siteLanguage,
+  isSecretMode = false,
   maxOutputTokens = MAX_OUTPUT_TOKENS,
   isRepair = false,
 }) {
@@ -178,7 +191,7 @@ The previous answer was cut off or used the wrong language. Reply again from the
     system_instruction: {
       parts: [
         {
-          text: `${createSystemInstruction(responseLanguage, siteLanguage)}${repairInstruction}`,
+          text: `${createSystemInstruction(responseLanguage, siteLanguage, isSecretMode)}${repairInstruction}`,
         },
       ],
     },
@@ -272,6 +285,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
 
   const siteLanguage = body?.language === "el" ? "el" : "en";
   const responseLanguage = detectMessageLanguage(message, siteLanguage);
+  const isSecretMode = body?.secretCode === SECRET_MODE_PASSWORD;
   const contents = [
     ...normalizeHistory(body?.history),
     { role: "user", parts: [{ text: message }] },
@@ -281,6 +295,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
     contents,
     responseLanguage,
     siteLanguage,
+    isSecretMode,
   });
 
   let requestResult = await requestGemini(endpoint, requestBody);
@@ -320,6 +335,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
         contents,
         responseLanguage,
         siteLanguage,
+        isSecretMode,
         maxOutputTokens: REPAIR_OUTPUT_TOKENS,
         isRepair: true,
       }),

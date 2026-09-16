@@ -73,12 +73,28 @@ const characterList = [
   },
 ];
 
+const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+const getLocalDayNumber = (date = new Date()) =>
+  Math.floor(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) /
+      MILLISECONDS_PER_DAY,
+  );
+
+const getMillisecondsUntilNextLocalMidnight = (date = new Date()) => {
+  const nextMidnight = new Date(date);
+  nextMidnight.setHours(24, 0, 0, 0);
+
+  return Math.max(nextMidnight.getTime() - date.getTime(), 1000);
+};
+
 export default function AllCharactersLore() {
   const { t, i18n } = useTranslation();
   const { hash } = useLocation();
 
   const [activeCard, setActiveCard] = useState(null);
   const [playingAudioId, setPlayingAudioId] = useState(null);
+  const [dailyFactDay, setDailyFactDay] = useState(() => getLocalDayNumber());
 
   // Έλεγχος αν η τρέχουσα γλώσσα είναι Ελληνική
   const isGreek = i18n.language && i18n.language.startsWith("el");
@@ -123,6 +139,33 @@ export default function AllCharactersLore() {
   const handleAudioToggle = (id, isPlaying) => {
     setPlayingAudioId(isPlaying ? id : null);
   };
+
+  useEffect(() => {
+    let midnightTimer;
+
+    const updateDailyFact = () => {
+      const now = new Date();
+      setDailyFactDay(getLocalDayNumber(now));
+      midnightTimer = window.setTimeout(
+        updateDailyFact,
+        getMillisecondsUntilNextLocalMidnight(now),
+      );
+    };
+
+    midnightTimer = window.setTimeout(
+      updateDailyFact,
+      getMillisecondsUntilNextLocalMidnight(),
+    );
+
+    return () => window.clearTimeout(midnightTimer);
+  }, []);
+
+  const dailyFacts = t("dailyFact.items", { returnObjects: true });
+  const dailyFactItems = Array.isArray(dailyFacts) ? dailyFacts : [];
+  const dailyFact =
+    dailyFactItems.length > 0
+      ? dailyFactItems[dailyFactDay % dailyFactItems.length]
+      : "";
 
   return (
     <div>
@@ -186,6 +229,15 @@ export default function AllCharactersLore() {
             </section>
           );
         })}
+
+        <section className="daily-lore-fact" aria-labelledby="daily-fact-title">
+          <p className="daily-lore-fact-eyebrow">{t("dailyFact.eyebrow")}</p>
+          <h2 id="daily-fact-title">{t("dailyFact.title")}</h2>
+          <p className="daily-lore-fact-text" aria-live="polite">
+            {dailyFact}
+          </p>
+          <p className="daily-lore-fact-refresh">{t("dailyFact.refresh")}</p>
+        </section>
       </main>
 
       <Footer />

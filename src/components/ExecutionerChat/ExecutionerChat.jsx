@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { FaComments, FaPaperPlane, FaTimes } from "react-icons/fa";
+import { FaComments, FaKey, FaPaperPlane, FaTimes } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "./ExecutionerChat.css";
 
 const MAX_MESSAGE_LENGTH = 1200;
 const MOBILE_BREAKPOINT = 520;
+const SECRET_MODE_PASSWORD = "696969";
 
 export default function ExecutionerChat() {
   const { i18n, t } = useTranslation();
@@ -18,6 +19,10 @@ export default function ExecutionerChat() {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(null);
+  const [isSecretMode, setIsSecretMode] = useState(false);
+  const [isSecretPromptOpen, setIsSecretPromptOpen] = useState(false);
+  const [secretPassword, setSecretPassword] = useState("");
+  const [secretError, setSecretError] = useState("");
   const inputRef = useRef(null);
   const messagesRef = useRef(null);
 
@@ -134,6 +139,37 @@ export default function ExecutionerChat() {
     }
   }, [messages, isSending]);
 
+  const toggleSecretMode = () => {
+    if (isSecretMode) {
+      setIsSecretMode(false);
+      setIsSecretPromptOpen(false);
+      setMessages([{ role: "model", text: t("chat.initial") }]);
+      setMessage("");
+      setError("");
+      setSecretPassword("");
+      setSecretError("");
+      return;
+    }
+
+    setSecretError("");
+    setSecretPassword("");
+    setIsSecretPromptOpen((isOpen) => !isOpen);
+  };
+
+  const unlockSecretMode = (event) => {
+    event.preventDefault();
+
+    if (secretPassword !== SECRET_MODE_PASSWORD) {
+      setSecretError(t("chat.secretWrong"));
+      return;
+    }
+
+    setIsSecretMode(true);
+    setIsSecretPromptOpen(false);
+    setSecretPassword("");
+    setSecretError("");
+  };
+
   const sendMessage = async (event) => {
     event.preventDefault();
     const trimmedMessage = message.trim();
@@ -157,6 +193,7 @@ export default function ExecutionerChat() {
           message: trimmedMessage,
           history,
           language,
+          secretCode: isSecretMode ? SECRET_MODE_PASSWORD : "",
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -178,7 +215,7 @@ export default function ExecutionerChat() {
 
   return (
     <div
-      className={`executioner-chat ${keyboardOffset > 0 ? "is-keyboard-open" : ""}`}
+      className={`executioner-chat ${isSecretMode ? "is-secret-mode" : ""} ${keyboardOffset > 0 ? "is-keyboard-open" : ""}`}
       style={{
         "--executioner-keyboard-offset": `${keyboardOffset}px`,
         "--executioner-viewport-height": viewportHeight
@@ -188,7 +225,7 @@ export default function ExecutionerChat() {
     >
       {isOpen && (
         <section
-          className="executioner-chat-panel"
+          className={`executioner-chat-panel ${isSecretMode ? "is-secret" : ""}`}
           aria-label={t("chat.title")}
           aria-live="polite"
         >
@@ -197,17 +234,89 @@ export default function ExecutionerChat() {
               <p className="executioner-chat-eyebrow">YOU ARE UP NEXT</p>
               <h2>{t("chat.title")}</h2>
               <p>{t("chat.subtitle")}</p>
+              {isSecretMode && (
+                <span className="executioner-chat-secret-badge">
+                  {t("chat.secretActive")}
+                </span>
+              )}
             </div>
-            <button
-              type="button"
-              className="executioner-chat-close"
-              onClick={() => setIsOpen(false)}
-              aria-label={t("chat.close")}
-              title={t("chat.close")}
-            >
-              <FaTimes aria-hidden="true" />
-            </button>
+            <div className="executioner-chat-header-actions">
+              <button
+                type="button"
+                className={`executioner-chat-secret-toggle ${isSecretMode ? "is-active" : ""}`}
+                onClick={toggleSecretMode}
+                aria-pressed={isSecretMode}
+                aria-label={
+                  isSecretMode
+                    ? t("chat.secretDisable")
+                    : t("chat.secretEnable")
+                }
+                title={
+                  isSecretMode
+                    ? t("chat.secretDisable")
+                    : t("chat.secretEnable")
+                }
+              >
+                <FaKey aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="executioner-chat-close"
+                onClick={() => setIsOpen(false)}
+                aria-label={t("chat.close")}
+                title={t("chat.close")}
+              >
+                <FaTimes aria-hidden="true" />
+              </button>
+            </div>
           </header>
+
+          {isSecretPromptOpen && !isSecretMode && (
+            <form
+              className="executioner-chat-secret-form"
+              onSubmit={unlockSecretMode}
+            >
+              <label htmlFor="executioner-secret-password">
+                {t("chat.secretLabel")}
+              </label>
+              <div className="executioner-chat-secret-fields">
+                <input
+                  id="executioner-secret-password"
+                  type="password"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  value={secretPassword}
+                  onChange={(event) => {
+                    setSecretPassword(event.target.value);
+                    setSecretError("");
+                  }}
+                  placeholder={t("chat.secretPlaceholder")}
+                  maxLength={SECRET_MODE_PASSWORD.length}
+                  aria-describedby={
+                    secretError ? "executioner-secret-error" : undefined
+                  }
+                />
+                <button
+                  type="submit"
+                  className="executioner-chat-secret-submit"
+                  disabled={!secretPassword}
+                  aria-label={t("chat.secretSubmit")}
+                  title={t("chat.secretSubmit")}
+                >
+                  <FaKey aria-hidden="true" />
+                </button>
+              </div>
+              {secretError && (
+                <p
+                  id="executioner-secret-error"
+                  className="executioner-chat-secret-error"
+                  role="alert"
+                >
+                  {secretError}
+                </p>
+              )}
+            </form>
+          )}
 
           <div
             ref={messagesRef}

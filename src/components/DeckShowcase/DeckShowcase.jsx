@@ -26,39 +26,43 @@ function CardFigure({ card, deckTitle, kind }) {
 export default function DeckShowcase({
   title,
   description,
-  backCards,
-  sampleCards,
+  backCards = [],
+  sampleCards = [],
   backLabel,
   sampleLabel,
+  className = "",
 }) {
+  const hasBackCards = backCards.length > 0;
   const hasBackFamily = backCards.length > 1;
   const sampleCountClass = `has-${sampleCards.length}-samples`;
 
   return (
     <article
-      className={`deck-showcase${hasBackFamily ? " is-back-family" : ""}`}
+      className={`deck-showcase ${className}${hasBackFamily ? " is-back-family" : ""}`}
     >
       <div className="deck-showcase-heading">
         <h3 className="rules-subtitle2">{title}</h3>
         <p className="rules-text">{description}</p>
       </div>
 
-      <div className="deck-showcase-stage">
-        <div className="deck-showcase-block deck-showcase-back">
-          <span className="deck-showcase-label">{backLabel}</span>
-          <div
-            className={`deck-back-display${hasBackFamily ? " is-family" : ""}`}
-          >
-            {backCards.map((card) => (
-              <CardFigure
-                card={card}
-                deckTitle={title}
-                kind="back"
-                key={card.src}
-              />
-            ))}
+      <div className={`deck-showcase-stage${hasBackCards ? "" : " no-back"}`}>
+        {hasBackCards && (
+          <div className="deck-showcase-block deck-showcase-back">
+            <span className="deck-showcase-label">{backLabel}</span>
+            <div
+              className={`deck-back-display${hasBackFamily ? " is-family" : ""}`}
+            >
+              {backCards.map((card) => (
+                <CardFigure
+                  card={card}
+                  deckTitle={title}
+                  kind="back"
+                  key={card.src}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="deck-showcase-block deck-showcase-samples">
           <span className="deck-showcase-label">{sampleLabel}</span>

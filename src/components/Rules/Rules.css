@@ -336,6 +336,16 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+.deck-showcase-stage.no-back {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.deck-showcase-stage.no-back .deck-sample-grid {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .deck-showcase-block {
   min-width: 0;
 }
@@ -413,6 +423,10 @@
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 7px;
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.42);
+}
+
+.black-market-showcase .deck-card-loading {
+  border-radius: 12px;
 }
 
 .deck-card-image {
