@@ -131,7 +131,7 @@ function getContent(pathname, language) {
   }
 
   return `
-    <main aria-label="${escapeHtml(title)}">
+    <main data-prerender-shell aria-label="${escapeHtml(title)}">
       <h1>${escapeHtml(title)}</h1>
       <p>${escapeHtml(description)}</p>
       <nav aria-label="${language === "el" ? "Κύρια πλοήγηση" : "Main navigation"}">

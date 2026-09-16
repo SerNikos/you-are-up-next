@@ -1,9 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
 @font-face {
   font-family: "Getting";
   src: url("./assets/fonts/Getting-Regular2.otf") format("opentype");
-  font-display: block;
+  font-display: swap;
 }
 
 * {

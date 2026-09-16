@@ -2,6 +2,7 @@ import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
+import App from "./App.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -34,7 +35,6 @@ function lazyWithReloadRetry(importer) {
   });
 }
 
-const App = lazyWithReloadRetry(() => import("./App.jsx"));
 const AllCharactersLore = lazyWithReloadRetry(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
 );

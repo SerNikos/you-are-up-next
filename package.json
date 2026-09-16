@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "npm run generate:blurhashes && vite",
     "generate:blurhashes": "node scripts/generate-blurhashes.mjs",
-    "prebuild": "npm run generate:blurhashes",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
