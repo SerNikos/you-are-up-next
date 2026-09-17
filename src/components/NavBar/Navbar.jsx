@@ -152,6 +152,8 @@ function Navbar() {
           className="above-nav-blood above-nav-blood-right"
           src={bloodRight}
           alt=""
+          loading="eager"
+          fetchPriority="high"
         />
       </div>
       <nav className={`navbar ${isScrolled ? "is-scrolled" : ""}`}>

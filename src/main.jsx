@@ -2,13 +2,13 @@ import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n.js"; // <-- ΠΡΟΣΘΗΚΗ ΕΔΩ
-import App from "./App.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import LocaleRoute from "./components/LocaleRoute/LocaleRoute.jsx";
 import AppReveal from "./components/AppReveal/AppReveal.jsx";
 import DeferredExecutionerChat from "./components/DeferredExecutionerChat/DeferredExecutionerChat.jsx";
+import RouteLoading from "./components/RouteLoading/RouteLoading.jsx";
 
 const rootElement = document.getElementById("root");
 
@@ -35,6 +35,7 @@ function lazyWithReloadRetry(importer) {
   });
 }
 
+const App = lazyWithReloadRetry(() => import("./App.jsx"));
 const AllCharactersLore = lazyWithReloadRetry(
   () => import("./components/AllCharactersLore/AllCharactersLore.jsx"),
 );
@@ -114,11 +115,7 @@ createRoot(rootElement).render(
     <HelmetProvider>
       <AppReveal>
         <Suspense
-          fallback={
-            <div className="route-loading" role="status" aria-live="polite">
-              Loading page...
-            </div>
-          }
+          fallback={<RouteLoading />}
         >
           <RouterProvider router={router} />
         </Suspense>

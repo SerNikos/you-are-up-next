@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 import factWinSound from "../../assets/audio/sound effects/fact-win-sound.mp3";
 import scratchSound from "../../assets/audio/sound effects/scracth.mp3";
 
-const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
-
 const resetAudio = (audio) => {
   if (!audio) {
     return;
@@ -23,36 +21,9 @@ const playAudio = (audio) => {
   audio.play().catch(() => {});
 };
 
-const getLocalDayNumber = (date = new Date()) =>
-  Math.floor(
-    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) /
-      MILLISECONDS_PER_DAY,
-  );
-
-const getMillisecondsUntilNextLocalMidnight = (date = new Date()) => {
-  const nextMidnight = new Date(date);
-  nextMidnight.setHours(24, 0, 0, 0);
-
-  return Math.max(nextMidnight.getTime() - date.getTime(), 1000);
-};
-
-const formatCountdown = (milliseconds) => {
-  const totalSeconds = Math.max(0, Math.ceil(milliseconds / 1000));
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return [hours, minutes, seconds]
-    .map((unit) => String(unit).padStart(2, "0"))
-    .join(":");
-};
-
 export default function DailyFact() {
   const { t } = useTranslation();
-  const [dailyFactDay, setDailyFactDay] = useState(() => getLocalDayNumber());
-  const [millisecondsUntilMidnight, setMillisecondsUntilMidnight] = useState(
-    () => getMillisecondsUntilNextLocalMidnight(),
-  );
+  const [factIndex, setFactIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isRevealAnimating, setIsRevealAnimating] = useState(false);
   const canvasRef = useRef(null);
@@ -83,48 +54,32 @@ export default function DailyFact() {
     };
   }, []);
 
-  useEffect(() => {
-    let midnightTimer;
-
-    const updateDailyFact = () => {
-      const now = new Date();
-      setDailyFactDay(getLocalDayNumber(now));
-      setMillisecondsUntilMidnight(getMillisecondsUntilNextLocalMidnight(now));
-      midnightTimer = window.setTimeout(
-        updateDailyFact,
-        getMillisecondsUntilNextLocalMidnight(now),
-      );
-    };
-
-    const countdownTimer = window.setInterval(() => {
-      setMillisecondsUntilMidnight(getMillisecondsUntilNextLocalMidnight());
-    }, 1000);
-
-    midnightTimer = window.setTimeout(
-      updateDailyFact,
-      getMillisecondsUntilNextLocalMidnight(),
-    );
-
-    return () => {
-      window.clearTimeout(midnightTimer);
-      window.clearInterval(countdownTimer);
-    };
-  }, []);
-
   const dailyFacts = t("dailyFact.items", { returnObjects: true });
   const dailyFactItems = Array.isArray(dailyFacts) ? dailyFacts : [];
   const dailyFact =
     dailyFactItems.length > 0
-      ? dailyFactItems[dailyFactDay % dailyFactItems.length]
+      ? dailyFactItems[factIndex % dailyFactItems.length]
       : "";
-  const countdown = formatCountdown(millisecondsUntilMidnight);
+
+  const generateFact = () => {
+    if (dailyFactItems.length < 2) {
+      return;
+    }
+
+    const currentIndex = factIndex % dailyFactItems.length;
+    const nextOffset = Math.floor(Math.random() * (dailyFactItems.length - 1));
+    const nextIndex =
+      nextOffset >= currentIndex ? nextOffset + 1 : nextOffset;
+
+    setFactIndex(nextIndex);
+  };
 
   useEffect(() => {
     isRevealedRef.current = false;
     setIsRevealed(false);
     setIsRevealAnimating(false);
     resetAudio(scratchAudioRef.current);
-  }, [dailyFact, dailyFactDay]);
+  }, [dailyFact]);
 
   useEffect(() => {
     if (isRevealed) {
@@ -197,7 +152,7 @@ export default function DailyFact() {
     resizeObserver.observe(canvas);
 
     return () => resizeObserver.disconnect();
-  }, [dailyFact, dailyFactDay, isRevealed]);
+  }, [dailyFact, isRevealed]);
 
   const scratchAt = (event) => {
     const canvas = canvasRef.current;
@@ -264,6 +219,7 @@ export default function DailyFact() {
 
     isRevealedRef.current = true;
     resetAudio(scratchAudioRef.current);
+    resetAudio(factWinAudioRef.current);
     playAudio(factWinAudioRef.current);
     setIsRevealAnimating(true);
     setIsRevealed(true);
@@ -338,13 +294,14 @@ export default function DailyFact() {
         )}
       </div>
       <div className="daily-lore-fact-refresh-row">
-        <p className="daily-lore-fact-refresh">{t("dailyFact.refresh")}</p>
-        <p className="daily-lore-fact-countdown">
-          {t("dailyFact.nextFact")}
-          <time dateTime={`PT${Math.ceil(millisecondsUntilMidnight / 1000)}S`}>
-            {countdown}
-          </time>
-        </p>
+        <button
+          className="daily-lore-fact-generate"
+          type="button"
+          onClick={generateFact}
+          disabled={dailyFactItems.length < 2}
+        >
+          {t("dailyFact.generate")}
+        </button>
       </div>
     </section>
   );

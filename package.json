@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run generate:blurhashes && vite",
-    "generate:blurhashes": "node scripts/generate-blurhashes.mjs",
+    "dev": "vite",
+    "generate:assets": "node scripts/generate-blurhashes.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

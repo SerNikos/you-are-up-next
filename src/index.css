@@ -104,8 +104,8 @@ body::before {
   min-height: 100vh;
   place-items: center;
   color: #f5a623;
-  font-family: "Getting";
-  font-size: 1.6rem;
+  font-family: "Getting", sans-serif;
+  font-size: 2.4rem;
 }
 
 h2 {
@@ -125,6 +125,10 @@ p {
 }
 
 @media (max-width: 1000px) {
+  .route-loading {
+    font-size: 1.6rem;
+  }
+
   body {
     background-attachment: scroll, scroll, scroll;
   }

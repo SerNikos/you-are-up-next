@@ -1,6 +1,11 @@
 import english from "./src/locales/en.json";
 import greek from "./src/locales/el.json";
 
+const bloodRightAsset = new URL(
+  "./src/assets/useful-art/BLOOD2.svg",
+  import.meta.url,
+).href;
+
 const routes = [
   "/",
   "/en",
@@ -202,6 +207,16 @@ export async function prerender({ url }) {
       lang: language,
       title,
       elements: new Set([
+        {
+          type: "link",
+          props: {
+            rel: "preload",
+            as: "image",
+            href: bloodRightAsset,
+            type: "image/svg+xml",
+            fetchpriority: "high",
+          },
+        },
         ...(page === "home"
           ? [
               {

@@ -63,7 +63,7 @@
       "notferatu_title": "Notferatu",
       "notferatu_desc": "It's a vampire! It's a vampire hunter! No, he's ... just frustrated",
       "misero_title": "Misero",
-      "misero_desc": "They are not really here to entertain you, but to ... retire",
+      "misero_desc": "Not here to entertain you, but to ... retire",
       "paprika_title": "Paprika",
       "paprika_desc": "She only wanted to daydream while baking cookies",
       "hamlet_title": "Hamlet",
@@ -206,9 +206,8 @@
   },
   "dailyFact": {
     "title": "Did you know?",
-    "refresh": "A new fact appears at midnight.",
-    "nextFact": "Next fact in",
-    "scratchLabel": "Scratch to reveal today's fact",
+    "generate": "Generate fact",
+    "scratchLabel": "Scratch to reveal the fact",
     "items": [
       "The Executioner's family has handled death-related work in town for generations, so he grew up learning the trade.",
       "Misero is the only person in town the king truly listens to, even though everyone else still treats him like a clown.",
@@ -216,6 +215,7 @@
       "The southern woods are said to make travelers see mirages or return completely different. No one agrees what lives there.",
       "A player can win by collecting three Plot Armor cards or by being the last surviving character.",
       "Notferatu is actually vegan and particularly likes vegetables, especially garlic.",
+      "Notferatu wanted to become a doctor, but he decided that vampire hunting attacked the problem directly.",
       "The Grave Keeper is the Executioner's aunt.",
       "The Executioner's father had a square face; legend says it was because he used to shave his beard with his axe.",
       "Hamlet hates apples but likes Mission: Impossible movies.",

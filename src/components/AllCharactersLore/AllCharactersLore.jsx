@@ -74,6 +74,9 @@ const characterList = [
   },
 ];
 
+const characterImageSizes =
+  "(max-width: 600px) 320px, (max-width: 900px) 640px, 673px";
+
 export default function AllCharactersLore() {
   const { t, i18n } = useTranslation();
   const { hash } = useLocation();
@@ -154,7 +157,8 @@ export default function AllCharactersLore() {
                   alt={`${name} alive card`}
                   className="character-photo alive"
                   wrapperClassName="character-image-loader alive-image"
-                  loading="eager"
+                  loading="lazy"
+                  sizes={characterImageSizes}
                 />
                 {char.deadImage && (
                   <LoadingImage
@@ -163,6 +167,8 @@ export default function AllCharactersLore() {
                     className="character-photo dead"
                     wrapperClassName="character-image-loader dead-image"
                     loading="eager"
+                    optimizeEager
+                    sizes={characterImageSizes}
                   />
                 )}
               </div>

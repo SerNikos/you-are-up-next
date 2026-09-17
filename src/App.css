@@ -41,7 +41,12 @@
 
 .characterCards {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  justify-items: center;
   margin: 4rem auto 6rem;
+  width: 100%;
   max-width: 1400px;
 }
 
@@ -55,4 +60,13 @@ p {
 
 .header {
   margin-bottom: 5rem;
+}
+
+@media (max-width: 1000px) {
+  .characterCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 }
