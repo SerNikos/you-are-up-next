@@ -6,7 +6,6 @@ import Navbar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 import AudioPlayer from "../AudioPlayer/AudioPlayer.jsx";
 import LoadingImage from "../LoadingImage/LoadingImage.jsx";
-import DailyFact from "../DailyFact/DailyFact.jsx";
 
 // Alive card image asset paths
 import executioner from "../../assets/protagonists/executioner.jpg";
@@ -194,7 +193,6 @@ export default function AllCharactersLore() {
           );
         })}
 
-        <DailyFact />
       </main>
 
       <Footer />

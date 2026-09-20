@@ -259,7 +259,7 @@ export default function DailyFact() {
         }`}
       >
         <p className="daily-lore-fact-text" aria-live="polite">
-          {dailyFact}
+          <span dangerouslySetInnerHTML={{ __html: dailyFact }} />
         </p>
         {!isRevealed && (
           <canvas
