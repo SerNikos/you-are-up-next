@@ -16,6 +16,7 @@ const blurHashes = {
   "BREAK PLOT ARMOR.jpg": "L48pci$%0hJEVqaeXAkB0JNe}jw@",
   "GENTLE PUSH.jpg": "L48pZaxF0iNhRPWVs;oe0JNd}jw@",
   "THE IMPOSTOREST.jpg": "L48y}AxZ0iNgIUaxt7of0cNe}Qws",
+  "black market cardback.jpg": "L3B.=Y4.0M~BV?E257$$39-:RQM|",
   "executioner-card-back.png": "L38{za3W0~}F8zS#-:$jGS;LrsE}",
   "last-meal.jpg": "L39Gg-xu00s;=#axf*t700Rj~Way",
   "paid-guard.jpg": "L27AZ3og4,n,^mj[NFoL00Rk~Dj[",

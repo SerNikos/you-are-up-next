@@ -1,11 +1,12 @@
 import "./GameDescription.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Trans, useTranslation } from "react-i18next";
 import scrollCloseSound from "../../assets/audio/sound effects/scroll close.mp3";
 import scrollOpenSound from "../../assets/audio/sound effects/scroll open.mp3";
 import dialogCard from "../../assets/useful-art/dialog-card.png";
 import LoadingImage from "../LoadingImage/LoadingImage";
+import { getOptimizedImageSources } from "../../utils/optimizedImages.js";
 
 function playModalSound(soundSource) {
   const sound = new Audio(soundSource);
@@ -13,10 +14,35 @@ function playModalSound(soundSource) {
   sound.play().catch(() => {});
 }
 
+// Warms the browser cache for the modal art so it's already there when the modal opens.
+function preloadBuyBoxArt() {
+  const sources = getOptimizedImageSources(dialogCard);
+  const targetWidth = Math.ceil(550 * (window.devicePixelRatio || 1));
+  const pickSrc = (variants) =>
+    variants?.find((variant) => variant.width >= targetWidth)?.src ||
+    variants?.[variants.length - 1]?.src;
+
+  const hrefs = [pickSrc(sources?.avif), pickSrc(sources?.webp)].filter(
+    Boolean,
+  );
+
+  hrefs.forEach((href) => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = href;
+    document.head.appendChild(link);
+  });
+}
+
 export default function GameDescription() {
   const { t } = useTranslation();
   const [buy, setBuy] = useState(false);
   const modalRoot = document.getElementById("buy-modal");
+
+  useEffect(() => {
+    preloadBuyBoxArt();
+  }, []);
 
   const openModal = () => {
     playModalSound(scrollOpenSound);

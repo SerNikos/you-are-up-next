@@ -28,6 +28,7 @@ import executionerBackImg from "../../assets/rules-photos/Components/ED/executio
 import executionerLastMealImg from "../../assets/rules-photos/Components/ED/last-meal.jpg";
 import executionerPaidGuardImg from "../../assets/rules-photos/Components/ED/paid-guard.jpg";
 import executionerYouAreUpNextImg from "../../assets/rules-photos/Components/ED/you-are-up-next.jpg";
+import blackMarketCardBackImg from "../../assets/rules-photos/Components/BM/black market cardback.jpg";
 import blackMarketBreakPlotArmorImg from "../../assets/rules-photos/Components/BM/BREAK PLOT ARMOR.jpg";
 import blackMarketGentlePushImg from "../../assets/rules-photos/Components/BM/GENTLE PUSH.jpg";
 import blackMarketImpostorestImg from "../../assets/rules-photos/Components/BM/THE IMPOSTOREST.jpg";
@@ -60,6 +61,13 @@ const executionerExampleCards = [
     src: executionerYouAreUpNextImg,
     label: "You Are Up Next",
     alt: "Executioner's Deck card example: You Are Up Next",
+  },
+];
+
+const blackMarketBackCards = [
+  {
+    src: blackMarketCardBackImg,
+    alt: "Black Market card back",
   },
 ];
 
@@ -194,6 +202,7 @@ export default function Rules() {
             title={t("rules.components.black_market_card_title")}
             description={t("rules.components.black_market_card_desc")}
             className="black-market-showcase"
+            backCards={blackMarketBackCards}
             sampleCards={blackMarketExampleCards}
             backLabel={t("rules.components.card_back_label")}
             sampleLabel={t("rules.components.example_cards_label")}
