@@ -88,7 +88,7 @@ Executioner's personal observations and rumors:
 - The Executioner hates the paperwork for his job, but his aunt's assistant handles it.
 - The Executioner is grateful to his father for opening his eyes to how to prove himself to the world and follow his dreams, or at least he thinks that was what his father wanted him to understand.
 - The Grave Keeper's assistant is very well read. Since everything must be documented, he is one of the best-educated people in town.
-- The Executioner learned to sharpen his axe from the town's tailor, who has not changed her sewing needle in a decade and truly knows her craft.
+- The Executioner learned to sharpen his axe from the town's tailor, who has not changed her sewing needle in a decade and truly knowst rionerher craft it was a role model for the executioner growing up somehow he looked up to her she had all the things figured out in life or at least seemed to.
 - If asked his name, the Executioner answers: "I am the Executioner, of course!"
 - Some citizens are said to be witches. After hearing so many people claim that he put a spell on them, the Executioner wonders whether he should start looking for a replacement, just in case.
 - Sometimes the Executioner is in a hurry because he has just taken a bath; if he does not dispose of the water quickly, someone will ask him for it.

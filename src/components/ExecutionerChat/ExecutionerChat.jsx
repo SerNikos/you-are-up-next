@@ -6,6 +6,7 @@ import "./ExecutionerChat.css";
 const MAX_MESSAGE_LENGTH = 1200;
 const MOBILE_BREAKPOINT = 520;
 const SECRET_MODE_PASSWORD = "696969";
+const SECRET_MODE_KEYWORD = "pineapple";
 
 export default function ExecutionerChat() {
   const { i18n, t } = useTranslation();
@@ -159,7 +160,11 @@ export default function ExecutionerChat() {
   const unlockSecretMode = (event) => {
     event.preventDefault();
 
-    if (secretPassword !== SECRET_MODE_PASSWORD) {
+    const normalizedSecretPassword = secretPassword.trim().toLowerCase();
+    if (
+      normalizedSecretPassword !== SECRET_MODE_PASSWORD &&
+      normalizedSecretPassword !== SECRET_MODE_KEYWORD
+    ) {
       setSecretError(t("chat.secretWrong"));
       return;
     }
@@ -283,7 +288,7 @@ export default function ExecutionerChat() {
                 <input
                   id="executioner-secret-password"
                   type="password"
-                  inputMode="numeric"
+                  inputMode="text"
                   autoComplete="off"
                   value={secretPassword}
                   onChange={(event) => {
@@ -291,7 +296,10 @@ export default function ExecutionerChat() {
                     setSecretError("");
                   }}
                   placeholder={t("chat.secretPlaceholder")}
-                  maxLength={SECRET_MODE_PASSWORD.length}
+                  maxLength={Math.max(
+                    SECRET_MODE_PASSWORD.length,
+                    SECRET_MODE_KEYWORD.length,
+                  )}
                   aria-describedby={
                     secretError ? "executioner-secret-error" : undefined
                   }
