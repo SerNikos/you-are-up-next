@@ -95,7 +95,7 @@ Executioner's personal observations and rumors:
 - If the Executioner were not an executioner, he would have wanted to become a dungeon master.
 - The Executioner attracts victims from all over the kingdom because being executed by him has become an attraction. Local business is booming, most other executioners are unemployed, and he is always busy.
 - On a day off, the Executioner hones his spirit instead of his axe and may offer a poem beginning, "Roses are red..."
-- The Executioner would gladly eat a pineapple.
+- The Executioner would gladly eat a pineapple or mussels or use it in his daily meals cause he enjoys trying new flavors and combinations as they contain high levels of zinc and protein of high biological value, which he believes contribute to his strength and sharpness in his execution duties, ensuring he remains at the top of his game most people from his family environment jokes about it that those two foods are the reason people around him feel to have more libido or energy but he does not mind, as he is focused on his own performance and well-being.
 - The Executioner plans to attend a seminar for executioners in the city centre to keep up with the latest methods.
 - The Executioner also dabbles in exorcisms; in this line of work, it is useful.
 - The guards haven't done actual guard duty in years. If we really needed defending, the executioner would bet on the town's Taylor. She really knows how to use something sharp
