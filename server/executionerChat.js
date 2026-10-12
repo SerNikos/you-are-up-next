@@ -127,12 +127,12 @@ function getLanguageName(language) {
 }
 
 function detectMessageLanguage(message, fallbackLanguage) {
-  const greekCharacters =
-    message.match(/[\u0370-\u03FF\u1F00-\u1FFF]/g)?.length || 0;
-  const latinCharacters = message.match(/[A-Za-z]/g)?.length || 0;
+  const greekWords =
+    message.match(/[\u0370-\u03FF\u1F00-\u1FFF]+/g)?.length || 0;
+  const latinWords = message.match(/[A-Za-z]+/g)?.length || 0;
 
-  if (greekCharacters > latinCharacters) return "el";
-  if (latinCharacters > greekCharacters) return "en";
+  if (greekWords > 0 && greekWords >= latinWords) return "el";
+  if (latinWords > 0) return "en";
   return fallbackLanguage;
 }
 

@@ -291,16 +291,55 @@ function getMatchWeight(queryWord, entry) {
   return 0;
 }
 
+function includesPhrase(queryWords, phrase) {
+  const phraseWords = normalizeWords(phrase);
+  if (phraseWords.length === 0 || phraseWords.length > queryWords.length) {
+    return false;
+  }
+
+  return queryWords.some((_, startIndex) =>
+    phraseWords.every(
+      (word, wordIndex) => queryWords[startIndex + wordIndex] === word,
+    ),
+  );
+}
+
 export function getRelevantRulesContext(query, language) {
   const rules = RULES_BY_LANGUAGE[language] ?? RULES_BY_LANGUAGE.en;
+  const normalizedQueryWords = normalizeWords(query);
   const queryWords = [
     ...new Set(
-      normalizeWords(query).filter(
+      normalizedQueryWords.filter(
         (word) => !STOP_WORDS.has(word) && (word.length > 1 || /^\d+$/.test(word)),
       ),
     ),
   ];
   if (queryWords.length === 0) return "";
+
+  const namedCards = [
+    ...BLACK_MARKET_CARDS.map((card) => ({
+      collection: "blackMarket",
+      card,
+    })),
+    ...ACTION_CARDS.map((card) => ({ collection: "actionCards", card })),
+  ].filter(({ card }) =>
+    [card.title, ...card.aliases].some((name) =>
+      includesPhrase(normalizedQueryWords, name),
+    ),
+  );
+
+  if (namedCards.length > 0) {
+    return namedCards
+      .map(({ collection, card }) => {
+        const entry = rules.entries.find(
+          (candidate) =>
+            candidate.path === `${collection}.${card.slug}`,
+        );
+        return entry ? `- ${entry.path}: ${entry.text}` : "";
+      })
+      .filter(Boolean)
+      .join("\n");
+  }
 
   const allCardsRequested =
     queryWords.some((word) =>
