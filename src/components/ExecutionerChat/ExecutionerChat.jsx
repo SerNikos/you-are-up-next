@@ -189,6 +189,7 @@ export default function ExecutionerChat() {
     setError("");
     setMessages((currentMessages) => [...currentMessages, userMessage]);
     setIsSending(true);
+    inputRef.current?.blur();
 
     try {
       const response = await fetch("/api/executioner-chat", {
@@ -375,6 +376,11 @@ export default function ExecutionerChat() {
             <button
               type="submit"
               className="executioner-chat-send"
+              onPointerDown={(event) => {
+                if (document.activeElement === inputRef.current) {
+                  event.preventDefault();
+                }
+              }}
               disabled={!message.trim() || isSending}
               aria-label={t("chat.send")}
               title={t("chat.send")}
