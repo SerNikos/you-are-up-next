@@ -1,3 +1,5 @@
+import { getRelevantRulesContext } from "./rulesKnowledge.js";
+
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 10;
 const MAX_RESPONSE_WORDS = 140;
@@ -27,7 +29,8 @@ Game knowledge:
 - A player wins by collecting 3 Plot Armor cards or by being the last surviving player.
 
 Rules reference for helping players resolve an in-progress game:
-- The Main Deck is made by shuffling Resource and Action cards together. There are 5 Resource types (Strength, Dexterity, Wisdom, Intelligence, and Holy Duck Tape), 16 Action cards, 12 Black Market cards, and 5 Executioner's Deck cards. Used cards go face up into the Discard Pile unless an effect says otherwise.
+- Know every abbreviation in the rules glossary, in English or Greek: MD = Main Deck (Κεντρική/Κύρια Τράπουλα); BM = Black Market (Μαύρη Αγορά); PA = Plot Armor (Πανοπλία Πλοκής, also called Κάρτες Προστασίας Πλοκής); DP = Discard Pile (Στοίβα Απόρριψης), not Draw Phase; RM = Remove, meaning complete removal from the game (Πλήρης απομάκρυνση από το παιχνίδι); ST = Steal, choose and draw a card from another player's hand (Επιλογή και τράβηγμα κάρτας από το χέρι άλλου παίκτη); YU = the YOU ARE UP NEXT card (ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ), which flips over the next card in the Death Line. This card appears in the Executioner's Deck and as the Black Market card "A gentle push". If a player asks what an abbreviation means, answer with its glossary meaning rather than guessing another expansion.
+- The Main Deck is made by shuffling Resource and Action cards together. There are 5 Resource types (Strength, Dexterity, Wisdom, Intelligence, and Holy Duck Tape), 14 Action cards (2 Eat Yo Spinach, 2 Switch, 2 Unlucky Thief, 3 The Gravekeeper, 3 Unfair Trade, 1 Impostor, and 1 Steal), 14 Black Market cards, and 5 Executioner's Deck cards. The Black Market has 11 distinct card titles: 2 copies each of A Gentle Push, Re-Reflection, and Resourceful, plus 1 copy of each of the other 8 cards. Used cards go face up into the Discard Pile unless an effect says otherwise.
 - There are 4 Plot Armor types: Strength, Dexterity, Wisdom, and Intelligence. Set out as many copies of each type as there are players and remove excess copies from the game. A Plot Armor card stays face up in front of its owner, grants a permanent advantage, and its effect can be activated once per round as a free action. Activating it does not send the card to the Discard Pile.
 - For the death line setup, place the Executioner first in the Death Line, then all 3 Peasants, then the chosen player characters. Randomly choose which player character is first behind the Peasants; place the remaining characters in clockwise seating order. Death Line position determines draw and Action Phase order. Players may change places only with other players, never with Peasants.
 - Deal players + 2 cards to the Board. Resource cards are face up; Action cards are face down. Each player starts with 3 cards. Unless a rule or card says otherwise, draw from the Main Deck. In a 2-player game, remove 1 Steal, 1 Unlucky Thief, and 3 Holy Duck Tape cards from the Main Deck before play.
@@ -36,9 +39,10 @@ Rules reference for helping players resolve an in-progress game:
 - Buying a Plot Armor card claims an available matching card; activating its effect is the once-per-round free action. Buying a Black Market card is also a free action, so the player may immediately choose another main action without passing priority. Priority keeps cycling through the Death Line until every player passes consecutively; any non-pass action starts normal priority again.
 - During the Executioner's Phase, players are passive. Reveal and resolve the top Executioner's Deck card, then place it in that deck's separate used pile. When the deck is empty, reshuffle its used pile. If the effect refills the Board, keep existing cards and fill only empty slots, never above players + 2. The Board is not refilled when YOU ARE UP NEXT executes a Death Line card.
 - The Executioner must execute all Peasants before a player character can be executed. When a player dies, flip that character to its Death State and remove the player from the game. A dead Peasant is also flipped; card effects may bring Peasants back as protection. After the Executioner's effect, if more than one player remains, begin a new round at the Draw Phase. If only one remains, that player wins immediately.
-- The card "The Grave Keeper" cannot be used to choose another "The Grave Keeper" card or a "Grave Keeper Is a Keeper" card.
-- "Re-Reflection" is the only card that can be played instantly during the Action Phase in response to another Action or Black Market card without the responding player having priority.
-- "Eat Yo Spinache" can be used as any Resource card: Strength, Dexterity, Intelligence, Wisdom, or Holy Duck Tape. If the Black Market card "Re-reflection" is used on "Eat Yo Spinache", the card is negated as per normal and the other cards are returned to their owner's hand. If 2 "Eat Yo Spinache" cards are used to buy a Strength Plot Armor card, the Black Market card "Re-reflection" negates only 1 of the "Eat Yo Spinache" cards, and the other is returned to its owner's hand.
+- "The Grave Keeper" (also written "The Gravekeeper"; Greek: "Η Νεκροθάφτρια") tells you to shuffle the Discard Pile itself, look at its top 3 cards, then choose and draw 1. Do not shuffle the Discard Pile into the Main Deck. It cannot be used to choose another "The Grave Keeper" card or a "Grave Keeper Is a Keeper" card.
+- During the Action Phase, any player may play "Re-Reflection" instantly in response to another player's Action or Black Market card, even without priority. It cancels that card's effect and puts the interrupted Action or Black Market card into the Re-Reflection player's hand instead of the Discard Pile. After resolving the interruption, priority goes to the player immediately after the original active player in the Death Line, as normal; the Re-Reflection player does not automatically get an extra turn unless they are next in line.
+- "Eat Yo Spinach" (also written "Eat Yo Spinache") counts as any Resource card. Alternatively, discard 2 copies together to claim an available Strength Plot Armor card.
+- If "Re-Reflection" is used on "Eat Yo Spinach", its effect is negated as normal and the other cards are returned to their owner's hand. If 2 "Eat Yo Spinach" cards are used to claim a Strength Plot Armor card, "Re-Reflection" negates only 1 of them, and the other is returned to its owner's hand.
 - When a specific card interaction is not established in this reference or supplied by the user, state that the printed card text is needed and do not invent a ruling.
 
 World and political lore:
@@ -132,7 +136,12 @@ function detectMessageLanguage(message, fallbackLanguage) {
   return fallbackLanguage;
 }
 
-function createSystemInstruction(responseLanguage, siteLanguage, isSecretMode) {
+function createSystemInstruction(
+  responseLanguage,
+  siteLanguage,
+  isSecretMode,
+  rulesContext,
+) {
   const languageRules =
     responseLanguage === "el"
       ? `
@@ -164,7 +173,16 @@ Secret Executioner mode:
 `
     : "";
 
-  return `${EXECUTIONER_LORE}
+  const retrievedRulesContext = rulesContext
+    ? `
+
+Retrieved rule-page and card-reference excerpts relevant to the user's question:
+${rulesContext}
+- Treat these excerpts as the authoritative published rules. Prefer them over conflicting summaries elsewhere in this prompt, and do not say the Rules page does not specify something when an excerpt does.
+`
+    : "";
+
+  return `${EXECUTIONER_LORE}${retrievedRulesContext}
 
 Language lock:
 - The latest user message was classified as ${getLanguageName(responseLanguage)}. This is the response language for this turn.
@@ -200,6 +218,7 @@ function createGeminiRequestBody({
   contents,
   responseLanguage,
   siteLanguage,
+  rulesContext,
   isSecretMode = false,
   maxOutputTokens = MAX_OUTPUT_TOKENS,
   isRepair = false,
@@ -214,7 +233,7 @@ The previous answer was cut off or used the wrong language. Reply again from the
     system_instruction: {
       parts: [
         {
-          text: `${createSystemInstruction(responseLanguage, siteLanguage, isSecretMode)}${repairInstruction}`,
+          text: `${createSystemInstruction(responseLanguage, siteLanguage, isSecretMode, rulesContext)}${repairInstruction}`,
         },
       ],
     },
@@ -309,8 +328,17 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
   const siteLanguage = body?.language === "el" ? "el" : "en";
   const responseLanguage = detectMessageLanguage(message, siteLanguage);
   const isSecretMode = body?.secretCode === SECRET_MODE_PASSWORD;
+  const history = normalizeHistory(body?.history);
+  const ruleSearchQuery = [
+    ...history
+      .filter((item) => item.role === "user")
+      .slice(-2)
+      .map((item) => item.parts[0].text),
+    message,
+  ].join("\n");
+  const rulesContext = getRelevantRulesContext(ruleSearchQuery, responseLanguage);
   const contents = [
-    ...normalizeHistory(body?.history),
+    ...history,
     { role: "user", parts: [{ text: message }] },
   ];
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(resolvedModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
@@ -318,6 +346,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
     contents,
     responseLanguage,
     siteLanguage,
+    rulesContext,
     isSecretMode,
   });
 
@@ -358,6 +387,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
         contents,
         responseLanguage,
         siteLanguage,
+        rulesContext,
         isSecretMode,
         maxOutputTokens: REPAIR_OUTPUT_TOKENS,
         isRepair: true,
