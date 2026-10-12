@@ -8,6 +8,89 @@ const REPAIR_OUTPUT_TOKENS = 640;
 const DEFAULT_MODEL = "gemini-3.5-flash-lite";
 const SECRET_MODE_PASSWORD = "696969";
 
+const GREEKLISH_TRANSLITERATIONS = new Map(
+  Object.entries({
+    apo: "από",
+    borw: "μπορώ",
+    den: "δεν",
+    einai: "είναι",
+    eimai: "είμαι",
+    eisai: "είσαι",
+    eimaste: "είμαστε",
+    exei: "έχει",
+    exeis: "έχεις",
+    exoun: "έχουν",
+    gia: "για",
+    giati: "γιατί",
+    i: "η",
+    kai: "και",
+    kanei: "κάνει",
+    kaneis: "κάνεις",
+    kanoun: "κάνουν",
+    kanw: "κάνω",
+    karta: "κάρτα",
+    kartes: "κάρτες",
+    leei: "λέει",
+    mas: "μας",
+    me: "με",
+    mporei: "μπορεί",
+    mporeis: "μπορείς",
+    mporo: "μπορώ",
+    mou: "μου",
+    na: "να",
+    nai: "ναι",
+    oi: "οι",
+    oxi: "όχι",
+    paizei: "παίζει",
+    paizetai: "παίζεται",
+    paizeis: "παίζεις",
+    paizo: "παίζω",
+    paizw: "παίζω",
+    paiktes: "παίκτες",
+    paiktis: "παίκτης",
+    poia: "ποια",
+    poio: "ποιο",
+    poios: "ποιος",
+    pos: "πώς",
+    pote: "πότε",
+    pou: "πού",
+    pws: "πώς",
+    sas: "σας",
+    se: "σε",
+    shmainei: "σημαίνει",
+    simainei: "σημαίνει",
+    sou: "σου",
+    sta: "στα",
+    stin: "στην",
+    stis: "στις",
+    sto: "στο",
+    ta: "τα",
+    tha: "θα",
+    thelei: "θέλει",
+    theleis: "θέλεις",
+    thelo: "θέλω",
+    theloun: "θέλουν",
+    theloume: "θέλουμε",
+    thelw: "θέλω",
+    ti: "τι",
+    tin: "την",
+    tis: "τις",
+    to: "το",
+    ton: "τον",
+    tou: "του",
+    tous: "τους",
+  }),
+);
+
+const GREEKLISH_LANGUAGE_MARKERS = new Set([
+  "borw", "den", "einai", "eimai", "eisai", "eimaste", "exei", "exeis",
+  "exoun", "giati", "kanei", "kaneis", "kanoun", "kanw", "leei", "nai",
+  "mporei", "mporeis", "mporo", "oxi", "paizei", "paizetai", "paizeis",
+  "paizo", "paizw", "poia", "poio", "poios", "pos", "pote", "pou", "pws",
+  "shmainei", "simainei", "tha", "thelei", "theleis", "thelo", "theloun",
+  "theloume", "thelw", "ti",
+]);
+
 function resolveModel() {
   return DEFAULT_MODEL;
 }
@@ -126,7 +209,30 @@ function getLanguageName(language) {
   return language === "el" ? "Greek" : "English";
 }
 
+function isGreeklishMessage(message) {
+  const latinWords = message.match(/[A-Za-z]+/g)?.map((word) =>
+    word.toLowerCase(),
+  );
+  if (!latinWords?.length) return false;
+
+  const greeklishMarkers = latinWords.filter((word) =>
+    GREEKLISH_LANGUAGE_MARKERS.has(word),
+  );
+  return (
+    greeklishMarkers.length >= 2 ||
+    greeklishMarkers.some((word) => word !== "ti")
+  );
+}
+
+function normalizeGreeklishMessage(message) {
+  return message.replace(/[A-Za-z]+/g, (word) =>
+    GREEKLISH_TRANSLITERATIONS.get(word.toLowerCase()) ?? word,
+  );
+}
+
 function detectMessageLanguage(message, fallbackLanguage) {
+  if (isGreeklishMessage(message)) return "el";
+
   const greekWords =
     message.match(/[\u0370-\u03FF\u1F00-\u1FFF]+/g)?.length || 0;
   const latinWords = message.match(/[A-Za-z]+/g)?.length || 0;
@@ -193,6 +299,7 @@ ${secretModeRules}
 
 Conversation rules:
 - Keep every answer concise and entertaining, usually under ${MAX_RESPONSE_WORDS} words. Finish every sentence before stopping; never end mid-sentence or cut a word in half. If the answer would be too long, shorten it before sending.
+- If the latest user message includes a Greeklish interpretation, use it to understand the question and answer in Greek.
 - Do not force the game, its rules, or its lore into every answer. Users may be speaking with you purely for roleplay, so respond naturally to the scene and remain the Executioner without inventing a game connection.
 - For everyday questions, casual conversation, opinions, town advice, and roleplay, answer as the Executioner rather than as a generic assistant. Keep the elegant, theatrical, dryly funny voice in the language of the latest message, including natural Greek when the user writes in Greek.
 - When the user asks about the game's lore, rules, cards, phases, characters, or team, answer using the supplied universe. If a detail is not established, say so in character instead of inventing official rules.
@@ -226,7 +333,7 @@ function createGeminiRequestBody({
   const repairInstruction = isRepair
     ? `
 
-The previous answer was cut off or used the wrong language. Reply again from the beginning with one complete answer in ${getLanguageName(responseLanguage)} and no more than 70 words. Answer the latest user message directly and finish every sentence.`
+The previous attempt did not produce a usable complete answer. Reply again from the beginning with one complete answer in ${getLanguageName(responseLanguage)} and no more than 70 words. Answer the latest user message directly and finish every sentence.`
     : "";
 
   return {
@@ -289,6 +396,29 @@ function getFinishReason(responseBody) {
   return responseBody?.candidates?.[0]?.finishReason;
 }
 
+function getRulesFallback(rulesContext, language) {
+  const firstExcerpt = rulesContext
+    .split(/\r?\n/)
+    .map((line) => line.replace(/^- [^:]+:\s*/, "").trim())
+    .find(Boolean);
+
+  if (firstExcerpt) {
+    const cardEffect = firstExcerpt.match(
+      /^(.+?)\s+\(\d+\s+(?:copies?|αντίτυπ(?:ο|α))\):\s*(.+)$/i,
+    );
+    if (cardEffect) {
+      return language === "el"
+        ? `Η κάρτα «${cardEffect[1]}»: ${cardEffect[2]}`
+        : `${cardEffect[1]}: ${cardEffect[2]}`;
+    }
+    return firstExcerpt;
+  }
+
+  return language === "el"
+    ? "Δεν έχω αρκετές επιβεβαιωμένες πληροφορίες για να απαντήσω. Πες μου το όνομα της κάρτας ή δώσε μου λίγο περισσότερο πλαίσιο."
+    : "I don't have enough confirmed information to answer. Give me the card name or a little more context.";
+}
+
 function responseMatchesLanguage(text, language) {
   const greekCharacters =
     text.match(/[\u0370-\u03FF\u1F00-\u1FFF]/g)?.length || 0;
@@ -326,6 +456,10 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
   }
 
   const siteLanguage = body?.language === "el" ? "el" : "en";
+  const isGreeklish = isGreeklishMessage(message);
+  const interpretedMessage = isGreeklish
+    ? normalizeGreeklishMessage(message)
+    : message;
   const responseLanguage = detectMessageLanguage(message, siteLanguage);
   const isSecretMode = body?.secretCode === SECRET_MODE_PASSWORD;
   const history = normalizeHistory(body?.history);
@@ -334,12 +468,15 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
       .filter((item) => item.role === "user")
       .slice(-2)
       .map((item) => item.parts[0].text),
-    message,
+    interpretedMessage,
   ].join("\n");
   const rulesContext = getRelevantRulesContext(ruleSearchQuery, responseLanguage);
+  const promptMessage = isGreeklish
+    ? `${message}\n\nGreeklish interpretation: ${interpretedMessage}`
+    : message;
   const contents = [
     ...history,
-    { role: "user", parts: [{ text: message }] },
+    { role: "user", parts: [{ text: promptMessage }] },
   ];
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(resolvedModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
   const requestBody = createGeminiRequestBody({
@@ -377,6 +514,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
   let responseBody = requestResult.body;
   let reply = getResponseText(responseBody);
   const needsRepair =
+    !reply ||
     getFinishReason(responseBody) === "MAX_TOKENS" ||
     (reply && !responseMatchesLanguage(reply, responseLanguage));
 
@@ -412,15 +550,13 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
     responseBody = requestResult.body;
     reply = getResponseText(responseBody);
   }
-
   if (!reply) {
-    return {
-      status: 502,
-      body: {
-        error:
-          "The Executioner has no words for that one. Try asking another way.",
-      },
-    };
+    const candidate = responseBody?.candidates?.[0];
+    console.warn("Gemini chat returned no answer text after retry", {
+      blockReason: responseBody?.promptFeedback?.blockReason ?? null,
+      finishReason: candidate?.finishReason ?? null,
+    });
+    reply = getRulesFallback(rulesContext, responseLanguage);
   }
 
   return { status: 200, body: { reply } };
