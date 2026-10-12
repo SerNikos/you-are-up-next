@@ -26,7 +26,7 @@ const BLACK_MARKET_CARDS = [
     slug: "a-gentle-push",
     title: "A Gentle Push",
     copies: 2,
-    aliases: ["Απαλή Ώθηση", "YOU ARE UP NEXT"],
+    aliases: ["Απαλή Ώθηση"],
     en: "Apply YOU ARE UP NEXT to the next card in the Death Line; everyone draws 1 card.",
     el: "Εφάρμοσε το «ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ» στην επόμενη κάρτα της Γραμμής Θανάτου· όλοι οι παίκτες τραβούν 1 κάρτα.",
   },
@@ -109,6 +109,33 @@ const BLACK_MARKET_CARDS = [
     aliases: ["Αντεστραμμένη Αντανάκλαση"],
     en: "Play it in response to an Action or Black Market card to cancel that card's effect and take the interrupted card into your hand.",
     el: "Παίξε την ως απάντηση σε κάρτα Action ή Μαύρης Αγοράς για να ακυρώσεις την επίδρασή της και να πάρεις την κάρτα που διακόπηκε στο χέρι σου.",
+  },
+];
+
+const EXECUTIONER_CARDS = [
+  {
+    slug: "last-meal",
+    title: "Last Meal?",
+    copies: 2,
+    aliases: ["Last Meal", "Τελευταίο Γεύμα"],
+    en: "Refill the Board. Then all players draw 1 card from the Main Deck in the order dictated by the Death Line.",
+    el: "Αναπλήρωσε το Ταμπλό. Έπειτα, όλοι οι παίκτες τραβούν 1 κάρτα από την Κύρια Τράπουλα (MD), με τη σειρά που ορίζει η Γραμμή Θανάτου.",
+  },
+  {
+    slug: "paid-guard",
+    title: "Paid Guard",
+    copies: 1,
+    aliases: ["Πληρωμένος Φρουρός"],
+    en: "Refill the Board.",
+    el: "Αναπλήρωσε το Ταμπλό.",
+  },
+  {
+    slug: "you-are-up-next",
+    title: "YOU ARE UP NEXT",
+    copies: 2,
+    aliases: ["ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ"],
+    en: "Execute the next card in the Death Line. Do not refill the Board.",
+    el: "Εκτέλεσε την επόμενη κάρτα στη Γραμμή Θανάτου. Μην αναπληρώσεις το Ταμπλό.",
   },
 ];
 
@@ -235,6 +262,7 @@ function buildRuleEntries(locale, language) {
 
   for (const [collection, cards] of [
     ["blackMarket", BLACK_MARKET_CARDS],
+    ["executionerDeck", EXECUTIONER_CARDS],
     ["actionCards", ACTION_CARDS],
   ]) {
     for (const card of cards) {
@@ -321,6 +349,10 @@ export function getRelevantRulesContext(query, language) {
       collection: "blackMarket",
       card,
     })),
+    ...EXECUTIONER_CARDS.map((card) => ({
+      collection: "executionerDeck",
+      card,
+    })),
     ...ACTION_CARDS.map((card) => ({ collection: "actionCards", card })),
   ].filter(({ card }) =>
     [card.title, ...card.aliases].some((name) =>
@@ -362,6 +394,13 @@ export function getRelevantRulesContext(query, language) {
     queryWords.some((word) =>
       ["card", "cards", "kartes", "karta", "καρτες", "καρτα"].includes(word),
     );
+  const asksForExecutionerCards =
+    queryWords.some((word) =>
+      ["executioner", "executioners", "dimiou", "δημιου", "δημιος"].includes(word),
+    ) &&
+    queryWords.some((word) =>
+      ["card", "cards", "kartes", "karta", "καρτες", "καρτα"].includes(word),
+    );
 
   if (allCardsRequested && asksForBlackMarket) {
     const cardEntries = rules.entries.filter((entry) =>
@@ -386,6 +425,19 @@ export function getRelevantRulesContext(query, language) {
         : "The Action deck has 14 cards: 2 Eat Yo Spinach, 2 Switch, 2 Unlucky Thief, 3 The Gravekeeper, 3 Unfair Trade, 1 Impostor, and 1 Steal.";
     return [
       `- actionCards.deck: ${overview}`,
+      ...cardEntries.map((entry) => `- ${entry.path}: ${entry.text}`),
+    ].join("\n");
+  }
+  if (asksForExecutionerCards) {
+    const cardEntries = rules.entries.filter((entry) =>
+      entry.path.startsWith("executionerDeck."),
+    );
+    const overview =
+      language === "el"
+        ? "Η Τράπουλα του Δήμιου έχει 5 κάρτες: 2 Last Meal?, 1 Paid Guard και 2 YOU ARE UP NEXT."
+        : "The Executioner's Deck has 5 cards: 2 Last Meal?, 1 Paid Guard, and 2 YOU ARE UP NEXT.";
+    return [
+      `- executionerDeck.deck: ${overview}`,
       ...cardEntries.map((entry) => `- ${entry.path}: ${entry.text}`),
     ].join("\n");
   }

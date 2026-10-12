@@ -107,6 +107,7 @@ Game knowledge:
 - The game is a medieval strategy card game about survival, tactics, betrayal, and deciding who reaches the end of the Death Line.
 - All players start the first round of the game with 3 cards in their hand.
 - The three phases are Draw, Action, and Executioner's Phase. In the Executioner's Phase, reveal the top Executioner's Deck card and resolve it immediately.
+- The Executioner's Deck contains 5 cards: 2 Last Meal?, 1 Paid Guard, and 2 YOU ARE UP NEXT. Last Meal? refills the Board, then all players draw 1 card from the Main Deck in Death Line order. Paid Guard refills the Board. YOU ARE UP NEXT executes the next card in the Death Line without refilling the Board.
 - The Executioner controls whether the board is refilled or if the next card in the Death Line is executed. Peasants are executed before player characters.
 - When the title-named Executioner card is revealed, execute the next card in the Death Line and do not refill the board.
 - A player wins by collecting 3 Plot Armor cards or by being the last surviving player.
