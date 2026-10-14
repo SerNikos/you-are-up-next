@@ -112,6 +112,7 @@ export default function LoadingImage({
   sizes = "100vw",
   onLoad: onImageLoad,
   onError: onImageError,
+  onLoadingComplete,
   ...imageProps
 }) {
   const optimizedSources = getOptimizedImageSources(src);
@@ -206,6 +207,7 @@ export default function LoadingImage({
           setImageFailed(true);
           setIsLoading(false);
           onImageError?.(error);
+          onLoadingComplete?.();
         });
     };
 
@@ -291,6 +293,7 @@ export default function LoadingImage({
     fetchPriority,
     loading,
     onImageError,
+    onLoadingComplete,
     optimizedSources,
     shouldUseNativeSource,
     src,
@@ -303,6 +306,7 @@ export default function LoadingImage({
     if (!src) {
       setProgress(100);
       setIsLoading(false);
+      onLoadingComplete?.();
       return;
     }
 
@@ -310,6 +314,7 @@ export default function LoadingImage({
     loadingTimer.current = window.setTimeout(() => {
       setProgress(100);
       setIsLoading(false);
+      onLoadingComplete?.();
     }, MINIMUM_LOADING_TIME);
   };
 
@@ -326,6 +331,7 @@ export default function LoadingImage({
     setIsIndeterminate(false);
     setImageFailed(true);
     setIsLoading(false);
+    onLoadingComplete?.();
   };
 
   const showNativePictureSources =

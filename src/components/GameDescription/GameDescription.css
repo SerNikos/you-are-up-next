@@ -86,6 +86,18 @@
   background-color: #c82333;
 }
 
+.buy-button:disabled {
+  cursor: wait;
+  opacity: 0.75;
+  animation: none;
+}
+
+.buy-button:disabled:hover,
+.buy-button:disabled:active {
+  background-color: #b91a27e3;
+  transform: none;
+}
+
 /* ==========================================================================
    MODAL & OVERLAY SYSTEM (FIXED FOR ZOOM & RESPONSIVENESS)
    ========================================================================== */
@@ -104,6 +116,10 @@
   align-items: center;
   z-index: 9999; /* Πάνω από οτιδήποτε άλλο στην οθόνη */
   backdrop-filter: blur(3px);
+}
+
+.modal-overlay[hidden] {
+  display: none;
 }
 
 .buy-box-container {
@@ -216,4 +232,3 @@
   background-color: #f4e0b7;
   color: #361b12;
 }
-
