@@ -107,8 +107,8 @@ const BLACK_MARKET_CARDS = [
     title: "Re-Reflection",
     copies: 2,
     aliases: ["Αντεστραμμένη Αντανάκλαση"],
-    en: "Play it in response to an Action or Black Market card to cancel that card's effect and take the interrupted card into your hand.",
-    el: "Παίξε την ως απάντηση σε κάρτα Action ή Μαύρης Αγοράς για να ακυρώσεις την επίδρασή της και να πάρεις την κάρτα που διακόπηκε στο χέρι σου.",
+    en: "Play it only outside your own Action Phase, in response to another player's Action or Black Market card. It cancels that card's effect and puts the interrupted card into your hand instead of the Discard Pile. If the cancelled card requires a discard, carry out that discard as normal; only its effect is cancelled. Re-Reflection cannot be used on Impostor or The Impostor-est because those cards are not formally played. If a Re-Reflection is used in response to another Re-Reflection, the second cancels the first and its player takes the first Re-Reflection into their hand; the original Action or Black Market card resolves normally because its cancellation was cancelled.",
+    el: "Παίξε την μόνο εκτός της δικής σου Φάσης Δράσης, ως απάντηση σε κάρτα Action ή Μαύρης Αγοράς άλλου παίκτη. Ακυρώνει την επίδραση αυτής της κάρτας και παίρνεις την κάρτα που διακόπηκε στο χέρι σου αντί για τη Στοίβα Απόρριψης. Αν η ακυρωμένη κάρτα απαιτεί απόρριψη κάρτας, αυτή απορρίπτεται κανονικά· ακυρώνεται μόνο η επίδρασή της. Δεν μπορείς να χρησιμοποιήσεις Re-Reflection εναντίον των Impostor ή The Impostor-est, επειδή αυτές οι κάρτες δεν παίζονται επίσημα. Αν παίξεις Re-Reflection ως απάντηση σε άλλη Re-Reflection, η δεύτερη ακυρώνει την πρώτη και παίρνεις την πρώτη Re-Reflection στο χέρι σου· η αρχική κάρτα Action ή Μαύρης Αγοράς επιλύεται κανονικά, επειδή ακυρώθηκε η ακύρωσή της.",
   },
 ];
 
