@@ -49,7 +49,7 @@
   },
   "home": {
     "title": "ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ",
-    "seo_description": "Το ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ είναι ένα μεσαιωνικό στρατηγικό επιτραπέζιο παιχνίδι κάρτων.",
+    "seo_description": "Το ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ είναι ένα μεσαιωνικό στρατηγικό επιτραπέζιο παιχνίδι καρτών.",
     "description_part1": "Έχετε ελάχιστο αλλά ",
     "description_highlight": "πολύτιμο",
     "description_part2": " χρόνο για να κλέψετε, ανταλλάξετε, ή να δώσετε μια μικρή ώθηση...",
@@ -93,7 +93,7 @@
     },
     "setup_title": "Αρχική Διάταξη & Στήσιμο Παιχνιδιού",
     "step1_title": "Βήμα 1: Στήσιμο των Τραπουλών & Αρχικές Κάρτες",
-    "step1_desc": "Οργανώστε την πρώτη γραμμή τοποθετώντας την τράπουλα της <strong>Μαύρης Αγοράς (BM)</strong> στα αριστερά, παρατάξτε τις κάρτες <strong>Plot Armor (PA)</strong> κλειστές στο κέντρο ανά χρώμα (Intelligence, Wisdom, Dexterity και Strength). Ο αριθμός των PA cards ανά χρώμα ισούται με τον αριθμό των παικτών στο παιχνίδι (π.χ. σε παιχνίδι με 3 παίκτες, χρησιμοποιήστε 3 κάρτες PA από κάθε χρώμα). Αν περισσεύουν κάρτες PA, βγάλτε τες από το παιχνίδι. Τέλος, τοποθετήστε την τράπουλα του Δήμιου τέρμα δεξιά.",
+    "step1_desc": "Οργανώστε την πρώτη γραμμή τοποθετώντας την τράπουλα της <strong>Μαύρης Αγοράς (BM)</strong> στα αριστερά, παρατάξτε τις κάρτες <strong>Plot Armor (PA)</strong> κλειστές στο κέντρο ανά χρώμα (<span style=\"font-weight: bold; color: #FCF8AA;\">Intelligence</span>, <span style=\"font-weight: bold; color: #3D63B3;\">Wisdom</span>, <span style=\"font-weight: bold; color: #2D473F;\">Dexterity</span> και <span style=\"font-weight: bold; color: #BC6061;\">Strength</span>). Ο αριθμός των καρτών PA ανά χρώμα ισούται με τον αριθμό των παικτών (π.χ. αν παίζουν 2 παίκτες, χρησιμοποιήστε 2 κάρτες PA <span style=\"font-weight: bold; color: #BC6061;\">Strength</span>, 2 κάρτες PA <span style=\"font-weight: bold; color: #FCF8AA;\">Intelligence</span>, 2 κάρτες PA <span style=\"font-weight: bold; color: #2D473F;\">Dexterity</span> και 2 κάρτες PA <span style=\"font-weight: bold; color: #3D63B3;\">Wisdom</span>). Αν περισσεύουν κάρτες PA, βγάλτε τες από το παιχνίδι. Τέλος, τοποθετήστε την τράπουλα του Δήμιου τέρμα δεξιά.",
     "step2_title": "Βήμα 2: Δημιουργία της Γραμμής Θανάτου (Death Line)",
     "step2_desc": "Ακριβώς κάτω από την πρώτη γραμμή, ξεκινήστε να στήνετε τη <strong>Γραμμή Θανάτου (Death Line)</strong> τοποθετώντας την κάρτα του Δήμιου κάτω από την τράπουλα της Μαύρης Αγοράς.",
     "step2_list1": "<strong>Ο Δήμιος:</strong> Παίρνει πάντα την πρώτη-πρώτη θέση στο τέρμα αριστερό άκρο.",
