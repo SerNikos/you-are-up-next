@@ -208,10 +208,29 @@ export default function ExecutionerChat() {
         throw new Error(data.error || t("chat.error"));
       }
 
-      setMessages((currentMessages) => [
-        ...currentMessages,
-        { role: "model", text: data.reply },
-      ]);
+      const assistantMessages = Array.isArray(data.messages)
+        ? data.messages
+        : [data.reply];
+      if (
+        !assistantMessages.length ||
+        assistantMessages.length > 3 ||
+        assistantMessages.some(
+          (assistantMessage) =>
+            typeof assistantMessage !== "string" || !assistantMessage.trim(),
+        )
+      ) {
+        throw new Error(t("chat.error"));
+      }
+
+      for (const [index, assistantMessage] of assistantMessages.entries()) {
+        if (index > 0) {
+          await new Promise((resolve) => window.setTimeout(resolve, 850));
+        }
+        setMessages((currentMessages) => [
+          ...currentMessages,
+          { role: "model", text: assistantMessage.trim() },
+        ]);
+      }
     } catch (requestError) {
       setError(requestError.message || t("chat.error"));
     } finally {
@@ -252,6 +271,7 @@ export default function ExecutionerChat() {
                 className={`executioner-chat-secret-toggle ${isSecretMode ? "is-active" : ""}`}
                 onClick={toggleSecretMode}
                 aria-pressed={isSecretMode}
+                disabled={isSending}
                 aria-label={
                   isSecretMode
                     ? t("chat.secretDisable")

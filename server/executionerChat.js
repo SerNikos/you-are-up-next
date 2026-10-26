@@ -83,12 +83,48 @@ const GREEKLISH_TRANSLITERATIONS = new Map(
 );
 
 const GREEKLISH_LANGUAGE_MARKERS = new Set([
-  "borw", "den", "einai", "eimai", "eisai", "eimaste", "exei", "exeis",
-  "exoun", "giati", "kanei", "kaneis", "kanoun", "kanw", "leei", "nai",
-  "mporei", "mporeis", "mporo", "oxi", "paizei", "paizetai", "paizeis",
-  "paizo", "paizw", "poia", "poio", "poios", "pos", "pote", "pou", "pws",
-  "shmainei", "simainei", "tha", "thelei", "theleis", "thelo", "theloun",
-  "theloume", "thelw", "ti",
+  "borw",
+  "den",
+  "einai",
+  "eimai",
+  "eisai",
+  "eimaste",
+  "exei",
+  "exeis",
+  "exoun",
+  "giati",
+  "kanei",
+  "kaneis",
+  "kanoun",
+  "kanw",
+  "leei",
+  "nai",
+  "mporei",
+  "mporeis",
+  "mporo",
+  "oxi",
+  "paizei",
+  "paizetai",
+  "paizeis",
+  "paizo",
+  "paizw",
+  "poia",
+  "poio",
+  "poios",
+  "pos",
+  "pote",
+  "pou",
+  "pws",
+  "shmainei",
+  "simainei",
+  "tha",
+  "thelei",
+  "theleis",
+  "thelo",
+  "theloun",
+  "theloume",
+  "thelw",
+  "ti",
 ]);
 
 function resolveModel() {
@@ -113,11 +149,13 @@ Game knowledge:
 - A player wins by collecting 3 Plot Armor cards or by being the last surviving player.
 
 Rules reference for helping players resolve an in-progress game:
-- Know every abbreviation in the rules glossary, in English or Greek: MD = Main Deck (Κεντρική/Κύρια Τράπουλα); BM = Black Market (Μαύρη Αγορά); PA = Plot Armor (Πανοπλία Πλοκής, also called Κάρτες Προστασίας Πλοκής); DP = Discard Pile (Στοίβα Απόρριψης), not Draw Phase; RM = Remove, meaning complete removal from the game (Πλήρης απομάκρυνση από το παιχνίδι); ST = Steal, choose and draw a card from another player's hand (Επιλογή και τράβηγμα κάρτας από το χέρι άλλου παίκτη); YU = the YOU ARE UP NEXT card (ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ), which flips over the next card in the Death Line. This card appears in the Executioner's Deck and as the Black Market card "A gentle push". If a player asks what an abbreviation means, answer with its glossary meaning rather than guessing another expansion.
+- Know every abbreviation in the rules glossary, in English or Greek: MD = Main Deck (Κεντρική/Κύρια Τράπουλα); BM = Black Market (Μαύρη Αγορά); PA = Plot Armor (Πανοπλία Πλοκής, also called Κάρτες Προστασίας Πλοκής); DP = Discard Pile (Στοίβα Απόρριψης), not Draw Phase; RM = Remove, meaning complete removal from the game (Πλήρης απομάκρυνση από το παιχνίδι); ST = Steal, choose a player and take a random face-down card from their hand (Διάλεξε παίκτη και πάρε τυχαία μία κλειστή κάρτα από το χέρι του); YU = the YOU ARE UP NEXT card (ΕΙΣΑΙ Ο ΕΠΟΜΕΝΟΣ), which flips over the next card in the Death Line. This card appears in the Executioner's Deck and as the Black Market card "A gentle push". If a player asks what an abbreviation means, answer with its glossary meaning rather than guessing another expansion.
 - The Main Deck is made by shuffling Resource and Action cards together. There are 5 Resource types (Strength, Dexterity, Wisdom, Intelligence, and Holy Duck Tape), 14 Action cards (2 Eat Yo Spinach, 2 Switch, 2 Unlucky Thief, 3 The Gravekeeper, 3 Unfair Trade, 1 Impostor, and 1 Steal), 14 Black Market cards, and 5 Executioner's Deck cards. The Black Market has 11 distinct card titles: 2 copies each of A Gentle Push, Re-Reflection, and Resourceful, plus 1 copy of each of the other 8 cards. Used cards go face up into the Discard Pile unless an effect says otherwise.
+- If the Main Deck runs out while cards still need to be drawn, shuffle the Discard Pile to form a new Main Deck, then continue drawing.
 - There are 4 Plot Armor types: Strength, Dexterity, Wisdom, and Intelligence. Set out as many copies of each type as there are players and remove excess copies from the game. A Plot Armor card stays face up in front of its owner and grants a permanent advantage. Each card's effect may be activated once per Action Phase as a free action, and the owner may choose to use it or pass. Players may own multiple cards of the same type; each copy's effect may be activated once per Action Phase. For example, two Dexterity Plot Armor cards can each be activated once to draw 2 cards after the Draw Phase. Activating an effect does not send the card to the Discard Pile or make its owner lose priority.
 - For the death line setup, place the Executioner first in the Death Line, then all 3 Peasants, then the chosen player characters. Randomly choose which player character is first behind the Peasants; place the remaining characters in clockwise seating order. Death Line position determines draw and Action Phase order. Players may change places only with other players, never with Peasants.
 - Deal players + 2 cards to the Board. Resource cards are face up; Action cards are face down. Each player starts with 3 cards. Unless a rule or card says otherwise, draw from the Main Deck. In a 2-player game, remove 1 Steal, 1 Unlucky Thief, and 3 Holy Duck Tape cards from the Main Deck before play.
+- Each player's hand is hidden from opponents. When a card effect tells you to steal cards, choose the target player, then take the required number of face-down cards at random. You cannot see their faces or choose them by identity, so there is an element of luck.
 - During the Draw Phase, each player takes exactly one card, in Death Line order, choosing from the available Board cards. If the Board is empty, draw from the Main Deck. The Board is not refilled during this phase, so later players may have fewer choices.
 - During the Action Phase, priority follows the Death Line. On a turn, a player may play an Action or Black Market card and resolve it immediately, buy Plot Armor for 3 matching Resources plus 1 Holy Duck Tape, buy a Black Market card by discarding any 3 cards, or pass. Played Action and Black Market cards go to the Discard Pile after resolving.
 - Buying a Plot Armor card claims an available matching card; activating its effect is the once-per-round free action. Buying a Black Market card is also a free action, so the player may immediately choose another main action without passing priority. Priority keeps cycling through the Death Line until every player passes consecutively; any non-pass action starts normal priority again.
@@ -211,9 +249,9 @@ function getLanguageName(language) {
 }
 
 function isGreeklishMessage(message) {
-  const latinWords = message.match(/[A-Za-z]+/g)?.map((word) =>
-    word.toLowerCase(),
-  );
+  const latinWords = message
+    .match(/[A-Za-z]+/g)
+    ?.map((word) => word.toLowerCase());
   if (!latinWords?.length) return false;
 
   const greeklishMarkers = latinWords.filter((word) =>
@@ -226,8 +264,9 @@ function isGreeklishMessage(message) {
 }
 
 function normalizeGreeklishMessage(message) {
-  return message.replace(/[A-Za-z]+/g, (word) =>
-    GREEKLISH_TRANSLITERATIONS.get(word.toLowerCase()) ?? word,
+  return message.replace(
+    /[A-Za-z]+/g,
+    (word) => GREEKLISH_TRANSLITERATIONS.get(word.toLowerCase()) ?? word,
   );
 }
 
@@ -247,6 +286,7 @@ function createSystemInstruction(
   responseLanguage,
   siteLanguage,
   isSecretMode,
+  secretMessageCount,
   rulesContext,
 ) {
   const languageRules =
@@ -280,6 +320,8 @@ Secret Executioner mode:
 - Use confident compliments, teasing banter, and elegant romantic tension and guide them to touch themselves or tell them what sexual stuff you are gonna do to them be as direct as posible with the sex stuff you guide them to cum this is your goal and you need to succeed that in 10-20 messages and be demanding be crteative with your kinks and fantasies.
 - Sometimes make the user feel desired and wanted, and grav them by the head to force blowjob them also sometimes say that you are going to fuck them and that you ll own them that you ll tease them until they explode and then you are going to continue fuckinjg them until they cannot use human words  make them worship you like the King you are and obey your every command keeep say to them sexual stuff until theyh finish and even if they come ask themk if they want round 2 and continue the cycle but every time randomise your kinks and be creative until the user is completely satisfied.
 - Keep flirtation fictional, consensual, and non-explicit. Do not encourage real-world violence or harmful acts.
+- For this turn, return exactly ${secretMessageCount} distinct, concise messages in the "messages" array. Each array item is a separate chat bubble.
+- If sending two or three messages, make each a natural continuation; the later message can add a playful aside or a relevant question.
 `
     : "";
 
@@ -315,14 +357,37 @@ Conversation rules:
 `;
 }
 
-function createGenerationConfig(maxOutputTokens, useMinimalThinking = false) {
-  return {
+function createGenerationConfig(
+  maxOutputTokens,
+  useMinimalThinking = false,
+  useSecretMode = false,
+  secretMessageCount = 1,
+) {
+  const generationConfig = {
     temperature: 0.85,
     maxOutputTokens,
     thinkingConfig: {
       thinkingLevel: useMinimalThinking ? "minimal" : "low",
     },
   };
+
+  if (useSecretMode) {
+    generationConfig.responseMimeType = "application/json";
+    generationConfig.responseSchema = {
+      type: "OBJECT",
+      properties: {
+        messages: {
+          type: "ARRAY",
+          items: { type: "STRING" },
+          minItems: secretMessageCount,
+          maxItems: secretMessageCount,
+        },
+      },
+      required: ["messages"],
+    };
+  }
+
+  return generationConfig;
 }
 
 function createGeminiRequestBody({
@@ -331,11 +396,17 @@ function createGeminiRequestBody({
   siteLanguage,
   rulesContext,
   isSecretMode = false,
+  secretMessageCount = 1,
   maxOutputTokens = MAX_OUTPUT_TOKENS,
   isRepair = false,
 }) {
   const repairInstruction = isRepair
-    ? `
+    ? isSecretMode
+      ? `
+
+The previous attempt did not produce a usable complete answer. Reply again in ${getLanguageName(responseLanguage)} as valid JSON with a "messages" array containing exactly ${secretMessageCount} complete strings.
+`
+      : `
 
 The previous attempt did not produce a usable complete answer. Reply again from the beginning with one complete answer in ${getLanguageName(responseLanguage)} and no more than 70 words. Answer the latest user message directly and finish every sentence.`
     : "";
@@ -344,12 +415,17 @@ The previous attempt did not produce a usable complete answer. Reply again from 
     system_instruction: {
       parts: [
         {
-          text: `${createSystemInstruction(responseLanguage, siteLanguage, isSecretMode, rulesContext)}${repairInstruction}`,
+          text: `${createSystemInstruction(responseLanguage, siteLanguage, isSecretMode, secretMessageCount, rulesContext)}${repairInstruction}`,
         },
       ],
     },
     contents,
-    generationConfig: createGenerationConfig(maxOutputTokens, isRepair),
+    generationConfig: createGenerationConfig(
+      maxOutputTokens,
+      isRepair,
+      isSecretMode,
+      secretMessageCount,
+    ),
   };
 }
 
@@ -396,8 +472,62 @@ function getResponseText(responseBody) {
     .trim();
 }
 
+function getReplies(responseBody, isSecretMode, secretMessageCount) {
+  const responseText = getResponseText(responseBody);
+  if (!responseText) return null;
+  if (!isSecretMode) return [responseText];
+
+  try {
+    const parsedResponse = JSON.parse(responseText);
+    if (
+      !Array.isArray(parsedResponse.messages) ||
+      parsedResponse.messages.length < 1 ||
+      parsedResponse.messages.length > 3 ||
+      parsedResponse.messages.length !== secretMessageCount ||
+      parsedResponse.messages.some(
+        (message) => typeof message !== "string" || !message.trim(),
+      )
+    ) {
+      return null;
+    }
+
+    return parsedResponse.messages.map((message) => message.trim());
+  } catch {
+    return null;
+  }
+}
+
 function getFinishReason(responseBody) {
   return responseBody?.candidates?.[0]?.finishReason;
+}
+
+function isGameRulesQuestion(message) {
+  return (
+    /\b(?:rules?|cards?|deck|phases?|plot armor|death line|black market|discard pile|game setup)\b/i.test(
+      message,
+    ) ||
+    /κανόν|κάρτ|τράπουλ|φάση|πανοπλία|γραμμή θανάτου|μαύρα? αγορά|στοίβα απόρριψης|στήσιμ/iu.test(
+      message,
+    )
+  );
+}
+
+function chooseSecretMessageCount(message, history) {
+  if (isGameRulesQuestion(message)) return 1;
+
+  const previousAssistantMessage = [...history]
+    .reverse()
+    .find((item) => item.role === "model");
+  const userTurnCount = history.filter((item) => item.role === "user").length;
+
+  if (userTurnCount === 0) return 2;
+
+  if (/[?;]["'»”)]*\s*$/u.test(previousAssistantMessage?.parts[0].text ?? "")) {
+    const wordCount = message.match(/\S+/gu)?.length ?? 0;
+    return wordCount >= 8 ? 3 : 2;
+  }
+
+  return Math.random() < 0.4 ? 2 : 1;
 }
 
 function getRulesFallback(rulesContext, language) {
@@ -474,7 +604,13 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
       .map((item) => item.parts[0].text),
     interpretedMessage,
   ].join("\n");
-  const rulesContext = getRelevantRulesContext(ruleSearchQuery, responseLanguage);
+  const rulesContext = getRelevantRulesContext(
+    ruleSearchQuery,
+    responseLanguage,
+  );
+  const secretMessageCount = isSecretMode
+    ? chooseSecretMessageCount(message, history)
+    : 1;
   const promptMessage = isGreeklish
     ? `${message}\n\nGreeklish interpretation: ${interpretedMessage}`
     : message;
@@ -489,6 +625,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
     siteLanguage,
     rulesContext,
     isSecretMode,
+    secretMessageCount,
   });
 
   let requestResult = await requestGemini(endpoint, requestBody);
@@ -516,11 +653,11 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
   }
 
   let responseBody = requestResult.body;
-  let reply = getResponseText(responseBody);
+  let replies = getReplies(responseBody, isSecretMode, secretMessageCount);
   const needsRepair =
-    !reply ||
+    !replies?.length ||
     getFinishReason(responseBody) === "MAX_TOKENS" ||
-    (reply && !responseMatchesLanguage(reply, responseLanguage));
+    replies?.some((reply) => !responseMatchesLanguage(reply, responseLanguage));
 
   if (needsRepair) {
     requestResult = await requestGemini(
@@ -531,6 +668,7 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
         siteLanguage,
         rulesContext,
         isSecretMode,
+        secretMessageCount,
         maxOutputTokens: REPAIR_OUTPUT_TOKENS,
         isRepair: true,
       }),
@@ -552,16 +690,22 @@ export async function createExecutionerChatResponse({ apiKey, body }) {
     }
 
     responseBody = requestResult.body;
-    reply = getResponseText(responseBody);
+    replies = getReplies(responseBody, isSecretMode, secretMessageCount);
   }
-  if (!reply) {
+  if (!replies?.length) {
     const candidate = responseBody?.candidates?.[0];
     console.warn("Gemini chat returned no answer text after retry", {
       blockReason: responseBody?.promptFeedback?.blockReason ?? null,
       finishReason: candidate?.finishReason ?? null,
     });
-    reply = getRulesFallback(rulesContext, responseLanguage);
+    replies = [getRulesFallback(rulesContext, responseLanguage)];
   }
 
-  return { status: 200, body: { reply } };
+  return {
+    status: 200,
+    body: {
+      reply: replies[0],
+      ...(isSecretMode ? { messages: replies } : {}),
+    },
+  };
 }

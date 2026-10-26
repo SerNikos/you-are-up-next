@@ -193,8 +193,8 @@ const ACTION_CARDS = [
     title: "Steal",
     copies: 1,
     aliases: ["Κλέψε"],
-    en: "Choose another player and steal 1 card from their hand.",
-    el: "Διάλεξε έναν άλλο παίκτη και κλέψε 1 κάρτα από το χέρι του.",
+    en: "Choose another player and take 1 random face-down card from their hand. You cannot see its face or choose its identity.",
+    el: "Διάλεξε έναν άλλο παίκτη και πάρε τυχαία 1 κλειστή κάρτα από το χέρι του. Δεν μπορείς να δεις την όψη της ή να επιλέξεις συγκεκριμένη κάρτα.",
   },
 ];
 
